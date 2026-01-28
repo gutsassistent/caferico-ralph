@@ -94,8 +94,8 @@ for i in $(seq 1 $MAX_ITERATIONS); do
     # Claude Code: use --dangerously-skip-permissions for autonomous operation, --print for output
     OUTPUT=$(claude --dangerously-skip-permissions --print < "$SCRIPT_DIR/CLAUDE.md" 2>&1 | tee /dev/stderr) || true
   elif [[ "$TOOL" == "opencode" ]]; then
-    # OpenCode: pipe CLAUDE.md as prompt
-    OUTPUT=$(opencode -p "$(cat "$SCRIPT_DIR/CLAUDE.md")" 2>&1 | tee /dev/stderr) || true
+    # OpenCode: run with prompt from CLAUDE.md, using Kimi K2.5 model
+    OUTPUT=$(opencode run -m "kimi-for-coding/k2p5" "$(cat "$SCRIPT_DIR/CLAUDE.md")" 2>&1 | tee /dev/stderr) || true
   fi
   
   # Check for completion signal
