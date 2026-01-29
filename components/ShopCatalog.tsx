@@ -2,25 +2,21 @@
 
 import { useMemo, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
+import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import Reveal from '@/components/Reveal';
-import products from '@/data/products.json';
-
-type Product = (typeof products)[number];
+import type { Product } from '@/types/product';
 
 type SortOption = 'price-asc' | 'price-desc' | 'name-asc';
 
-const COLLECTION_ORDER = ['beans', 'ground', 'accessories'] as const;
+type CollectionFilter = string;
 
-type CollectionId = (typeof COLLECTION_ORDER)[number];
-type CollectionFilter = CollectionId | 'all';
+type ShopCatalogProps = {
+  products: Product[];
+  categories: { id: number; name: string; slug: string }[];
+};
 
-const PRODUCT_LIST = products as Product[];
-const AVAILABLE_COLLECTIONS = COLLECTION_ORDER.filter((collection) =>
-  PRODUCT_LIST.some((product) => product.collection === collection)
-);
-
-export default function ShopCatalog() {
+export default function ShopCatalog({ products, categories }: ShopCatalogProps) {
   const t = useTranslations('Shop');
   const locale = useLocale();
   const [query, setQuery] = useState('');
@@ -38,7 +34,7 @@ export default function ShopCatalog() {
   );
 
   const filteredProducts = useMemo(() => {
-    let result = PRODUCT_LIST;
+    let result = products;
 
     if (collection !== 'all') {
       result = result.filter((product) => product.collection === collection);
@@ -65,7 +61,12 @@ export default function ShopCatalog() {
     });
 
     return sorted;
-  }, [collection, locale, normalizedQuery, sort]);
+  }, [products, collection, locale, normalizedQuery, sort]);
+
+  const availableCollections = useMemo(() => {
+    const collectionSet = new Set(products.map((p) => p.collection));
+    return Array.from(collectionSet);
+  }, [products]);
 
   const handleReset = () => {
     setQuery('');
@@ -103,17 +104,20 @@ export default function ShopCatalog() {
             <select
               id="collection-filter"
               value={collection}
-              onChange={(event) => setCollection(event.target.value as CollectionFilter)}
+              onChange={(event) => setCollection(event.target.value)}
               className="w-full rounded-2xl border border-cream/10 bg-noir/80 px-4 py-3 text-sm text-cream focus:border-gold/60 focus:outline-none"
             >
               <option value="all" className="text-noir">
                 {t('filters.allCollections')}
               </option>
-              {AVAILABLE_COLLECTIONS.map((id) => (
-                <option key={id} value={id} className="text-noir">
-                  {t(`collections.${id}`)}
-                </option>
-              ))}
+              {availableCollections.map((id) => {
+                const cat = categories.find((c) => c.slug === id || resolveCollection(c.slug) === id);
+                return (
+                  <option key={id} value={id} className="text-noir">
+                    {cat?.name ?? id}
+                  </option>
+                );
+              })}
             </select>
           </div>
           <div className="space-y-2">
@@ -168,21 +172,36 @@ export default function ShopCatalog() {
                 className="group flex h-full flex-col rounded-3xl border border-cream/10 bg-[#140b08] p-5 transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_30px_60px_rgba(0,0,0,0.4)]"
               >
                 <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-espresso via-[#1d120d] to-noir">
-                  <div className="absolute inset-0 bg-coffee-grain opacity-40" />
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,165,116,0.2),_transparent_60%)]" />
+                  {product.images[0]?.src ? (
+                    <Image
+                      src={product.images[0].src}
+                      alt={product.images[0].alt || product.name}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+                      unoptimized
+                    />
+                  ) : (
+                    <>
+                      <div className="absolute inset-0 bg-coffee-grain opacity-40" />
+                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,165,116,0.2),_transparent_60%)]" />
+                    </>
+                  )}
                   <div className="absolute bottom-3 left-3 rounded-full border border-cream/20 bg-noir/70 px-3 py-1 text-[10px] uppercase tracking-[0.3em] text-cream/70">
-                    {t(`collections.${product.collection}`)}
+                    {product.categories[0]?.name ?? product.collection}
                   </div>
                 </div>
                 <div className="mt-4 flex-1 space-y-2">
                   <h3 className="font-serif text-lg text-cream">{product.name}</h3>
                   <p className="text-sm text-cream/60">{product.notes}</p>
-                  <p className="text-xs text-cream/60">
-                    <span className="uppercase tracking-[0.3em] text-cream/40">
-                      {t('card.originLabel')}
-                    </span>
-                    <span className="ml-2 text-cream/70">{product.origin}</span>
-                  </p>
+                  {product.origin && (
+                    <p className="text-xs text-cream/60">
+                      <span className="uppercase tracking-[0.3em] text-cream/40">
+                        {t('card.originLabel')}
+                      </span>
+                      <span className="ml-2 text-cream/70">{product.origin}</span>
+                    </p>
+                  )}
                 </div>
                 <div className="mt-4 flex items-center justify-between text-sm">
                   <span className="text-cream/50">{t('card.priceLabel')}</span>
@@ -195,4 +214,17 @@ export default function ShopCatalog() {
       </div>
     </div>
   );
+}
+
+function resolveCollection(slug: string): string {
+  const map: Record<string, string> = {
+    koffiebonen: 'beans',
+    bonen: 'beans',
+    beans: 'beans',
+    gemalen: 'ground',
+    ground: 'ground',
+    accessoires: 'accessories',
+    accessories: 'accessories',
+  };
+  return map[slug] ?? slug;
 }

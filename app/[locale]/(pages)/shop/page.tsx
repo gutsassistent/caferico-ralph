@@ -2,9 +2,21 @@ import { getTranslations } from 'next-intl/server';
 import Container from '@/components/Container';
 import Reveal from '@/components/Reveal';
 import ShopCatalog from '@/components/ShopCatalog';
+import { getProducts, getProductCategories } from '@/lib/woocommerce';
+import { mapWooProduct } from '@/types/product';
+
+export const revalidate = 3600;
 
 export default async function ShopPage() {
   const t = await getTranslations('Shop');
+
+  const [wcProducts, wcCategories] = await Promise.all([
+    getProducts(),
+    getProductCategories(),
+  ]);
+
+  const products = wcProducts.map(mapWooProduct);
+  const categories = wcCategories.map((c) => ({ id: c.id, name: c.name, slug: c.slug }));
 
   return (
     <main className="min-h-screen bg-noir text-cream">
@@ -43,7 +55,7 @@ export default async function ShopPage() {
               </div>
             </div>
 
-            <ShopCatalog />
+            <ShopCatalog products={products} categories={categories} />
           </Container>
         </section>
       </Reveal>
