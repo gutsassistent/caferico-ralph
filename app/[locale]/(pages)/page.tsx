@@ -238,6 +238,57 @@ export default async function HomePage({ params }: HomePageProps) {
       </Reveal>
 
       <Reveal>
+        <section className="bg-[#0f0906] py-20 sm:py-28">
+          <Container className="space-y-10">
+            <div className="max-w-2xl space-y-3">
+              <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
+                {t('testimonials.eyebrow')}
+              </p>
+              <h2 className="font-serif text-3xl sm:text-4xl">{t('testimonials.title')}</h2>
+            </div>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {(['tom', 'lesly', 'joke'] as const).map((key, index) => (
+                <Reveal key={key} delay={index * 120} className="h-full">
+                  <blockquote className="flex h-full flex-col rounded-2xl border border-cream/10 bg-[#140b08] p-6 sm:p-8">
+                    <svg className="mb-4 h-8 w-8 text-gold/40" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311C9.591 11.69 11 13.166 11 15c0 1.933-1.567 3.5-3.5 3.5-1.073 0-2.099-.49-2.917-1.179zM15.583 17.321C14.553 16.227 14 15 14 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311C20.591 11.69 22 13.166 22 15c0 1.933-1.567 3.5-3.5 3.5-1.073 0-2.099-.49-2.917-1.179z" />
+                    </svg>
+                    <p className="flex-1 text-sm leading-relaxed text-cream/80 sm:text-base">
+                      {t(`testimonials.items.${key}.quote`)}
+                    </p>
+                    <div className="mt-6 flex items-center gap-3 border-t border-cream/10 pt-6">
+                      {key === 'tom' && (
+                        <img
+                          src="https://www.caferico.be/wp-content/uploads/2018/05/Tom-Janssens.jpg"
+                          alt={t(`testimonials.items.${key}.name`)}
+                          className="h-10 w-10 rounded-full object-cover"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      )}
+                      {key !== 'tom' && (
+                        <div className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/30 bg-noir text-sm font-semibold text-gold">
+                          {t(`testimonials.items.${key}.name`).charAt(0)}
+                        </div>
+                      )}
+                      <div>
+                        <p className="text-sm font-semibold text-cream">
+                          {t(`testimonials.items.${key}.name`)}
+                        </p>
+                        <p className="text-xs text-cream/50">
+                          {t(`testimonials.items.${key}.role`)}
+                        </p>
+                      </div>
+                    </div>
+                  </blockquote>
+                </Reveal>
+              ))}
+            </div>
+          </Container>
+        </section>
+      </Reveal>
+
+      <Reveal>
         <section className="py-20">
           <Container className="space-y-10">
             <div className="max-w-2xl space-y-3">

@@ -65,6 +65,27 @@
       "description": "Bijna 20 jaar geleden leerden we de koffieboeren in Honduras kennen. In 2018 richtten we Café RICO op om eerlijke, biologische koffie naar België te brengen — rechtstreeks van 193 boerenfamilies.",
       "cta": "Lees Ons Verhaal"
     },
+    "testimonials": {
+      "eyebrow": "Wat Klanten Zeggen",
+      "title": "Ervaringen met Caférico",
+      "items": {
+        "tom": {
+          "quote": "Persoonlijk vind ik het een lekkere koffie die zeker mag getoond worden. Een goede volle smaak, beetje chocolade. Zal bij vele mensen in de smaak vallen.",
+          "name": "Tom Janssen",
+          "role": "Q-grader, OR Coffee"
+        },
+        "lesly": {
+          "quote": "Koffie oogsten is niet alleen mannenwerk. Wij vrouwen vinden kwaliteit belangrijk en leggen ons dan ook toe op zorgvuldig werk. Zodat onze koffie onze trots wordt!",
+          "name": "Lesly Yohana Dominguez",
+          "role": "Koffieboerin, RAOS"
+        },
+        "joke": {
+          "quote": "Heerlijke koffie!! Zelfs mee op reis geweest naar Schotland!!",
+          "name": "Joke Scherpereel",
+          "role": "Koffieliefhebber"
+        }
+      }
+    },
     "collections": {
       "beans": "Koffiebonen",
       "ground": "Gemalen koffie",

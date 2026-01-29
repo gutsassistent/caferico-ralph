@@ -65,6 +65,27 @@
       "description": "Almost 20 years ago, we met the coffee farmers in Honduras. In 2018, we founded Café RICO to bring fair, organic coffee to Belgium — directly from 193 farming families.",
       "cta": "Read Our Story"
     },
+    "testimonials": {
+      "eyebrow": "What Customers Say",
+      "title": "Experiences with Caférico",
+      "items": {
+        "tom": {
+          "quote": "Personally, I find it a delicious coffee that deserves to be shown. A nice full flavour, a touch of chocolate. It will appeal to many people.",
+          "name": "Tom Janssen",
+          "role": "Q-grader, OR Coffee"
+        },
+        "lesly": {
+          "quote": "Harvesting coffee is not just men's work. We women value quality and dedicate ourselves to careful work. So that our coffee becomes our pride!",
+          "name": "Lesly Yohana Dominguez",
+          "role": "Coffee farmer, RAOS"
+        },
+        "joke": {
+          "quote": "Delicious coffee!! Even took it on a trip to Scotland!!",
+          "name": "Joke Scherpereel",
+          "role": "Coffee lover"
+        }
+      }
+    },
     "collections": {
       "beans": "Whole beans",
       "ground": "Ground coffee",

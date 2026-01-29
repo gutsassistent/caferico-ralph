@@ -65,6 +65,27 @@
       "description": "Hace casi 20 años, conocimos a los caficultores en Honduras. En 2018, fundamos Café RICO para llevar café justo y orgánico a Bélgica — directamente de 193 familias agricultoras.",
       "cta": "Lee Nuestra Historia"
     },
+    "testimonials": {
+      "eyebrow": "Lo Que Dicen Nuestros Clientes",
+      "title": "Experiencias con Caférico",
+      "items": {
+        "tom": {
+          "quote": "Personalmente, encuentro que es un café delicioso que merece ser mostrado. Un buen sabor pleno, un toque de chocolate. Gustará a muchas personas.",
+          "name": "Tom Janssen",
+          "role": "Q-grader, OR Coffee"
+        },
+        "lesly": {
+          "quote": "Cosechar café no es solo trabajo de hombres. Las mujeres valoramos la calidad y nos dedicamos a un trabajo cuidadoso. ¡Para que nuestro café sea nuestro orgullo!",
+          "name": "Lesly Yohana Dominguez",
+          "role": "Caficultora, RAOS"
+        },
+        "joke": {
+          "quote": "¡¡Café delicioso!! ¡¡Incluso lo llevé de viaje a Escocia!!",
+          "name": "Joke Scherpereel",
+          "role": "Amante del café"
+        }
+      }
+    },
     "collections": {
       "beans": "Granos",
       "ground": "Café molido",

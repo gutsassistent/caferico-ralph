@@ -94,3 +94,14 @@ Remaining: 42
 - Wrapped in Reveal component for fade-in on scroll
 - Responsive image height: h-72 mobile, h-96 tablet, h-[480px] desktop
 - typecheck ✅ build ✅
+
+### RD-008: Homepage - Testimonials Section ✅
+- Added testimonials section between "Our Story" and "Values" sections on homepage
+- 3 testimonials: Tom Janssen (Q-grader), Lesly Yohana Dominguez (koffieboerin), Joke Scherpereel (klant)
+- Grid layout: 1 col mobile, 2 col tablet (sm:grid-cols-2), 3 col desktop (lg:grid-cols-3)
+- Card design: decorative quote SVG icon, quote text, divider, avatar + name + role
+- Tom Janssen has real photo (Tom-Janssens.jpg), others get initial-letter avatars with gold accent
+- Subtle darker background (bg-[#0f0906]) to differentiate from surrounding sections
+- Staggered Reveal animation (delay={index * 120}) for each card
+- Added `testimonials.*` i18n keys in all 4 languages (NL, EN, FR, ES)
+- typecheck ✅ build ✅

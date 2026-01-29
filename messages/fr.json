@@ -65,6 +65,27 @@
       "description": "Il y a près de 20 ans, nous avons rencontré les caféiculteurs au Honduras. En 2018, nous avons fondé Café RICO pour apporter un café équitable et biologique en Belgique — directement de 193 familles d'agriculteurs.",
       "cta": "Lire Notre Histoire"
     },
+    "testimonials": {
+      "eyebrow": "Ce Que Disent Nos Clients",
+      "title": "Expériences avec Caférico",
+      "items": {
+        "tom": {
+          "quote": "Personnellement, je trouve que c'est un café savoureux qui mérite d'être mis en avant. Un beau goût plein, une touche de chocolat. Il plaira à beaucoup de gens.",
+          "name": "Tom Janssen",
+          "role": "Q-grader, OR Coffee"
+        },
+        "lesly": {
+          "quote": "La récolte du café n'est pas seulement un travail d'hommes. Nous, les femmes, attachons de l'importance à la qualité et nous nous consacrons à un travail soigneux. Pour que notre café devienne notre fierté !",
+          "name": "Lesly Yohana Dominguez",
+          "role": "Caféicultrice, RAOS"
+        },
+        "joke": {
+          "quote": "Délicieux café !! Il a même voyagé en Écosse !!",
+          "name": "Joke Scherpereel",
+          "role": "Amatrice de café"
+        }
+      }
+    },
     "collections": {
       "beans": "Grains",
       "ground": "Café moulu",
