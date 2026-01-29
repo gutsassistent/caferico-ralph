@@ -12,4 +12,41 @@ Remaining: 42
 ---
 
 ## Progress Notes
-(Ralph will log progress here as stories are completed)
+
+### RD-001: Global Design System - Kleuren & Typography ✅
+- Updated Tailwind config: added primary (#C9A962), secondary (#2C2419), background (#FAF9F7), surface variants, gold shades
+- Kept existing espresso/roast/cream/noir colors as base
+- Added extra spacing values (18px, 52px, 60px, 72px, 88px) to supplement Tailwind defaults
+- Exported all design tokens as CSS custom properties in globals.css (:root)
+- Spacing scale documented: --space-1 (4px) through --space-7 (64px)
+- Typography vars: --font-heading, --font-body
+- typecheck ✅ build ✅
+
+### RD-002: Header Redesign - Sticky Navigation & Mega Menu ✅
+- Replaced Container wrapper with manual max-w-7xl for more control
+- Nav items centered via absolute left-1/2 -translate-x-1/2 positioning
+- Added subtle underline animation on nav hover (w-0 → w-full gold bar)
+- Active route detection with isActive() — highlights current page in gold
+- Language switcher changed from <select> to custom dropdown button with animated chevron
+- Mobile menu: full-screen slide-in overlay from right (max-w-sm panel) with backdrop blur
+- Hamburger icon animates to X (3 bars → rotated cross) with CSS transitions
+- Mobile nav links stagger-animate in on open (transitionDelay per item)
+- Mobile language switcher: pill buttons instead of select dropdown
+- Body scroll locked when mobile menu open
+- Focus-visible ring on all interactive elements (gold/60 ring with noir offset)
+- Removed Container component dependency from Header
+- typecheck ✅ build ✅
+
+### RD-003: Footer Redesign - Visueel Aantrekkelijk & Informatief ✅
+- Restructured to 4 columns: Producten, Info, Contact, Nieuwsbrief
+- Products column links to shop (Mild, Intens, Espresso, Decaf) + Subscriptions
+- Info column links to About, Blog, FAQ, Contact (reuses nav.* i18n keys)
+- Contact column shows real address (Beekstraat 138, Erpe-Mere), phone, email with clickable links
+- Added Facebook & Instagram SVG icon buttons with rounded borders and gold hover
+- Certifications bar: BE-BIO-02, Fair Trade, Mayacert with green checkmark badges
+- Payment methods bar: Bancontact, PayPal, Visa, Mastercard as styled pill badges
+- Updated contact info to real company data (was placeholder data before)
+- Removed unused i18n keys: socialTitle, sitemapTitle, vat, hoursTitle, hoursWeekdays, hoursWeekend, tagline
+- Removed navItems dependency, footer now has its own link structure
+- Responsive: 1 col mobile, 2 col tablet (sm:grid-cols-2), 4 col desktop (lg:grid-cols-4)
+- typecheck ✅ build ✅
