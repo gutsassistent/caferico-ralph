@@ -3,6 +3,7 @@
 - Exclude the `flowchart` folder from root `tsconfig.json` to keep app typechecking isolated from the React Flow demo.
 - Locale switcher pattern: replace the first path segment with the target locale and preserve query params via `usePathname` + `useSearchParams`.
 - Scroll reveal pattern: wrap sections/cards in `components/Reveal.tsx` and use the optional `delay` prop for staggered fade-ins.
+- Cart state lives in `components/CartProvider.tsx` with `useCart`; the slide-over UI is `components/CartDrawer.tsx` mounted in `app/[locale]/layout.tsx`.
 
 Started: Caférico Front-End
 ---
@@ -49,4 +50,12 @@ Started: Caférico Front-End
   - Patterns discovered: none.
   - Gotchas encountered: none.
   - Useful context: product purchase UI lives in `components/ProductPurchasePanel.tsx` for future cart integration.
+---
+## 2026-01-29 02:42 - US-006
+- Implemented cart context with localStorage persistence, slide-over drawer, and live header badge; wired product add-to-cart and quantity controls.
+- Files changed: `app/[locale]/layout.tsx`, `app/[locale]/(pages)/shop/[slug]/page.tsx`, `components/Header.tsx`, `components/ProductPurchasePanel.tsx`, `components/CartProvider.tsx`, `components/CartDrawer.tsx`, `types/cart.ts`, `messages/nl.json`, `messages/en.json`, `messages/fr.json`, `messages/es.json`, `CLAUDE.md`, `AGENTS.md`, `prd.json`, `progress.txt`.
+- **Learnings for future iterations:**
+  - Patterns discovered: cart context + drawer live in `components/CartProvider.tsx` and `components/CartDrawer.tsx`.
+  - Gotchas encountered: none.
+  - Useful context: cart drawer uses `Cart` messages and product variant labels from `Product` translations.
 ---

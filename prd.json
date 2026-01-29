@@ -125,7 +125,7 @@
         "Typecheck passes"
       ],
       "priority": 6,
-      "passes": false,
+      "passes": true,
       "notes": "Puur client-side. Echte checkout komt pas met Shopify integratie."
     },
     {

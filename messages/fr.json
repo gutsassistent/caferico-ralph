@@ -161,6 +161,24 @@
       "pinterest": "Pinterest"
     }
   },
+  "Cart": {
+    "eyebrow": "Panier",
+    "title": "Votre panier",
+    "itemsCount": "{count, plural, one {# article} other {# articles}}",
+    "close": "Fermer le panier",
+    "emptyEyebrow": "Encore vide",
+    "emptyTitle": "Votre panier est vide",
+    "emptyDescription": "Explorez la boutique pour composer votre prochain rituel.",
+    "emptyCta": "Voir la boutique",
+    "remove": "Retirer",
+    "quantityIncrease": "Augmenter la quantité",
+    "quantityDecrease": "Diminuer la quantité",
+    "subtotalLabel": "Sous-total",
+    "totalLabel": "Total",
+    "shippingNote": "Livraison et taxes calculées au paiement.",
+    "checkout": "Passer au paiement",
+    "emptyFooter": "Ajoutez une sélection pour commencer."
+  },
   "Product": {
     "breadcrumbs": {
       "label": "Fil d'Ariane",

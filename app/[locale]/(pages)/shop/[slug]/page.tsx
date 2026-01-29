@@ -121,7 +121,15 @@ export default async function ProductPage({ params }: ProductPageProps) {
               <p className="text-sm text-cream/70 sm:text-base">
                 {t('description', { origin: product.origin, notes: product.notes })}
               </p>
-              <ProductPurchasePanel price={product.price} />
+              <ProductPurchasePanel
+                product={{
+                  id: product.id,
+                  name: product.name,
+                  slug: product.slug,
+                  price: product.price,
+                  collection: product.collection
+                }}
+              />
             </div>
           </Reveal>
         </Container>

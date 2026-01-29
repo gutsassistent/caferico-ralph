@@ -4,6 +4,8 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { Inter, Playfair_Display } from 'next/font/google';
 import { locales } from '@/lib/i18n';
+import { CartProvider } from '@/components/CartProvider';
+import CartDrawer from '@/components/CartDrawer';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import '@/app/globals.css';
@@ -43,11 +45,14 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     <html lang={locale}>
       <body className={`${inter.variable} ${playfair.variable} bg-noir text-cream antialiased`}>
         <NextIntlClientProvider messages={messages}>
-          <div className="flex min-h-screen flex-col">
-            <Header />
-            <div className="flex-1">{children}</div>
-            <Footer />
-          </div>
+          <CartProvider>
+            <div className="flex min-h-screen flex-col">
+              <Header />
+              <div className="flex-1">{children}</div>
+              <Footer />
+            </div>
+            <CartDrawer />
+          </CartProvider>
         </NextIntlClientProvider>
       </body>
     </html>

@@ -161,6 +161,24 @@
       "pinterest": "Pinterest"
     }
   },
+  "Cart": {
+    "eyebrow": "Shopping bag",
+    "title": "Your cart",
+    "itemsCount": "{count, plural, one {# item} other {# items}}",
+    "close": "Close cart",
+    "emptyEyebrow": "No items yet",
+    "emptyTitle": "Your cart is empty",
+    "emptyDescription": "Explore the shop to build your next ritual.",
+    "emptyCta": "Browse the shop",
+    "remove": "Remove",
+    "quantityIncrease": "Increase quantity",
+    "quantityDecrease": "Decrease quantity",
+    "subtotalLabel": "Subtotal",
+    "totalLabel": "Total",
+    "shippingNote": "Shipping and taxes calculated at checkout.",
+    "checkout": "Checkout",
+    "emptyFooter": "Add something special to get started."
+  },
   "Product": {
     "breadcrumbs": {
       "label": "Breadcrumb",

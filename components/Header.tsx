@@ -4,11 +4,10 @@ import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useCart } from '@/components/CartProvider';
 import Container from '@/components/Container';
 import { locales } from '@/lib/i18n';
 import { navItems } from '@/lib/navigation';
-
-const CART_COUNT = 0;
 
 export default function Header() {
   const t = useTranslations('Layout');
@@ -16,6 +15,7 @@ export default function Header() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { totalItems, openCart } = useCart();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -121,6 +121,7 @@ export default function Header() {
 
             <button
               type="button"
+              onClick={openCart}
               className="relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-cream/20 text-cream/80 transition hover:border-gold/60 hover:text-gold"
             >
               <span className="sr-only">{t('actions.cart')}</span>
@@ -140,7 +141,7 @@ export default function Header() {
                 <path d="M9 7a3 3 0 0 1 6 0" strokeLinecap="round" />
               </svg>
               <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-gold text-[10px] font-semibold text-noir">
-                {CART_COUNT}
+                {totalItems}
               </span>
             </button>
 

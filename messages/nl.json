@@ -161,6 +161,24 @@
       "pinterest": "Pinterest"
     }
   },
+  "Cart": {
+    "eyebrow": "Winkelmand",
+    "title": "Jouw winkelwagen",
+    "itemsCount": "{count, plural, one {# item} other {# items}}",
+    "close": "Sluit winkelwagen",
+    "emptyEyebrow": "Nog leeg",
+    "emptyTitle": "Je winkelwagen is leeg",
+    "emptyDescription": "Ontdek de shop en stel je volgende ritueel samen.",
+    "emptyCta": "Bekijk de shop",
+    "remove": "Verwijder",
+    "quantityIncrease": "Verhoog hoeveelheid",
+    "quantityDecrease": "Verlaag hoeveelheid",
+    "subtotalLabel": "Subtotaal",
+    "totalLabel": "Totaal",
+    "shippingNote": "Verzending en belastingen worden berekend bij checkout.",
+    "checkout": "Afrekenen",
+    "emptyFooter": "Voeg iets bijzonders toe om te starten."
+  },
   "Product": {
     "breadcrumbs": {
       "label": "Broodkruimel",

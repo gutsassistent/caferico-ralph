@@ -45,3 +45,4 @@ npm run dev
 - Memory persists via git history, `progress.txt`, and `prd.json`
 - Stories should be small enough to complete in one context window
 - Always update AGENTS.md with discovered patterns for future iterations
+- Cart state uses `components/CartProvider.tsx` with `useCart`; the slide-over cart lives in `components/CartDrawer.tsx` and is mounted in `app/[locale]/layout.tsx`.

@@ -161,6 +161,24 @@
       "pinterest": "Pinterest"
     }
   },
+  "Cart": {
+    "eyebrow": "Carrito",
+    "title": "Tu carrito",
+    "itemsCount": "{count, plural, one {# artículo} other {# artículos}}",
+    "close": "Cerrar carrito",
+    "emptyEyebrow": "Aún vacío",
+    "emptyTitle": "Tu carrito está vacío",
+    "emptyDescription": "Explora la tienda y crea tu próximo ritual.",
+    "emptyCta": "Explorar la tienda",
+    "remove": "Eliminar",
+    "quantityIncrease": "Aumentar cantidad",
+    "quantityDecrease": "Disminuir cantidad",
+    "subtotalLabel": "Subtotal",
+    "totalLabel": "Total",
+    "shippingNote": "Envío e impuestos calculados al finalizar.",
+    "checkout": "Finalizar compra",
+    "emptyFooter": "Agrega algo especial para empezar."
+  },
   "Product": {
     "breadcrumbs": {
       "label": "Migas de pan",

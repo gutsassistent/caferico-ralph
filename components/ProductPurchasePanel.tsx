@@ -2,20 +2,26 @@
 
 import { useMemo, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-
-type GrindOption = 'beans' | 'fine' | 'coarse';
-type WeightOption = '250' | '500' | '1000';
+import { useCart } from '@/components/CartProvider';
+import type { GrindOption, WeightOption } from '@/types/cart';
 
 const GRIND_OPTIONS: GrindOption[] = ['beans', 'fine', 'coarse'];
 const WEIGHT_OPTIONS: WeightOption[] = ['250', '500', '1000'];
 
 type ProductPurchasePanelProps = {
-  price: number;
+  product: {
+    id: string;
+    name: string;
+    slug: string;
+    price: number;
+    collection: string;
+  };
 };
 
-export default function ProductPurchasePanel({ price }: ProductPurchasePanelProps) {
+export default function ProductPurchasePanel({ product }: ProductPurchasePanelProps) {
   const t = useTranslations('Product');
   const locale = useLocale();
+  const { addItem, openCart } = useCart();
   const [grind, setGrind] = useState<GrindOption>('beans');
   const [weight, setWeight] = useState<WeightOption>('250');
   const [quantity, setQuantity] = useState(1);
@@ -37,12 +43,28 @@ export default function ProductPurchasePanel({ price }: ProductPurchasePanelProp
     setQuantity((current) => Math.max(1, current - 1));
   };
 
+  const handleAddToCart = () => {
+    addItem({
+      id: product.id,
+      slug: product.slug,
+      name: product.name,
+      price: product.price,
+      collection: product.collection,
+      grind,
+      weight,
+      quantity
+    });
+    openCart();
+  };
+
   return (
     <div className="rounded-3xl border border-cream/10 bg-[#120907]/90 p-6 shadow-[0_30px_70px_rgba(0,0,0,0.35)]">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div className="space-y-2">
           <p className="text-xs uppercase tracking-[0.3em] text-gold/70">{t('purchase.eyebrow')}</p>
-          <p className="text-2xl font-serif text-cream">{priceFormatter.format(price)}</p>
+          <p className="text-2xl font-serif text-cream">
+            {priceFormatter.format(product.price)}
+          </p>
         </div>
         <span className="rounded-full border border-gold/40 px-3 py-1 text-[10px] uppercase tracking-[0.3em] text-gold">
           {t('purchase.availability')}
@@ -131,6 +153,7 @@ export default function ProductPurchasePanel({ price }: ProductPurchasePanelProp
 
         <button
           type="button"
+          onClick={handleAddToCart}
           className="flex-1 rounded-full border border-gold/60 px-6 py-3 text-xs uppercase tracking-[0.3em] text-gold transition hover:bg-gold hover:text-noir sm:flex-none"
         >
           {t('addToCart')}
@@ -142,7 +165,7 @@ export default function ProductPurchasePanel({ price }: ProductPurchasePanelProp
           {t('purchase.totalLabel')}
         </span>
         <span className="font-semibold text-gold">
-          {priceFormatter.format(price * quantity)}
+          {priceFormatter.format(product.price * quantity)}
         </span>
       </div>
       <p className="mt-4 text-xs text-cream/50">{t('purchase.hint')}</p>
