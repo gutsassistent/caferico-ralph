@@ -2,6 +2,7 @@
 ## Codebase Patterns
 - Exclude the `flowchart` folder from root `tsconfig.json` to keep app typechecking isolated from the React Flow demo.
 - Locale switcher pattern: replace the first path segment with the target locale and preserve query params via `usePathname` + `useSearchParams`.
+- Scroll reveal pattern: wrap sections/cards in `components/Reveal.tsx` and use the optional `delay` prop for staggered fade-ins.
 
 Started: Caférico Front-End
 ---
@@ -22,4 +23,12 @@ Started: Caférico Front-End
   - Patterns discovered: locale switcher uses pathname segment replacement with query preservation.
   - Gotchas encountered: none.
   - Useful context: header/footer live in `app/[locale]/layout.tsx` to keep global chrome consistent.
+---
+## 2026-01-29 02:16 - US-003
+- Built the premium homepage hero, featured products grid, subscription teaser, and brand values section with scroll-reveal animations.
+- Files changed: `app/[locale]/(pages)/page.tsx`, `components/Reveal.tsx`, `messages/nl.json`, `messages/en.json`, `messages/fr.json`, `messages/es.json`, `CLAUDE.md`, `prd.json`, `progress.txt`.
+- **Learnings for future iterations:**
+  - Patterns discovered: use `components/Reveal.tsx` with `delay` for staggered scroll fade-ins.
+  - Gotchas encountered: none.
+  - Useful context: homepage uses `products.json` for featured items and formats prices via `Intl.NumberFormat`.
 ---

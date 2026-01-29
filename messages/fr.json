@@ -1,21 +1,72 @@
 {
   "Home": {
     "eyebrow": "Collection Caférico",
-    "title": "Un café belge à la lueur dorée",
-    "description": "Torréfié en petites séries, issu de plantations soigneusement sélectionnées.",
+    "title": "Le café belge à l'éclat doré",
+    "description": "Torréfié en petites séries, issu de domaines soigneusement choisis.",
     "ctaPrimary": "Découvrir la collection",
-    "ctaSecondary": "Notre origine",
-    "craft": {
-      "title": "Le savoir-faire dans chaque grain",
-      "description": "Une torréfaction lente pour des arômes profonds sans amertume."
+    "ctaSecondary": "Démarrer un abonnement",
+    "highlights": {
+      "roast": {
+        "title": "Torréfié à Anvers",
+        "description": "48 heures de repos pour des arômes équilibrés."
+      },
+      "delivery": {
+        "title": "Livré frais",
+        "description": "Expédié sous 24 h en Belgique."
+      }
     },
-    "origin": {
-      "title": "Origine traçable",
-      "description": "Des relations fair trade avec des familles qui perfectionnent le café depuis des générations."
+    "heroCard": {
+      "eyebrow": "Torréfaction signature",
+      "title": "Velours Espresso",
+      "description": "Crème soyeuse, notes de cacao et de noisette grillée."
     },
-    "ritual": {
-      "title": "Un rituel quotidien",
-      "description": "Des matins calmes aux pauses du soir : Caférico sublime chaque tasse."
+    "featured": {
+      "eyebrow": "Sélection",
+      "title": "Quatre favoris Caférico",
+      "description": "Quatre profils pour les matins lents et les après-midis lumineux.",
+      "cta": "Voir tous les produits",
+      "detail": "Torréfié en petites séries pour une douceur profonde.",
+      "priceLabel": "À partir de"
+    },
+    "subscription": {
+      "eyebrow": "Abonnement",
+      "title": "Ne manquez jamais votre rituel",
+      "description": "Choisissez votre cadence et votre profil. Pause ou changement à tout moment.",
+      "cta": "Voir les abonnements",
+      "stepsTitle": "Comment ça marche",
+      "steps": {
+        "one": "Choisissez grains ou moulu et votre cadence.",
+        "two": "Nous torréfions à la demande et expédions sous 24 h.",
+        "three": "Profitez de Caférico chaque mois, en toute flexibilité."
+      }
+    },
+    "values": {
+      "eyebrow": "Nos valeurs",
+      "title": "Un savoir-faire belge, enraciné à l'origine",
+      "description": "De la sélection à l'emballage, chaque détail respire la chaleur et la précision.",
+      "items": {
+        "fresh": {
+          "title": "Fraîchement torréfié",
+          "description": "Torréfaction hebdomadaire en petites séries."
+        },
+        "fair": {
+          "title": "Commerce équitable",
+          "description": "Partenariats directs avec les producteurs."
+        },
+        "belgian": {
+          "title": "Atelier belge",
+          "description": "Un studio local où le geste artisanal règne."
+        },
+        "craft": {
+          "title": "Finition artisanale",
+          "description": "Chaque lot est dégusté, ajusté, approuvé."
+        }
+      }
+    },
+    "collections": {
+      "beans": "Grains",
+      "ground": "Café moulu",
+      "accessories": "Accessoires"
     }
   },
   "Layout": {

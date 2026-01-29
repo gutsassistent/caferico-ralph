@@ -4,18 +4,69 @@
     "title": "Belgische koffie met een zachte, goudbruine gloed",
     "description": "Ambachtelijk gebrand in kleine batches, rechtstreeks van zorgvuldig geselecteerde plantages.",
     "ctaPrimary": "Ontdek de collectie",
-    "ctaSecondary": "Onze herkomst",
-    "craft": {
-      "title": "Ambacht in elke boon",
-      "description": "Langzame branding voor rijke, gelaagde aroma's zonder bitterheid."
+    "ctaSecondary": "Start een abonnement",
+    "highlights": {
+      "roast": {
+        "title": "Gebrand in Antwerpen",
+        "description": "48 uur rust voor uitgebalanceerde aroma's."
+      },
+      "delivery": {
+        "title": "Vers geleverd",
+        "description": "Binnen 24 uur verstuurd in België."
+      }
     },
-    "origin": {
-      "title": "Traceerbare oorsprong",
-      "description": "Fair trade relaties met families die generaties lang koffie perfectioneren."
+    "heroCard": {
+      "eyebrow": "Signature roast",
+      "title": "Velours Espresso",
+      "description": "Zijdezachte crema met tonen van cacao en geroosterde hazelnoot."
     },
-    "ritual": {
-      "title": "Een dagelijks ritueel",
-      "description": "Van ochtendstilte tot avondmomenten: Caférico maakt elk kopje bijzonder."
+    "featured": {
+      "eyebrow": "Uitgelicht",
+      "title": "Vier Caférico favorieten",
+      "description": "Vier profielen voor trage ochtenden en zachte avonden.",
+      "cta": "Bekijk alle producten",
+      "detail": "Kleine batch roasting met gelaagde zoetheid.",
+      "priceLabel": "Vanaf"
+    },
+    "subscription": {
+      "eyebrow": "Abonnement",
+      "title": "Altijd je ritueel binnen handbereik",
+      "description": "Kies je ritme en branding. Pauzeren of wisselen kan altijd.",
+      "cta": "Bekijk abonnementen",
+      "stepsTitle": "Hoe het werkt",
+      "steps": {
+        "one": "Kies bonen of gemalen, plus je ritme.",
+        "two": "Wij branden op bestelling en verzenden binnen 24 uur.",
+        "three": "Geniet elke maand van Caférico, volledig flexibel."
+      }
+    },
+    "values": {
+      "eyebrow": "Onze waarden",
+      "title": "Belgisch vakmanschap, geworteld in oorsprong",
+      "description": "Van sourcing tot verpakking: elk detail straalt warmte en precisie.",
+      "items": {
+        "fresh": {
+          "title": "Vers gebrand",
+          "description": "Wekelijks gebrand in kleine, zorgvuldige batches."
+        },
+        "fair": {
+          "title": "Fair trade",
+          "description": "Directe relaties met telers en families."
+        },
+        "belgian": {
+          "title": "Belgisch atelier",
+          "description": "Een lokale studio waar ambacht en rust samenkomen."
+        },
+        "craft": {
+          "title": "Ambachtelijk afgewerkt",
+          "description": "Elke batch wordt geproefd, verfijnd en goedgekeurd."
+        }
+      }
+    },
+    "collections": {
+      "beans": "Koffiebonen",
+      "ground": "Gemalen koffie",
+      "accessories": "Accessoires"
     }
   },
   "Layout": {

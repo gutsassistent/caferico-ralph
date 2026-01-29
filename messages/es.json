@@ -2,20 +2,71 @@
   "Home": {
     "eyebrow": "Colección Caférico",
     "title": "Café belga con un brillo dorado",
-    "description": "Tostado en pequeños lotes y seleccionado directamente de fincas cuidadas.",
-    "ctaPrimary": "Descubrir la colección",
-    "ctaSecondary": "Nuestro origen",
-    "craft": {
-      "title": "Artesanía en cada grano",
-      "description": "Tueste lento para aromas profundos sin amargor."
+    "description": "Tostado en pequeños lotes y seleccionado directamente en fincas cuidadas.",
+    "ctaPrimary": "Explorar la colección",
+    "ctaSecondary": "Iniciar suscripción",
+    "highlights": {
+      "roast": {
+        "title": "Tostado en Amberes",
+        "description": "48 horas de reposo para aromas equilibrados."
+      },
+      "delivery": {
+        "title": "Entrega fresca",
+        "description": "Envío en 24 h en Bélgica."
+      }
     },
-    "origin": {
-      "title": "Origen trazable",
-      "description": "Relaciones fair trade con familias que perfeccionan el café por generaciones."
+    "heroCard": {
+      "eyebrow": "Tueste insignia",
+      "title": "Velours Espresso",
+      "description": "Crema sedosa, notas de cacao y avellana tostada."
     },
-    "ritual": {
-      "title": "Un ritual diario",
-      "description": "De mañanas tranquilas a pausas nocturnas: Caférico eleva cada taza."
+    "featured": {
+      "eyebrow": "Destacados",
+      "title": "Cuatro favoritos de Caférico",
+      "description": "Cuatro perfiles para mañanas lentas y tardes luminosas.",
+      "cta": "Ver todos los productos",
+      "detail": "Tueste artesanal en lotes pequeños y dulzura profunda.",
+      "priceLabel": "Desde"
+    },
+    "subscription": {
+      "eyebrow": "Suscripción",
+      "title": "Tu ritual siempre a mano",
+      "description": "Elige tu frecuencia y perfil. Pausa o cambia cuando quieras.",
+      "cta": "Ver suscripciones",
+      "stepsTitle": "Cómo funciona",
+      "steps": {
+        "one": "Elige granos o molido y tu frecuencia.",
+        "two": "Tostamos bajo pedido y enviamos en 24 h.",
+        "three": "Disfruta Caférico cada mes con total flexibilidad."
+      }
+    },
+    "values": {
+      "eyebrow": "Nuestros valores",
+      "title": "Artesanía belga con raíces en el origen",
+      "description": "De la selección al empaquetado, cada detalle transmite calidez y precisión.",
+      "items": {
+        "fresh": {
+          "title": "Tostado reciente",
+          "description": "Tuestes semanales en lotes pequeños."
+        },
+        "fair": {
+          "title": "Comercio justo",
+          "description": "Relaciones directas con productores y familias."
+        },
+        "belgian": {
+          "title": "Atelier belga",
+          "description": "Un estudio local donde vive el oficio."
+        },
+        "craft": {
+          "title": "Acabado artesanal",
+          "description": "Cada lote se cata, se ajusta y se aprueba."
+        }
+      }
+    },
+    "collections": {
+      "beans": "Granos",
+      "ground": "Café molido",
+      "accessories": "Accesorios"
     }
   },
   "Layout": {

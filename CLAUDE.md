@@ -96,3 +96,4 @@ If there are still stories with `passes: false`, do NOT write status.md — just
 
 ## Codebase Patterns
 - Locale switcher: replace the first path segment with the target locale and preserve query params via `usePathname` + `useSearchParams`.
+- Scroll reveal: wrap sections/cards in `components/Reveal.tsx` and use the optional `delay` prop for staggered fade-ins.

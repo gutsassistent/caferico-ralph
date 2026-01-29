@@ -4,18 +4,69 @@
     "title": "Belgian coffee with a soft, golden glow",
     "description": "Small-batch roasted and sourced directly from carefully chosen estates.",
     "ctaPrimary": "Explore the collection",
-    "ctaSecondary": "Our origin",
-    "craft": {
-      "title": "Craft in every bean",
-      "description": "Slow roasting for layered aromas without bitterness."
+    "ctaSecondary": "Start a subscription",
+    "highlights": {
+      "roast": {
+        "title": "Roasted in Antwerp",
+        "description": "48-hour resting for balanced aromatics."
+      },
+      "delivery": {
+        "title": "Delivered fresh",
+        "description": "Ships within 24 hours across Belgium."
+      }
     },
-    "origin": {
-      "title": "Traceable origin",
-      "description": "Fair trade relationships with families perfecting coffee for generations."
+    "heroCard": {
+      "eyebrow": "Signature roast",
+      "title": "Velours Espresso",
+      "description": "Silky crema, notes of cocoa and toasted hazelnut."
     },
-    "ritual": {
-      "title": "A daily ritual",
-      "description": "From quiet mornings to evening pauses: Caférico elevates every cup."
+    "featured": {
+      "eyebrow": "Featured roasts",
+      "title": "A quartet of Caférico favourites",
+      "description": "Four profiles curated for slow mornings and luminous afternoons.",
+      "cta": "View all products",
+      "detail": "Small-batch roasted for layered sweetness.",
+      "priceLabel": "From"
+    },
+    "subscription": {
+      "eyebrow": "Subscription",
+      "title": "Never run out of your ritual",
+      "description": "Choose a cadence and roast profile. Pause or swap at any time.",
+      "cta": "See subscriptions",
+      "stepsTitle": "How it works",
+      "steps": {
+        "one": "Choose beans or ground, plus your cadence.",
+        "two": "We roast to order and ship within 24 hours.",
+        "three": "Enjoy Caférico every month, with total flexibility."
+      }
+    },
+    "values": {
+      "eyebrow": "Our values",
+      "title": "Crafted in Belgium, rooted in origin",
+      "description": "From sourcing to packaging, every detail is guided by warmth and precision.",
+      "items": {
+        "fresh": {
+          "title": "Fresh roasted",
+          "description": "Weekly roasts in small, meticulous batches."
+        },
+        "fair": {
+          "title": "Fair trade",
+          "description": "Direct partnerships with growers and families."
+        },
+        "belgian": {
+          "title": "Belgian atelier",
+          "description": "A local studio where craft meets calm."
+        },
+        "craft": {
+          "title": "Artisanal finish",
+          "description": "Each batch cupped, tuned, and approved."
+        }
+      }
+    },
+    "collections": {
+      "beans": "Whole beans",
+      "ground": "Ground coffee",
+      "accessories": "Accessories"
     }
   },
   "Layout": {
