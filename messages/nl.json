@@ -59,6 +59,12 @@
         }
       }
     },
+    "ourStory": {
+      "eyebrow": "Ons Verhaal",
+      "title": "Van koffieboer tot kopje",
+      "description": "Bijna 20 jaar geleden leerden we de koffieboeren in Honduras kennen. In 2018 richtten we Café RICO op om eerlijke, biologische koffie naar België te brengen — rechtstreeks van 193 boerenfamilies.",
+      "cta": "Lees Ons Verhaal"
+    },
     "collections": {
       "beans": "Koffiebonen",
       "ground": "Gemalen koffie",

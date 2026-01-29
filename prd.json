@@ -129,7 +129,7 @@
         "npm run build slaagt"
       ],
       "priority": 7,
-      "passes": false
+      "passes": true
     },
     {
       "id": "RD-008",

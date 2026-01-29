@@ -59,6 +59,12 @@
         }
       }
     },
+    "ourStory": {
+      "eyebrow": "Nuestra Historia",
+      "title": "Del caficultor a la taza",
+      "description": "Hace casi 20 años, conocimos a los caficultores en Honduras. En 2018, fundamos Café RICO para llevar café justo y orgánico a Bélgica — directamente de 193 familias agricultoras.",
+      "cta": "Lee Nuestra Historia"
+    },
     "collections": {
       "beans": "Granos",
       "ground": "Café molido",

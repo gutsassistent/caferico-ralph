@@ -82,3 +82,15 @@ Remaining: 42
 - Fade-in on scroll via existing Reveal component wrapping the section
 - Kept existing `subscription.steps.*` keys intact (used on subscriptions page)
 - typecheck ✅ build ✅
+
+### RD-007: Homepage - Our Story Section ✅
+- Added "Ons Verhaal" section between subscription CTA and values sections
+- Split layout: 50% text (left on desktop), 50% koffieboer photo (right on desktop)
+- On mobile: image appears first (order-1), text second (order-2) via Tailwind order utilities
+- Used real koffieboer photo from CONTEXT.md: koffieboer-4-Copy-1000×536.jpg
+- Text covers Honduras connection, fair trade, 193 farming families
+- CTA "Lees Ons Verhaal" links to /about with arrow icon
+- Added `ourStory.*` i18n keys in all 4 languages (NL, EN, FR, ES)
+- Wrapped in Reveal component for fade-in on scroll
+- Responsive image height: h-72 mobile, h-96 tablet, h-[480px] desktop
+- typecheck ✅ build ✅

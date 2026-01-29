@@ -59,6 +59,12 @@
         }
       }
     },
+    "ourStory": {
+      "eyebrow": "Notre Histoire",
+      "title": "Du caféiculteur à la tasse",
+      "description": "Il y a près de 20 ans, nous avons rencontré les caféiculteurs au Honduras. En 2018, nous avons fondé Café RICO pour apporter un café équitable et biologique en Belgique — directement de 193 familles d'agriculteurs.",
+      "cta": "Lire Notre Histoire"
+    },
     "collections": {
       "beans": "Grains",
       "ground": "Café moulu",

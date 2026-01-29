@@ -59,6 +59,12 @@
         }
       }
     },
+    "ourStory": {
+      "eyebrow": "Our Story",
+      "title": "From farmer to cup",
+      "description": "Almost 20 years ago, we met the coffee farmers in Honduras. In 2018, we founded Café RICO to bring fair, organic coffee to Belgium — directly from 193 farming families.",
+      "cta": "Read Our Story"
+    },
     "collections": {
       "beans": "Whole beans",
       "ground": "Ground coffee",

@@ -202,6 +202,42 @@ export default async function HomePage({ params }: HomePageProps) {
       </Reveal>
 
       <Reveal>
+        <section className="py-20 sm:py-28">
+          <Container>
+            <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+              <div className="order-2 lg:order-1 space-y-6">
+                <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
+                  {t('ourStory.eyebrow')}
+                </p>
+                <h2 className="font-serif text-3xl leading-tight sm:text-4xl md:text-5xl">
+                  {t('ourStory.title')}
+                </h2>
+                <p className="text-sm leading-relaxed text-cream/70 sm:text-base">
+                  {t('ourStory.description')}
+                </p>
+                <Link
+                  href="/about"
+                  className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-gold transition hover:text-cream"
+                >
+                  {t('ourStory.cta')}
+                  <span aria-hidden="true">&rarr;</span>
+                </Link>
+              </div>
+              <div className="order-1 lg:order-2 overflow-hidden rounded-2xl">
+                <img
+                  src="https://www.caferico.be/wp-content/uploads/2018/05/koffieboer-4-Copy-1000×536.jpg"
+                  alt="Koffieboer in Honduras"
+                  className="h-72 w-full object-cover sm:h-96 lg:h-[480px]"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+          </Container>
+        </section>
+      </Reveal>
+
+      <Reveal>
         <section className="py-20">
           <Container className="space-y-10">
             <div className="max-w-2xl space-y-3">
