@@ -36,8 +36,12 @@ while true; do
   echo "Current status: ${STATUS:-unknown}"
   echo ""
 
-  # Run Codex with the prompt file
-  prompt=$(cat ./CLAUDE.md)
+  # Run Codex with the prompt file, explicitly setting working directory
+  prompt="Working directory: $SCRIPT_DIR
+
+$(cat ./CLAUDE.md)
+
+IMPORTANT: All files (prd.json, progress.txt, CLAUDE.md) are in $SCRIPT_DIR. The Next.js project will also be created here. Read prd.json from this directory to find user stories."
   codex exec "$prompt" --model gpt-5.2-codex --full-auto --config model_reasoning_effort="xhigh"
 
   # Small delay to avoid hammering the API
