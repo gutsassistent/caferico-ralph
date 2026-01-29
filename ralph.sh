@@ -94,7 +94,8 @@ for i in $(seq 1 $MAX_ITERATIONS); do
   elif [[ "$TOOL" == "claude" ]]; then
     OUTPUT=$(claude --dangerously-skip-permissions --print < "$SCRIPT_DIR/CLAUDE.md" 2>&1 | tee /dev/stderr) || true
   elif [[ "$TOOL" == "opencode" ]]; then
-    OUTPUT=$(opencode run -m "kimi-for-coding/k2p5" "$(cat "$SCRIPT_DIR/CLAUDE.md")" 2>&1 | tee /dev/stderr) || true
+    # Set permission to allow for autonomous operation (equivalent of --dangerously-skip-permissions)
+    OUTPUT=$(OPENCODE_PERMISSION=allow opencode run -m "kimi-for-coding/k2p5" "$(cat "$SCRIPT_DIR/CLAUDE.md")" 2>&1 | tee /dev/stderr) || true
   fi
   popd > /dev/null
   
