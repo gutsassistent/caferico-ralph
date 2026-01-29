@@ -1,0 +1,238 @@
+{
+  "project": "Caferico",
+  "branchName": "ralph/caferico-frontend",
+  "description": "Caférico - Premium headless e-commerce front-end. Next.js app met mock data voor alle producten en content. Design: elegant, warm, premium, wow-factor. Meertalig via next-intl. Backend integraties (Shopify, Stripe, Auth) komen in een latere fase.",
+  "stack": {
+    "framework": "Next.js 15 (App Router)",
+    "styling": "Tailwind CSS",
+    "i18n": "next-intl (NL, EN, FR, ES)",
+    "hosting": "Vercel (free tier) - later",
+    "language": "TypeScript"
+  },
+  "designDirection": {
+    "vibe": "Elegant, warm, premium, verbazingwekkend",
+    "palette": "Warm tonen — deep browns, cream, gold accents, dark backgrounds voor contrast",
+    "typography": "Serif headings (premium feel), clean sans-serif body",
+    "imagery": "Full-bleed hero images, koffiebonen texturen, warme sfeerbeelden"
+  },
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "Project scaffolding en configuratie",
+      "description": "Initialiseer het Next.js 15 project met alle dependencies, Tailwind CSS, TypeScript, next-intl, folder structuur.",
+      "acceptanceCriteria": [
+        "Next.js 15 App Router project aangemaakt met TypeScript",
+        "Tailwind CSS geconfigureerd met custom Caférico kleurenpalet (browns, cream, gold)",
+        "next-intl geconfigureerd voor NL, EN, FR, ES met NL als default",
+        "Folder structuur: app/[locale]/(pages), components/, lib/, types/, messages/",
+        "Mock data bestanden voor producten, collecties, blog posts, FAQ",
+        "ESLint + Prettier geconfigureerd",
+        "Typecheck passes",
+        "Dev server start zonder errors"
+      ],
+      "priority": 1,
+      "passes": true,
+      "notes": "Alle product/content data is mock data in JSON bestanden. Geen backend nodig."
+    },
+    {
+      "id": "US-002",
+      "title": "Layout, navigatie en footer",
+      "description": "Responsive layout met header (logo, navigatie, taalswitch, winkelwagen icon, account), en premium footer.",
+      "acceptanceCriteria": [
+        "Header met Caférico logo/tekst, navigatie links (Shop, Abonnementen, Over Ons, Blog, Contact, FAQ)",
+        "Taalswitch dropdown (NL/EN/FR/ES) die locale wisselt",
+        "Winkelwagen icon met item count badge (hardcoded 0)",
+        "Account icon placeholder",
+        "Mobile hamburger menu met smooth animatie",
+        "Footer met contactgegevens, social links, nieuwsbrief signup placeholder, sitemap links",
+        "Sticky header met transparant-naar-solid scroll effect",
+        "Alle teksten vertaalbaar via next-intl",
+        "Typecheck passes"
+      ],
+      "priority": 2,
+      "passes": true,
+      "notes": ""
+    },
+    {
+      "id": "US-003",
+      "title": "Homepage met hero en secties",
+      "description": "Premium homepage met full-bleed hero, featured producten, subscription CTA, en merkwaarden.",
+      "acceptanceCriteria": [
+        "Full-bleed hero sectie met tagline, CTA button, gradient overlay op placeholder achtergrond",
+        "Featured producten sectie (grid van 4 producten uit mock data)",
+        "Subscription teaser sectie met uitleg en CTA naar abonnementspagina",
+        "Merkwaarden sectie (vers gebrand, fair trade, Belgisch, ambachtelijk)",
+        "Smooth scroll animaties (fade-in on scroll)",
+        "Responsive op mobile, tablet, desktop",
+        "Alle teksten vertaald in 4 talen",
+        "Typecheck passes"
+      ],
+      "priority": 3,
+      "passes": true,
+      "notes": ""
+    },
+    {
+      "id": "US-004",
+      "title": "Productcatalogus pagina",
+      "description": "Shop pagina met product grid, filtering op collectie, en zoekfunctionaliteit. Data uit mock JSON.",
+      "acceptanceCriteria": [
+        "Product grid met afbeelding placeholder, naam, prijs, hover effect (scale + shadow)",
+        "Filteren op collectie/categorie (koffiebonen, gemalen, accessoires)",
+        "Zoekbalk met instant client-side filtering",
+        "Sorteeropties (prijs laag-hoog, prijs hoog-laag, naam A-Z)",
+        "Responsive grid (1 kolom mobile, 2 tablet, 3-4 desktop)",
+        "Lege state bij geen resultaten",
+        "Alle teksten vertaald",
+        "Typecheck passes"
+      ],
+      "priority": 4,
+      "passes": true,
+      "notes": "Mock data: ~10-15 producten verspreid over collecties"
+    },
+    {
+      "id": "US-005",
+      "title": "Product detail pagina",
+      "description": "Individuele productpagina met afbeeldingen, beschrijving, varianten en add-to-cart button.",
+      "acceptanceCriteria": [
+        "Product afbeelding galerij placeholder (hoofdafbeelding + thumbnails)",
+        "Productnaam, prijs, uitgebreide beschrijving",
+        "Variant selectie (maling: bonen/fijn/grof, gewicht: 250g/500g/1kg)",
+        "Hoeveelheid selector",
+        "Add to cart button (koppelt aan cart state in US-006)",
+        "Gerelateerde producten sectie (3-4 producten uit zelfde collectie)",
+        "Broodkruimel navigatie",
+        "Alle teksten vertaald",
+        "Typecheck passes"
+      ],
+      "priority": 5,
+      "passes": true,
+      "notes": ""
+    },
+    {
+      "id": "US-006",
+      "title": "Winkelwagen (Cart) met client-side state",
+      "description": "Shopping cart met slide-over panel en lokale state management.",
+      "acceptanceCriteria": [
+        "Slide-over cart panel (opent vanuit header icon, smooth animatie)",
+        "Producten toevoegen vanuit productpagina",
+        "Producten verwijderen uit cart",
+        "Hoeveelheid aanpassen in cart",
+        "Subtotaal en totaal berekening",
+        "Cart state in React context/zustand (persisted in localStorage)",
+        "Cart badge in header update live",
+        "Lege cart state met CTA naar shop",
+        "Checkout button (placeholder, geen echte checkout)",
+        "Typecheck passes"
+      ],
+      "priority": 6,
+      "passes": true,
+      "notes": "Puur client-side. Echte checkout komt pas met Shopify integratie."
+    },
+    {
+      "id": "US-007",
+      "title": "Abonnementspagina",
+      "description": "Pagina met subscription tiers voor koffiebonen en gemalen koffie.",
+      "acceptanceCriteria": [
+        "Abonnementspagina met premium design",
+        "Tier cards voor koffiebonen: 250g/maand, 500g/maand, 1kg/maand met prijzen",
+        "Tier cards voor gemalen koffie: 250g/maand, 500g/maand, 1kg/maand met prijzen",
+        "Visueel onderscheid tussen tiers (recommended/populair badge op middelste)",
+        "Uitleg hoe het abonnement werkt (stappen: kies, ontvang, geniet)",
+        "FAQ sectie specifiek over abonnementen",
+        "CTA buttons (placeholder, geen echte Stripe koppeling)",
+        "Alle teksten vertaald",
+        "Typecheck passes"
+      ],
+      "priority": 7,
+      "passes": true,
+      "notes": "Prijzen zijn mock. Stripe integratie komt later."
+    },
+    {
+      "id": "US-008",
+      "title": "Over Ons pagina",
+      "description": "Verhaal van Caférico, missie, visie met premium storytelling design.",
+      "acceptanceCriteria": [
+        "Hero sectie met titel en sfeerbeeld placeholder",
+        "Verhaal van Caférico (placeholder tekst, maar stijlvol opgemaakt)",
+        "Missie en visie blokken",
+        "Timeline of mijlpalen sectie",
+        "Team/oprichter sectie met foto placeholder",
+        "Parallax of scroll-based animatie elementen",
+        "Alle teksten vertaald",
+        "Typecheck passes"
+      ],
+      "priority": 8,
+      "passes": true,
+      "notes": ""
+    },
+    {
+      "id": "US-009",
+      "title": "Contact pagina",
+      "description": "Contactpagina met formulier en bedrijfsgegevens.",
+      "acceptanceCriteria": [
+        "Contactformulier (naam, email, onderwerp, bericht) met client-side validatie",
+        "Formulier submit toont success message (geen echte backend)",
+        "Bedrijfsgegevens sectie (adres, telefoon, email, BTW nummer)",
+        "Openingsuren",
+        "Embedded Google Maps placeholder of statische kaart",
+        "Alle teksten vertaald",
+        "Typecheck passes"
+      ],
+      "priority": 9,
+      "passes": true,
+      "notes": ""
+    },
+    {
+      "id": "US-010",
+      "title": "FAQ pagina",
+      "description": "Veelgestelde vragen met accordion componenten.",
+      "acceptanceCriteria": [
+        "FAQ items in accordion/collapse componenten met smooth animatie",
+        "Categorieën (Bestellingen, Abonnementen, Producten, Verzending, Retour)",
+        "Zoekfunctie om FAQ items te filteren",
+        "Minimaal 15 mock FAQ items verspreid over categorieën",
+        "Alle teksten vertaald in 4 talen",
+        "Typecheck passes"
+      ],
+      "priority": 10,
+      "passes": true,
+      "notes": ""
+    },
+    {
+      "id": "US-011",
+      "title": "Blog listing en detail pagina's",
+      "description": "Blog overzicht met preview cards en individuele blog posts.",
+      "acceptanceCriteria": [
+        "Blog listing pagina met preview cards (afbeelding, titel, excerpt, datum)",
+        "Blog detail pagina met rich text styling (headings, paragrafen, afbeeldingen, quotes)",
+        "Auteur en publicatiedatum",
+        "Gerelateerde posts sectie",
+        "3-5 mock blog posts in JSON",
+        "Responsive layout",
+        "Alle teksten vertaald (of taalspecifieke blog posts)",
+        "Typecheck passes"
+      ],
+      "priority": 11,
+      "passes": true,
+      "notes": ""
+    },
+    {
+      "id": "US-012",
+      "title": "Polish, animaties en responsive fine-tuning",
+      "description": "Laatste ronde polish: micro-interacties, page transitions, responsive edge cases, dark mode optioneel.",
+      "acceptanceCriteria": [
+        "Page transition animaties (fade of slide)",
+        "Hover states op alle interactieve elementen",
+        "Loading skeletons voor dynamische content",
+        "Scroll-to-top button",
+        "404 pagina met on-brand design",
+        "Alle pagina's getest op mobile (375px), tablet (768px), desktop (1440px)",
+        "Consistent spacing, typografie en kleuren over alle pagina's",
+        "Typecheck passes"
+      ],
+      "priority": 12,
+      "passes": true,
+      "notes": "Dit is de final polish story. Alles moet er premium uitzien."
+    }
+  ]
+}
