@@ -21,9 +21,14 @@
     },
     "subscription": {
       "eyebrow": "Subscription",
-      "title": "Never run out of your ritual",
-      "description": "Choose a cadence and roast profile. Pause or swap at any time.",
-      "cta": "See subscriptions",
+      "title": "Never Run Out of Coffee",
+      "description": "Choose your cadence and receive freshly roasted coffee at your door. Pause or swap at any time.",
+      "cta": "Start Subscription",
+      "benefits": {
+        "discount": "15% discount",
+        "shipping": "Free shipping",
+        "flexible": "Pause anytime"
+      },
       "stepsTitle": "How it works",
       "steps": {
         "one": "Choose beans or ground, plus your cadence.",

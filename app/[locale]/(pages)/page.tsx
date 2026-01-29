@@ -137,37 +137,65 @@ export default async function HomePage({ params }: HomePageProps) {
       </Reveal>
 
       <Reveal>
-        <section className="relative overflow-hidden py-20">
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(60,21,24,0.65),rgba(26,15,10,0.95))]" />
-          <div className="pointer-events-none absolute inset-0 bg-coffee-grain opacity-30" />
-          <Container className="relative grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-            <div className="space-y-5">
-              <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
-                {t('subscription.eyebrow')}
-              </p>
-              <h2 className="font-serif text-3xl sm:text-4xl">{t('subscription.title')}</h2>
-              <p className="text-sm text-cream/70 sm:text-base">{t('subscription.description')}</p>
+        <section className="relative overflow-hidden bg-espresso py-24 sm:py-32">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(201,169,98,0.08),transparent_70%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-coffee-grain opacity-20" />
+          <Container className="relative text-center">
+            <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
+              {t('subscription.eyebrow')}
+            </p>
+            <h2 className="mx-auto mt-4 max-w-lg font-serif text-3xl leading-tight sm:text-4xl md:text-5xl">
+              {t('subscription.title')}
+            </h2>
+            <p className="mx-auto mt-4 max-w-md text-sm text-cream/70 sm:text-base">
+              {t('subscription.description')}
+            </p>
+
+            <div className="mx-auto mt-10 flex max-w-2xl flex-col items-center gap-6 sm:flex-row sm:justify-center sm:gap-10">
+              {(['discount', 'shipping', 'flexible'] as const).map((key) => (
+                <div key={key} className="flex flex-col items-center gap-3">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full border border-gold/40 bg-noir/40">
+                    {key === 'discount' && (
+                      <svg className="h-6 w-6 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 6h.008v.008H6V6z" />
+                      </svg>
+                    )}
+                    {key === 'shipping' && (
+                      <svg className="h-6 w-6 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+                      </svg>
+                    )}
+                    {key === 'flexible' && (
+                      <svg className="h-6 w-6 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182M21.015 4.356v4.992" />
+                      </svg>
+                    )}
+                  </div>
+                  <span className="text-sm font-semibold tracking-wide text-cream">
+                    {t(`subscription.benefits.${key}`)}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            <div className="mx-auto mt-10 max-w-xs">
+              <img
+                src="https://www.caferico.be/wp-content/uploads/2024/10/bonen_500.png"
+                alt="Caférico coffee package"
+                className="mx-auto h-48 w-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)] sm:h-56"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+
+            <div className="mt-10">
               <Link
                 href="/subscriptions"
-                className="inline-flex items-center gap-3 rounded-full border border-gold/60 px-6 py-3 text-xs uppercase tracking-[0.3em] text-gold transition hover:bg-gold hover:text-noir"
+                className="inline-flex rounded-full bg-gold px-10 py-4 text-xs font-semibold uppercase tracking-[0.3em] text-noir transition hover:bg-gold/90 hover:shadow-[0_0_30px_rgba(201,169,98,0.3)]"
               >
                 {t('subscription.cta')}
               </Link>
-            </div>
-            <div className="rounded-3xl border border-cream/10 bg-noir/70 p-8 shadow-[0_40px_80px_rgba(0,0,0,0.5)]">
-              <p className="text-xs uppercase tracking-[0.3em] text-cream/50">
-                {t('subscription.stepsTitle')}
-              </p>
-              <div className="mt-6 space-y-4">
-                {['one', 'two', 'three'].map((step, index) => (
-                  <div key={step} className="flex gap-4">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/40 text-xs font-semibold text-gold">
-                      {index + 1}
-                    </span>
-                    <p className="text-sm text-cream/70">{t(`subscription.steps.${step}`)}</p>
-                  </div>
-                ))}
-              </div>
             </div>
           </Container>
         </section>

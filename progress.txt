@@ -70,3 +70,15 @@ Remaining: 42
 - Added `featured.quickAdd` i18n key in all 4 languages (NL: "Bekijk product", EN: "View product", FR: "Voir le produit", ES: "Ver producto")
 - Cards already had hover effects (translate-y, shadow, border-gold) from previous implementation
 - typecheck ✅ build ✅
+
+### RD-006: Homepage - Subscription CTA Section ✅
+- Redesigned subscription section from 2-column layout to center-aligned symmetric design
+- Dark espresso background with radial gold gradient and coffee-grain texture overlay
+- Title changed to "Nooit Meer Zonder Koffie" as per acceptance criteria
+- 3 benefit icons (SVG) with text: "15% korting", "Gratis verzending", "Flexibel pauzeerbaar"
+- Added `subscription.benefits.*` i18n keys in all 4 languages (NL, EN, FR, ES)
+- Coffee package image (bonen_500.png) with drop-shadow, centered below benefits
+- Prominent gold CTA button "Start Abonnement" linking to /subscriptions
+- Fade-in on scroll via existing Reveal component wrapping the section
+- Kept existing `subscription.steps.*` keys intact (used on subscriptions page)
+- typecheck ✅ build ✅

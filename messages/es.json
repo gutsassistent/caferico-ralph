@@ -21,9 +21,14 @@
     },
     "subscription": {
       "eyebrow": "Suscripción",
-      "title": "Tu ritual siempre a mano",
-      "description": "Elige tu frecuencia y perfil. Pausa o cambia cuando quieras.",
-      "cta": "Ver suscripciones",
+      "title": "Nunca Más Sin Café",
+      "description": "Elige tu ritmo y recibe café recién tostado en tu puerta. Pausa o cambia cuando quieras.",
+      "cta": "Iniciar Suscripción",
+      "benefits": {
+        "discount": "15% de descuento",
+        "shipping": "Envío gratuito",
+        "flexible": "Pausa flexible"
+      },
       "stepsTitle": "Cómo funciona",
       "steps": {
         "one": "Elige granos o molido y tu frecuencia.",

@@ -21,9 +21,14 @@
     },
     "subscription": {
       "eyebrow": "Abonnement",
-      "title": "Altijd je ritueel binnen handbereik",
-      "description": "Kies je ritme en branding. Pauzeren of wisselen kan altijd.",
-      "cta": "Bekijk abonnementen",
+      "title": "Nooit Meer Zonder Koffie",
+      "description": "Kies je ritme en ontvang vers gebrande koffie aan huis. Pauzeren of wisselen kan altijd.",
+      "cta": "Start Abonnement",
+      "benefits": {
+        "discount": "15% korting",
+        "shipping": "Gratis verzending",
+        "flexible": "Flexibel pauzeerbaar"
+      },
       "stepsTitle": "Hoe het werkt",
       "steps": {
         "one": "Kies bonen of gemalen, plus je ritme.",

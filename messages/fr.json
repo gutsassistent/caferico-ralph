@@ -21,9 +21,14 @@
     },
     "subscription": {
       "eyebrow": "Abonnement",
-      "title": "Ne manquez jamais votre rituel",
-      "description": "Choisissez votre cadence et votre profil. Pause ou changement à tout moment.",
-      "cta": "Voir les abonnements",
+      "title": "Plus Jamais Sans Café",
+      "description": "Choisissez votre rythme et recevez du café fraîchement torréfié chez vous. Pause ou changement à tout moment.",
+      "cta": "Démarrer l'Abonnement",
+      "benefits": {
+        "discount": "15% de réduction",
+        "shipping": "Livraison gratuite",
+        "flexible": "Pause flexible"
+      },
       "stepsTitle": "Comment ça marche",
       "steps": {
         "one": "Choisissez grains ou moulu et votre cadence.",
