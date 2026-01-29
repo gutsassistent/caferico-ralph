@@ -163,3 +163,46 @@ Remaining: 42
 - Single-image products show placeholder thumbnails (gradient + coffee-grain texture)
 - Removed unused Image import from page after moving all image rendering to gallery component
 - typecheck ✅ build ✅
+
+### RD-014: Product Detail - Tasting Notes & Details Section ✅
+- Created ProductTabs client component with 4 tabs: Beschrijving, Smaakprofiel, Bereidingswijze, Oorsprong
+- Tab bar with gold highlight on active tab, horizontal scroll on mobile
+- Beschrijving tab: renders product description HTML
+- Smaakprofiel tab: splits notes into pill tags, adds visual body/acidity/sweetness bar indicators
+- Bereidingswijze tab: 3 brewing method cards (Filter, Espresso, French Press) with grind, ratio, temperature info
+- Oorsprong tab: grid with region, altitude (1350-1850m), cooperative (COMBRIFOL), 193 families, varieties, certifications + SCAA 84 / Marcala 86 score badges
+- Non-coffee products show description only (no tabs)
+- Replaced old detailItems block below image gallery with new ProductTabs component
+- Added `Product.tabs.*` i18n keys in all 4 languages (NL, EN, FR, ES)
+- typecheck ✅ build ✅
+
+### RD-013: Product Detail - Purchase Panel Redesign ✅
+- Added StarRating component with 5-star SVG display using linearGradient for partial fills (placeholder: 4.5 stars, 24 reviews)
+- Price displayed prominently (text-3xl font-serif) above purchase panel with subscription price comparison
+- Subscription comparison: "Of €X.XX/maand met abonnement" (15% off) for coffee products
+- Two action buttons: "In Winkelwagen" (primary, solid gold) + "Abonneer" (secondary, outline) linking to /subscriptions
+- Quantity selector with total price display side-by-side
+- Shipping info line with truck icon: "Gratis verzending vanaf €25"
+- Trust badges: Biologisch (green) + Fair Trade (gold) as pill badges with checkmark icons
+- Grouped product layout also updated with star rating, trust badges, shipping info
+- Added 6 new i18n keys under `purchase.*` in all 4 languages
+- typecheck ✅ build ✅
+
+### RD-015: Product Detail - Related Products Section ✅
+- Section was already implemented in previous iterations (RD-012/RD-013) as part of product detail page work
+- Grid layout: sm:grid-cols-2, lg:grid-cols-4 with staggered Reveal animations
+- Cards show product image, category badge, name, tasting notes, and price
+- Hover effects: lift up (-translate-y-1), gold border, shadow
+- Eyebrow + title + description + "Bekijk de shop" CTA link
+- WooCommerce API with mock data fallback for related products
+- i18n keys already in place: Product.related.* (eyebrow, title, description, cta, priceLabel)
+- typecheck ✅ build ✅
+
+### RD-016: Subscriptions Pagina - Fix Rendering & Hero ✅
+- Page already had full content (hero, tiers, steps, FAQ, CTA) — "only hero + footer" issue was outdated
+- Added real Honduras sfeerbeeld (DSCF0031-scaled.jpg) as hero background image with dark overlay for readability
+- Added bonen_500.png product image inside the hero info card with drop-shadow
+- Used Next.js Image component with priority loading for hero, proper sizes attributes
+- External image domains already configured in next.config.mjs
+- No i18n changes needed — all keys were already in place from previous iterations
+- typecheck ✅ build ✅

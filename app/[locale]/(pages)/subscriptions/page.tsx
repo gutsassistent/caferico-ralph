@@ -1,4 +1,5 @@
 import { getTranslations } from 'next-intl/server';
+import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import Container from '@/components/Container';
 import Reveal from '@/components/Reveal';
@@ -43,8 +44,16 @@ export default async function SubscriptionsPage({ params }: SubscriptionsPagePro
   return (
     <main className="min-h-screen bg-noir text-cream">
       <section className="relative isolate overflow-hidden border-b border-cream/10">
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(110deg,rgba(26,15,10,0.95),rgba(60,21,24,0.9),rgba(26,15,10,0.98))]" />
-        <div className="pointer-events-none absolute inset-0 bg-coffee-grain opacity-35" />
+        <Image
+          src="https://www.caferico.be/wp-content/uploads/2025/05/DSCF0031-scaled.jpg"
+          alt=""
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(110deg,rgba(26,15,10,0.92),rgba(60,21,24,0.88),rgba(26,15,10,0.95))]" />
+        <div className="pointer-events-none absolute inset-0 bg-coffee-grain opacity-25" />
         <div className="pointer-events-none absolute -right-24 top-10 h-64 w-64 rounded-full bg-gold/20 blur-3xl" />
         <div className="pointer-events-none absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-roast/45 blur-3xl" />
 
@@ -79,7 +88,16 @@ export default async function SubscriptionsPage({ params }: SubscriptionsPagePro
             <div className="relative overflow-hidden rounded-[2.5rem] border border-cream/10 bg-gradient-to-br from-espresso via-[#1c120d] to-noir p-8 shadow-[0_40px_80px_rgba(0,0,0,0.6)]">
               <div className="pointer-events-none absolute inset-0 bg-coffee-grain opacity-40" />
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,165,116,0.25),_transparent_60%)]" />
-              <div className="relative space-y-4">
+              <div className="relative flex flex-col items-center space-y-4">
+                <div className="relative mx-auto h-48 w-36 sm:h-56 sm:w-44">
+                  <Image
+                    src="https://www.caferico.be/wp-content/uploads/2024/10/bonen_500.png"
+                    alt="Café RICO koffiebonen 500g"
+                    fill
+                    className="object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
+                    sizes="(max-width: 640px) 144px, 176px"
+                  />
+                </div>
                 <p className="text-xs uppercase tracking-[0.3em] text-cream/60">
                   {t('hero.card.eyebrow')}
                 </p>
