@@ -483,7 +483,12 @@
     },
     "detail": {
       "imageBadge": "Caférico journal",
-      "quote": "Every cup of coffee is a small ritual — a moment of quiet attention."
+      "quote": "Every cup of coffee is a small ritual — a moment of quiet attention.",
+      "share": "Share this article",
+      "shareFacebook": "Share on Facebook",
+      "shareTwitter": "Share on X",
+      "shareLinkedIn": "Share on LinkedIn",
+      "shareEmail": "Share via email"
     },
     "related": {
       "eyebrow": "More stories",
@@ -931,6 +936,49 @@
       "title": "Want to sell Café RICO?",
       "description": "Interested in offering our coffee in your shop or restaurant? Get in touch.",
       "button": "Contact us"
+    }
+  },
+  "Seo": {
+    "keywords": "organic coffee, specialty coffee, Honduras, fair trade, coffee subscription, Café RICO, coffee beans, ground coffee",
+    "home": {
+      "title": "Organic Specialty Coffee from Honduras",
+      "description": "Café RICO: fair trade organic coffee directly from 193 farming families in Honduras. Order beans, ground coffee or start a subscription."
+    },
+    "shop": {
+      "title": "Shop — Coffee & Accessories",
+      "description": "Discover our range: mild, intense, espresso and decaf. Organic coffee beans and ground coffee, freshly roasted in Belgium."
+    },
+    "product": {
+      "title": "{name} — Café RICO",
+      "description": "Order {name} from Café RICO. Organic specialty coffee from Honduras, fair trade certified."
+    },
+    "subscriptions": {
+      "title": "Coffee Subscription",
+      "description": "Save 15% with a Café RICO subscription. Receive fresh organic coffee delivered monthly. Pause or cancel anytime."
+    },
+    "about": {
+      "title": "Our Story",
+      "description": "Get to know Café RICO: from coffee farmer to your cup. Nearly 20 years connected to Honduras, 193 farming families and 100% organic."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Get in touch with Café RICO. Beekstraat 138, 9420 Erpe-Mere, Belgium. Call 0474 96 40 90 or email info@caferico.be."
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "description": "Find answers about our coffee, orders, subscriptions and shipping. Everything about Café RICO specialty coffee."
+    },
+    "blog": {
+      "title": "Blog",
+      "description": "Stories about origin, craftsmanship and the coffee ritual. Insights from our team on roasting, provenance and brewing."
+    },
+    "blogPost": {
+      "title": "{title}",
+      "description": "{excerpt}"
+    },
+    "locations": {
+      "title": "Locations",
+      "description": "Find Café RICO at selected shops across Belgium. From Antwerp to Ghent, from farm markets to organic stores."
     }
   }
 }

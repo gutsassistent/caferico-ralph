@@ -483,7 +483,12 @@
     },
     "detail": {
       "imageBadge": "Caférico journal",
-      "quote": "Elke kop koffie is een klein ritueel — een moment van stilte en aandacht."
+      "quote": "Elke kop koffie is een klein ritueel — een moment van stilte en aandacht.",
+      "share": "Deel dit artikel",
+      "shareFacebook": "Deel op Facebook",
+      "shareTwitter": "Deel op X",
+      "shareLinkedIn": "Deel op LinkedIn",
+      "shareEmail": "Deel via e-mail"
     },
     "related": {
       "eyebrow": "Meer verhalen",
@@ -931,6 +936,49 @@
       "title": "Wil je Café RICO verkopen?",
       "description": "Ben je geïnteresseerd om onze koffie aan te bieden in jouw winkel of horecazaak? Neem contact met ons op.",
       "button": "Neem contact op"
+    }
+  },
+  "Seo": {
+    "keywords": "biologische koffie, specialty coffee, Honduras, fair trade, koffie abonnement, Café RICO, koffiebonen, gemalen koffie",
+    "home": {
+      "title": "Biologische Specialty Coffee uit Honduras",
+      "description": "Café RICO: fair trade biologische koffie rechtstreeks van 193 boerenfamilies in Honduras. Bestel bonen, gemalen koffie of start een abonnement."
+    },
+    "shop": {
+      "title": "Shop — Koffie & Accessoires",
+      "description": "Ontdek ons assortiment: mild, intens, espresso en decaf. Biologische koffiebonen en gemalen koffie, vers gebrand in België."
+    },
+    "product": {
+      "title": "{name} — Café RICO",
+      "description": "Bestel {name} van Café RICO. Biologische specialty coffee uit Honduras, fair trade gecertificeerd."
+    },
+    "subscriptions": {
+      "title": "Koffie Abonnement",
+      "description": "Bespaar 15% met een Café RICO abonnement. Ontvang elke maand verse biologische koffie aan huis. Flexibel pauzeren of annuleren."
+    },
+    "about": {
+      "title": "Ons Verhaal",
+      "description": "Leer Café RICO kennen: van koffieboer tot kopje. Al bijna 20 jaar verbonden met Honduras, 193 boerenfamilies en 100% biologisch."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Neem contact op met Café RICO. Beekstraat 138, 9420 Erpe-Mere. Bel 0474 96 40 90 of mail info@caferico.be."
+    },
+    "faq": {
+      "title": "Veelgestelde Vragen",
+      "description": "Vind antwoorden over onze koffie, bestellingen, abonnementen en verzending. Alles over Café RICO specialty coffee."
+    },
+    "blog": {
+      "title": "Blog",
+      "description": "Verhalen over oorsprong, vakmanschap en het koffieritueel. Inzichten van ons team over branden, herkomst en koffie zetten."
+    },
+    "blogPost": {
+      "title": "{title}",
+      "description": "{excerpt}"
+    },
+    "locations": {
+      "title": "Verkooppunten",
+      "description": "Vind Café RICO bij geselecteerde winkels in België. Van Antwerpen tot Gent, van boerenmarkten tot biowinkels."
     }
   }
 }

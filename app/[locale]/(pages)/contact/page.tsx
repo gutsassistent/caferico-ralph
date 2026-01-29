@@ -1,8 +1,15 @@
+import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import Container from '@/components/Container';
 import ContactForm from '@/components/ContactForm';
 import ParallaxOrb from '@/components/ParallaxOrb';
 import Reveal from '@/components/Reveal';
+import { generatePageMetadata } from '@/lib/seo';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return generatePageMetadata({ locale, page: 'contact', path: 'contact' });
+}
 
 export default async function ContactPage() {
   const t = await getTranslations('Contact');

@@ -1,8 +1,15 @@
+import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import Container from '@/components/Container';
 import FaqExplorer from '@/components/FaqExplorer';
 import ParallaxOrb from '@/components/ParallaxOrb';
 import Reveal from '@/components/Reveal';
+import { generatePageMetadata } from '@/lib/seo';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return generatePageMetadata({ locale, page: 'faq', path: 'faq' });
+}
 
 export default async function FaqPage() {
   const t = await getTranslations('Faq');

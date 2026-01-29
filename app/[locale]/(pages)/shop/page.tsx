@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import Container from '@/components/Container';
 import Reveal from '@/components/Reveal';
@@ -6,8 +7,14 @@ import { getProducts, getProductCategories } from '@/lib/woocommerce';
 import { mapWooProduct } from '@/types/product';
 import type { Product } from '@/types/product';
 import mockProductData from '@/data/mock-products.json';
+import { generatePageMetadata } from '@/lib/seo';
 
 export const revalidate = 3600;
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return generatePageMetadata({ locale, page: 'shop', path: 'shop' });
+}
 
 export default async function ShopPage() {
   const t = await getTranslations('Shop');

@@ -1,15 +1,22 @@
+import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import Container from '@/components/Container';
 import ParallaxOrb from '@/components/ParallaxOrb';
 import Reveal from '@/components/Reveal';
 import blogPosts from '@/data/blog-posts.json';
+import { generatePageMetadata } from '@/lib/seo';
 
 type BlogPost = (typeof blogPosts)[number];
 
 const POSTS = (blogPosts as BlogPost[]).sort(
   (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
 );
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return generatePageMetadata({ locale, page: 'blog', path: 'blog' });
+}
 
 export default async function BlogPage() {
   const t = await getTranslations('Blog');

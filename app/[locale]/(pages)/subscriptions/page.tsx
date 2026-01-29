@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import { Link } from '@/i18n/routing';
@@ -5,10 +6,16 @@ import Container from '@/components/Container';
 import Reveal from '@/components/Reveal';
 import SubscriptionTierCard from '@/components/SubscriptionTierCard';
 import SubscriptionFaq from '@/components/SubscriptionFaq';
+import { generatePageMetadata } from '@/lib/seo';
 
 type SubscriptionsPageProps = {
   params: Promise<{ locale: string }>;
 };
+
+export async function generateMetadata({ params }: SubscriptionsPageProps): Promise<Metadata> {
+  const { locale } = await params;
+  return generatePageMetadata({ locale, page: 'subscriptions', path: 'subscriptions' });
+}
 
 const benefitKeys = ['flexible', 'cheaper', 'fresh'] as const;
 

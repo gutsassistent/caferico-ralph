@@ -314,3 +314,32 @@ Remaining: 42
 - Pagination uses `<nav>` with aria-label for accessibility
 - Added `listing.readTime`, `listing.paginationLabel`, `listing.nextPage` i18n keys in all 4 languages
 - typecheck ✅ build ✅
+
+### RD-026: Blog Detail Pagina - Typography & Reading Experience ✅
+- Replaced gradient placeholder hero image with real Honduras photos per blog slug (HERO_IMAGES map)
+- Used Next.js Image component with priority loading, fill mode, object-cover for featured image
+- Added read time display next to date in article header (reuses listing.readTime i18n key)
+- Article body now constrained to max-w-[680px] for optimal reading length
+- Typography upgraded: text-lg (18px) with leading-[1.7] line-height, space-y-7 between paragraphs
+- Blockquote upgraded: text-xl/2xl italic serif, border-l-2 gold, more generous spacing (my-10)
+- Added share buttons section: Facebook, X/Twitter, LinkedIn, Email — circular icon buttons with gold hover
+- Related posts cards now show real images (with zoom-on-hover) + read time
+- Added `detail.share`, `detail.shareFacebook`, `detail.shareTwitter`, `detail.shareLinkedIn`, `detail.shareEmail` i18n keys in all 4 languages
+- typecheck ✅ build ✅
+
+### RD-027: SEO - Meta Tags & Open Graph ✅
+- Created `lib/seo.ts` with reusable `generatePageMetadata()` helper function
+- Helper generates: title, description, keywords, canonical URL, Open Graph, Twitter Card, hreflang alternates
+- Title format: `[Page Title] | Café RICO`
+- Canonical URLs: `https://caferico.be/[locale]/[path]`
+- Hreflang: nl-BE, fr-BE, en, es + x-default pointing to nl
+- OG image default: DSCF3617.jpg Honduras sfeerbeeld (1200x630)
+- Added `Seo` namespace to all 4 message files (nl, en, fr, es) with per-page title + description
+- SEO pages: home, shop, product (dynamic {name}), subscriptions, about, contact, faq, blog, blogPost (dynamic {title}/{excerpt}), locations
+- All descriptions max ~155 characters
+- Keywords per locale (biologische koffie, specialty coffee, Honduras, fair trade, etc.)
+- Added `generateMetadata` export to all 10 page files
+- Dynamic pages (product detail, blog detail) fetch name/title for personalized meta tags
+- Blog detail uses slug-specific hero image as og:image
+- Product detail tries WooCommerce API first, falls back to mock data for product name
+- typecheck ✅ build ✅

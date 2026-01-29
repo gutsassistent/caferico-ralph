@@ -483,7 +483,12 @@
     },
     "detail": {
       "imageBadge": "Diario Caférico",
-      "quote": "Cada taza de café es un pequeño ritual — un momento de atención silenciosa."
+      "quote": "Cada taza de café es un pequeño ritual — un momento de atención silenciosa.",
+      "share": "Compartir este artículo",
+      "shareFacebook": "Compartir en Facebook",
+      "shareTwitter": "Compartir en X",
+      "shareLinkedIn": "Compartir en LinkedIn",
+      "shareEmail": "Compartir por correo"
     },
     "related": {
       "eyebrow": "Más historias",
@@ -931,6 +936,49 @@
       "title": "¿Quieres vender Café RICO?",
       "description": "¿Interesado en ofrecer nuestro café en tu tienda o restaurante? Contáctanos.",
       "button": "Contáctanos"
+    }
+  },
+  "Seo": {
+    "keywords": "café orgánico, specialty coffee, Honduras, comercio justo, suscripción café, Café RICO, granos de café, café molido",
+    "home": {
+      "title": "Café de Especialidad Orgánico de Honduras",
+      "description": "Café RICO: café orgánico de comercio justo directamente de 193 familias agricultoras en Honduras. Pide granos, café molido o suscríbete."
+    },
+    "shop": {
+      "title": "Tienda — Café y Accesorios",
+      "description": "Descubre nuestra gama: suave, intenso, espresso y descafeinado. Granos y café molido orgánicos, recién tostados en Bélgica."
+    },
+    "product": {
+      "title": "{name} — Café RICO",
+      "description": "Pide {name} de Café RICO. Café de especialidad orgánico de Honduras, certificado de comercio justo."
+    },
+    "subscriptions": {
+      "title": "Suscripción de Café",
+      "description": "Ahorra 15% con una suscripción Café RICO. Recibe café orgánico fresco cada mes. Pausa o cancela cuando quieras."
+    },
+    "about": {
+      "title": "Nuestra Historia",
+      "description": "Conoce Café RICO: del caficultor a tu taza. Casi 20 años conectados con Honduras, 193 familias y 100% orgánico."
+    },
+    "contact": {
+      "title": "Contacto",
+      "description": "Contacta con Café RICO. Beekstraat 138, 9420 Erpe-Mere, Bélgica. Llama al 0474 96 40 90 o escribe a info@caferico.be."
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "description": "Encuentra respuestas sobre nuestro café, pedidos, suscripciones y envío. Todo sobre el café de especialidad Café RICO."
+    },
+    "blog": {
+      "title": "Blog",
+      "description": "Historias sobre origen, artesanía y el ritual del café. Perspectivas de nuestro equipo sobre tostado y preparación."
+    },
+    "blogPost": {
+      "title": "{title}",
+      "description": "{excerpt}"
+    },
+    "locations": {
+      "title": "Puntos de Venta",
+      "description": "Encuentra Café RICO en tiendas seleccionadas en Bélgica. De Amberes a Gante, de mercados agrícolas a tiendas ecológicas."
     }
   }
 }

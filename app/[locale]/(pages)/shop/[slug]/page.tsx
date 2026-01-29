@@ -1,14 +1,17 @@
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import Container from '@/components/Container';
 import ProductPurchasePanel from '@/components/ProductPurchasePanel';
 import ProductImageGallery from '@/components/ProductImageGallery';
+import ProductTabs from '@/components/ProductTabs';
 import Reveal from '@/components/Reveal';
 import { getProduct, getProductsByIds } from '@/lib/woocommerce';
 import { mapWooProduct, isCoffee } from '@/types/product';
 import type { Product } from '@/types/product';
 import mockProductsJson from '@/data/mock-products.json';
+import { generatePageMetadata } from '@/lib/seo';
 
 type ProductPageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -16,6 +19,25 @@ type ProductPageProps = {
 
 export const dynamicParams = true;
 export const revalidate = 3600;
+
+export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
+  const { locale, slug } = await params;
+  let name = slug;
+  try {
+    const wc = await getProduct(slug);
+    if (wc) name = wc.name;
+  } catch {
+    const mock = (mockProductsJson as Array<Record<string, unknown>>).find((p) => p.slug === slug);
+    if (mock) name = mock.name as string;
+  }
+  return generatePageMetadata({
+    locale,
+    page: 'product',
+    path: `shop/${slug}`,
+    titleValues: { name },
+    descriptionValues: { name },
+  });
+}
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const { slug } = await params;
@@ -87,18 +109,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   const coffeeProduct = isCoffee(product.collection);
 
-  const detailItems = coffeeProduct
-    ? ([
-        product.origin ? { label: t('details.originLabel'), value: product.origin } : null,
-        product.notes ? { label: t('details.notesLabel'), value: product.notes } : null,
-        {
-          label: t('details.collectionLabel'),
-          value: product.categories[0]?.name ?? product.collection
-        },
-        { label: t('details.roastLabel'), value: t('details.roastValue') }
-      ].filter(Boolean) as { label: string; value: string }[])
-    : [];
-
   return (
     <main className="min-h-screen bg-noir text-cream">
       <section className="relative overflow-hidden border-b border-cream/10">
@@ -135,23 +145,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 productName={product.name}
                 badge={t('badge')}
               />
-              {detailItems.length > 0 && (
-                <div className="rounded-2xl border border-cream/10 bg-[#120907]/80 p-5 text-sm text-cream/70">
-                  <p className="text-xs uppercase tracking-[0.3em] text-gold/70">
-                    {t('details.title')}
-                  </p>
-                  <dl className="mt-4 grid gap-4 sm:grid-cols-2">
-                    {detailItems.map((item) => (
-                      <div key={item.label} className="space-y-1">
-                        <dt className="text-[10px] uppercase tracking-[0.3em] text-cream/40">
-                          {item.label}
-                        </dt>
-                        <dd className="text-sm text-cream">{item.value}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                </div>
-              )}
+              <ProductTabs
+                description={product.description || t('description', { origin: product.origin, notes: product.notes })}
+                notes={product.notes || ''}
+                origin={product.origin || ''}
+                isCoffee={coffeeProduct}
+              />
             </div>
           </Reveal>
 
@@ -169,7 +168,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                   />
                 )}
                 {product.grouped_children.length > 0 ? (
-                  <p className="text-2xl text-gold">
+                  <p className="text-3xl font-serif text-gold">
                     {priceFormatter.format(
                       Math.min(...product.grouped_children.map((c) => c.price))
                     )}
@@ -179,7 +178,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                     )}
                   </p>
                 ) : (
-                  <p className="text-2xl text-gold">{priceFormatter.format(product.price)}</p>
+                  <p className="text-3xl font-serif text-gold">{priceFormatter.format(product.price)}</p>
                 )}
               </div>
               {product.description ? (

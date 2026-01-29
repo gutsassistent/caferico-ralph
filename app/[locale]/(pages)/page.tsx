@@ -1,16 +1,24 @@
+import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import Container from '@/components/Container';
 import Reveal from '@/components/Reveal';
 import HeroParallax from '@/components/HeroParallax';
+import NewsletterForm from '@/components/NewsletterForm';
 import { getProducts } from '@/lib/woocommerce';
 import { mapWooProduct } from '@/types/product';
+import { generatePageMetadata } from '@/lib/seo';
 
 export const revalidate = 3600;
 
 type HomePageProps = {
   params: Promise<{ locale: string }>;
 };
+
+export async function generateMetadata({ params }: HomePageProps): Promise<Metadata> {
+  const { locale } = await params;
+  return generatePageMetadata({ locale, page: 'home' });
+}
 
 export default async function HomePage({ params }: HomePageProps) {
   const { locale } = await params;
@@ -314,6 +322,40 @@ export default async function HomePage({ params }: HomePageProps) {
                   </div>
                 </Reveal>
               ))}
+            </div>
+          </Container>
+        </section>
+      </Reveal>
+
+      <Reveal>
+        <section className="relative overflow-hidden bg-espresso py-20 sm:py-28">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(201,169,98,0.06),transparent_60%)]" />
+          <Container className="relative">
+            <div className="mx-auto max-w-2xl text-center">
+              <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
+                {t('newsletter.eyebrow')}
+              </p>
+              <h2 className="mt-4 font-serif text-3xl leading-tight sm:text-4xl">
+                {t('newsletter.title')}
+              </h2>
+              <p className="mt-2 text-lg text-gold/90 sm:text-xl">
+                {t('newsletter.subtitle')}
+              </p>
+              <p className="mx-auto mt-4 max-w-md text-sm text-cream/60">
+                {t('newsletter.description')}
+              </p>
+              <div className="relative mx-auto mt-8 max-w-lg">
+                <NewsletterForm
+                  placeholder={t('newsletter.placeholder')}
+                  buttonText={t('newsletter.button')}
+                  loadingText={t('newsletter.loading')}
+                  successText={t('newsletter.success')}
+                  errorText={t('newsletter.error')}
+                />
+              </div>
+              <p className="mt-4 text-xs text-cream/40">
+                {t('newsletter.privacy')}
+              </p>
             </div>
           </Container>
         </section>

@@ -1,12 +1,26 @@
+import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import Image from 'next/image';
 import Container from '@/components/Container';
 import Reveal from '@/components/Reveal';
+import { generatePageMetadata } from '@/lib/seo';
+
+type AboutPageProps = {
+  params: Promise<{ locale: string }>;
+};
+
+export async function generateMetadata({ params }: AboutPageProps): Promise<Metadata> {
+  const { locale } = await params;
+  return generatePageMetadata({ locale, page: 'about', path: 'about' });
+}
 
 const pillarKeys = ['eerlijk', 'ecologisch', 'honduras', 'smaak'] as const;
 const processSteps = ['pluk', 'wassen', 'drogen', 'branden', 'kopje'] as const;
 const farmerKeys = ['tom', 'lesly'] as const;
+const certKeys = ['bio', 'mayacert', 'fairTrade'] as const;
+const scoreKeys = ['scaa', 'marcala'] as const;
+const impactKeys = ['families', 'bio'] as const;
 
 /* SVG icons per pillar */
 const pillarIcons: Record<string, React.ReactNode> = {
@@ -302,6 +316,77 @@ export default async function AboutPage() {
                         {t(`process.steps.${step}.description`)}
                       </p>
                     </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </Container>
+        </section>
+      </Reveal>
+
+      {/* Certifications & Impact */}
+      <Reveal>
+        <section className="relative overflow-hidden border-t border-cream/10 py-16 sm:py-24">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(201,169,98,0.06),transparent_60%)]" />
+          <Container className="relative space-y-12">
+            <div className="max-w-2xl space-y-3">
+              <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
+                {t('certifications.eyebrow')}
+              </p>
+              <h2 className="font-serif text-3xl sm:text-4xl">{t('certifications.title')}</h2>
+            </div>
+
+            {/* Certifications */}
+            <div className="grid gap-6 sm:grid-cols-3">
+              {certKeys.map((key, index) => (
+                <Reveal key={key} delay={index * 120}>
+                  <div className="flex h-full flex-col items-center rounded-2xl border border-cream/10 bg-[#140b08] p-8 text-center">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-green-900/30 text-green-400">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-7 w-7">
+                        <path d="M9 12l2 2 4-4" />
+                        <circle cx="12" cy="12" r="10" />
+                      </svg>
+                    </div>
+                    <h3 className="mt-5 font-serif text-xl text-cream">
+                      {t(`certifications.certs.${key}.label`)}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-cream/60">
+                      {t(`certifications.certs.${key}.description`)}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+
+            {/* Scores + Impact metrics */}
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {scoreKeys.map((key, index) => (
+                <Reveal key={key} delay={index * 100}>
+                  <div className="flex h-full flex-col items-center rounded-2xl border border-gold/20 bg-gold/5 p-8 text-center">
+                    <span className="font-serif text-5xl text-gold">
+                      {t(`certifications.scores.${key}.value`)}
+                    </span>
+                    <h3 className="mt-3 text-sm font-semibold uppercase tracking-[0.2em] text-cream">
+                      {t(`certifications.scores.${key}.label`)}
+                    </h3>
+                    <p className="mt-2 text-xs leading-relaxed text-cream/50">
+                      {t(`certifications.scores.${key}.description`)}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
+              {impactKeys.map((key, index) => (
+                <Reveal key={key} delay={(index + 2) * 100}>
+                  <div className="flex h-full flex-col items-center rounded-2xl border border-cream/10 bg-[#140b08] p-8 text-center">
+                    <span className="font-serif text-5xl text-gold">
+                      {t(`certifications.impact.${key}.value`)}
+                    </span>
+                    <h3 className="mt-3 text-sm font-semibold uppercase tracking-[0.2em] text-cream">
+                      {t(`certifications.impact.${key}.label`)}
+                    </h3>
+                    <p className="mt-2 text-xs leading-relaxed text-cream/50">
+                      {t(`certifications.impact.${key}.description`)}
+                    </p>
                   </div>
                 </Reveal>
               ))}
