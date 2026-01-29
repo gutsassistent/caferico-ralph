@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import Reveal from '@/components/Reveal';
 import type { Product } from '@/types/product';
@@ -172,14 +171,13 @@ export default function ShopCatalog({ products, categories }: ShopCatalogProps) 
                 className="group flex h-full flex-col rounded-3xl border border-cream/10 bg-[#140b08] p-5 transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_30px_60px_rgba(0,0,0,0.4)]"
               >
                 <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-espresso via-[#1d120d] to-noir">
-                  {product.images[0]?.src ? (
-                    <Image
+                  {product.images?.[0]?.src ? (
+                    <img
                       src={product.images[0].src}
                       alt={product.images[0].alt || product.name}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
-                      unoptimized
+                      className="absolute inset-0 h-full w-full object-cover"
+                      loading="lazy"
+                      decoding="async"
                     />
                   ) : (
                     <>

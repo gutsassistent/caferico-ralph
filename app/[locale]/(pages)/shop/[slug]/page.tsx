@@ -214,14 +214,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
                       className="group flex h-full flex-col rounded-2xl border border-cream/10 bg-[#140b08] p-4 transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_30px_60px_rgba(0,0,0,0.4)]"
                     >
                       <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-gradient-to-br from-espresso via-[#1d120d] to-noir">
-                        {item.images[0]?.src ? (
-                          <Image
+                        {item.images?.[0]?.src ? (
+                          <img
                             src={item.images[0].src}
                             alt={item.images[0].alt || item.name}
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 1024px) 50vw, 25vw"
-                            unoptimized
+                            className="absolute inset-0 h-full w-full object-cover"
+                            loading="lazy"
+                            decoding="async"
                           />
                         ) : (
                           <>
