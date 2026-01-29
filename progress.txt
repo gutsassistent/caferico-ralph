@@ -131,3 +131,35 @@ Remaining: 42
 - Grid: 1 col mobile, 2 col tablet (md), 3 col desktop (lg), 4 col large (xl)
 - Existing filters (search, collection, sort) and empty state remain intact
 - typecheck ✅ build ✅
+
+### RD-011: Shop Pagina - Filters & Search UI ✅
+- Restructured ShopCatalog from top filter bar to sidebar layout (desktop) + bottom drawer (mobile)
+- Desktop: sticky 264px sidebar on left with all filter sections, product grid on right (3 cols max)
+- Mobile: "Filters" button with active count badge, opens bottom sheet drawer with backdrop blur
+- Created FilterCheckbox component: custom styled checkbox with gold fill when active, checkmark SVG
+- Created FilterSection component: accordion-style collapsible sections with chevron rotation
+- Filter categories added: Type (Mild, Intens, Espresso, Decaf), Formaat (250g, 500g), Vorm (Bonen, Gemalen)
+- Search bar now has magnifying glass icon (SVG) integrated in the input field
+- Collection filter changed from <select> dropdown to checkbox group in sidebar
+- Sort options changed from <select> to checkbox group (radio-style, single select)
+- "Filters resetten" button clears all filters including new visual-only ones
+- "Toon X producten" button shows filtered count and closes mobile drawer
+- New filter categories are visual-only (state tracked but not wired to product filtering yet)
+- Existing search, collection filter, and sort functionality remain fully functional
+- Added `sidebar.*` i18n keys in all 4 languages (NL, EN, FR, ES)
+- Product grid reduced to xl:grid-cols-3 (from xl:grid-cols-4) to accommodate sidebar width
+- typecheck ✅ build ✅
+
+### RD-012: Product Detail - Image Gallery Redesign ✅
+- Created ProductImageGallery client component with interactive features
+- Thumbnail selection: clicking thumbnails switches main image, active thumbnail highlighted with gold ring
+- Zoom on hover: 1.8x scale following mouse position via transformOrigin, desktop only
+- Lightbox: click main image opens fullscreen overlay with close button, prev/next arrows, dot indicators
+- Navigation arrows on main image (appear on hover) for cycling through images
+- Keyboard support: ArrowLeft/Right for navigation, Escape to close lightbox, Enter/Space to open
+- Added mock data fallback to product detail page (same pattern as shop page) — WooCommerce errors caught gracefully
+- Related products also fall back to mock data when API unavailable
+- Removed old static grid layout (main + 3 side thumbnails), replaced with horizontal thumbnail strip below main image
+- Single-image products show placeholder thumbnails (gradient + coffee-grain texture)
+- Removed unused Image import from page after moving all image rendering to gallery component
+- typecheck ✅ build ✅

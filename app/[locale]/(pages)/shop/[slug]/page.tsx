@@ -1,12 +1,14 @@
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
-import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import Container from '@/components/Container';
 import ProductPurchasePanel from '@/components/ProductPurchasePanel';
+import ProductImageGallery from '@/components/ProductImageGallery';
 import Reveal from '@/components/Reveal';
 import { getProduct, getProductsByIds } from '@/lib/woocommerce';
 import { mapWooProduct, isCoffee } from '@/types/product';
+import type { Product } from '@/types/product';
+import mockProductsJson from '@/data/mock-products.json';
 
 type ProductPageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -18,36 +20,65 @@ export const revalidate = 3600;
 export default async function ProductPage({ params }: ProductPageProps) {
   const { slug } = await params;
   const t = await getTranslations('Product');
-  const wcProduct = await getProduct(slug);
 
-  if (!wcProduct) {
+  let product: Product | null = null;
+
+  try {
+    const wcProduct = await getProduct(slug);
+    if (wcProduct) {
+      product = mapWooProduct(wcProduct);
+    }
+  } catch {
+    // WooCommerce unavailable, fall through to mock data
+  }
+
+  // Fallback to mock data
+  if (!product) {
+    const mockMatch = (mockProductsJson as Array<Record<string, unknown>>).find(
+      (p) => p.slug === slug
+    );
+    if (mockMatch) {
+      product = mockMatch as unknown as Product;
+    }
+  }
+
+  if (!product) {
     notFound();
   }
 
-  const product = mapWooProduct(wcProduct);
-
   // Fetch grouped children and related products in parallel
-  const [groupedChildren, relatedWc] = await Promise.all([
-    product.type === 'grouped' && product.grouped_products.length > 0
-      ? getProductsByIds(product.grouped_products)
-      : Promise.resolve([]),
-    product.related_ids.length > 0
-      ? getProductsByIds(product.related_ids.slice(0, 4))
-      : Promise.resolve([])
-  ]);
+  let relatedProducts: Product[] = [];
+  try {
+    const [groupedChildren, relatedWc] = await Promise.all([
+      product.type === 'grouped' && product.grouped_products.length > 0
+        ? getProductsByIds(product.grouped_products)
+        : Promise.resolve([]),
+      product.related_ids.length > 0
+        ? getProductsByIds(product.related_ids.slice(0, 4))
+        : Promise.resolve([])
+    ]);
 
-  if (groupedChildren.length > 0) {
-    product.grouped_children = groupedChildren.map((wc) => ({
-      id: wc.id,
-      name: wc.name,
-      slug: wc.slug,
-      price: parseFloat(wc.price) || 0,
-      regular_price: parseFloat(wc.regular_price) || 0,
-      images: wc.images
-    }));
+    if (groupedChildren.length > 0) {
+      product.grouped_children = groupedChildren.map((wc) => ({
+        id: wc.id,
+        name: wc.name,
+        slug: wc.slug,
+        price: parseFloat(wc.price) || 0,
+        regular_price: parseFloat(wc.regular_price) || 0,
+        images: wc.images
+      }));
+    }
+
+    relatedProducts = relatedWc.map(mapWooProduct);
+  } catch {
+    // WooCommerce unavailable — use mock related products
+    if (product.related_ids.length > 0) {
+      const mockAll = mockProductsJson as unknown as Product[];
+      relatedProducts = mockAll.filter((p) =>
+        product.related_ids.includes(p.id)
+      ).slice(0, 4);
+    }
   }
-
-  const relatedProducts = relatedWc.map(mapWooProduct);
 
   const priceFormatter = new Intl.NumberFormat('nl-NL', {
     style: 'currency',
@@ -67,9 +98,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
         { label: t('details.roastLabel'), value: t('details.roastValue') }
       ].filter(Boolean) as { label: string; value: string }[])
     : [];
-
-  const mainImage = product.images[0];
-  const thumbImages = product.images.slice(1, 4);
 
   return (
     <main className="min-h-screen bg-noir text-cream">
@@ -98,56 +126,15 @@ export default async function ProductPage({ params }: ProductPageProps) {
         <Container className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
           <Reveal>
             <div className="space-y-6">
-              <div className="grid gap-4 sm:grid-cols-[2fr_1fr]">
-                <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-cream/10 bg-gradient-to-br from-espresso via-[#1f130d] to-noir shadow-[0_35px_70px_rgba(0,0,0,0.5)]">
-                  {mainImage?.src ? (
-                    <Image
-                      src={mainImage.src}
-                      alt={mainImage.alt || product.name}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                      priority
-                      unoptimized
-                    />
-                  ) : (
-                    <>
-                      <div className="absolute inset-0 bg-coffee-grain opacity-40" />
-                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,165,116,0.35),_transparent_60%)]" />
-                    </>
-                  )}
-                  <div className="absolute bottom-5 left-5 rounded-full border border-cream/20 bg-noir/70 px-3 py-1 text-[10px] uppercase tracking-[0.3em] text-cream/70">
-                    {t('badge')}
-                  </div>
-                </div>
-                <div className="grid gap-4">
-                  {thumbImages.length > 0
-                    ? thumbImages.map((img) => (
-                        <div
-                          key={img.id}
-                          className="relative aspect-square overflow-hidden rounded-2xl border border-cream/10 bg-gradient-to-br from-[#1c120d] via-[#120907] to-noir"
-                        >
-                          <Image
-                            src={img.src}
-                            alt={img.alt || product.name}
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 1024px) 33vw, 15vw"
-                            unoptimized
-                          />
-                        </div>
-                      ))
-                    : [0, 1, 2].map((index) => (
-                        <div
-                          key={`thumb-${index}`}
-                          className="relative aspect-square overflow-hidden rounded-2xl border border-cream/10 bg-gradient-to-br from-[#1c120d] via-[#120907] to-noir"
-                        >
-                          <div className="absolute inset-0 bg-coffee-grain opacity-40" />
-                          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,165,116,0.2),_transparent_65%)]" />
-                        </div>
-                      ))}
-                </div>
-              </div>
+              <ProductImageGallery
+                images={product.images.map((img) => ({
+                  id: img.id,
+                  src: img.src,
+                  alt: img.alt || product.name
+                }))}
+                productName={product.name}
+                badge={t('badge')}
+              />
               {detailItems.length > 0 && (
                 <div className="rounded-2xl border border-cream/10 bg-[#120907]/80 p-5 text-sm text-cream/70">
                   <p className="text-xs uppercase tracking-[0.3em] text-gold/70">
