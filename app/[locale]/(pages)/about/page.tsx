@@ -1,182 +1,179 @@
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
+import Image from 'next/image';
 import Container from '@/components/Container';
-import ParallaxOrb from '@/components/ParallaxOrb';
 import Reveal from '@/components/Reveal';
 
-const highlightKeys = ['one', 'two', 'three'] as const;
-const missionPoints = ['one', 'two', 'three'] as const;
-const visionPoints = ['one', 'two', 'three'] as const;
-const timelineKeys = ['one', 'two', 'three', 'four', 'five'] as const;
-const teamKeys = ['founder', 'roaster', 'curator', 'hospitality'] as const;
+const pillarKeys = ['eerlijk', 'ecologisch', 'honduras', 'smaak'] as const;
+const processSteps = ['pluk', 'wassen', 'drogen', 'branden', 'kopje'] as const;
+const farmerKeys = ['tom', 'lesly'] as const;
+
+/* SVG icons per pillar */
+const pillarIcons: Record<string, React.ReactNode> = {
+  eerlijk: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-8 w-8">
+      <path d="M12 2L2 7l10 5 10-5-10-5Z" />
+      <path d="M2 17l10 5 10-5" />
+      <path d="M2 12l10 5 10-5" />
+    </svg>
+  ),
+  ecologisch: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-8 w-8">
+      <path d="M12 22c4-4 8-7.5 8-12a8 8 0 1 0-16 0c0 4.5 4 8 8 12Z" />
+      <path d="M12 12v6" />
+      <path d="M9 15l3-3 3 3" />
+    </svg>
+  ),
+  honduras: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-8 w-8">
+      <circle cx="12" cy="12" r="10" />
+      <path d="M2 12h20" />
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z" />
+    </svg>
+  ),
+  smaak: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-8 w-8">
+      <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+      <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8Z" />
+      <path d="M6 1v3" />
+      <path d="M10 1v3" />
+      <path d="M14 1v3" />
+    </svg>
+  ),
+};
+
+/* SVG icons per process step */
+const processIcons: Record<string, React.ReactNode> = {
+  pluk: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-7 w-7">
+      <path d="M12 22c-4.97 0-9-2.24-9-5v-4c0-2.76 4.03-5 9-5s9 2.24 9 5v4c0 2.76-4.03 5-9 5Z" />
+      <path d="M12 8V2" />
+      <path d="M9 4l3-2 3 2" />
+    </svg>
+  ),
+  wassen: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-7 w-7">
+      <path d="M2 12h20" />
+      <path d="M6 12c0-3 2-6 6-6s6 3 6 6" />
+      <path d="M4 16c1 2 4 4 8 4s7-2 8-4" />
+    </svg>
+  ),
+  drogen: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-7 w-7">
+      <circle cx="12" cy="12" r="5" />
+      <path d="M12 1v2" />
+      <path d="M12 21v2" />
+      <path d="M4.22 4.22l1.42 1.42" />
+      <path d="M18.36 18.36l1.42 1.42" />
+      <path d="M1 12h2" />
+      <path d="M21 12h2" />
+      <path d="M4.22 19.78l1.42-1.42" />
+      <path d="M18.36 5.64l1.42-1.42" />
+    </svg>
+  ),
+  branden: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-7 w-7">
+      <path d="M12 12c2-3 0-6-2-8 4 2 8 6 8 10a8 8 0 1 1-16 0c0-2 1-3 2-4 0 3 2 5 4 5s4-1 4-3Z" />
+    </svg>
+  ),
+  kopje: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-7 w-7">
+      <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+      <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8Z" />
+      <path d="M6 1v3" />
+      <path d="M10 1v3" />
+      <path d="M14 1v3" />
+    </svg>
+  ),
+};
 
 export default async function AboutPage() {
   const t = await getTranslations('About');
 
   return (
     <main className="min-h-screen bg-noir text-cream">
-      <section className="relative isolate overflow-hidden border-b border-cream/10">
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(115deg,rgba(26,15,10,0.95),rgba(60,21,24,0.92),rgba(26,15,10,0.98))]" />
-        <div className="pointer-events-none absolute inset-0 bg-coffee-grain opacity-35" />
-        <ParallaxOrb
-          className="pointer-events-none absolute -right-24 top-12 h-64 w-64 rounded-full bg-gold/20 blur-3xl"
-          speed={0.06}
+      {/* Hero with Honduras background image */}
+      <section className="relative isolate overflow-hidden">
+        <Image
+          src="https://www.caferico.be/wp-content/uploads/2025/05/DSCF3617.jpg"
+          alt="Honduras koffieplantage sfeerbeeld"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
         />
-        <ParallaxOrb
-          className="pointer-events-none absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-roast/45 blur-3xl"
-          speed={0.1}
-        />
-
-        <Container className="relative grid gap-12 py-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-          <div className="space-y-6">
-            <p className="text-xs uppercase tracking-[0.4em] text-gold/80">{t('hero.eyebrow')}</p>
-            <h1 className="font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl">
+        <div className="absolute inset-0 bg-gradient-to-b from-noir/80 via-noir/60 to-noir" />
+        <div className="relative flex min-h-[70vh] items-center">
+          <Container className="space-y-6 py-24">
+            <p className="text-xs uppercase tracking-[0.4em] text-gold/80">
+              {t('hero.eyebrow')}
+            </p>
+            <h1 className="max-w-3xl font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl">
               {t('hero.title')}
             </h1>
-            <p className="text-base text-cream/80 sm:text-lg">{t('hero.description')}</p>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="/shop"
-                className="rounded-full border border-gold/60 px-6 py-3 text-xs uppercase tracking-[0.3em] text-gold transition hover:bg-gold hover:text-noir"
-              >
-                {t('hero.primaryCta')}
-              </Link>
-              <Link
-                href="/about#story"
-                className="rounded-full border border-cream/30 px-6 py-3 text-xs uppercase tracking-[0.3em] text-cream/80 transition hover:border-cream/60 hover:text-cream"
-              >
-                {t('hero.secondaryCta')}
-              </Link>
-            </div>
-            <div className="inline-flex items-center gap-3 rounded-full border border-cream/10 bg-noir/70 px-4 py-2 text-[10px] uppercase tracking-[0.4em] text-cream/60">
-              <span className="h-2 w-2 rounded-full bg-gold/80" aria-hidden="true" />
-              {t('hero.badge')}
-            </div>
-          </div>
-
-          <div className="relative">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] border border-cream/10 bg-gradient-to-br from-espresso via-[#1c120d] to-noir shadow-[0_40px_80px_rgba(0,0,0,0.6)]">
-              <div className="absolute inset-0 bg-coffee-grain opacity-40" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,165,116,0.3),_transparent_60%)]" />
-              <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-cream/10 bg-noir/70 p-4 backdrop-blur">
-                <p className="text-xs uppercase tracking-[0.3em] text-gold/80">
-                  {t('hero.card.eyebrow')}
-                </p>
-                <p className="mt-2 font-serif text-lg text-cream">{t('hero.card.title')}</p>
-                <p className="mt-1 text-sm text-cream/70">{t('hero.card.description')}</p>
-              </div>
-            </div>
-          </div>
-        </Container>
+            <p className="max-w-2xl text-base text-cream/80 sm:text-lg">
+              {t('hero.description')}
+            </p>
+            <Link
+              href="/shop"
+              className="inline-block rounded-full bg-gold px-8 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-noir transition hover:bg-gold/90"
+            >
+              {t('hero.cta')}
+            </Link>
+          </Container>
+        </div>
       </section>
 
+      {/* Intro section */}
       <Reveal>
-        <section id="story" className="py-20">
-          <Container className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
-            <div className="space-y-6">
+        <section className="py-16 sm:py-24">
+          <Container className="grid items-center gap-10 lg:grid-cols-2">
+            <div className="space-y-5">
               <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
-                {t('story.eyebrow')}
+                {t('intro.eyebrow')}
               </p>
-              <h2 className="font-serif text-3xl sm:text-4xl">{t('story.title')}</h2>
-              <p className="text-sm text-cream/70 sm:text-base">{t('story.description')}</p>
-              <div className="space-y-4 text-sm text-cream/70">
-                <p>{t('story.paragraphs.one')}</p>
-                <p>{t('story.paragraphs.two')}</p>
-                <p>{t('story.paragraphs.three')}</p>
-              </div>
+              <h2 className="font-serif text-3xl sm:text-4xl">{t('intro.title')}</h2>
+              <p className="text-sm leading-relaxed text-cream/70 sm:text-base">
+                {t('intro.description')}
+              </p>
             </div>
-            <div className="space-y-6">
-              <div className="rounded-3xl border border-cream/10 bg-[#140b08] p-8 shadow-[0_35px_70px_rgba(0,0,0,0.45)]">
-                <p className="text-xs uppercase tracking-[0.3em] text-cream/60">
-                  {t('story.highlightsTitle')}
-                </p>
-                <div className="mt-6 grid gap-4">
-                  {highlightKeys.map((key, index) => (
-                    <Reveal key={key} delay={index * 120}>
-                      <div className="rounded-2xl border border-cream/10 bg-noir/80 p-5">
-                        <p className="text-xs uppercase tracking-[0.3em] text-cream/50">
-                          {t(`story.highlights.${key}.label`)}
-                        </p>
-                        <p className="mt-2 font-serif text-2xl text-cream">
-                          {t(`story.highlights.${key}.value`)}
-                        </p>
-                      </div>
-                    </Reveal>
-                  ))}
-                </div>
-              </div>
-              <div className="rounded-3xl border border-cream/10 bg-noir/70 p-6">
-                <p className="text-xs uppercase tracking-[0.3em] text-gold/70">
-                  {t('story.card.eyebrow')}
-                </p>
-                <h3 className="mt-3 font-serif text-2xl text-cream">{t('story.card.title')}</h3>
-                <p className="mt-2 text-sm text-cream/70">{t('story.card.description')}</p>
-              </div>
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+              <Image
+                src="https://www.caferico.be/wp-content/uploads/2018/05/koffieboer-4-Copy-1000×536.jpg"
+                alt="Koffieboer in Honduras"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
             </div>
           </Container>
         </section>
       </Reveal>
 
+      {/* 4 Pillars: (H)eerlijk, Ecologisch, Honduras, Smaak */}
       <Reveal>
-        <section className="relative overflow-hidden border-y border-cream/10 py-20">
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(60,21,24,0.6),rgba(26,15,10,0.95))]" />
-          <div className="pointer-events-none absolute inset-0 bg-coffee-grain opacity-25" />
-          <Container className="relative grid gap-8 lg:grid-cols-2">
-            {[
-              { key: 'mission', points: missionPoints },
-              { key: 'vision', points: visionPoints }
-            ].map((item, index) => (
-              <Reveal key={item.key} delay={index * 150}>
-                <div className="flex h-full flex-col rounded-3xl border border-cream/10 bg-noir/75 p-8 shadow-[0_40px_80px_rgba(0,0,0,0.55)]">
-                  <p className="text-xs uppercase tracking-[0.3em] text-gold/70">
-                    {t(`${item.key}.eyebrow`)}
-                  </p>
-                  <h3 className="mt-3 font-serif text-2xl text-cream">{t(`${item.key}.title`)}</h3>
-                  <p className="mt-4 text-sm text-cream/70">{t(`${item.key}.description`)}</p>
-                  <ul className="mt-6 space-y-3 text-sm text-cream/70">
-                    {item.points.map((point) => (
-                      <li key={point} className="flex items-start gap-3">
-                        <span
-                          className="mt-2 h-1.5 w-1.5 rounded-full bg-gold/70"
-                          aria-hidden="true"
-                        />
-                        <span>{t(`${item.key}.points.${point}`)}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </Reveal>
-            ))}
-          </Container>
-        </section>
-      </Reveal>
-
-      <Reveal>
-        <section id="timeline" className="relative overflow-hidden py-20">
-          <ParallaxOrb
-            className="pointer-events-none absolute -right-28 top-16 h-48 w-48 rounded-full bg-gold/20 blur-3xl"
-            speed={0.05}
-          />
+        <section className="relative overflow-hidden border-y border-cream/10 py-16 sm:py-24">
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(60,21,24,0.5),rgba(26,15,10,0.95))]" />
+          <div className="pointer-events-none absolute inset-0 bg-coffee-grain opacity-20" />
           <Container className="relative space-y-10">
             <div className="max-w-2xl space-y-3">
               <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
-                {t('timeline.eyebrow')}
+                {t('pillars.eyebrow')}
               </p>
-              <h2 className="font-serif text-3xl sm:text-4xl">{t('timeline.title')}</h2>
-              <p className="text-sm text-cream/70 sm:text-base">{t('timeline.description')}</p>
+              <h2 className="font-serif text-3xl sm:text-4xl">{t('pillars.title')}</h2>
             </div>
-            <div className="grid gap-6 lg:grid-cols-2">
-              {timelineKeys.map((key, index) => (
+            <div className="grid gap-6 sm:grid-cols-2">
+              {pillarKeys.map((key, index) => (
                 <Reveal key={key} delay={index * 120}>
-                  <div className="rounded-2xl border border-cream/10 bg-[#140b08] p-6">
-                    <p className="text-xs uppercase tracking-[0.3em] text-cream/50">
-                      {t(`timeline.items.${key}.year`)}
-                    </p>
-                    <h3 className="mt-3 font-serif text-xl text-cream">
-                      {t(`timeline.items.${key}.title`)}
+                  <div className="flex h-full flex-col rounded-2xl border border-cream/10 bg-noir/80 p-8">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gold/10 text-gold">
+                      {pillarIcons[key]}
+                    </div>
+                    <h3 className="mt-5 font-serif text-2xl text-cream">
+                      {t(`pillars.${key}.title`)}
                     </h3>
-                    <p className="mt-2 text-sm text-cream/70">
-                      {t(`timeline.items.${key}.description`)}
+                    <p className="mt-3 text-sm leading-relaxed text-cream/70">
+                      {t(`pillars.${key}.description`)}
                     </p>
                   </div>
                 </Reveal>
@@ -186,41 +183,156 @@ export default async function AboutPage() {
         </section>
       </Reveal>
 
+      {/* Farmer profiles */}
       <Reveal>
-        <section className="py-20">
+        <section className="py-16 sm:py-24">
           <Container className="space-y-10">
             <div className="max-w-2xl space-y-3">
-              <p className="text-xs uppercase tracking-[0.4em] text-gold/70">{t('team.eyebrow')}</p>
-              <h2 className="font-serif text-3xl sm:text-4xl">{t('team.title')}</h2>
-              <p className="text-sm text-cream/70 sm:text-base">{t('team.description')}</p>
+              <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
+                {t('farmers.eyebrow')}
+              </p>
+              <h2 className="font-serif text-3xl sm:text-4xl">{t('farmers.title')}</h2>
             </div>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {teamKeys.map((key, index) => (
-                <Reveal key={key} delay={index * 110} className="h-full">
-                  <div className="flex h-full flex-col rounded-2xl border border-cream/10 bg-[#140b08] p-6">
-                    <div className="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-espresso via-[#1c120d] to-noir">
-                      <div className="absolute inset-0 bg-coffee-grain opacity-40" />
-                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,165,116,0.25),_transparent_60%)]" />
+            <div className="grid gap-8 sm:grid-cols-2">
+              {farmerKeys.map((key, index) => (
+                <Reveal key={key} delay={index * 150}>
+                  <div className="flex h-full flex-col rounded-2xl border border-cream/10 bg-[#140b08] p-8">
+                    {/* Avatar */}
+                    <div className="flex items-center gap-4">
+                      {key === 'tom' ? (
+                        <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full">
+                          <Image
+                            src="https://www.caferico.be/wp-content/uploads/2018/05/Tom-Janssens.jpg"
+                            alt={t(`farmers.${key}.name`)}
+                            fill
+                            className="object-cover"
+                            sizes="64px"
+                          />
+                        </div>
+                      ) : (
+                        <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-gold/15 font-serif text-2xl text-gold">
+                          L
+                        </div>
+                      )}
+                      <div>
+                        <p className="font-serif text-lg text-cream">{t(`farmers.${key}.name`)}</p>
+                        <p className="text-xs uppercase tracking-[0.3em] text-gold/70">
+                          {t(`farmers.${key}.role`)}
+                        </p>
+                      </div>
                     </div>
-                    <h3 className="mt-4 font-serif text-lg text-cream">
-                      {t(`team.members.${key}.name`)}
-                    </h3>
-                    <p className="text-xs uppercase tracking-[0.3em] text-gold/70">
-                      {t(`team.members.${key}.role`)}
-                    </p>
-                    <p className="mt-3 text-sm text-cream/70">{t(`team.members.${key}.bio`)}</p>
+                    {/* Quote */}
+                    <div className="mt-6 border-l-2 border-gold/30 pl-5">
+                      <p className="text-sm italic leading-relaxed text-cream/70">
+                        &ldquo;{t(`farmers.${key}.quote`)}&rdquo;
+                      </p>
+                    </div>
                   </div>
                 </Reveal>
               ))}
             </div>
-            <div className="rounded-3xl border border-cream/10 bg-noir/70 p-8">
-              <p className="text-xs uppercase tracking-[0.3em] text-gold/70">
-                {t('team.quote.eyebrow')}
+          </Container>
+        </section>
+      </Reveal>
+
+      {/* Process visualization: pluk → wassen → drogen → branden → kopje */}
+      <Reveal>
+        <section className="relative overflow-hidden border-t border-cream/10 py-16 sm:py-24">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(201,169,98,0.08),transparent_70%)]" />
+          <Container className="relative space-y-10">
+            <div className="max-w-2xl space-y-3">
+              <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
+                {t('process.eyebrow')}
               </p>
-              <p className="mt-4 font-serif text-xl text-cream">
-                &ldquo;{t('team.quote.text')}&rdquo;
-              </p>
-              <p className="mt-3 text-sm text-cream/60">{t('team.quote.author')}</p>
+              <h2 className="font-serif text-3xl sm:text-4xl">{t('process.title')}</h2>
+              <p className="text-sm text-cream/70 sm:text-base">{t('process.description')}</p>
+            </div>
+
+            {/* Desktop: horizontal flow */}
+            <div className="hidden lg:block">
+              <div className="flex items-start justify-between">
+                {processSteps.map((step, index) => (
+                  <Reveal key={step} delay={index * 100} className="flex flex-1 flex-col items-center text-center">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gold/10 text-gold">
+                      {processIcons[step]}
+                    </div>
+                    {/* Arrow between steps */}
+                    {index < processSteps.length - 1 && (
+                      <div className="absolute left-full top-1/2 -translate-y-1/2 translate-x-2">
+                        {/* handled below with relative */}
+                      </div>
+                    )}
+                    <h3 className="mt-4 font-serif text-lg text-cream">
+                      {t(`process.steps.${step}.title`)}
+                    </h3>
+                    <p className="mt-2 max-w-[180px] text-xs leading-relaxed text-cream/60">
+                      {t(`process.steps.${step}.description`)}
+                    </p>
+                  </Reveal>
+                ))}
+              </div>
+              {/* Arrow connectors */}
+              <div className="mt-[-120px] flex items-center justify-between px-[10%]">
+                {[0, 1, 2, 3].map((i) => (
+                  <svg key={i} viewBox="0 0 40 20" className="h-5 w-10 text-gold/40" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M0 10h30M25 5l5 5-5 5" />
+                  </svg>
+                ))}
+              </div>
+            </div>
+
+            {/* Mobile: vertical steps */}
+            <div className="space-y-6 lg:hidden">
+              {processSteps.map((step, index) => (
+                <Reveal key={step} delay={index * 100}>
+                  <div className="flex items-start gap-5">
+                    <div className="flex shrink-0 flex-col items-center">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gold/10 text-gold">
+                        {processIcons[step]}
+                      </div>
+                      {index < processSteps.length - 1 && (
+                        <div className="mt-2 h-8 w-px bg-gold/20" />
+                      )}
+                    </div>
+                    <div>
+                      <h3 className="font-serif text-lg text-cream">
+                        {t(`process.steps.${step}.title`)}
+                      </h3>
+                      <p className="mt-1 text-sm text-cream/60">
+                        {t(`process.steps.${step}.description`)}
+                      </p>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </Container>
+        </section>
+      </Reveal>
+
+      {/* Honduras map & droogtunnel images */}
+      <Reveal>
+        <section className="py-16 sm:py-24">
+          <Container>
+            <div className="grid gap-6 sm:grid-cols-2">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+                <Image
+                  src="https://www.caferico.be/wp-content/uploads/2018/05/marcala-landschap.png"
+                  alt="Marcala landschap Honduras"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 100vw, 50vw"
+                />
+              </div>
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+                <Image
+                  src="https://www.caferico.be/wp-content/uploads/2018/05/droogtunnel-klein.png"
+                  alt="Droogtunnel voor koffiebonen"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 100vw, 50vw"
+                />
+              </div>
             </div>
           </Container>
         </section>

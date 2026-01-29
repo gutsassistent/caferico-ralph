@@ -169,130 +169,75 @@
   },
   "About": {
     "hero": {
-      "eyebrow": "Notre histoire",
-      "title": "L\u2019atelier Caf\u00e9rico, enracin\u00e9 dans l\u2019artisanat belge",
-      "description": "D\u2019Anvers aux plantations que nous visitons, nous fa\u00e7onnons le caf\u00e9 comme un rituel de chaleur et de pr\u00e9cision.",
-      "primaryCta": "D\u00e9couvrir les caf\u00e9s",
-      "secondaryCta": "Lire l\u2019histoire",
-      "badge": "Micro-lots depuis 2016",
-      "card": {
-        "eyebrow": "Note de la fondatrice",
-        "title": "Une tasse douce et lumineuse",
-        "description": "Chaque assemblage est compos\u00e9 comme un matin chaleureux."
-      }
+      "eyebrow": "Notre Histoire",
+      "title": "Du caféiculteur à votre tasse",
+      "description": "Il y a presque 20 ans, nous avons rencontré les caféiculteurs du Honduras. En 2018, nous avons fondé Café RICO pour apporter un café bio et équitable en Belgique.",
+      "cta": "Découvrir Nos Cafés"
     },
-    "story": {
-      "eyebrow": "H\u00e9ritage",
-      "title": "Une torr\u00e9faction belge \u00e0 l\u2019\u00e2me lente",
-      "description": "Caf\u00e9rico a commenc\u00e9 comme un studio \u00e0 deux personnes et est devenu une communaut\u00e9 de baristas, producteurs et designers.",
-      "paragraphs": {
-        "one": "Nous torr\u00e9fions en micro-lots et d\u00e9gustons chaque batch pour l\u2019\u00e9quilibre.",
-        "two": "Notre sourcing repose sur des conversations longues, pas des contrats courts.",
-        "three": "Design, packaging et service sont aussi soign\u00e9s que le caf\u00e9."
+    "intro": {
+      "eyebrow": "Comment tout a commencé",
+      "title": "Enraciné au Honduras",
+      "description": "Les fondateurs de Café RICO se sont rencontrés il y a presque 20 ans au Honduras, où ils travaillaient dans l'agriculture écologique et avec des organisations paysannes. En 2018, ils ont fondé Café RICO — espagnol pour 'délicieux' — pour apporter un café de spécialité bio et équitable directement du producteur à la Belgique."
+    },
+    "pillars": {
+      "eyebrow": "Nos valeurs",
+      "title": "Ce que nous défendons",
+      "eerlijk": {
+        "title": "Équitable & Délicieux",
+        "description": "Nous collaborons avec la coopérative COMBRIFOL, représentant 193 familles de producteurs au Honduras. Des prix justes et des formations garantissent que chaque tasse contribue directement à la communauté."
       },
-      "highlightsTitle": "En bref",
-      "highlights": {
-        "one": {
-          "label": "Torr\u00e9factions par semaine",
-          "value": "12 micro-lots"
-        },
-        "two": {
-          "label": "Domaines partenaires",
-          "value": "9 fermes durables"
-        },
-        "three": {
-          "label": "Atelier belge",
-          "value": "Anvers, Belgique"
-        }
+      "ecologisch": {
+        "title": "Écologique",
+        "description": "Notre café porte le label bio européen et est certifié par Mayacert. De la culture à l'emballage : écologique et durable."
       },
-      "card": {
-        "eyebrow": "L\u2019atelier",
-        "title": "Un espace pour l\u2019ar\u00f4me et le d\u00e9tail",
-        "description": "Notre studio de torr\u00e9faction marie profils modernes et rituels de d\u00e9gustation."
-      }
-    },
-    "mission": {
-      "eyebrow": "Mission",
-      "title": "Faire de chaque tasse un geste intentionnel",
-      "description": "Nous cr\u00e9ons un caf\u00e9 qui ralentit le rythme et honore celles et ceux derri\u00e8re chaque grain.",
-      "points": {
-        "one": "Torr\u00e9fier avec clart\u00e9 et douceur.",
-        "two": "Construire des partenariats qui prot\u00e8gent l\u2019origine.",
-        "three": "Dessiner des rituels calmes et luxueux."
-      }
-    },
-    "vision": {
-      "eyebrow": "Vision",
-      "title": "La culture caf\u00e9 belge, r\u00e9invent\u00e9e",
-      "description": "Nous voulons \u00e9lever le caf\u00e9 quotidien en un moment d\u2019art, de beaut\u00e9 et de lien.",
-      "points": {
-        "one": "D\u00e9fendre un sourcing transparent et tra\u00e7able.",
-        "two": "Cr\u00e9er des espaces o\u00f9 le caf\u00e9 devient art.",
-        "three": "Grandir avec une empreinte plus l\u00e9g\u00e8re."
-      }
-    },
-    "timeline": {
-      "eyebrow": "Jalons",
-      "title": "Une chronologie de croissance attentive",
-      "description": "Chaque ann\u00e9e ajoute une nouvelle couche au rituel Caf\u00e9rico.",
-      "items": {
-        "one": {
-          "year": "2016",
-          "title": "La micro-torr\u00e9faction d\u2019Anvers",
-          "description": "Premiers lots pour des ateliers et h\u00f4tels locaux."
-        },
-        "two": {
-          "year": "2018",
-          "title": "Voyages de sourcing direct",
-          "description": "Visites en Colombie et en \u00c9thiopie pour rencontrer les producteurs."
-        },
-        "three": {
-          "year": "2020",
-          "title": "La bo\u00eete rituelle Caf\u00e9rico",
-          "description": "Lancement des cartes de d\u00e9gustation et des abonnements."
-        },
-        "four": {
-          "year": "2022",
-          "title": "Salon de d\u00e9gustation studio",
-          "description": "Ouverture d\u2019un espace calme pour des ateliers sensoriels."
-        },
-        "five": {
-          "year": "2025",
-          "title": "R\u00e9seau d\u2019ateliers europ\u00e9ens",
-          "description": "Partage de torr\u00e9factions avec des caf\u00e9s partenaires en Europe."
-        }
-      }
-    },
-    "team": {
-      "eyebrow": "L\u2019\u00e9quipe",
-      "title": "Fa\u00e7onn\u00e9 par des mains et des c\u0153urs",
-      "description": "Un petit collectif qui fa\u00e7onne chaque torr\u00e9faction, chaque histoire et chaque d\u00e9tail.",
-      "members": {
-        "founder": {
-          "name": "Elise Van Doren",
-          "role": "Fondatrice & directrice de torr\u00e9faction",
-          "bio": "Compose les profils et voyage \u00e0 l\u2019origine avec nos producteurs."
-        },
-        "roaster": {
-          "name": "Noah Vermeulen",
-          "role": "Chef torr\u00e9facteur",
-          "bio": "Pilote le calendrier de torr\u00e9faction et les sessions qualit\u00e9."
-        },
-        "curator": {
-          "name": "Sofie Lemaire",
-          "role": "Curatrice d\u2019exp\u00e9rience",
-          "bio": "Con\u00e7oit les d\u00e9gustations, le packaging et notre biblioth\u00e8que olfactive."
-        },
-        "hospitality": {
-          "name": "Matteo Rossi",
-          "role": "Responsable hospitalit\u00e9",
-          "bio": "Anime les ateliers de l\u2019atelier et les matin\u00e9es communaut\u00e9."
-        }
+      "honduras": {
+        "title": "Honduras",
+        "description": "Nos grains poussent dans la région de Marcala, une zone à appellation d'origine protégée. À 1 350–1 850 mètres d'altitude, le microclimat parfait pour le café de spécialité."
       },
-      "quote": {
-        "eyebrow": "Mot de la fondatrice",
-        "text": "Nous avons cr\u00e9\u00e9 Caf\u00e9rico pour ceux qui veulent que le caf\u00e9 ressemble \u00e0 une petite c\u00e9r\u00e9monie.",
-        "author": "Elise Van Doren \u2014 Anvers"
+      "smaak": {
+        "title": "Saveur",
+        "description": "Fruité, acidité vive, agrumes, pêche, miel et une finale florale. Score de 84 sur l'échelle SCAA (Q-grader Tom Janssen) et 86 du conseil du café de Marcala."
+      }
+    },
+    "farmers": {
+      "eyebrow": "Les personnes derrière le café",
+      "title": "Rencontrez nos caféiculteurs",
+      "tom": {
+        "name": "Tom Janssen",
+        "role": "Q-grader, OR Coffee",
+        "quote": "Personnellement, je trouve que c'est un délicieux café qui mérite d'être mis en avant. Un bon goût plein, un peu de chocolat. Plaira à beaucoup de gens."
+      },
+      "lesly": {
+        "name": "Lesly Yohana Dominguez",
+        "role": "Caféicultrice, RAOS",
+        "quote": "La récolte du café n'est pas un travail réservé aux hommes. Nous, les femmes, accordons de l'importance à la qualité et nous nous appliquons à un travail soigné. Pour que notre café devienne notre fierté !"
+      }
+    },
+    "process": {
+      "eyebrow": "De la plante à la tasse",
+      "title": "Notre processus",
+      "description": "Chaque étape du processus contribue au goût exceptionnel de notre café.",
+      "steps": {
+        "pluk": {
+          "title": "Cueillette soignée",
+          "description": "Seules les cerises de café mûres et d'un rouge profond sont cueillies à la main."
+        },
+        "wassen": {
+          "title": "Lavage",
+          "description": "Les cerises sont lavées pour retirer la pulpe."
+        },
+        "drogen": {
+          "title": "Séchage",
+          "description": "Les grains sèchent dans des tunnels de séchage spéciaux jusqu'au taux d'humidité parfait."
+        },
+        "branden": {
+          "title": "Torréfaction en Belgique",
+          "description": "Torréfié localement en petits lots pour une fraîcheur et une saveur optimales."
+        },
+        "kopje": {
+          "title": "Votre tasse",
+          "description": "Du Honduras à votre cuisine — équitable, bio et délicieux."
+        }
       }
     }
   },

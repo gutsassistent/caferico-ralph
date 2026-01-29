@@ -169,130 +169,75 @@
   },
   "About": {
     "hero": {
-      "eyebrow": "Nuestra historia",
-      "title": "El atelier Caf\u00e9rico, arraigado en la artesan\u00eda belga",
-      "description": "De Amberes a las fincas que visitamos, damos forma al caf\u00e9 como un ritual de calidez y precisi\u00f3n.",
-      "primaryCta": "Explorar los caf\u00e9s",
-      "secondaryCta": "Leer la historia",
-      "badge": "Micro-lotes desde 2016",
-      "card": {
-        "eyebrow": "Nota de la fundadora",
-        "title": "Una taza serena y luminosa",
-        "description": "Cada mezcla se compone como una ma\u00f1ana c\u00e1lida."
-      }
+      "eyebrow": "Nuestra Historia",
+      "title": "Del caficultor a tu taza",
+      "description": "Hace casi 20 años conocimos a los caficultores de Honduras. En 2018 fundamos Café RICO para traer café orgánico y justo a Bélgica.",
+      "cta": "Descubre Nuestro Café"
     },
-    "story": {
-      "eyebrow": "Herencia",
-      "title": "Una tostadora belga con alma pausada",
-      "description": "Caf\u00e9rico empez\u00f3 como un estudio de dos personas y creci\u00f3 hasta una comunidad de baristas, productores y dise\u00f1adores.",
-      "paragraphs": {
-        "one": "Tostamos en micro-lotes y catamos cada lote por su equilibrio.",
-        "two": "Nuestro abastecimiento se basa en conversaciones largas, no en contratos breves.",
-        "three": "Dise\u00f1o, empaque y servicio se trabajan con el mismo cuidado que el caf\u00e9."
+    "intro": {
+      "eyebrow": "Cómo empezó",
+      "title": "Arraigado en Honduras",
+      "description": "Los fundadores de Café RICO se conocieron hace casi 20 años en Honduras, donde trabajaban en agricultura ecológica y con organizaciones campesinas. En 2018 fundaron Café RICO — español para 'delicioso' — para traer café de especialidad orgánico y justo directamente del productor a Bélgica."
+    },
+    "pillars": {
+      "eyebrow": "Nuestros valores",
+      "title": "Lo que defendemos",
+      "eerlijk": {
+        "title": "Justo y Delicioso",
+        "description": "Colaboramos con la cooperativa COMBRIFOL, que representa a 193 familias productoras en Honduras. Precios justos y formación garantizan que cada taza beneficie directamente a la comunidad."
       },
-      "highlightsTitle": "En resumen",
-      "highlights": {
-        "one": {
-          "label": "Tostados por semana",
-          "value": "12 micro-lotes"
-        },
-        "two": {
-          "label": "Fincas aliadas",
-          "value": "9 fincas a largo plazo"
-        },
-        "three": {
-          "label": "Atelier belga",
-          "value": "Amberes, B\u00e9lgica"
-        }
+      "ecologisch": {
+        "title": "Ecológico",
+        "description": "Nuestro café lleva el sello ecológico europeo y está certificado por Mayacert. Del cultivo al empaque: ecológico y sostenible."
       },
-      "card": {
-        "eyebrow": "El atelier",
-        "title": "Un espacio para el aroma y el detalle",
-        "description": "Nuestro estudio de tueste mezcla perfiles modernos con rituales de cata."
-      }
-    },
-    "mission": {
-      "eyebrow": "Misi\u00f3n",
-      "title": "Hacer que cada taza se sienta intencional",
-      "description": "Creamos caf\u00e9 que baja el ritmo y honra a las personas detr\u00e1s de cada grano.",
-      "points": {
-        "one": "Tostar con claridad y dulzor en el centro.",
-        "two": "Construir alianzas que protejan los or\u00edgenes.",
-        "three": "Dise\u00f1ar rituales tranquilos y lujosos."
-      }
-    },
-    "vision": {
-      "eyebrow": "Visi\u00f3n",
-      "title": "La cultura cafetera belga, reinventada",
-      "description": "Queremos elevar el caf\u00e9 diario a un momento de oficio, belleza y conexi\u00f3n.",
-      "points": {
-        "one": "Defender un abastecimiento transparente y trazable.",
-        "two": "Crear espacios donde el caf\u00e9 se sienta como arte.",
-        "three": "Crecer con una huella m\u00e1s ligera."
-      }
-    },
-    "timeline": {
-      "eyebrow": "Hitos",
-      "title": "Una l\u00ednea de tiempo de crecimiento consciente",
-      "description": "Cada a\u00f1o a\u00f1ade una nueva capa al ritual Caf\u00e9rico.",
-      "items": {
-        "one": {
-          "year": "2016",
-          "title": "La microtostadora de Amberes",
-          "description": "Primeros lotes para ateliers y hoteles locales."
-        },
-        "two": {
-          "year": "2018",
-          "title": "Viajes de origen directo",
-          "description": "Viajes a Colombia y Etiop\u00eda para conocer productores."
-        },
-        "three": {
-          "year": "2020",
-          "title": "La caja ritual Caf\u00e9rico",
-          "description": "Lanzamiento de tarjetas de cata y suscripciones."
-        },
-        "four": {
-          "year": "2022",
-          "title": "Sala de cata del estudio",
-          "description": "Apertura de un espacio tranquilo para talleres sensoriales."
-        },
-        "five": {
-          "year": "2025",
-          "title": "Red de ateliers europeos",
-          "description": "Compartimos tostados con caf\u00e9s aliados en Europa."
-        }
-      }
-    },
-    "team": {
-      "eyebrow": "El equipo",
-      "title": "Hecho por manos y corazones",
-      "description": "Un peque\u00f1o colectivo que da forma a cada tostado, historia y detalle.",
-      "members": {
-        "founder": {
-          "name": "Elise Van Doren",
-          "role": "Fundadora y directora de tueste",
-          "bio": "Cura perfiles y viaja al origen con nuestros productores."
-        },
-        "roaster": {
-          "name": "Noah Vermeulen",
-          "role": "Jefe de tueste",
-          "bio": "Lidera el calendario de tueste y las sesiones de calidad."
-        },
-        "curator": {
-          "name": "Sofie Lemaire",
-          "role": "Curadora de experiencia",
-          "bio": "Dise\u00f1a catas, empaques y nuestra biblioteca arom\u00e1tica."
-        },
-        "hospitality": {
-          "name": "Matteo Rossi",
-          "role": "Responsable de hospitalidad",
-          "bio": "Anima talleres del atelier y ma\u00f1anas de comunidad."
-        }
+      "honduras": {
+        "title": "Honduras",
+        "description": "Nuestros granos crecen en la región de Marcala, una zona con denominación de origen protegida. A 1.350–1.850 metros de altitud, el microclima perfecto para café de especialidad."
       },
-      "quote": {
-        "eyebrow": "De la fundadora",
-        "text": "Creamos Caf\u00e9rico para quienes quieren que el caf\u00e9 se sienta como una peque\u00f1a ceremonia.",
-        "author": "Elise Van Doren \u2014 Amberes"
+      "smaak": {
+        "title": "Sabor",
+        "description": "Afrutado, acidez viva, cítricos, melocotón, miel y un retrogusto floral. Puntuación de 84 en la escala SCAA (Q-grader Tom Janssen) y 86 del consejo cafetero de Marcala."
+      }
+    },
+    "farmers": {
+      "eyebrow": "Las personas detrás del café",
+      "title": "Conoce a nuestros caficultores",
+      "tom": {
+        "name": "Tom Janssen",
+        "role": "Q-grader, OR Coffee",
+        "quote": "Personalmente encuentro que es un café delicioso que sin duda merece ser destacado. Un buen sabor pleno, un toque de chocolate. Gustará a muchas personas."
+      },
+      "lesly": {
+        "name": "Lesly Yohana Dominguez",
+        "role": "Caficultora, RAOS",
+        "quote": "La cosecha de café no es solo trabajo de hombres. Nosotras las mujeres valoramos la calidad y nos dedicamos al trabajo cuidadoso. ¡Para que nuestro café sea nuestro orgullo!"
+      }
+    },
+    "process": {
+      "eyebrow": "De la planta a la taza",
+      "title": "Nuestro proceso",
+      "description": "Cada paso del proceso contribuye al sabor excepcional de nuestro café.",
+      "steps": {
+        "pluk": {
+          "title": "Recolección cuidadosa",
+          "description": "Solo las cerezas de café maduras y de rojo intenso se recolectan a mano."
+        },
+        "wassen": {
+          "title": "Lavado",
+          "description": "Las cerezas se lavan para eliminar la pulpa de la fruta."
+        },
+        "drogen": {
+          "title": "Secado",
+          "description": "Los granos se secan en túneles de secado especiales hasta el nivel de humedad perfecto."
+        },
+        "branden": {
+          "title": "Tostado en Bélgica",
+          "description": "Tostado localmente en pequeños lotes para una frescura y sabor óptimos."
+        },
+        "kopje": {
+          "title": "Tu taza",
+          "description": "De Honduras a tu cocina — justo, orgánico y delicioso."
+        }
       }
     }
   },

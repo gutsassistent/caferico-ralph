@@ -242,3 +242,17 @@ Remaining: 42
 - Staggered Reveal animation on benefit items
 - Removed unused faqKeys from page (moved into SubscriptionFaq component)
 - typecheck ✅ build ✅
+
+### RD-020: About Pagina - Storytelling Redesign ✅
+- Completely rewrote About page from generic "atelier" narrative to real Café RICO story from CONTEXT.md
+- Hero: full-screen Honduras sfeerbeeld (DSCF3617.jpg) with dark gradient overlay, h1 "Van koffieboer tot kopje"
+- Intro section: 2-col layout with koffieboer photo, text about ~20 years Honduras, 2018 founding
+- 4 Pillar sections: (H)eerlijk (COMBRIFOL, 193 families), Ecologisch (EU-biolabel, Mayacert), Honduras (Marcala, 1350-1850m), Smaak (84 SCAA, 86 Marcala)
+- Each pillar has SVG icon in gold circle + title + description
+- Farmer profile cards: Tom Janssen (real photo) and Lesly Yohana Dominguez (initial avatar), with quotes from CONTEXT.md testimonials
+- Process visualization: 5-step flow (pluk → wassen → drogen → branden → kopje) with SVG icons
+- Desktop: horizontal flow with arrow connectors; Mobile: vertical timeline with connector lines
+- Bonus: 2-col image grid at bottom with Marcala landscape + droogtunnel photos
+- Replaced all old i18n keys (story, mission, vision, timeline, team) with new structure (hero, intro, pillars, farmers, process) in all 4 languages
+- Used React.ReactNode instead of JSX.Element for icon type records (TSC 5.x compat)
+- typecheck ✅ build ✅
