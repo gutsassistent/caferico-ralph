@@ -143,6 +143,24 @@
       "description": "Ajustez vos filtres ou votre recherche pour découvrir d'autres roasts.",
       "cta": "Réinitialiser"
     },
+    "sidebar": {
+      "filterButton": "Filtres",
+      "typeTitle": "Type",
+      "types": {
+        "mild": "Doux (Light Roast)",
+        "intens": "Intense (Medium Roast)",
+        "espresso": "Espresso (Dark Roast)",
+        "decaf": "Décaféiné"
+      },
+      "formatTitle": "Format",
+      "formTitle": "Forme",
+      "forms": {
+        "beans": "Grains",
+        "ground": "Moulu"
+      },
+      "reset": "Réinitialiser les filtres",
+      "showResults": "Afficher {count} produits"
+    },
     "collections": {
       "beans": "Grains entiers",
       "ground": "Café moulu",
@@ -604,7 +622,13 @@
       "eyebrow": "Votre sélection",
       "availability": "En stock",
       "totalLabel": "Total",
-      "hint": "Torréfié frais et expédié sous 48 heures."
+      "hint": "Torréfié frais et expédié sous 48 heures.",
+      "subscriptionPrice": "Ou {price}/mois avec abonnement",
+      "subscribe": "S'abonner",
+      "shippingInfo": "Livraison gratuite dès 25€",
+      "reviewsPlaceholder": "{count} avis",
+      "trustBio": "Biologique",
+      "trustFairTrade": "Commerce équitable"
     },
     "related": {
       "eyebrow": "Associé",
@@ -612,6 +636,50 @@
       "description": "Associez ce profil à un rituel ou à des notes complémentaires.",
       "cta": "Voir la boutique",
       "priceLabel": "Prix"
+    },
+    "tabs": {
+      "description": {
+        "title": "Description"
+      },
+      "tasting": {
+        "title": "Profil gustatif",
+        "intro": "Le profil aromatique de ce café avec ses notes et intensités visuelles.",
+        "bodyLabel": "Corps",
+        "acidityLabel": "Acidité",
+        "sweetnessLabel": "Douceur"
+      },
+      "brewing": {
+        "title": "Guide de préparation",
+        "intro": "Méthodes de préparation recommandées pour un résultat optimal.",
+        "filter": {
+          "title": "Café filtre",
+          "grind": "Mouture : moyenne",
+          "ratio": "Dosage : 60g par litre",
+          "temp": "Température : 92–96°C"
+        },
+        "espresso": {
+          "title": "Espresso",
+          "grind": "Mouture : fine",
+          "ratio": "Dosage : 18g pour 36ml",
+          "temp": "Température : 90–94°C"
+        },
+        "frenchpress": {
+          "title": "French Press",
+          "grind": "Mouture : grossière",
+          "ratio": "Dosage : 70g par litre",
+          "temp": "Température : 93–96°C, infuser 4 min"
+        }
+      },
+      "origin": {
+        "title": "Origine",
+        "intro": "Tout le café provient de la coopérative COMBRIFOL dans la région de Marcala au Honduras.",
+        "regionLabel": "Région",
+        "altitudeLabel": "Altitude",
+        "cooperativeLabel": "Coopérative",
+        "familiesLabel": "Familles d'agriculteurs",
+        "varietiesLabel": "Variétés",
+        "certLabel": "Certifications"
+      }
     }
   },
   "Toast": {
@@ -645,7 +713,7 @@
         "title": "Grains entiers, arômes maximum",
         "description": "Pour espresso, filtre et tout l'entre-deux.",
         "starter": {
-          "title": "Lumière du matin",
+          "title": "Dégustation",
           "size": "250g / mois",
           "description": "Profil doux et lumineux pour les matins de semaine.",
           "benefits": {
@@ -655,10 +723,10 @@
           }
         },
         "signature": {
-          "title": "Signature Roast",
+          "title": "Classique",
           "size": "500g / mois",
           "description": "Notre équilibre préféré, cacao et caramel.",
-          "badge": "Le plus choisi",
+          "badge": "Recommandé",
           "benefits": {
             "one": "Palette aromatique complète au quotidien",
             "two": "Priorité de torréfaction",
@@ -666,7 +734,7 @@
           }
         },
         "atelier": {
-          "title": "Grand Atelier",
+          "title": "Atelier",
           "size": "1kg / mois",
           "description": "Pour les studios, équipes et grandes tables.",
           "benefits": {
@@ -681,7 +749,7 @@
         "title": "Textures prêtes à infuser",
         "description": "Réglé pour filtre, moka ou French press.",
         "starter": {
-          "title": "Mouture douce",
+          "title": "Dégustation",
           "size": "250g / mois",
           "description": "Une mouture légère pour des tasses soyeuses.",
           "benefits": {
@@ -691,7 +759,7 @@
           }
         },
         "signature": {
-          "title": "Rituel Blend",
+          "title": "Classique",
           "size": "500g / mois",
           "description": "Mouture équilibrée pour le quotidien.",
           "badge": "Populaire",
@@ -702,7 +770,7 @@
           }
         },
         "atelier": {
-          "title": "Studio Reserve",
+          "title": "Atelier",
           "size": "1kg / mois",
           "description": "Pour l'hospitalité, équipes et espaces créatifs.",
           "benefits": {
@@ -719,16 +787,16 @@
       "description": "Trois étapes, renouvelées chaque mois.",
       "items": {
         "one": {
-          "title": "Choisissez votre profil",
-          "description": "Sélectionnez grains ou moulu et votre quantité mensuelle."
+          "title": "Choisissez votre café",
+          "description": "Sélectionnez grains ou moulu et votre quantité préférée."
         },
         "two": {
-          "title": "Nous torréfions à la commande",
-          "description": "Votre café est torréfié et expédié sous 24 h."
+          "title": "Choisissez la fréquence",
+          "description": "Mensuel, bimensuel — vous décidez du rythme."
         },
         "three": {
-          "title": "Savourez & ajustez",
-          "description": "Mettez en pause, sautez ou changez avant chaque livraison."
+          "title": "On s'occupe du reste",
+          "description": "Torréfié et expédié sous 24 h, jusqu'à votre porte."
         }
       },
       "card": {
@@ -736,6 +804,23 @@
         "title": "Toujours au pic aromatique",
         "description": "Nous torréfions juste avant l'envoi pour un premier café vibrant.",
         "detail": "Sans engagement, ajustable à tout moment."
+      }
+    },
+    "benefits": {
+      "eyebrow": "Pourquoi s'abonner ?",
+      "items": {
+        "flexible": {
+          "title": "Flexible",
+          "description": "Mettez en pause, changez ou annulez à tout moment — sans engagement."
+        },
+        "cheaper": {
+          "title": "Plus Avantageux",
+          "description": "Économisez 15% sur chaque livraison par rapport aux achats ponctuels."
+        },
+        "fresh": {
+          "title": "Toujours du Café Frais",
+          "description": "Torréfié juste avant l'envoi pour un arôme et une saveur au sommet."
+        }
       }
     },
     "faq": {

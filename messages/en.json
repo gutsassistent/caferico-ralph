@@ -143,6 +143,24 @@
       "description": "Try adjusting your filters or search to reveal new roasts.",
       "cta": "Reset filters"
     },
+    "sidebar": {
+      "filterButton": "Filters",
+      "typeTitle": "Type",
+      "types": {
+        "mild": "Mild (Light Roast)",
+        "intens": "Intense (Medium Roast)",
+        "espresso": "Espresso (Dark Roast)",
+        "decaf": "Decaf"
+      },
+      "formatTitle": "Format",
+      "formTitle": "Form",
+      "forms": {
+        "beans": "Whole Beans",
+        "ground": "Ground"
+      },
+      "reset": "Reset filters",
+      "showResults": "Show {count} products"
+    },
     "collections": {
       "beans": "Whole beans",
       "ground": "Ground coffee",
@@ -604,7 +622,13 @@
       "eyebrow": "Your selection",
       "availability": "In stock",
       "totalLabel": "Total",
-      "hint": "Roasted fresh and shipped within 48 hours."
+      "hint": "Roasted fresh and shipped within 48 hours.",
+      "subscriptionPrice": "Or {price}/month with subscription",
+      "subscribe": "Subscribe",
+      "shippingInfo": "Free shipping from €25",
+      "reviewsPlaceholder": "{count} reviews",
+      "trustBio": "Organic",
+      "trustFairTrade": "Fair Trade"
     },
     "related": {
       "eyebrow": "Related",
@@ -612,6 +636,50 @@
       "description": "Pair this roast with a matching ritual or complementary notes.",
       "cta": "Browse the shop",
       "priceLabel": "Price"
+    },
+    "tabs": {
+      "description": {
+        "title": "Description"
+      },
+      "tasting": {
+        "title": "Tasting Notes",
+        "intro": "The flavour profile of this coffee with visual tones and intensity.",
+        "bodyLabel": "Body",
+        "acidityLabel": "Acidity",
+        "sweetnessLabel": "Sweetness"
+      },
+      "brewing": {
+        "title": "Brewing Guide",
+        "intro": "Recommended brewing methods for the best result.",
+        "filter": {
+          "title": "Filter Coffee",
+          "grind": "Grind: medium",
+          "ratio": "Dose: 60g per litre",
+          "temp": "Temperature: 92–96°C"
+        },
+        "espresso": {
+          "title": "Espresso",
+          "grind": "Grind: fine",
+          "ratio": "Dose: 18g for 36ml",
+          "temp": "Temperature: 90–94°C"
+        },
+        "frenchpress": {
+          "title": "French Press",
+          "grind": "Grind: coarse",
+          "ratio": "Dose: 70g per litre",
+          "temp": "Temperature: 93–96°C, steep 4 min"
+        }
+      },
+      "origin": {
+        "title": "Origin",
+        "intro": "All coffee comes from the COMBRIFOL cooperative in the Marcala region of Honduras.",
+        "regionLabel": "Region",
+        "altitudeLabel": "Altitude",
+        "cooperativeLabel": "Cooperative",
+        "familiesLabel": "Farming families",
+        "varietiesLabel": "Varieties",
+        "certLabel": "Certifications"
+      }
     }
   },
   "Toast": {
@@ -645,7 +713,7 @@
         "title": "Whole beans, maximum aroma",
         "description": "For espresso, filter, and everything in between.",
         "starter": {
-          "title": "Morning Light",
+          "title": "Tasting",
           "size": "250g / month",
           "description": "A gentle, bright profile for weekday mornings.",
           "benefits": {
@@ -655,10 +723,10 @@
           }
         },
         "signature": {
-          "title": "Signature Roast",
+          "title": "Classic",
           "size": "500g / month",
           "description": "Our most loved balance of cocoa and caramel.",
-          "badge": "Most popular",
+          "badge": "Recommended",
           "benefits": {
             "one": "Full flavour range for daily rituals",
             "two": "Priority roast scheduling",
@@ -666,7 +734,7 @@
           }
         },
         "atelier": {
-          "title": "Grand Atelier",
+          "title": "Atelier",
           "size": "1kg / month",
           "description": "Built for studios, teams, and long brunch tables.",
           "benefits": {
@@ -681,7 +749,7 @@
         "title": "Ready-to-brew textures",
         "description": "Dialed-in for filter, moka, or French press.",
         "starter": {
-          "title": "Soft Grind",
+          "title": "Tasting",
           "size": "250g / month",
           "description": "A light grind for mellow, silky cups.",
           "benefits": {
@@ -691,7 +759,7 @@
           }
         },
         "signature": {
-          "title": "Ritual Blend",
+          "title": "Classic",
           "size": "500g / month",
           "description": "Balanced mid-grind for everyday comfort.",
           "badge": "Popular",
@@ -702,7 +770,7 @@
           }
         },
         "atelier": {
-          "title": "Studio Reserve",
+          "title": "Atelier",
           "size": "1kg / month",
           "description": "For hospitality, teams, and creative spaces.",
           "benefits": {
@@ -719,16 +787,16 @@
       "description": "Three steps, renewed every month.",
       "items": {
         "one": {
-          "title": "Choose your profile",
-          "description": "Select beans or ground coffee and your monthly size."
+          "title": "Choose your coffee",
+          "description": "Select beans or ground coffee and your favourite quantity."
         },
         "two": {
-          "title": "We roast to order",
-          "description": "Your coffee is roasted and shipped within 24 hours."
+          "title": "Select frequency",
+          "description": "Monthly, bi-monthly — you set the rhythm."
         },
         "three": {
-          "title": "Enjoy & adjust",
-          "description": "Pause, skip, or upgrade before each delivery."
+          "title": "We take care of the rest",
+          "description": "Freshly roasted and shipped within 24 hours, right to your door."
         }
       },
       "card": {
@@ -736,6 +804,23 @@
         "title": "Always timed to peak flavour",
         "description": "We roast right before shipping so your first cup is vibrant and aromatic.",
         "detail": "Adjust before every roast."
+      }
+    },
+    "benefits": {
+      "eyebrow": "Why subscribe?",
+      "items": {
+        "flexible": {
+          "title": "Flexible",
+          "description": "Pause, swap, or cancel anytime — no long-term commitment."
+        },
+        "cheaper": {
+          "title": "More Affordable",
+          "description": "Save 15% on every delivery compared to one-time purchases."
+        },
+        "fresh": {
+          "title": "Always Fresh Coffee",
+          "description": "Roasted just before shipping for peak aroma and flavour."
+        }
       }
     },
     "faq": {

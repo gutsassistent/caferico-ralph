@@ -206,3 +206,39 @@ Remaining: 42
 - External image domains already configured in next.config.mjs
 - No i18n changes needed — all keys were already in place from previous iterations
 - typecheck ✅ build ✅
+
+### RD-017: Subscriptions Pagina - How It Works Section ✅
+- Redesigned steps section from side-by-side layout (steps left, card right) to center-aligned layout
+- 3 steps now displayed in a horizontal grid (md:grid-cols-3) with SVG icons in gold circles
+- Step 1: clipboard/checklist icon (choose coffee), Step 2: timer/refresh icon (select frequency), Step 3: sparkles icon (we handle the rest)
+- Added arrow SVGs between steps on desktop (hidden on mobile) for visual flow
+- Each step has: icon circle (h-20 w-20, gold/10 bg, gold/30 border), step number, title, description
+- Card moved below steps, centered (max-w-lg), still shows roasting calendar info
+- Staggered Reveal animation (delay={index * 120}) per step card
+- Updated i18n step titles to match AC: "Kies je koffie", "Selecteer frequentie", "Wij zorgen voor de rest" in all 4 languages
+- typecheck ✅ build ✅
+
+### RD-018: Subscriptions Pagina - Luxe Tier Cards ✅
+- Updated tier pricing to match AC: Proeverij (250g, €6.50), Klassiek (500g, €12.50), Atelier (1kg, €22.90)
+- Renamed tier titles in all 4 languages: NL (Proeverij/Klassiek/Atelier), EN (Tasting/Classic/Atelier), FR (Dégustation/Classique/Atelier), ES (Degustación/Clásico/Atelier)
+- Added discount percentage display (-15%) as gold pill badge on each card
+- Added original price with strikethrough (€7.65, €14.71, €26.94) above discount badge
+- Middle tier (Klassiek) highlighted with "Aanbevolen"/"Recommended" badge
+- Card already had: premium styling, featured glow, coffee-grain texture, hover lift, benefits list, CTA button
+- Grid: 1 col mobile, 3 col desktop (lg:grid-cols-3) — already in place
+- Price formatter updated to show 2 decimal places
+- Dual-group structure kept (beans + ground) for richer UX than AC's single group
+- typecheck ✅ build ✅
+
+### RD-019: Subscriptions Pagina - FAQ & Benefits ✅
+- Created SubscriptionFaq client component with accordion-style expand/collapse
+- Only one FAQ item open at a time (others close automatically)
+- Plus icon rotates 45° to X when open, with gold color transition
+- CSS grid animation for smooth open/close (grid-rows-[0fr] → grid-rows-[1fr])
+- Replaced static 2-col FAQ grid with 2-col layout: benefits left, accordion right
+- Benefits section with 3 items: Flexibel, Goedkoper, Altijd Verse Koffie — each with SVG icon in gold circle
+- Benefits icons: refresh/cycle (flexible), tag (cheaper), coffee cup with steam (fresh)
+- Added `benefits.*` i18n keys in all 4 languages (NL, EN, FR, ES)
+- Staggered Reveal animation on benefit items
+- Removed unused faqKeys from page (moved into SubscriptionFaq component)
+- typecheck ✅ build ✅

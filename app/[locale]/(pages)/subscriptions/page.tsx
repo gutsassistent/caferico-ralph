@@ -4,32 +4,49 @@ import { Link } from '@/i18n/routing';
 import Container from '@/components/Container';
 import Reveal from '@/components/Reveal';
 import SubscriptionTierCard from '@/components/SubscriptionTierCard';
+import SubscriptionFaq from '@/components/SubscriptionFaq';
 
 type SubscriptionsPageProps = {
   params: Promise<{ locale: string }>;
 };
 
+const benefitKeys = ['flexible', 'cheaper', 'fresh'] as const;
+
+const benefitIcons = [
+  // Flexible - refresh/cycle icon
+  <svg key="flex" width="28" height="28" viewBox="0 0 24 24" fill="none" className="text-gold">
+    <path d="M17.657 18.657A8 8 0 016.343 7.343M17.657 18.657L12 12m5.657 6.657L20 20M6.343 7.343L4 4m2.343 3.343L12 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>,
+  // Cheaper - tag/percentage icon
+  <svg key="cheap" width="28" height="28" viewBox="0 0 24 24" fill="none" className="text-gold">
+    <path d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a4 4 0 014-4z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>,
+  // Fresh - coffee/steam icon
+  <svg key="fresh" width="28" height="28" viewBox="0 0 24 24" fill="none" className="text-gold">
+    <path d="M17 8h1a4 4 0 010 8h-1M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8zM6 1v3M10 1v3M14 1v3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>,
+];
+
 const tierGroups = [
   {
     id: 'beans' as const,
     tiers: [
-      { key: 'starter', price: 18, featured: false },
-      { key: 'signature', price: 29, featured: true },
-      { key: 'atelier', price: 46, featured: false }
+      { key: 'starter', price: 6.5, originalPrice: 7.65, discount: 15, featured: false },
+      { key: 'signature', price: 12.5, originalPrice: 14.71, discount: 15, featured: true },
+      { key: 'atelier', price: 22.9, originalPrice: 26.94, discount: 15, featured: false }
     ]
   },
   {
     id: 'ground' as const,
     tiers: [
-      { key: 'starter', price: 17, featured: false },
-      { key: 'signature', price: 27, featured: true },
-      { key: 'atelier', price: 42, featured: false }
+      { key: 'starter', price: 6.5, originalPrice: 7.65, discount: 15, featured: false },
+      { key: 'signature', price: 12.5, originalPrice: 14.71, discount: 15, featured: true },
+      { key: 'atelier', price: 22.9, originalPrice: 26.94, discount: 15, featured: false }
     ]
   }
 ];
 
 const stepKeys = ['one', 'two', 'three'] as const;
-const faqKeys = ['one', 'two', 'three', 'four'] as const;
 
 export default async function SubscriptionsPage({ params }: SubscriptionsPageProps) {
   const { locale } = await params;
@@ -37,8 +54,8 @@ export default async function SubscriptionsPage({ params }: SubscriptionsPagePro
   const priceFormatter = new Intl.NumberFormat(locale || 'nl', {
     style: 'currency',
     currency: 'EUR',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
   });
 
   return (
@@ -161,33 +178,66 @@ export default async function SubscriptionsPage({ params }: SubscriptionsPagePro
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(60,21,24,0.65),rgba(26,15,10,0.95))]" />
           <div className="pointer-events-none absolute inset-0 bg-coffee-grain opacity-25" />
 
-          <Container className="relative grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-            <div className="space-y-6">
+          <Container className="relative">
+            <div className="mx-auto max-w-3xl space-y-4 text-center">
               <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
                 {t('steps.eyebrow')}
               </p>
               <h2 className="font-serif text-3xl sm:text-4xl">{t('steps.title')}</h2>
               <p className="text-sm text-cream/70 sm:text-base">{t('steps.description')}</p>
-              <div className="space-y-6">
-                {stepKeys.map((stepKey, index) => (
-                  <div key={stepKey} className="flex gap-4">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/40 text-xs font-semibold text-gold">
-                      {index + 1}
-                    </span>
-                    <div>
-                      <p className="text-xs uppercase tracking-[0.3em] text-cream/60">
-                        {t(`steps.items.${stepKey}.title`)}
-                      </p>
-                      <p className="mt-2 text-sm text-cream/70">
-                        {t(`steps.items.${stepKey}.description`)}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
             </div>
 
-            <div className="rounded-3xl border border-cream/10 bg-noir/70 p-8 shadow-[0_35px_80px_rgba(0,0,0,0.45)]">
+            <div className="mt-16 grid gap-8 md:grid-cols-3 md:gap-0">
+              {stepKeys.map((stepKey, index) => (
+                <Reveal key={stepKey} delay={index * 120}>
+                  <div className="relative flex flex-col items-center text-center">
+                    {/* Arrow between steps (desktop only) */}
+                    {index < 2 && (
+                      <div className="pointer-events-none absolute right-0 top-10 hidden translate-x-1/2 md:block">
+                        <svg width="40" height="12" viewBox="0 0 40 12" fill="none" className="text-gold/40">
+                          <path d="M0 6h36m0 0-5-5m5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </div>
+                    )}
+
+                    {/* Icon circle */}
+                    <div className="flex h-20 w-20 items-center justify-center rounded-full border border-gold/30 bg-gold/10">
+                      {index === 0 && (
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="text-gold">
+                          <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      )}
+                      {index === 1 && (
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="text-gold">
+                          <path d="M17.657 18.657A8 8 0 016.343 7.343M17.657 18.657L12 12m5.657 6.657L20 20M6.343 7.343L4 4m2.343 3.343L12 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      )}
+                      {index === 2 && (
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="text-gold">
+                          <path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      )}
+                    </div>
+
+                    {/* Step number */}
+                    <span className="mt-4 text-xs font-semibold uppercase tracking-[0.3em] text-gold/50">
+                      {index + 1}
+                    </span>
+
+                    {/* Title & description */}
+                    <h3 className="mt-2 font-serif text-lg text-cream">
+                      {t(`steps.items.${stepKey}.title`)}
+                    </h3>
+                    <p className="mt-2 max-w-xs text-sm text-cream/70">
+                      {t(`steps.items.${stepKey}.description`)}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+
+            {/* Bottom card */}
+            <div className="mx-auto mt-16 max-w-lg rounded-3xl border border-cream/10 bg-noir/70 p-8 text-center shadow-[0_35px_80px_rgba(0,0,0,0.45)]">
               <p className="text-xs uppercase tracking-[0.3em] text-cream/50">
                 {t('steps.card.eyebrow')}
               </p>
@@ -203,23 +253,37 @@ export default async function SubscriptionsPage({ params }: SubscriptionsPagePro
 
       <Reveal>
         <section id="faq" className="py-20">
-          <Container className="space-y-10">
-            <div className="max-w-2xl space-y-3">
-              <p className="text-xs uppercase tracking-[0.4em] text-gold/70">{t('faq.eyebrow')}</p>
-              <h2 className="font-serif text-3xl sm:text-4xl">{t('faq.title')}</h2>
-              <p className="text-sm text-cream/70 sm:text-base">{t('faq.description')}</p>
-            </div>
-            <div className="grid gap-6 lg:grid-cols-2">
-              {faqKeys.map((faqKey, index) => (
-                <Reveal key={faqKey} delay={index * 90} className="h-full">
-                  <div className="flex h-full flex-col rounded-2xl border border-cream/10 bg-[#140b08] p-6">
-                    <h3 className="font-serif text-lg text-cream">
-                      {t(`faq.items.${faqKey}.question`)}
-                    </h3>
-                    <p className="mt-3 text-sm text-cream/70">{t(`faq.items.${faqKey}.answer`)}</p>
-                  </div>
-                </Reveal>
-              ))}
+          <Container>
+            <div className="grid gap-16 lg:grid-cols-[1fr_1.2fr] lg:items-start">
+              {/* Left: header + benefits */}
+              <div className="space-y-8">
+                <div className="space-y-3">
+                  <p className="text-xs uppercase tracking-[0.4em] text-gold/70">{t('faq.eyebrow')}</p>
+                  <h2 className="font-serif text-3xl sm:text-4xl">{t('faq.title')}</h2>
+                  <p className="text-sm text-cream/70 sm:text-base">{t('faq.description')}</p>
+                </div>
+
+                {/* Benefits */}
+                <div className="space-y-5">
+                  <p className="text-xs uppercase tracking-[0.3em] text-gold/50">{t('benefits.eyebrow')}</p>
+                  {benefitKeys.map((key, index) => (
+                    <Reveal key={key} delay={index * 100}>
+                      <div className="flex items-start gap-4">
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-gold/20 bg-gold/10">
+                          {benefitIcons[index]}
+                        </div>
+                        <div>
+                          <h3 className="font-serif text-base text-cream">{t(`benefits.items.${key}.title`)}</h3>
+                          <p className="mt-1 text-sm text-cream/60">{t(`benefits.items.${key}.description`)}</p>
+                        </div>
+                      </div>
+                    </Reveal>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right: accordion FAQ */}
+              <SubscriptionFaq />
             </div>
           </Container>
         </section>

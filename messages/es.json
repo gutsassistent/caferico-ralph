@@ -143,6 +143,24 @@
       "description": "Ajusta los filtros o la búsqueda para ver nuevos roasts.",
       "cta": "Restablecer filtros"
     },
+    "sidebar": {
+      "filterButton": "Filtros",
+      "typeTitle": "Tipo",
+      "types": {
+        "mild": "Suave (Light Roast)",
+        "intens": "Intenso (Medium Roast)",
+        "espresso": "Espresso (Dark Roast)",
+        "decaf": "Descafeinado"
+      },
+      "formatTitle": "Formato",
+      "formTitle": "Forma",
+      "forms": {
+        "beans": "Granos",
+        "ground": "Molido"
+      },
+      "reset": "Restablecer filtros",
+      "showResults": "Mostrar {count} productos"
+    },
     "collections": {
       "beans": "Granos enteros",
       "ground": "Café molido",
@@ -604,7 +622,13 @@
       "eyebrow": "Tu selección",
       "availability": "En stock",
       "totalLabel": "Total",
-      "hint": "Tostado fresco y enviado en 48 horas."
+      "hint": "Tostado fresco y enviado en 48 horas.",
+      "subscriptionPrice": "O {price}/mes con suscripción",
+      "subscribe": "Suscribirse",
+      "shippingInfo": "Envío gratis desde 25€",
+      "reviewsPlaceholder": "{count} reseñas",
+      "trustBio": "Ecológico",
+      "trustFairTrade": "Comercio justo"
     },
     "related": {
       "eyebrow": "Relacionado",
@@ -612,6 +636,50 @@
       "description": "Combínalo con rituales o notas que se complementen.",
       "cta": "Ver la tienda",
       "priceLabel": "Precio"
+    },
+    "tabs": {
+      "description": {
+        "title": "Descripción"
+      },
+      "tasting": {
+        "title": "Perfil de cata",
+        "intro": "El perfil de sabor de este café con tonos visuales e intensidad.",
+        "bodyLabel": "Cuerpo",
+        "acidityLabel": "Acidez",
+        "sweetnessLabel": "Dulzura"
+      },
+      "brewing": {
+        "title": "Guía de preparación",
+        "intro": "Métodos de preparación recomendados para el mejor resultado.",
+        "filter": {
+          "title": "Café de filtro",
+          "grind": "Molienda: media",
+          "ratio": "Dosis: 60g por litro",
+          "temp": "Temperatura: 92–96°C"
+        },
+        "espresso": {
+          "title": "Espresso",
+          "grind": "Molienda: fina",
+          "ratio": "Dosis: 18g para 36ml",
+          "temp": "Temperatura: 90–94°C"
+        },
+        "frenchpress": {
+          "title": "French Press",
+          "grind": "Molienda: gruesa",
+          "ratio": "Dosis: 70g por litro",
+          "temp": "Temperatura: 93–96°C, infusión 4 min"
+        }
+      },
+      "origin": {
+        "title": "Origen",
+        "intro": "Todo el café proviene de la cooperativa COMBRIFOL en la región de Marcala, Honduras.",
+        "regionLabel": "Región",
+        "altitudeLabel": "Altitud",
+        "cooperativeLabel": "Cooperativa",
+        "familiesLabel": "Familias agricultoras",
+        "varietiesLabel": "Variedades",
+        "certLabel": "Certificaciones"
+      }
     }
   },
   "Toast": {
@@ -645,7 +713,7 @@
         "title": "Grano entero, máximo aroma",
         "description": "Para espresso, filtro y todo lo demás.",
         "starter": {
-          "title": "Luz de mañana",
+          "title": "Degustación",
           "size": "250g / mes",
           "description": "Perfil suave y luminoso para días entre semana.",
           "benefits": {
@@ -655,10 +723,10 @@
           }
         },
         "signature": {
-          "title": "Signature Roast",
+          "title": "Clásico",
           "size": "500g / mes",
           "description": "Nuestro equilibrio favorito de cacao y caramelo.",
-          "badge": "Más elegido",
+          "badge": "Recomendado",
           "benefits": {
             "one": "Rango de sabor completo para el día a día",
             "two": "Prioridad de tueste",
@@ -666,7 +734,7 @@
           }
         },
         "atelier": {
-          "title": "Gran Atelier",
+          "title": "Atelier",
           "size": "1kg / mes",
           "description": "Para estudios, equipos y mesas largas.",
           "benefits": {
@@ -681,7 +749,7 @@
         "title": "Texturas listas para preparar",
         "description": "Ajustado para filtro, moka o French press.",
         "starter": {
-          "title": "Molienda suave",
+          "title": "Degustación",
           "size": "250g / mes",
           "description": "Molienda ligera para tazas sedosas.",
           "benefits": {
@@ -691,7 +759,7 @@
           }
         },
         "signature": {
-          "title": "Ritual Blend",
+          "title": "Clásico",
           "size": "500g / mes",
           "description": "Molienda media equilibrada para cada día.",
           "badge": "Popular",
@@ -702,7 +770,7 @@
           }
         },
         "atelier": {
-          "title": "Reserva Studio",
+          "title": "Atelier",
           "size": "1kg / mes",
           "description": "Para hospitalidad, equipos y espacios creativos.",
           "benefits": {
@@ -719,16 +787,16 @@
       "description": "Tres pasos, cada mes.",
       "items": {
         "one": {
-          "title": "Elige tu perfil",
-          "description": "Selecciona grano o molido y tu cantidad mensual."
+          "title": "Elige tu café",
+          "description": "Selecciona grano o molido y tu cantidad favorita."
         },
         "two": {
-          "title": "Tostamos a pedido",
-          "description": "Tu café se tuesta y envía en 24 horas."
+          "title": "Selecciona la frecuencia",
+          "description": "Mensual, bimensual — tú marcas el ritmo."
         },
         "three": {
-          "title": "Disfruta y ajusta",
-          "description": "Pausa, salta o mejora antes de cada entrega."
+          "title": "Nosotros nos encargamos",
+          "description": "Recién tostado y enviado en 24 horas, hasta tu puerta."
         }
       },
       "card": {
@@ -736,6 +804,23 @@
         "title": "Siempre en el punto ideal",
         "description": "Tostamos justo antes del envío para un primer sorbo vibrante.",
         "detail": "Sin permanencia, ajustable en cualquier momento."
+      }
+    },
+    "benefits": {
+      "eyebrow": "¿Por qué suscribirte?",
+      "items": {
+        "flexible": {
+          "title": "Flexible",
+          "description": "Pausa, cambia o cancela cuando quieras — sin permanencia."
+        },
+        "cheaper": {
+          "title": "Más Económico",
+          "description": "Ahorra un 15% en cada entrega frente a compras individuales."
+        },
+        "fresh": {
+          "title": "Siempre Café Fresco",
+          "description": "Tostado justo antes del envío para un aroma y sabor óptimos."
+        }
       }
     },
     "faq": {

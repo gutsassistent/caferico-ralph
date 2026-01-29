@@ -143,6 +143,24 @@
       "description": "Pas je filters of zoekopdracht aan om nieuwe roasts te zien.",
       "cta": "Filters resetten"
     },
+    "sidebar": {
+      "filterButton": "Filters",
+      "typeTitle": "Type",
+      "types": {
+        "mild": "Mild (Light Roast)",
+        "intens": "Intens (Medium Roast)",
+        "espresso": "Espresso (Dark Roast)",
+        "decaf": "Decaf"
+      },
+      "formatTitle": "Formaat",
+      "formTitle": "Vorm",
+      "forms": {
+        "beans": "Bonen",
+        "ground": "Gemalen"
+      },
+      "reset": "Filters resetten",
+      "showResults": "Toon {count} producten"
+    },
     "collections": {
       "beans": "Koffiebonen",
       "ground": "Gemalen koffie",
@@ -604,7 +622,13 @@
       "eyebrow": "Jouw selectie",
       "availability": "Op voorraad",
       "totalLabel": "Totaal",
-      "hint": "Vers gebrand en binnen 48 uur verzonden."
+      "hint": "Vers gebrand en binnen 48 uur verzonden.",
+      "subscriptionPrice": "Of {price}/maand met abonnement",
+      "subscribe": "Abonneer",
+      "shippingInfo": "Gratis verzending vanaf €25",
+      "reviewsPlaceholder": "{count} beoordelingen",
+      "trustBio": "Biologisch",
+      "trustFairTrade": "Fair Trade"
     },
     "related": {
       "eyebrow": "Gerelateerd",
@@ -612,6 +636,50 @@
       "description": "Combineer met rituelen of smaken die elkaar aanvullen.",
       "cta": "Bekijk de shop",
       "priceLabel": "Prijs"
+    },
+    "tabs": {
+      "description": {
+        "title": "Beschrijving"
+      },
+      "tasting": {
+        "title": "Smaakprofiel",
+        "intro": "Het smaakprofiel van deze koffie met visuele tonen en intensiteit.",
+        "bodyLabel": "Body",
+        "acidityLabel": "Aciditeit",
+        "sweetnessLabel": "Zoetheid"
+      },
+      "brewing": {
+        "title": "Bereidingswijze",
+        "intro": "Aanbevolen bereidingsmethoden voor het beste resultaat.",
+        "filter": {
+          "title": "Filterkoffie",
+          "grind": "Maling: medium",
+          "ratio": "Dosering: 60g per liter",
+          "temp": "Temperatuur: 92–96°C"
+        },
+        "espresso": {
+          "title": "Espresso",
+          "grind": "Maling: fijn",
+          "ratio": "Dosering: 18g voor 36ml",
+          "temp": "Temperatuur: 90–94°C"
+        },
+        "frenchpress": {
+          "title": "French Press",
+          "grind": "Maling: grof",
+          "ratio": "Dosering: 70g per liter",
+          "temp": "Temperatuur: 93–96°C, 4 min trekken"
+        }
+      },
+      "origin": {
+        "title": "Oorsprong",
+        "intro": "Alle koffie komt van de COMBRIFOL-coöperatieve in de Marcala-regio van Honduras.",
+        "regionLabel": "Regio",
+        "altitudeLabel": "Hoogte",
+        "cooperativeLabel": "Coöperatieve",
+        "familiesLabel": "Boerenfamilies",
+        "varietiesLabel": "Variëteiten",
+        "certLabel": "Certificeringen"
+      }
     }
   },
   "Toast": {
@@ -645,7 +713,7 @@
         "title": "Hele bonen, maximale aroma's",
         "description": "Voor espresso, filter en alles ertussen.",
         "starter": {
-          "title": "Ochtendlicht",
+          "title": "Proeverij",
           "size": "250g / maand",
           "description": "Een subtiel en helder profiel voor doordeweekse ochtenden.",
           "benefits": {
@@ -655,10 +723,10 @@
           }
         },
         "signature": {
-          "title": "Signature Roast",
+          "title": "Klassiek",
           "size": "500g / maand",
           "description": "Onze meest geliefde balans van cacao en karamel.",
-          "badge": "Meest gekozen",
+          "badge": "Aanbevolen",
           "benefits": {
             "one": "Volledige smaakrange voor dagelijkse rituelen",
             "two": "Prioritaire brandplanning",
@@ -666,7 +734,7 @@
           }
         },
         "atelier": {
-          "title": "Grand Atelier",
+          "title": "Atelier",
           "size": "1kg / maand",
           "description": "Voor studio's, teams en lange brunchtafels.",
           "benefits": {
@@ -681,7 +749,7 @@
         "title": "Direct klaar voor jouw brew",
         "description": "Afgestemd op filter, moka of French press.",
         "starter": {
-          "title": "Zachte maling",
+          "title": "Proeverij",
           "size": "250g / maand",
           "description": "Een lichte maling voor zachte, zijdeachtige kopjes.",
           "benefits": {
@@ -691,7 +759,7 @@
           }
         },
         "signature": {
-          "title": "Ritueel Blend",
+          "title": "Klassiek",
           "size": "500g / maand",
           "description": "Onze middenmaling voor dagelijkse balans.",
           "badge": "Populair",
@@ -702,7 +770,7 @@
           }
         },
         "atelier": {
-          "title": "Studio Reserve",
+          "title": "Atelier",
           "size": "1kg / maand",
           "description": "Voor hospitality, teams en creatieve ruimtes.",
           "benefits": {
@@ -719,16 +787,16 @@
       "description": "Drie stappen, elke maand opnieuw.",
       "items": {
         "one": {
-          "title": "Kies je profiel",
-          "description": "Selecteer bonen of gemalen koffie en je maandelijkse hoeveelheid."
+          "title": "Kies je koffie",
+          "description": "Selecteer bonen of gemalen koffie en je favoriete hoeveelheid."
         },
         "two": {
-          "title": "Wij branden op bestelling",
-          "description": "Je koffie wordt gebrand en binnen 24 uur verzonden."
+          "title": "Selecteer frequentie",
+          "description": "Maandelijks, tweemaandelijks — jij bepaalt het ritme."
         },
         "three": {
-          "title": "Geniet & pas aan",
-          "description": "Pauzeer, sla over of upgrade voor elke levering."
+          "title": "Wij zorgen voor de rest",
+          "description": "Vers gebrand en binnen 24 uur verzonden, tot aan je deur."
         }
       },
       "card": {
@@ -736,6 +804,23 @@
         "title": "Altijd op piekaroma",
         "description": "We branden vlak voor verzending voor maximale zachtheid.",
         "detail": "Geen vaste looptijd, altijd aanpasbaar."
+      }
+    },
+    "benefits": {
+      "eyebrow": "Waarom een abonnement?",
+      "items": {
+        "flexible": {
+          "title": "Flexibel",
+          "description": "Pauzeer, wissel of annuleer wanneer je wil — geen vaste looptijd."
+        },
+        "cheaper": {
+          "title": "Goedkoper",
+          "description": "Bespaar 15% op elke levering ten opzichte van losse aankopen."
+        },
+        "fresh": {
+          "title": "Altijd Verse Koffie",
+          "description": "Gebrand vlak voor verzending, voor maximale aroma en smaak."
+        }
       }
     },
     "faq": {

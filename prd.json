@@ -303,7 +303,7 @@
         "npm run build slaagt"
       ],
       "priority": 17,
-      "passes": false
+      "passes": true
     },
     {
       "id": "RD-018",
@@ -321,7 +321,7 @@
         "npm run build slaagt"
       ],
       "priority": 18,
-      "passes": false
+      "passes": true
     },
     {
       "id": "RD-019",
@@ -336,7 +336,7 @@
         "npm run build slaagt"
       ],
       "priority": 19,
-      "passes": false
+      "passes": true
     },
     {
       "id": "RD-020",
