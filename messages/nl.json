@@ -471,7 +471,10 @@
       "eyebrow": "Recente artikelen",
       "title": "Ontdek het Caférico-verhaal",
       "description": "Van brandingtechnieken tot reis naar oorsprong — verhalen uit ons atelier.",
-      "readMore": "Lees verder"
+      "readMore": "Lees verder",
+      "readTime": "min leestijd",
+      "paginationLabel": "Paginering",
+      "nextPage": "Volgende"
     },
     "breadcrumbs": {
       "label": "Broodkruimel",
@@ -497,7 +500,8 @@
       "about": "Over ons",
       "blog": "Blog",
       "contact": "Contact",
-      "faq": "FAQ"
+      "faq": "FAQ",
+      "locations": "Verkooppunten"
     },
     "languages": {
       "nl": "Nederlands",
@@ -835,6 +839,98 @@
       "description": "Start klein en schaal op wanneer je routine groeit.",
       "button": "Start een abonnement",
       "note": "Geen vaste looptijd, stop wanneer je wil."
+    }
+  },
+  "Locations": {
+    "hero": {
+      "eyebrow": "Verkooppunten",
+      "title": "Waar vind je Café RICO?",
+      "description": "Ontdek onze koffie bij geselecteerde verkooppunten in heel België."
+    },
+    "filter": {
+      "label": "Filter op regio",
+      "all": "Alle regio's",
+      "oostVlaanderen": "Oost-Vlaanderen",
+      "antwerpen": "Antwerpen",
+      "westVlaanderen": "West-Vlaanderen",
+      "vlaamsBrabant": "Vlaams-Brabant"
+    },
+    "locations": {
+      "cafeRico": {
+        "name": "Café RICO",
+        "type": "Hoofdkantoor & Atelier",
+        "address": "Beekstraat 138, 9420 Mere",
+        "region": "oostVlaanderen",
+        "description": "Ons atelier waar we proeven, branden en verpakken. Bezoek op afspraak."
+      },
+      "ricoLab": {
+        "name": "RICO lab",
+        "type": "Koffiebar",
+        "address": "Cogelsplein 26, 2100 Antwerpen",
+        "region": "antwerpen",
+        "description": "Onze koffiebar in het hart van Antwerpen. Proef al onze roasts."
+      },
+      "ohneGent": {
+        "name": "OHNE Gent",
+        "type": "Biowinkel",
+        "address": "Gent",
+        "region": "oostVlaanderen",
+        "description": "Verpakkingsvrije winkel met ons volledige assortiment."
+      },
+      "ohneZwalm": {
+        "name": "OHNE Zwalm",
+        "type": "Biowinkel",
+        "address": "Zwalm",
+        "region": "oostVlaanderen",
+        "description": "Verpakkingsvrije winkel met biologische koffie."
+      },
+      "ohneNevele": {
+        "name": "OHNE Nevele",
+        "type": "Biowinkel",
+        "address": "Nevele",
+        "region": "oostVlaanderen",
+        "description": "Verpakkingsvrije winkel met duurzame producten."
+      },
+      "ohneTernat": {
+        "name": "OHNE Ternat",
+        "type": "Biowinkel",
+        "address": "Ternat",
+        "region": "vlaamsBrabant",
+        "description": "Verpakkingsvrije winkel met ons koffie-assortiment."
+      },
+      "ohneMerelbeke": {
+        "name": "OHNE Merelbeke",
+        "type": "Biowinkel",
+        "address": "Merelbeke",
+        "region": "oostVlaanderen",
+        "description": "Verpakkingsvrije winkel met biologische koffie."
+      },
+      "bakkerijFrancois": {
+        "name": "Bakkerij François",
+        "type": "Bakkerij",
+        "address": "Erpe-Mere",
+        "region": "oostVlaanderen",
+        "description": "Ambachtelijke bakkerij met onze koffie in het assortiment."
+      },
+      "boerBas": {
+        "name": "Boer Bas",
+        "type": "Hoevewinkel",
+        "address": "Brugge",
+        "region": "westVlaanderen",
+        "description": "Hoevewinkel met lokale en biologische producten."
+      },
+      "akkerEnAmbacht": {
+        "name": "Akker en Ambacht",
+        "type": "Biowinkel",
+        "address": "Gent",
+        "region": "oostVlaanderen",
+        "description": "Biologische winkel met aandacht voor herkomst en ambacht."
+      }
+    },
+    "cta": {
+      "title": "Wil je Café RICO verkopen?",
+      "description": "Ben je geïnteresseerd om onze koffie aan te bieden in jouw winkel of horecazaak? Neem contact met ons op.",
+      "button": "Neem contact op"
     }
   }
 }

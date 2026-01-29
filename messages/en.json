@@ -471,7 +471,10 @@
       "eyebrow": "Recent articles",
       "title": "Explore the Caférico story",
       "description": "From roasting techniques to origin journeys — stories from our atelier.",
-      "readMore": "Read more"
+      "readMore": "Read more",
+      "readTime": "min read",
+      "paginationLabel": "Pagination",
+      "nextPage": "Next"
     },
     "breadcrumbs": {
       "label": "Breadcrumb",
@@ -497,7 +500,8 @@
       "about": "About",
       "blog": "Blog",
       "contact": "Contact",
-      "faq": "FAQ"
+      "faq": "FAQ",
+      "locations": "Locations"
     },
     "languages": {
       "nl": "Nederlands",
@@ -835,6 +839,98 @@
       "description": "Start with a small plan and evolve it as your routine grows.",
       "button": "Start a subscription",
       "note": "No fixed term, cancel anytime."
+    }
+  },
+  "Locations": {
+    "hero": {
+      "eyebrow": "Locations",
+      "title": "Where to find Café RICO?",
+      "description": "Discover our coffee at selected retail locations across Belgium."
+    },
+    "filter": {
+      "label": "Filter by region",
+      "all": "All regions",
+      "oostVlaanderen": "East Flanders",
+      "antwerpen": "Antwerp",
+      "westVlaanderen": "West Flanders",
+      "vlaamsBrabant": "Flemish Brabant"
+    },
+    "locations": {
+      "cafeRico": {
+        "name": "Café RICO",
+        "type": "Headquarters & Atelier",
+        "address": "Beekstraat 138, 9420 Mere",
+        "region": "oostVlaanderen",
+        "description": "Our atelier where we taste, roast and pack. Visits by appointment."
+      },
+      "ricoLab": {
+        "name": "RICO lab",
+        "type": "Coffee bar",
+        "address": "Cogelsplein 26, 2100 Antwerp",
+        "region": "antwerpen",
+        "description": "Our coffee bar in the heart of Antwerp. Taste all our roasts."
+      },
+      "ohneGent": {
+        "name": "OHNE Ghent",
+        "type": "Organic shop",
+        "address": "Ghent",
+        "region": "oostVlaanderen",
+        "description": "Package-free shop with our full range."
+      },
+      "ohneZwalm": {
+        "name": "OHNE Zwalm",
+        "type": "Organic shop",
+        "address": "Zwalm",
+        "region": "oostVlaanderen",
+        "description": "Package-free shop with organic coffee."
+      },
+      "ohneNevele": {
+        "name": "OHNE Nevele",
+        "type": "Organic shop",
+        "address": "Nevele",
+        "region": "oostVlaanderen",
+        "description": "Package-free shop with sustainable products."
+      },
+      "ohneTernat": {
+        "name": "OHNE Ternat",
+        "type": "Organic shop",
+        "address": "Ternat",
+        "region": "vlaamsBrabant",
+        "description": "Package-free shop with our coffee range."
+      },
+      "ohneMerelbeke": {
+        "name": "OHNE Merelbeke",
+        "type": "Organic shop",
+        "address": "Merelbeke",
+        "region": "oostVlaanderen",
+        "description": "Package-free shop with organic coffee."
+      },
+      "bakkerijFrancois": {
+        "name": "Bakkerij François",
+        "type": "Bakery",
+        "address": "Erpe-Mere",
+        "region": "oostVlaanderen",
+        "description": "Artisan bakery stocking our coffee."
+      },
+      "boerBas": {
+        "name": "Boer Bas",
+        "type": "Farm shop",
+        "address": "Bruges",
+        "region": "westVlaanderen",
+        "description": "Farm shop with local and organic products."
+      },
+      "akkerEnAmbacht": {
+        "name": "Akker en Ambacht",
+        "type": "Organic shop",
+        "address": "Ghent",
+        "region": "oostVlaanderen",
+        "description": "Organic shop focusing on provenance and craft."
+      }
+    },
+    "cta": {
+      "title": "Want to sell Café RICO?",
+      "description": "Interested in offering our coffee in your shop or restaurant? Get in touch.",
+      "button": "Contact us"
     }
   }
 }

@@ -471,7 +471,10 @@
       "eyebrow": "Artículos recientes",
       "title": "Explora la historia Caférico",
       "description": "De técnicas de tueste a viajes de origen — relatos desde nuestro atelier.",
-      "readMore": "Leer más"
+      "readMore": "Leer más",
+      "readTime": "min de lectura",
+      "paginationLabel": "Paginación",
+      "nextPage": "Siguiente"
     },
     "breadcrumbs": {
       "label": "Migas de pan",
@@ -497,7 +500,8 @@
       "about": "Sobre nosotros",
       "blog": "Blog",
       "contact": "Contacto",
-      "faq": "FAQ"
+      "faq": "FAQ",
+      "locations": "Puntos de venta"
     },
     "languages": {
       "nl": "Nederlands",
@@ -835,6 +839,98 @@
       "description": "Empieza con un plan pequeño y ajústalo cuando lo necesites.",
       "button": "Iniciar suscripción",
       "note": "Sin permanencia, cancela cuando quieras."
+    }
+  },
+  "Locations": {
+    "hero": {
+      "eyebrow": "Puntos de venta",
+      "title": "¿Dónde encontrar Café RICO?",
+      "description": "Descubre nuestro café en puntos de venta seleccionados en toda Bélgica."
+    },
+    "filter": {
+      "label": "Filtrar por región",
+      "all": "Todas las regiones",
+      "oostVlaanderen": "Flandes Oriental",
+      "antwerpen": "Amberes",
+      "westVlaanderen": "Flandes Occidental",
+      "vlaamsBrabant": "Brabante Flamenco"
+    },
+    "locations": {
+      "cafeRico": {
+        "name": "Café RICO",
+        "type": "Sede y Atelier",
+        "address": "Beekstraat 138, 9420 Mere",
+        "region": "oostVlaanderen",
+        "description": "Nuestro atelier donde probamos, tostamos y empacamos. Visitas con cita previa."
+      },
+      "ricoLab": {
+        "name": "RICO lab",
+        "type": "Cafetería",
+        "address": "Cogelsplein 26, 2100 Amberes",
+        "region": "antwerpen",
+        "description": "Nuestra cafetería en el corazón de Amberes. Prueba todos nuestros tostados."
+      },
+      "ohneGent": {
+        "name": "OHNE Gante",
+        "type": "Tienda ecológica",
+        "address": "Gante",
+        "region": "oostVlaanderen",
+        "description": "Tienda sin embalaje con toda nuestra gama."
+      },
+      "ohneZwalm": {
+        "name": "OHNE Zwalm",
+        "type": "Tienda ecológica",
+        "address": "Zwalm",
+        "region": "oostVlaanderen",
+        "description": "Tienda sin embalaje con café ecológico."
+      },
+      "ohneNevele": {
+        "name": "OHNE Nevele",
+        "type": "Tienda ecológica",
+        "address": "Nevele",
+        "region": "oostVlaanderen",
+        "description": "Tienda sin embalaje con productos sostenibles."
+      },
+      "ohneTernat": {
+        "name": "OHNE Ternat",
+        "type": "Tienda ecológica",
+        "address": "Ternat",
+        "region": "vlaamsBrabant",
+        "description": "Tienda sin embalaje con nuestra gama de café."
+      },
+      "ohneMerelbeke": {
+        "name": "OHNE Merelbeke",
+        "type": "Tienda ecológica",
+        "address": "Merelbeke",
+        "region": "oostVlaanderen",
+        "description": "Tienda sin embalaje con café ecológico."
+      },
+      "bakkerijFrancois": {
+        "name": "Bakkerij François",
+        "type": "Panadería",
+        "address": "Erpe-Mere",
+        "region": "oostVlaanderen",
+        "description": "Panadería artesanal que ofrece nuestro café."
+      },
+      "boerBas": {
+        "name": "Boer Bas",
+        "type": "Tienda de granja",
+        "address": "Brujas",
+        "region": "westVlaanderen",
+        "description": "Tienda de granja con productos locales y ecológicos."
+      },
+      "akkerEnAmbacht": {
+        "name": "Akker en Ambacht",
+        "type": "Tienda ecológica",
+        "address": "Gante",
+        "region": "oostVlaanderen",
+        "description": "Tienda ecológica enfocada en origen y artesanía."
+      }
+    },
+    "cta": {
+      "title": "¿Quieres vender Café RICO?",
+      "description": "¿Interesado en ofrecer nuestro café en tu tienda o restaurante? Contáctanos.",
+      "button": "Contáctanos"
     }
   }
 }

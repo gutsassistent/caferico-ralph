@@ -7,4 +7,5 @@ export type BlogPost = {
   excerpt: string;
   tags: string[];
   content: string[];
+  readTime: number;
 };

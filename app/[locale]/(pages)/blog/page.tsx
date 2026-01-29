@@ -89,7 +89,7 @@ export default async function BlogPage() {
                     <p className="text-[11px] uppercase tracking-[0.3em] text-cream/50">
                       {dateFormatter.format(new Date(post.date))}
                       <span className="mx-2 text-cream/30">&middot;</span>
-                      {post.author}
+                      {post.readTime} {t('listing.readTime')}
                     </p>
                     <h3 className="mt-3 font-serif text-lg leading-snug text-cream transition-colors duration-300 group-hover:text-gold">
                       {post.title}
@@ -104,6 +104,25 @@ export default async function BlogPage() {
               </Reveal>
             ))}
           </div>
+
+          {/* Mock Pagination */}
+          <Reveal>
+            <nav aria-label={t('listing.paginationLabel')} className="flex items-center justify-center gap-2 pt-4">
+              <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-gold/50 bg-gold/10 text-sm font-medium text-gold">
+                1
+              </span>
+              <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-cream/10 text-sm text-cream/40 cursor-not-allowed">
+                2
+              </span>
+              <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-cream/10 text-sm text-cream/40 cursor-not-allowed">
+                3
+              </span>
+              <span className="ml-2 flex h-10 items-center justify-center rounded-lg border border-cream/10 px-4 text-sm text-cream/40 cursor-not-allowed">
+                {t('listing.nextPage')}
+                <span aria-hidden="true" className="ml-1">&rarr;</span>
+              </span>
+            </nav>
+          </Reveal>
         </Container>
       </section>
     </main>

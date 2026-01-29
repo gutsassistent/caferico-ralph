@@ -7,6 +7,7 @@
     "author": "Amelie De Wilde",
     "excerpt": "Onze brandmeester vertelt waarom tijd het geheime ingrediënt is.",
     "tags": ["roasting", "craft"],
+    "readTime": 4,
     "content": [
       "Langzaam branden geeft de suikers de tijd om volledig te karamelliseren. Het geduld dat we in elke batch stoppen, vertaalt zich naar een zachte body en een smaak die lang blijft hangen.",
       "Bij Caférico werken we met een specifiek brandprofiel dat we gedurende acht jaar hebben verfijnd. We monitoren de temperatuurcurve per seconde, waardoor elke batch de perfecte balans vindt tussen zoetheid en complexiteit.",
@@ -21,6 +22,7 @@
     "author": "Noor Van Hove",
     "excerpt": "Een reis naar de heuvels van Rwanda waar onze Golden Dawn ontstaat.",
     "tags": ["origin", "travel"],
+    "readTime": 5,
     "content": [
       "De heuvels van Rwanda zijn gehuld in nevel als we aankomen bij de coöperatie die onze Golden Dawn produceert. De lucht is fris en het licht heeft een gouden gloed die je nergens anders vindt.",
       "Onze partners oogsten met de hand en drogen de bonen op verhoogde bedden. Dit zorgvuldige proces geeft de koffie haar kenmerkende helderheid en fruittonen.",
@@ -35,6 +37,7 @@
     "author": "Lars Peeters",
     "excerpt": "Drie simpele stappen om elke ochtend opnieuw te genieten.",
     "tags": ["brew", "ritual"],
+    "readTime": 3,
     "content": [
       "Een goed koffieritueel begint voor je de waterkoker aanzet. Het begint met een moment van stilte, de geur van vers gemalen bonen en de anticipatie van die eerste slok.",
       "Gebruik vers gefilterd water op 93°C en maal pas net voor het zetten. De verhouding van 60 gram koffie per liter water is een goed startpunt, maar pas aan naar jouw smaak.",
@@ -49,6 +52,7 @@
     "author": "Elise Van Doren",
     "excerpt": "Hoe België stilletjes een koffierevolutie doormaakt.",
     "tags": ["culture", "belgium"],
+    "readTime": 4,
     "content": [
       "België staat bekend om chocolade, bier en wafels — maar een nieuwe generatie ambachtelijke branderijen verandert het koffieliefhebbers-landschap voorgoed.",
       "Van Antwerpen tot Brussel openen micro-branderijen die kwaliteit, transparantie en directe relaties met telers centraal stellen. Het is een beweging die eerlijkheid en smaak verkiest boven volume.",
@@ -63,6 +67,7 @@
     "author": "Noah Vermeulen",
     "excerpt": "Waarom waterkwaliteit 98% van je koffiesmaak bepaalt.",
     "tags": ["brew", "science"],
+    "readTime": 5,
     "content": [
       "Koffie bestaat voor 98% uit water. Toch besteden de meeste koffiedrinkers er nauwelijks aandacht aan. De mineraalsamenstelling van je water beïnvloedt direct hoe smaken worden geëxtraheerd uit de gemalen bonen.",
       "Te hard water dempt de fijnere tonen, terwijl te zacht water een vlakke en scherpe kop oplevert. Het ideale water heeft een TDS (Total Dissolved Solids) tussen 75 en 150 ppm.",

@@ -471,7 +471,10 @@
       "eyebrow": "Articles récents",
       "title": "Explorez l'univers Caférico",
       "description": "Des techniques de torréfaction aux voyages d'origine — récits de notre atelier.",
-      "readMore": "Lire la suite"
+      "readMore": "Lire la suite",
+      "readTime": "min de lecture",
+      "paginationLabel": "Pagination",
+      "nextPage": "Suivant"
     },
     "breadcrumbs": {
       "label": "Fil d'Ariane",
@@ -497,7 +500,8 @@
       "about": "À propos",
       "blog": "Blog",
       "contact": "Contact",
-      "faq": "FAQ"
+      "faq": "FAQ",
+      "locations": "Points de vente"
     },
     "languages": {
       "nl": "Nederlands",
@@ -835,6 +839,98 @@
       "description": "Démarrez doucement et ajustez au fil de vos habitudes.",
       "button": "Commencer l'abonnement",
       "note": "Aucun engagement, annulation possible."
+    }
+  },
+  "Locations": {
+    "hero": {
+      "eyebrow": "Points de vente",
+      "title": "Où trouver Café RICO ?",
+      "description": "Découvrez notre café dans des points de vente sélectionnés en Belgique."
+    },
+    "filter": {
+      "label": "Filtrer par région",
+      "all": "Toutes les régions",
+      "oostVlaanderen": "Flandre-Orientale",
+      "antwerpen": "Anvers",
+      "westVlaanderen": "Flandre-Occidentale",
+      "vlaamsBrabant": "Brabant flamand"
+    },
+    "locations": {
+      "cafeRico": {
+        "name": "Café RICO",
+        "type": "Siège & Atelier",
+        "address": "Beekstraat 138, 9420 Mere",
+        "region": "oostVlaanderen",
+        "description": "Notre atelier de dégustation, torréfaction et emballage. Visites sur rendez-vous."
+      },
+      "ricoLab": {
+        "name": "RICO lab",
+        "type": "Bar à café",
+        "address": "Cogelsplein 26, 2100 Anvers",
+        "region": "antwerpen",
+        "description": "Notre bar à café au cœur d'Anvers. Goûtez toutes nos torréfactions."
+      },
+      "ohneGent": {
+        "name": "OHNE Gand",
+        "type": "Magasin bio",
+        "address": "Gand",
+        "region": "oostVlaanderen",
+        "description": "Magasin zéro déchet avec notre gamme complète."
+      },
+      "ohneZwalm": {
+        "name": "OHNE Zwalm",
+        "type": "Magasin bio",
+        "address": "Zwalm",
+        "region": "oostVlaanderen",
+        "description": "Magasin zéro déchet avec du café biologique."
+      },
+      "ohneNevele": {
+        "name": "OHNE Nevele",
+        "type": "Magasin bio",
+        "address": "Nevele",
+        "region": "oostVlaanderen",
+        "description": "Magasin zéro déchet avec des produits durables."
+      },
+      "ohneTernat": {
+        "name": "OHNE Ternat",
+        "type": "Magasin bio",
+        "address": "Ternat",
+        "region": "vlaamsBrabant",
+        "description": "Magasin zéro déchet avec notre gamme de café."
+      },
+      "ohneMerelbeke": {
+        "name": "OHNE Merelbeke",
+        "type": "Magasin bio",
+        "address": "Merelbeke",
+        "region": "oostVlaanderen",
+        "description": "Magasin zéro déchet avec du café biologique."
+      },
+      "bakkerijFrancois": {
+        "name": "Bakkerij François",
+        "type": "Boulangerie",
+        "address": "Erpe-Mere",
+        "region": "oostVlaanderen",
+        "description": "Boulangerie artisanale proposant notre café."
+      },
+      "boerBas": {
+        "name": "Boer Bas",
+        "type": "Ferme",
+        "address": "Bruges",
+        "region": "westVlaanderen",
+        "description": "Magasin de ferme avec des produits locaux et biologiques."
+      },
+      "akkerEnAmbacht": {
+        "name": "Akker en Ambacht",
+        "type": "Magasin bio",
+        "address": "Gand",
+        "region": "oostVlaanderen",
+        "description": "Magasin biologique axé sur la provenance et l'artisanat."
+      }
+    },
+    "cta": {
+      "title": "Envie de vendre Café RICO ?",
+      "description": "Intéressé par notre café dans votre boutique ou restaurant ? Contactez-nous.",
+      "button": "Nous contacter"
     }
   }
 }

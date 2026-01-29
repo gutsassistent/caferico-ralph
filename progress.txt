@@ -290,3 +290,27 @@ Remaining: 42
 - Total FAQ items: 14 (5 coffee + 3 orders + 3 subscriptions + 3 shipping)
 - Fixed trailing comma JSON errors after removing items
 - typecheck ✅ build ✅
+
+### RD-024: Verkooppunten Pagina - NIEUWE Pagina ✅
+- Created new page at app/[locale]/(pages)/verkooppunten/page.tsx
+- Hero section with ParallaxOrb decorations, same style as FAQ page
+- Created LocationsGrid client component with region filter (pill buttons: all, Oost-Vlaanderen, Antwerpen, West-Vlaanderen, Vlaams-Brabant)
+- 10 locations from CONTEXT.md: Café RICO (Mere), RICO lab (Antwerpen), 5x OHNE winkels (Gent, Zwalm, Nevele, Ternat, Merelbeke), Bakkerij François, Boer Bas, Akker en Ambacht
+- Card design: type icon (building/coffee cup/map pin), type badge, name, address with pin icon, description
+- Hover effects: lift up (-translate-y-1), gold border, shadow
+- Grid: 1 col mobile, 2 col tablet (sm:grid-cols-2), 3 col desktop (lg:grid-cols-3)
+- Staggered Reveal animation per card (delay={index * 80})
+- CTA section at bottom: "Wil je Café RICO verkopen?" with link to /contact
+- Added `locations` nav key to Layout.nav in all 4 languages
+- Added verkooppunten to lib/navigation.ts navItems and footer info links
+- Added full `Locations.*` i18n section in all 4 languages (NL, EN, FR, ES)
+- typecheck ✅ build ✅
+
+### RD-025: Blog Pagina - Grid & Card Redesign ✅
+- Blog page already had: hero, grid (sm:grid-cols-2, lg:grid-cols-3), premium card design with hover effects, tags, date, author, read more CTA
+- Added `readTime` field to BlogPost type and all 5 blog posts in blog-posts.json (3-5 min values)
+- Cards now show read time next to date: "10 november 2025 · 4 min leestijd"
+- Added mock pagination below grid: page 1 active (gold highlight), pages 2-3 and "Volgende" disabled (cursor-not-allowed)
+- Pagination uses `<nav>` with aria-label for accessibility
+- Added `listing.readTime`, `listing.paginationLabel`, `listing.nextPage` i18n keys in all 4 languages
+- typecheck ✅ build ✅
