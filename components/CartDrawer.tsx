@@ -55,7 +55,7 @@ export default function CartDrawer() {
         role="dialog"
         aria-modal="true"
         aria-label={t('title')}
-        className={`absolute right-0 top-0 flex h-full w-full max-w-md flex-col border-l border-cream/10 bg-[#120907] shadow-[0_30px_80px_rgba(0,0,0,0.55)] transition-transform duration-300 ${
+        className={`absolute right-0 top-0 flex h-full w-full max-w-md flex-col border-l border-cream/10 bg-surface-darkest shadow-[0_30px_80px_rgba(0,0,0,0.55)] transition-transform duration-300 ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -68,7 +68,7 @@ export default function CartDrawer() {
           <button
             type="button"
             onClick={closeCart}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-cream/15 text-cream/70 transition hover:border-gold/60 hover:text-gold"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-cream/15 text-cream/70 transition hover:border-gold/60 hover:text-gold"
           >
             <span className="sr-only">{t('close')}</span>
             <svg
@@ -87,7 +87,7 @@ export default function CartDrawer() {
 
         <div className="flex-1 space-y-6 overflow-y-auto px-6 py-6">
           {!hasItems ? (
-            <div className="rounded-3xl border border-cream/10 bg-[#140b08] p-6 text-center shadow-[0_25px_60px_rgba(0,0,0,0.35)]">
+            <div className="rounded-3xl border border-cream/10 bg-surface-darker p-6 text-center shadow-[0_25px_60px_rgba(0,0,0,0.35)]">
               <div className="mx-auto mb-5 h-16 w-16 rounded-full border border-gold/40 bg-noir/70 text-gold" />
               <p className="text-xs uppercase tracking-[0.3em] text-gold/70">{t('emptyEyebrow')}</p>
               <h3 className="mt-2 font-serif text-xl text-cream">{t('emptyTitle')}</h3>
@@ -107,14 +107,14 @@ export default function CartDrawer() {
                 className="border-b border-cream/10 pb-6 last:border-b-0 last:pb-0"
               >
                 <div className="flex gap-4">
-                  <div className="relative h-24 w-20 overflow-hidden rounded-2xl border border-cream/10 bg-gradient-to-br from-espresso via-[#1d120d] to-noir">
+                  <div className="relative h-24 w-20 overflow-hidden rounded-2xl border border-cream/10 bg-gradient-to-br from-espresso via-surface-mid to-noir">
                     <div className="absolute inset-0 bg-coffee-grain opacity-40" />
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,165,116,0.25),_transparent_60%)]" />
                   </div>
                   <div className="flex-1 space-y-3">
                     <div className="flex items-start justify-between gap-3">
                       <div>
-                        <p className="text-[10px] uppercase tracking-[0.3em] text-gold/70">
+                        <p className="text-xs uppercase tracking-[0.3em] text-gold/70">
                           {shopT(`collections.${item.collection}`)}
                         </p>
                         <Link
@@ -130,7 +130,7 @@ export default function CartDrawer() {
                         onClick={() =>
                           removeItem({ id: item.id, grind: item.grind, weight: item.weight })
                         }
-                        className="text-xs uppercase tracking-[0.3em] text-cream/40 transition hover:text-gold"
+                        className="text-xs uppercase tracking-[0.3em] text-cream/60 transition hover:text-gold"
                       >
                         {t('remove')}
                       </button>
@@ -158,7 +158,7 @@ export default function CartDrawer() {
                             )
                           }
                           aria-label={t('quantityDecrease')}
-                          className="px-3 py-1 text-sm text-cream/70 transition hover:text-cream"
+                          className="px-3 py-2 text-sm text-cream/70 transition hover:text-cream"
                         >
                           −
                         </button>
@@ -174,7 +174,7 @@ export default function CartDrawer() {
                             )
                           }
                           aria-label={t('quantityIncrease')}
-                          className="px-3 py-1 text-sm text-cream/70 transition hover:text-cream"
+                          className="px-3 py-2 text-sm text-cream/70 transition hover:text-cream"
                         >
                           +
                         </button>
@@ -201,7 +201,7 @@ export default function CartDrawer() {
                 <span>{t('totalLabel')}</span>
                 <span>{priceFormatter.format(subtotal)}</span>
               </div>
-              <p className="text-xs text-cream/40">{t('shippingNote')}</p>
+              <p className="text-xs text-cream/60">{t('shippingNote')}</p>
               <button
                 type="button"
                 className="w-full rounded-full border border-gold/70 px-5 py-3 text-xs uppercase tracking-[0.3em] text-gold transition hover:bg-gold hover:text-noir"
@@ -210,7 +210,7 @@ export default function CartDrawer() {
               </button>
             </div>
           ) : (
-            <p className="text-center text-xs uppercase tracking-[0.3em] text-cream/40">
+            <p className="text-center text-xs uppercase tracking-[0.3em] text-cream/60">
               {t('emptyFooter')}
             </p>
           )}

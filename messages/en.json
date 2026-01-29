@@ -499,6 +499,7 @@
   },
   "Layout": {
     "logo": "Caférico",
+    "logoAlt": "Café RICO logo",
     "nav": {
       "shop": "Shop",
       "subscriptions": "Subscriptions",
@@ -554,9 +555,16 @@
   },
   "NotFound": {
     "eyebrow": "Page not found",
-    "title": "This cup hasn't been brewed yet",
-    "description": "The page you're looking for doesn't exist or has been moved. Head back to explore the Caférico atelier.",
-    "cta": "Back to home"
+    "title": "This coffee is nowhere to be found",
+    "description": "The page you're looking for doesn't exist or has been moved. But don't worry — there's plenty more to explore.",
+    "cta": "Go Home",
+    "ctaShop": "Shop Coffee",
+    "searchPlaceholder": "Search the site...",
+    "popularTitle": "Popular pages",
+    "popularShop": "Our Coffee",
+    "popularSubscriptions": "Subscriptions",
+    "popularAbout": "Our Story",
+    "popularFaq": "FAQ"
   },
   "Cart": {
     "eyebrow": "Shopping bag",

@@ -63,17 +63,17 @@ function AccordionItem({ item, categoryLabel, isOpen, onToggle, index }: Accordi
 
   return (
     <Reveal delay={index * 80}>
-      <div className="rounded-2xl border border-cream/10 bg-[#140b08] shadow-[0_18px_50px_rgba(0,0,0,0.35)]">
+      <div className="rounded-2xl border border-cream/10 bg-surface-darker shadow-[0_18px_50px_rgba(0,0,0,0.35)]">
         <button
           type="button"
-          className="flex w-full items-start justify-between gap-6 px-6 py-5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#140b08]"
+          className="flex w-full items-start justify-between gap-6 px-6 py-5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-darker"
           aria-expanded={isOpen}
           aria-controls={contentId}
           id={labelId}
           onClick={onToggle}
         >
           <div className="space-y-2">
-            <span className="text-[10px] uppercase tracking-[0.3em] text-cream/50">
+            <span className="text-xs uppercase tracking-[0.3em] text-cream/60">
               {categoryLabel}
             </span>
             <h3 className="font-serif text-lg text-cream">{item.question}</h3>
@@ -171,15 +171,15 @@ export default function FaqExplorer() {
                 value={search}
                 onChange={(event) => setSearch(event.target.value)}
                 placeholder={t('search.placeholder')}
-                className="w-full rounded-full border border-cream/20 bg-transparent px-4 py-2 text-sm text-cream placeholder:text-cream/40 focus:border-gold/70 focus:outline-none"
+                className="w-full rounded-full border border-cream/20 bg-transparent px-4 py-3 text-sm text-cream placeholder:text-cream/50 focus:border-gold/70 focus:outline-none"
               />
             </div>
-            <p className="mt-3 text-xs text-cream/50">{t('search.hint')}</p>
+            <p className="mt-3 text-xs text-cream/60">{t('search.hint')}</p>
           </div>
         </Reveal>
 
         <Reveal delay={120}>
-          <div className="rounded-3xl border border-cream/10 bg-[#140b08] p-6">
+          <div className="rounded-3xl border border-cream/10 bg-surface-darker p-6">
             <p className="text-xs uppercase tracking-[0.3em] text-gold/70">
               {t('categories.label')}
             </p>
@@ -251,7 +251,7 @@ export default function FaqExplorer() {
         </div>
 
         {filteredItems.length === 0 ? (
-          <div className="rounded-3xl border border-cream/10 bg-[#140b08] p-10 text-center">
+          <div className="rounded-3xl border border-cream/10 bg-surface-darker p-10 text-center">
             <p className="text-xs uppercase tracking-[0.3em] text-gold/70">{t('empty.title')}</p>
             <p className="mt-3 text-sm text-cream/70">{t('empty.description')}</p>
             <button

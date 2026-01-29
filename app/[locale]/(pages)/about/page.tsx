@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Container from '@/components/Container';
 import Reveal from '@/components/Reveal';
 import { generatePageMetadata } from '@/lib/seo';
+import { breadcrumbSchema, jsonLd } from '@/lib/structured-data';
 
 type AboutPageProps = {
   params: Promise<{ locale: string }>;
@@ -101,11 +102,21 @@ const processIcons: Record<string, React.ReactNode> = {
   ),
 };
 
-export default async function AboutPage() {
+export default async function AboutPage({ params }: AboutPageProps) {
+  const { locale } = await params;
   const t = await getTranslations('About');
+
+  const aboutBreadcrumb = breadcrumbSchema([
+    { name: 'Home', url: `https://caferico.be/${locale}` },
+    { name: 'About', url: `https://caferico.be/${locale}/about` },
+  ]);
 
   return (
     <main className="min-h-screen bg-noir text-cream">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(aboutBreadcrumb) }}
+      />
       {/* Hero with Honduras background image */}
       <section className="relative isolate overflow-hidden">
         <Image
@@ -176,7 +187,7 @@ export default async function AboutPage() {
               </p>
               <h2 className="font-serif text-3xl sm:text-4xl">{t('pillars.title')}</h2>
             </div>
-            <div className="grid gap-6 sm:grid-cols-2">
+            <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:gap-8">
               {pillarKeys.map((key, index) => (
                 <Reveal key={key} delay={index * 120}>
                   <div className="flex h-full flex-col rounded-2xl border border-cream/10 bg-noir/80 p-8">
@@ -207,10 +218,10 @@ export default async function AboutPage() {
               </p>
               <h2 className="font-serif text-3xl sm:text-4xl">{t('farmers.title')}</h2>
             </div>
-            <div className="grid gap-8 sm:grid-cols-2">
+            <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:gap-8">
               {farmerKeys.map((key, index) => (
                 <Reveal key={key} delay={index * 150}>
-                  <div className="flex h-full flex-col rounded-2xl border border-cream/10 bg-[#140b08] p-8">
+                  <div className="flex h-full flex-col rounded-2xl border border-cream/10 bg-surface-darker p-8">
                     {/* Avatar */}
                     <div className="flex items-center gap-4">
                       {key === 'tom' ? (
@@ -337,10 +348,10 @@ export default async function AboutPage() {
             </div>
 
             {/* Certifications */}
-            <div className="grid gap-6 sm:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-3 sm:gap-6 lg:gap-8">
               {certKeys.map((key, index) => (
                 <Reveal key={key} delay={index * 120}>
-                  <div className="flex h-full flex-col items-center rounded-2xl border border-cream/10 bg-[#140b08] p-8 text-center">
+                  <div className="flex h-full flex-col items-center rounded-2xl border border-cream/10 bg-surface-darker p-8 text-center">
                     <div className="flex h-14 w-14 items-center justify-center rounded-full bg-green-900/30 text-green-400">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-7 w-7">
                         <path d="M9 12l2 2 4-4" />
@@ -359,7 +370,7 @@ export default async function AboutPage() {
             </div>
 
             {/* Scores + Impact metrics */}
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 lg:gap-8">
               {scoreKeys.map((key, index) => (
                 <Reveal key={key} delay={index * 100}>
                   <div className="flex h-full flex-col items-center rounded-2xl border border-gold/20 bg-gold/5 p-8 text-center">
@@ -377,7 +388,7 @@ export default async function AboutPage() {
               ))}
               {impactKeys.map((key, index) => (
                 <Reveal key={key} delay={(index + 2) * 100}>
-                  <div className="flex h-full flex-col items-center rounded-2xl border border-cream/10 bg-[#140b08] p-8 text-center">
+                  <div className="flex h-full flex-col items-center rounded-2xl border border-cream/10 bg-surface-darker p-8 text-center">
                     <span className="font-serif text-5xl text-gold">
                       {t(`certifications.impact.${key}.value`)}
                     </span>
@@ -399,7 +410,7 @@ export default async function AboutPage() {
       <Reveal>
         <section className="py-16 sm:py-24">
           <Container>
-            <div className="grid gap-6 sm:grid-cols-2">
+            <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:gap-8">
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
                 <Image
                   src="https://www.caferico.be/wp-content/uploads/2018/05/marcala-landschap.png"

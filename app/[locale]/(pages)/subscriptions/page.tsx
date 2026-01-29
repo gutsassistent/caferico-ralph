@@ -7,6 +7,7 @@ import Reveal from '@/components/Reveal';
 import SubscriptionTierCard from '@/components/SubscriptionTierCard';
 import SubscriptionFaq from '@/components/SubscriptionFaq';
 import { generatePageMetadata } from '@/lib/seo';
+import { breadcrumbSchema, jsonLd } from '@/lib/structured-data';
 
 type SubscriptionsPageProps = {
   params: Promise<{ locale: string }>;
@@ -65,8 +66,17 @@ export default async function SubscriptionsPage({ params }: SubscriptionsPagePro
     maximumFractionDigits: 2
   });
 
+  const subsBreadcrumb = breadcrumbSchema([
+    { name: 'Home', url: `https://caferico.be/${locale}` },
+    { name: 'Subscriptions', url: `https://caferico.be/${locale}/subscriptions` },
+  ]);
+
   return (
     <main className="min-h-screen bg-noir text-cream">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(subsBreadcrumb) }}
+      />
       <section className="relative isolate overflow-hidden border-b border-cream/10">
         <Image
           src="https://www.caferico.be/wp-content/uploads/2025/05/DSCF0031-scaled.jpg"
@@ -102,14 +112,14 @@ export default async function SubscriptionsPage({ params }: SubscriptionsPagePro
                 {t('hero.secondaryCta')}
               </Link>
             </div>
-            <div className="inline-flex items-center gap-3 rounded-full border border-cream/10 bg-noir/70 px-4 py-2 text-[10px] uppercase tracking-[0.4em] text-cream/60">
+            <div className="inline-flex items-center gap-3 rounded-full border border-cream/10 bg-noir/70 px-4 py-2 text-xs uppercase tracking-[0.4em] text-cream/60">
               <span className="h-2 w-2 rounded-full bg-gold/80" aria-hidden="true" />
               {t('hero.badge')}
             </div>
           </div>
 
           <div className="relative">
-            <div className="relative overflow-hidden rounded-[2.5rem] border border-cream/10 bg-gradient-to-br from-espresso via-[#1c120d] to-noir p-8 shadow-[0_40px_80px_rgba(0,0,0,0.6)]">
+            <div className="relative overflow-hidden rounded-[2.5rem] border border-cream/10 bg-gradient-to-br from-espresso via-surface-mid to-noir p-8 shadow-[0_40px_80px_rgba(0,0,0,0.6)]">
               <div className="pointer-events-none absolute inset-0 bg-coffee-grain opacity-40" />
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,165,116,0.25),_transparent_60%)]" />
               <div className="relative flex flex-col items-center space-y-4">
@@ -137,7 +147,7 @@ export default async function SubscriptionsPage({ params }: SubscriptionsPagePro
       </section>
 
       <Reveal>
-        <section id="tiers" className="py-20">
+        <section id="tiers" className="py-16 sm:py-24">
           <Container className="space-y-16">
             <div className="max-w-2xl space-y-3">
               <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
@@ -163,7 +173,7 @@ export default async function SubscriptionsPage({ params }: SubscriptionsPagePro
                   </div>
                 </div>
 
-                <div className="grid gap-6 lg:grid-cols-3">
+                <div className="grid gap-4 sm:gap-6 lg:grid-cols-3 lg:gap-8">
                   {group.tiers.map((tier, index) => (
                     <SubscriptionTierCard
                       key={tier.key}
@@ -181,7 +191,7 @@ export default async function SubscriptionsPage({ params }: SubscriptionsPagePro
       </Reveal>
 
       <Reveal>
-        <section className="relative overflow-hidden border-y border-cream/10 py-20">
+        <section className="relative overflow-hidden border-y border-cream/10 py-16 sm:py-24">
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(60,21,24,0.65),rgba(26,15,10,0.95))]" />
           <div className="pointer-events-none absolute inset-0 bg-coffee-grain opacity-25" />
 
@@ -259,7 +269,7 @@ export default async function SubscriptionsPage({ params }: SubscriptionsPagePro
       </Reveal>
 
       <Reveal>
-        <section id="faq" className="py-20">
+        <section id="faq" className="py-16 sm:py-24">
           <Container>
             <div className="grid gap-16 lg:grid-cols-[1fr_1.2fr] lg:items-start">
               {/* Left: header + benefits */}
@@ -297,7 +307,7 @@ export default async function SubscriptionsPage({ params }: SubscriptionsPagePro
       </Reveal>
 
       <Reveal>
-        <section className="relative overflow-hidden py-20">
+        <section className="relative overflow-hidden py-16 sm:py-24">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,165,116,0.25),_transparent_60%)]" />
           <div className="pointer-events-none absolute inset-0 bg-coffee-grain opacity-25" />
 

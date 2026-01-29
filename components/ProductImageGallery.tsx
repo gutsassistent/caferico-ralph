@@ -67,7 +67,7 @@ export default function ProductImageGallery({
         {/* Main image */}
         <div
           ref={mainRef}
-          className="group relative aspect-[4/5] cursor-zoom-in overflow-hidden rounded-3xl border border-cream/10 bg-gradient-to-br from-espresso via-[#1f130d] to-noir shadow-[0_35px_70px_rgba(0,0,0,0.5)]"
+          className="group relative aspect-[4/5] cursor-zoom-in overflow-hidden rounded-3xl border border-cream/10 bg-gradient-to-br from-espresso via-surface-mid to-noir shadow-[0_35px_70px_rgba(0,0,0,0.5)]"
           onMouseEnter={() => setZoomActive(true)}
           onMouseLeave={() => setZoomActive(false)}
           onMouseMove={handleMouseMove}
@@ -97,7 +97,7 @@ export default function ProductImageGallery({
               }
               sizes="(max-width: 1024px) 100vw, 50vw"
               priority
-              unoptimized
+
             />
           ) : (
             <>
@@ -107,7 +107,7 @@ export default function ProductImageGallery({
           )}
 
           {badge && (
-            <div className="absolute bottom-5 left-5 rounded-full border border-cream/20 bg-noir/70 px-3 py-1 text-[10px] uppercase tracking-[0.3em] text-cream/70">
+            <div className="absolute bottom-5 left-5 rounded-full border border-cream/20 bg-noir/70 px-3 py-1 text-xs uppercase tracking-[0.3em] text-cream/70">
               {badge}
             </div>
           )}
@@ -137,7 +137,7 @@ export default function ProductImageGallery({
                   e.stopPropagation();
                   handlePrev();
                 }}
-                className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-noir/60 p-2 opacity-0 transition-opacity duration-300 hover:bg-noir/80 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-gold/60"
+                className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-noir/60 p-3 opacity-0 transition-opacity duration-300 hover:bg-noir/80 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-gold/60"
                 aria-label="Previous image"
               >
                 <svg
@@ -157,7 +157,7 @@ export default function ProductImageGallery({
                   e.stopPropagation();
                   handleNext();
                 }}
-                className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-noir/60 p-2 opacity-0 transition-opacity duration-300 hover:bg-noir/80 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-gold/60"
+                className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-noir/60 p-3 opacity-0 transition-opacity duration-300 hover:bg-noir/80 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-gold/60"
                 aria-label="Next image"
               >
                 <svg
@@ -198,10 +198,10 @@ export default function ProductImageGallery({
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 25vw, 12vw"
-                    unoptimized
+      
                   />
                 ) : (
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#1c120d] via-[#120907] to-noir">
+                  <div className="absolute inset-0 bg-gradient-to-br from-surface-mid via-surface-darkest to-noir">
                     <div className="absolute inset-0 bg-coffee-grain opacity-40" />
                   </div>
                 )}
@@ -216,7 +216,7 @@ export default function ProductImageGallery({
             {[0, 1, 2].map((i) => (
               <div
                 key={`ph-${i}`}
-                className="relative aspect-square flex-1 overflow-hidden rounded-2xl border border-cream/10 bg-gradient-to-br from-[#1c120d] via-[#120907] to-noir"
+                className="relative aspect-square flex-1 overflow-hidden rounded-2xl border border-cream/10 bg-gradient-to-br from-surface-mid via-surface-darkest to-noir"
               >
                 <div className="absolute inset-0 bg-coffee-grain opacity-40" />
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,165,116,0.2),_transparent_65%)]" />
@@ -305,13 +305,13 @@ export default function ProductImageGallery({
               width={1200}
               height={1500}
               className="max-h-[85vh] w-auto rounded-2xl object-contain"
-              unoptimized
+
             />
           </div>
 
           {/* Lightbox thumbnails */}
           {images.length > 1 && (
-            <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 gap-2">
+            <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 gap-3">
               {images.map((img, index) => (
                 <button
                   key={img.id}
@@ -319,7 +319,7 @@ export default function ProductImageGallery({
                     e.stopPropagation();
                     handleThumbnailClick(index);
                   }}
-                  className={`h-2 w-2 rounded-full transition-all ${
+                  className={`h-3 w-3 rounded-full p-0 transition-all ${
                     index === activeIndex
                       ? 'scale-125 bg-gold'
                       : 'bg-cream/30 hover:bg-cream/50'

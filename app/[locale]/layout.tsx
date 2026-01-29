@@ -10,7 +10,9 @@ import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import PageTransition from '@/components/PageTransition';
 import ScrollToTop from '@/components/ScrollToTop';
+import NavigationProgress from '@/components/NavigationProgress';
 import { ToastProvider } from '@/components/Toast';
+import { organizationSchema, localBusinessSchema, jsonLd } from '@/lib/structured-data';
 import '@/app/globals.css';
 
 const inter = Inter({
@@ -46,16 +48,35 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 
   return (
     <html lang={locale}>
+      <head>
+        <link rel="dns-prefetch" href="https://www.caferico.be" />
+        <link rel="preconnect" href="https://www.caferico.be" crossOrigin="anonymous" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLd(organizationSchema()) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLd(localBusinessSchema()) }}
+        />
+      </head>
       <body className={`${inter.variable} ${playfair.variable} bg-noir text-cream antialiased`}>
         <NextIntlClientProvider messages={messages}>
           <ToastProvider>
             <CartProvider>
+              <a
+                href="#main-content"
+                className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-lg focus:bg-gold focus:px-4 focus:py-2 focus:text-noir focus:font-semibold focus:outline-none"
+              >
+                Skip to main content
+              </a>
+              <NavigationProgress />
               <div className="flex min-h-screen flex-col">
                 <Suspense fallback={null}>
                   <Header />
                 </Suspense>
                 <PageTransition>
-                  <div className="flex-1">{children}</div>
+                  <main id="main-content" className="flex-1">{children}</main>
                 </PageTransition>
                 <Footer />
               </div>

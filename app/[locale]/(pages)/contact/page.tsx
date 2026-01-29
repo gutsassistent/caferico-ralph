@@ -5,17 +5,28 @@ import ContactForm from '@/components/ContactForm';
 import ParallaxOrb from '@/components/ParallaxOrb';
 import Reveal from '@/components/Reveal';
 import { generatePageMetadata } from '@/lib/seo';
+import { breadcrumbSchema, jsonLd } from '@/lib/structured-data';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   return generatePageMetadata({ locale, page: 'contact', path: 'contact' });
 }
 
-export default async function ContactPage() {
+export default async function ContactPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
   const t = await getTranslations('Contact');
+
+  const contactBreadcrumb = breadcrumbSchema([
+    { name: 'Home', url: `https://caferico.be/${locale}` },
+    { name: 'Contact', url: `https://caferico.be/${locale}/contact` },
+  ]);
 
   return (
     <main className="min-h-screen bg-noir text-cream">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(contactBreadcrumb) }}
+      />
       <section className="relative isolate overflow-hidden border-b border-cream/10">
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(26,15,10,0.95),rgba(60,21,24,0.9),rgba(26,15,10,0.98))]" />
         <div className="pointer-events-none absolute inset-0 bg-coffee-grain opacity-35" />
@@ -37,14 +48,14 @@ export default async function ContactPage() {
               {t('hero.title')}
             </h1>
             <p className="text-sm text-cream/70 sm:text-base">{t('hero.description')}</p>
-            <div className="inline-flex items-center gap-3 rounded-full border border-cream/10 bg-noir/70 px-4 py-2 text-[10px] uppercase tracking-[0.4em] text-cream/60">
+            <div className="inline-flex items-center gap-3 rounded-full border border-cream/10 bg-noir/70 px-4 py-2 text-xs uppercase tracking-[0.4em] text-cream/60">
               <span className="h-2 w-2 rounded-full bg-gold/80" aria-hidden="true" />
               {t('hero.badge')}
             </div>
           </div>
 
           <div className="relative">
-            <div className="relative overflow-hidden rounded-[2.5rem] border border-cream/10 bg-[#140b08] p-8 shadow-[0_40px_80px_rgba(0,0,0,0.6)]">
+            <div className="relative overflow-hidden rounded-[2.5rem] border border-cream/10 bg-surface-darker p-8 shadow-[0_40px_80px_rgba(0,0,0,0.6)]">
               <div className="pointer-events-none absolute inset-0 bg-coffee-grain opacity-40" />
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,165,116,0.25),_transparent_60%)]" />
               <div className="relative space-y-6">
@@ -79,7 +90,7 @@ export default async function ContactPage() {
                     </span>
                   </div>
                 </div>
-                <div className="inline-flex items-center rounded-full border border-cream/10 bg-noir/70 px-4 py-2 text-[10px] uppercase tracking-[0.4em] text-cream/60">
+                <div className="inline-flex items-center rounded-full border border-cream/10 bg-noir/70 px-4 py-2 text-xs uppercase tracking-[0.4em] text-cream/60">
                   {t('hero.card.detail')}
                 </div>
               </div>
@@ -88,14 +99,14 @@ export default async function ContactPage() {
         </Container>
       </section>
 
-      <section className="py-20">
+      <section className="py-16 sm:py-24">
         <Container className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
           <Reveal className="h-full">
             <ContactForm />
           </Reveal>
           <div className="space-y-6">
             <Reveal delay={120}>
-              <div className="rounded-3xl border border-cream/10 bg-[#140b08] p-8 shadow-[0_35px_80px_rgba(0,0,0,0.5)]">
+              <div className="rounded-3xl border border-cream/10 bg-surface-darker p-8 shadow-[0_35px_80px_rgba(0,0,0,0.5)]">
                 <p className="text-xs uppercase tracking-[0.3em] text-gold/70">
                   {t('details.eyebrow')}
                 </p>
@@ -168,13 +179,13 @@ export default async function ContactPage() {
             </Reveal>
 
             <Reveal delay={360}>
-              <div className="rounded-3xl border border-cream/10 bg-[#140b08] p-6">
+              <div className="rounded-3xl border border-cream/10 bg-surface-darker p-6">
                 <p className="text-xs uppercase tracking-[0.3em] text-gold/70">
                   {t('map.eyebrow')}
                 </p>
                 <h3 className="mt-3 text-xl font-serif">{t('map.title')}</h3>
                 <p className="mt-2 text-sm text-cream/70">{t('map.description')}</p>
-                <div className="mt-6 overflow-hidden rounded-2xl border border-cream/10 bg-gradient-to-br from-espresso via-[#1c120d] to-noir">
+                <div className="mt-6 overflow-hidden rounded-2xl border border-cream/10 bg-gradient-to-br from-espresso via-surface-mid to-noir">
                   <div className="relative aspect-[4/3]">
                     <div className="absolute inset-0 bg-coffee-grain opacity-40" />
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,165,116,0.25),_transparent_60%)]" />

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
+import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import { Link, usePathname, useRouter } from '@/i18n/routing';
 import { useSearchParams } from 'next/navigation';
@@ -75,7 +76,7 @@ export default function Header() {
       navItems.map((item) => ({
         key: item.key,
         href: item.href,
-        label: t(`nav.${item.key}`),
+        label: t(`nav.${item.key}`)
       })),
     [t]
   );
@@ -84,7 +85,7 @@ export default function Header() {
     () =>
       locales.map((code) => ({
         code,
-        label: t(`languages.${code}`),
+        label: t(`languages.${code}`)
       })),
     [t]
   );
@@ -120,9 +121,17 @@ export default function Header() {
             {/* Logo — left */}
             <Link
               href="/"
-              className="relative z-10 font-serif text-xl tracking-[0.25em] text-cream transition-colors duration-300 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-noir sm:text-2xl"
+              className="relative z-10 transition-opacity duration-300 hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-noir"
+              aria-label={t('logoAlt')}
             >
-              {t('logo')}
+              <Image
+                src="/logo.png"
+                alt={t('logoAlt')}
+                width={48}
+                height={48}
+                className="h-10 w-auto rounded-lg shadow-lg sm:h-12"
+                priority
+              />
             </Link>
 
             {/* Nav — center (desktop) */}
@@ -132,18 +141,14 @@ export default function Header() {
                   key={item.key}
                   href={item.href}
                   className={`group relative py-2 text-xs uppercase tracking-[0.3em] transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-noir ${
-                    isActive(item.href)
-                      ? 'text-gold'
-                      : 'text-cream/70 hover:text-cream'
+                    isActive(item.href) ? 'text-gold' : 'text-cream/70 hover:text-cream'
                   }`}
                 >
                   {item.label}
                   {/* Underline animation */}
                   <span
                     className={`absolute bottom-0 left-0 h-px bg-gold transition-all duration-300 ${
-                      isActive(item.href)
-                        ? 'w-full'
-                        : 'w-0 group-hover:w-full'
+                      isActive(item.href) ? 'w-full' : 'w-0 group-hover:w-full'
                     }`}
                   />
                 </Link>
@@ -160,7 +165,7 @@ export default function Header() {
                     e.stopPropagation();
                     setLangOpen((v) => !v);
                   }}
-                  className="flex items-center gap-1.5 rounded-full border border-cream/20 px-3 py-2 text-xs uppercase tracking-[0.2em] text-cream/80 transition-all duration-300 hover:border-gold/50 hover:text-cream focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60"
+                  className="flex items-center gap-1.5 rounded-full border border-cream/20 px-4 py-2.5 text-xs uppercase tracking-[0.2em] text-cream/80 transition-all duration-300 hover:border-gold/50 hover:text-cream focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60"
                   aria-label={t('actions.language')}
                   aria-expanded={langOpen}
                 >
@@ -205,7 +210,7 @@ export default function Header() {
               <button
                 type="button"
                 onClick={openCart}
-                className="relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-cream/20 text-cream/80 transition-all duration-300 hover:border-gold/50 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60"
+                className="relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-cream/20 text-cream/80 transition-all duration-300 hover:border-gold/50 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60"
                 aria-label={t('actions.cart')}
               >
                 <svg
@@ -220,7 +225,9 @@ export default function Header() {
                   <path d="M9 7a3 3 0 0 1 6 0" strokeLinecap="round" />
                 </svg>
                 {mounted && totalItems > 0 && (
-                  <span className={`absolute -right-1 -top-1 flex h-[18px] w-[18px] items-center justify-center rounded-full bg-gold text-[10px] font-bold text-noir ${cartBounce ? 'animate-cart-bounce' : ''}`}>
+                  <span
+                    className={`absolute -right-1 -top-1 flex h-[18px] w-[18px] items-center justify-center rounded-full bg-gold text-xs font-bold text-noir ${cartBounce ? 'animate-cart-bounce' : ''}`}
+                  >
                     {totalItems}
                   </span>
                 )}
@@ -229,7 +236,7 @@ export default function Header() {
               {/* Account button */}
               <button
                 type="button"
-                className="hidden h-10 w-10 items-center justify-center rounded-full border border-cream/20 text-cream/80 transition-all duration-300 hover:border-gold/50 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 sm:inline-flex"
+                className="hidden h-11 w-11 items-center justify-center rounded-full border border-cream/20 text-cream/80 transition-all duration-300 hover:border-gold/50 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 sm:inline-flex"
                 aria-label={t('actions.account')}
               >
                 <svg
@@ -249,7 +256,7 @@ export default function Header() {
               <button
                 type="button"
                 onClick={() => setMobileOpen((open) => !open)}
-                className="relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-cream/20 text-cream/80 transition-all duration-300 hover:border-gold/50 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 lg:hidden"
+                className="relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-cream/20 text-cream/80 transition-all duration-300 hover:border-gold/50 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 lg:hidden"
                 aria-expanded={mobileOpen}
                 aria-controls="mobile-menu"
                 aria-label={mobileOpen ? t('actions.closeMenu') : t('actions.menu')}
@@ -305,10 +312,16 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setMobileOpen(false)}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-cream/20 text-cream/80 transition-colors duration-200 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-cream/20 text-cream/80 transition-colors duration-200 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60"
               aria-label={t('actions.closeMenu')}
             >
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+              <svg
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="1.5"
+              >
                 <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
               </svg>
             </button>
@@ -328,7 +341,7 @@ export default function Header() {
                 style={{
                   transitionDelay: mobileOpen ? `${i * 50}ms` : '0ms',
                   opacity: mobileOpen ? 1 : 0,
-                  transform: mobileOpen ? 'translateX(0)' : 'translateX(20px)',
+                  transform: mobileOpen ? 'translateX(0)' : 'translateX(20px)'
                 }}
               >
                 {item.label}
@@ -347,7 +360,7 @@ export default function Header() {
                   key={option.code}
                   type="button"
                   onClick={() => handleLocaleChange(option.code)}
-                  className={`rounded-full border px-4 py-2 text-sm transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 ${
+                  className={`rounded-full border px-5 py-2.5 text-sm transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 ${
                     option.code === locale
                       ? 'border-gold/60 bg-gold/10 text-gold'
                       : 'border-cream/20 text-cream/60 hover:border-cream/40 hover:text-cream'

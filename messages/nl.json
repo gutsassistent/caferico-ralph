@@ -499,6 +499,7 @@
   },
   "Layout": {
     "logo": "Caférico",
+    "logoAlt": "Café RICO logo",
     "nav": {
       "shop": "Shop",
       "subscriptions": "Abonnementen",
@@ -554,9 +555,16 @@
   },
   "NotFound": {
     "eyebrow": "Pagina niet gevonden",
-    "title": "Deze kop is nog niet gezet",
-    "description": "De pagina die je zoekt bestaat niet of is verplaatst. Ga terug naar het begin en ontdek het Caférico-atelier.",
-    "cta": "Terug naar home"
+    "title": "Deze koffie is helaas nergens te vinden",
+    "description": "De pagina die je zoekt bestaat niet of is verplaatst. Maar geen zorgen — er is nog genoeg te ontdekken.",
+    "cta": "Naar Home",
+    "ctaShop": "Shop Koffie",
+    "searchPlaceholder": "Zoek op de site...",
+    "popularTitle": "Populaire pagina's",
+    "popularShop": "Onze Koffie",
+    "popularSubscriptions": "Abonnementen",
+    "popularAbout": "Ons Verhaal",
+    "popularFaq": "Veelgestelde Vragen"
   },
   "Cart": {
     "eyebrow": "Winkelmand",

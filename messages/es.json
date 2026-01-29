@@ -499,6 +499,7 @@
   },
   "Layout": {
     "logo": "Caférico",
+    "logoAlt": "Logo de Café RICO",
     "nav": {
       "shop": "Tienda",
       "subscriptions": "Suscripciones",
@@ -554,9 +555,16 @@
   },
   "NotFound": {
     "eyebrow": "Página no encontrada",
-    "title": "Esta taza aún no se ha preparado",
-    "description": "La página que buscas no existe o ha sido movida. Regresa al inicio para explorar el atelier Caférico.",
-    "cta": "Volver al inicio"
+    "title": "Este café no se encuentra por ningún lado",
+    "description": "La página que buscas no existe o ha sido movida. Pero no te preocupes — hay mucho más por descubrir.",
+    "cta": "Ir al Inicio",
+    "ctaShop": "Comprar Café",
+    "searchPlaceholder": "Buscar en el sitio...",
+    "popularTitle": "Páginas populares",
+    "popularShop": "Nuestro Café",
+    "popularSubscriptions": "Suscripciones",
+    "popularAbout": "Nuestra Historia",
+    "popularFaq": "Preguntas Frecuentes"
   },
   "Cart": {
     "eyebrow": "Carrito",

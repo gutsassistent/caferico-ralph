@@ -6,7 +6,7 @@ set -e
 
 # Parse arguments
 TOOL="claude"  # Default to claude for Cafe Rico redesign
-MAX_ITERATIONS=30
+MAX_ITERATIONS=100
 
 while [[ $# -gt 0 ]]; do
   case $1 in
@@ -92,7 +92,7 @@ for i in $(seq 1 $MAX_ITERATIONS); do
     OUTPUT=$(cat "$SCRIPT_DIR/prompt.md" | amp --dangerously-allow-all 2>&1 | tee /dev/stderr) || true
   else
     # Claude Code: use --dangerously-skip-permissions for autonomous operation, --print for output
-    OUTPUT=$(claude --dangerously-skip-permissions --model claude-opus-4-5-20250514 --print < "$SCRIPT_DIR/CLAUDE.md" 2>&1 | tee /dev/stderr) || true
+    OUTPUT=$(claude --dangerously-skip-permissions --model claude-opus-4-5 --print < "$SCRIPT_DIR/CLAUDE.md" 2>&1 | tee /dev/stderr) || true
   fi
   
   # Check for completion signal

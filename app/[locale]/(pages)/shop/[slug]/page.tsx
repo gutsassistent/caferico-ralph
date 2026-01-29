@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
@@ -12,6 +13,7 @@ import { mapWooProduct, isCoffee } from '@/types/product';
 import type { Product } from '@/types/product';
 import mockProductsJson from '@/data/mock-products.json';
 import { generatePageMetadata } from '@/lib/seo';
+import { productSchema, breadcrumbSchema, jsonLd } from '@/lib/structured-data';
 
 type ProductPageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -40,7 +42,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const t = await getTranslations('Product');
 
   let product: Product | null = null;
@@ -109,8 +111,31 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   const coffeeProduct = isCoffee(product.collection);
 
+  const productLd = productSchema({
+    name: product.name,
+    description: product.short_description || product.description || '',
+    image: product.images[0]?.src || '',
+    price: product.price,
+    slug: product.slug,
+    locale,
+  });
+
+  const breadcrumbLd = breadcrumbSchema([
+    { name: 'Home', url: `https://caferico.be/${locale}` },
+    { name: 'Shop', url: `https://caferico.be/${locale}/shop` },
+    { name: product.name, url: `https://caferico.be/${locale}/shop/${product.slug}` },
+  ]);
+
   return (
     <main className="min-h-screen bg-noir text-cream">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(productLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumbLd) }}
+      />
       <section className="relative overflow-hidden border-b border-cream/10">
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(26,15,10,0.95),rgba(60,21,24,0.88),rgba(26,15,10,0.96))]" />
         <div className="pointer-events-none absolute inset-0 bg-coffee-grain opacity-35" />
@@ -132,7 +157,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         </Container>
       </section>
 
-      <section className="py-16">
+      <section className="py-16 sm:py-24">
         <Container className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
           <Reveal>
             <div className="space-y-6">
@@ -209,7 +234,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
       {relatedProducts.length > 0 && (
         <Reveal>
-          <section className="border-t border-cream/10 py-16">
+          <section className="border-t border-cream/10 py-16 sm:py-24">
             <Container className="space-y-10">
               <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
                 <div className="max-w-2xl space-y-3">
@@ -232,21 +257,21 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 </Link>
               </div>
 
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 lg:gap-8">
                 {relatedProducts.map((item, index) => (
                   <Reveal key={item.id} delay={index * 80} className="h-full">
                     <Link
                       href={`/shop/${item.slug}`}
-                      className="group flex h-full flex-col rounded-2xl border border-cream/10 bg-[#140b08] p-4 transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_30px_60px_rgba(0,0,0,0.4)]"
+                      className="group flex h-full flex-col rounded-2xl border border-cream/10 bg-surface-darker p-4 transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_30px_60px_rgba(0,0,0,0.4)]"
                     >
-                      <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-gradient-to-br from-espresso via-[#1d120d] to-noir">
+                      <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-gradient-to-br from-espresso via-surface-mid to-noir">
                         {item.images?.[0]?.src ? (
-                          <img
+                          <Image
                             src={item.images[0].src}
                             alt={item.images[0].alt || item.name}
-                            className="absolute inset-0 h-full w-full object-cover"
-                            loading="lazy"
-                            decoding="async"
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                           />
                         ) : (
                           <>
@@ -254,7 +279,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,165,116,0.25),_transparent_60%)]" />
                           </>
                         )}
-                        <div className="absolute bottom-4 left-4 rounded-full border border-cream/20 bg-noir/70 px-3 py-1 text-[10px] uppercase tracking-[0.3em] text-cream/70">
+                        <div className="absolute bottom-4 left-4 rounded-full border border-cream/20 bg-noir/70 px-3 py-1 text-xs uppercase tracking-[0.3em] text-cream/70">
                           {item.categories[0]?.name ?? item.collection}
                         </div>
                       </div>

@@ -20,7 +20,7 @@ export default function SubscriptionFaq() {
         return (
           <div
             key={key}
-            className="rounded-2xl border border-cream/10 bg-[#140b08] transition-colors hover:border-cream/20"
+            className="rounded-2xl border border-cream/10 bg-surface-darker transition-colors hover:border-cream/20"
           >
             <button
               onClick={() => toggle(index)}

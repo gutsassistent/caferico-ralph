@@ -98,12 +98,12 @@ export default function ContactForm() {
     submitAttempted && errors[field] ? errors[field] : undefined;
 
   const inputBase =
-    'w-full rounded-2xl border bg-noir/70 px-4 py-3 text-sm text-cream placeholder:text-cream/40 transition focus:border-gold/70 focus:outline-none';
+    'w-full rounded-2xl border bg-noir/70 px-4 py-3 text-sm text-cream placeholder:text-cream/50 transition focus:border-gold/70 focus:outline-none';
   const inputError = 'border-rose-400/70 focus:border-rose-300';
   const inputDefault = 'border-cream/20';
 
   return (
-    <div className="rounded-3xl border border-cream/10 bg-[#140b08] p-8 shadow-[0_35px_80px_rgba(0,0,0,0.55)]">
+    <div className="rounded-3xl border border-cream/10 bg-surface-darker p-8 shadow-[0_35px_80px_rgba(0,0,0,0.55)]">
       <div className="space-y-3">
         <p className="text-xs uppercase tracking-[0.4em] text-gold/70">{t('form.eyebrow')}</p>
         <h2 className="font-serif text-3xl">{t('form.title')}</h2>

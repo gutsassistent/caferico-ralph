@@ -9,6 +9,8 @@ type SubscriptionTierCardProps = {
   tier: {
     key: string;
     price: number;
+    originalPrice: number;
+    discount: number;
     featured: boolean;
   };
   index: number;
@@ -33,8 +35,8 @@ export default function SubscriptionTierCard({
 
   const cardClassName = `group relative flex h-full flex-col overflow-hidden rounded-3xl border transition duration-300 ${
     tier.featured
-      ? 'border-gold/60 bg-[linear-gradient(135deg,rgba(60,21,24,0.95),rgba(26,15,10,0.92))] shadow-[0_35px_70px_rgba(0,0,0,0.5)]'
-      : 'border-cream/10 bg-[#140b08] hover:-translate-y-1 hover:border-gold/40 hover:shadow-[0_25px_60px_rgba(0,0,0,0.35)]'
+      ? 'border-gold/60 bg-gradient-to-br from-espresso/95 to-noir/[0.92] shadow-[0_35px_70px_rgba(0,0,0,0.5)]'
+      : 'border-cream/10 bg-surface-darker hover:-translate-y-1 hover:border-gold/40 hover:shadow-[0_25px_60px_rgba(0,0,0,0.35)]'
   }`;
 
   return (
@@ -46,7 +48,7 @@ export default function SubscriptionTierCard({
         ) : null}
         <div className="relative flex h-full flex-col gap-6 p-6">
           {tier.featured ? (
-            <span className="inline-flex items-center self-start rounded-full border border-gold/50 bg-gold/10 px-4 py-1 text-[10px] uppercase tracking-[0.3em] text-gold">
+            <span className="inline-flex items-center self-start rounded-full border border-gold/50 bg-gold/10 px-4 py-1 text-xs uppercase tracking-[0.3em] text-gold">
               {t(`tiers.${groupId}.${tier.key}.badge`)}
             </span>
           ) : null}
@@ -62,9 +64,17 @@ export default function SubscriptionTierCard({
             </p>
           </div>
           <div className="mt-auto space-y-4">
-            <p className="font-serif text-3xl text-cream">
-              {t('tiers.priceLabel', { price: priceFormatted })}
-            </p>
+            <div>
+              <p className="font-serif text-3xl text-cream">
+                {t('tiers.priceLabel', { price: priceFormatted })}
+              </p>
+              <p className="mt-1 flex items-center gap-2 text-xs text-cream/50">
+                <span className="line-through">€{tier.originalPrice.toFixed(2)}</span>
+                <span className="rounded-full bg-gold/20 px-2 py-0.5 text-xs font-semibold uppercase tracking-wider text-gold">
+                  -{tier.discount}%
+                </span>
+              </p>
+            </div>
             <ul className="space-y-2 text-sm text-cream/70">
               {benefitKeys.map((benefitKey) => (
                 <li key={benefitKey} className="flex items-start gap-3">

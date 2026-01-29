@@ -8,7 +8,7 @@ type PageTransitionProps = {
 
 export default function PageTransition({ children }: PageTransitionProps) {
   return (
-    <div className="animate-fadeIn">
+    <div className="animate-fadeIn motion-reduce:animate-none">
       {children}
     </div>
   );

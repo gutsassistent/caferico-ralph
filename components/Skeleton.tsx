@@ -5,15 +5,17 @@ type SkeletonProps = {
 export default function Skeleton({ className = '' }: SkeletonProps) {
   return (
     <div
-      className={`animate-pulse rounded-lg bg-cream/10 ${className}`}
+      className={`relative overflow-hidden rounded-lg bg-cream/10 ${className}`}
       aria-hidden="true"
-    />
+    >
+      <div className="absolute inset-0 animate-shimmer bg-gradient-to-r from-transparent via-cream/5 to-transparent" />
+    </div>
   );
 }
 
 export function ProductCardSkeleton() {
   return (
-    <div className="overflow-hidden rounded-2xl border border-cream/10 bg-[#120907]">
+    <div className="overflow-hidden rounded-2xl border border-cream/10 bg-surface-darkest">
       <Skeleton className="aspect-[4/3] w-full rounded-none" />
       <div className="space-y-3 p-5">
         <Skeleton className="h-3 w-20" />
@@ -30,7 +32,7 @@ export function ProductCardSkeleton() {
 
 export function BlogCardSkeleton() {
   return (
-    <div className="overflow-hidden rounded-2xl border border-cream/10 bg-[#120907]">
+    <div className="overflow-hidden rounded-2xl border border-cream/10 bg-surface-darkest">
       <Skeleton className="aspect-video w-full rounded-none" />
       <div className="space-y-3 p-5">
         <Skeleton className="h-3 w-24" />

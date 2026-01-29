@@ -25,7 +25,11 @@ const config: Config = {
         background: '#FAF9F7',
         surface: {
           dark: '#1A0F0A',
+          darker: '#140b08',
+          darkest: '#120907',
+          deep: '#0f0906',
           medium: '#2C2419',
+          mid: '#1d120d',
           light: '#FAF9F7',
         },
       },
@@ -49,11 +53,22 @@ const config: Config = {
           '0%, 100%': { transform: 'scale(1)' },
           '40%': { transform: 'scale(1.35)' },
           '70%': { transform: 'scale(0.9)' },
+        },
+        shimmer: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
+        progressBar: {
+          '0%': { transform: 'translateX(-100%)' },
+          '50%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(100%)' },
         }
       },
       animation: {
         fadeIn: 'fadeIn 0.4s ease-out both',
         'cart-bounce': 'cartBounce 0.4s ease-out',
+        shimmer: 'shimmer 1.5s ease-in-out infinite',
+        'progress-bar': 'progressBar 1.2s ease-in-out infinite',
       },
       backgroundImage: {
         'coffee-glow': 'radial-gradient(circle at top, rgba(212, 165, 116, 0.25), transparent 55%)',

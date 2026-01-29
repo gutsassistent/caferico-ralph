@@ -4,11 +4,44 @@
 
 :root {
   color-scheme: dark;
+
+  /* Design Tokens — Caférico */
+  /* Colors */
+  --color-primary: #C9A962;
+  --color-primary-light: #D4B87A;
+  --color-primary-dark: #B89A52;
+  --color-secondary: #2C2419;
+  --color-background: #FAF9F7;
+  --color-surface-dark: #1A0F0A;
+  --color-surface-medium: #2C2419;
+  --color-surface-light: #FAF9F7;
+  --color-espresso: #3C1518;
+  --color-roast: #69140E;
+  --color-cream: #F2E8CF;
+  --color-gold-muted: #D4A574;
+  --color-noir: #1A0F0A;
+  --color-surface-darker: #140b08;
+  --color-surface-darkest: #120907;
+  --color-surface-mid: #1d120d;
+  --color-surface-deep: #0f0906;
+
+  /* Spacing scale (8px grid) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 64px;
+
+  /* Typography */
+  --font-heading: var(--font-playfair), 'Playfair Display', serif;
+  --font-body: var(--font-inter), 'Inter', system-ui, sans-serif;
 }
 
 body {
-  background-color: #1a0f0a;
-  color: #f2e8cf;
+  background-color: var(--color-noir);
+  color: var(--color-cream);
   font-family: var(--font-inter);
   min-height: 100vh;
 }
@@ -22,9 +55,23 @@ h6 {
   font-family: var(--font-playfair);
 }
 
+/* Tight letter-spacing for large display headings */
+.text-4xl,
+.text-5xl,
+.text-6xl,
+.text-7xl,
+.text-8xl,
+.text-9xl {
+  letter-spacing: -0.02em;
+}
+
+.text-3xl {
+  letter-spacing: -0.01em;
+}
+
 ::selection {
   background-color: rgba(212, 165, 116, 0.35);
-  color: #f2e8cf;
+  color: var(--color-cream);
 }
 
 /* Smooth scroll */

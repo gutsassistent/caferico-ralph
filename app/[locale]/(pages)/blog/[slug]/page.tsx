@@ -8,6 +8,7 @@ import ParallaxOrb from '@/components/ParallaxOrb';
 import Reveal from '@/components/Reveal';
 import blogPosts from '@/data/blog-posts.json';
 import { generatePageMetadata } from '@/lib/seo';
+import { breadcrumbSchema, jsonLd } from '@/lib/structured-data';
 
 type BlogPost = (typeof blogPosts)[number];
 
@@ -45,8 +46,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   });
 }
 
-export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+export default async function BlogPostPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
+  const { locale, slug } = await params;
   const t = await getTranslations('Blog');
 
   const post = POSTS.find((p) => p.slug === slug);
@@ -67,8 +68,18 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   const heroImage = HERO_IMAGES[post.slug];
 
+  const blogPostBreadcrumb = breadcrumbSchema([
+    { name: 'Home', url: `https://caferico.be/${locale}` },
+    { name: 'Blog', url: `https://caferico.be/${locale}/blog` },
+    { name: post.title, url: `https://caferico.be/${locale}/blog/${post.slug}` },
+  ]);
+
   return (
     <main className="min-h-screen bg-noir text-cream">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(blogPostBreadcrumb) }}
+      />
       {/* Breadcrumbs */}
       <section className="relative isolate overflow-hidden border-b border-cream/10">
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(26,15,10,0.95),rgba(60,21,24,0.88),rgba(26,15,10,0.96))]" />
@@ -97,7 +108,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       </section>
 
       {/* Article header + featured image */}
-      <section className="py-16 lg:py-20">
+      <section className="py-16 sm:py-24">
         <Container className="max-w-3xl space-y-8">
           <Reveal>
             <div className="space-y-5">
@@ -105,7 +116,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 {post.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full border border-cream/15 bg-[#1a0f0a] px-3 py-1 text-[10px] uppercase tracking-[0.3em] text-gold/70"
+                    className="rounded-full border border-cream/15 bg-noir px-3 py-1 text-xs uppercase tracking-[0.3em] text-gold/70"
                   >
                     {tag}
                   </span>
@@ -150,12 +161,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 />
               ) : (
                 <>
-                  <div className="absolute inset-0 bg-gradient-to-br from-espresso via-[#1f130d] to-noir" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-espresso via-surface-mid to-noir" />
                   <div className="absolute inset-0 bg-coffee-grain opacity-40" />
                 </>
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-noir/40 via-transparent to-transparent" />
-              <div className="absolute bottom-5 left-5 rounded-full border border-cream/20 bg-noir/70 px-3 py-1 text-[10px] uppercase tracking-[0.3em] text-cream/70 backdrop-blur-sm">
+              <div className="absolute bottom-5 left-5 rounded-full border border-cream/20 bg-noir/70 px-3 py-1 text-xs uppercase tracking-[0.3em] text-cream/70 backdrop-blur-sm">
                 {t('detail.imageBadge')}
               </div>
             </div>
@@ -163,7 +174,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
           {/* Article body — optimised reading typography */}
           <Reveal delay={160}>
-            <article className="mx-auto max-w-[680px]">
+            <article className="mx-auto max-w-2xl">
               <div className="space-y-7">
                 {post.content.map((paragraph, index) => (
                   <p
@@ -250,7 +261,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       {/* Related posts */}
       <Reveal>
-        <section className="border-t border-cream/10 py-16">
+        <section className="border-t border-cream/10 py-16 sm:py-24">
           <Container className="space-y-10">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-2xl space-y-3">
@@ -269,12 +280,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               </Link>
             </div>
 
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8">
               {relatedPosts.map((related, index) => (
                 <Reveal key={related.id} delay={index * 80} className="h-full">
                   <Link
                     href={`/blog/${related.slug}`}
-                    className="group flex h-full flex-col rounded-2xl border border-cream/10 bg-[#140b08] p-4 transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_30px_60px_rgba(0,0,0,0.4)]"
+                    className="group flex h-full flex-col rounded-2xl border border-cream/10 bg-surface-darker p-4 transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_30px_60px_rgba(0,0,0,0.4)]"
                   >
                     <div className="relative aspect-[16/10] overflow-hidden rounded-xl">
                       {HERO_IMAGES[related.slug] ? (
@@ -287,14 +298,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                         />
                       ) : (
                         <>
-                          <div className="absolute inset-0 bg-gradient-to-br from-espresso via-[#1d120d] to-noir" />
+                          <div className="absolute inset-0 bg-gradient-to-br from-espresso via-surface-mid to-noir" />
                           <div className="absolute inset-0 bg-coffee-grain opacity-40" />
                         </>
                       )}
                       <div className="absolute inset-0 bg-gradient-to-t from-noir/50 via-transparent to-transparent" />
                     </div>
                     <div className="mt-4 flex-1">
-                      <p className="text-[10px] uppercase tracking-[0.3em] text-cream/50">
+                      <p className="text-xs uppercase tracking-[0.3em] text-cream/50">
                         {dateFormatter.format(new Date(related.date))}
                         <span className="mx-2 text-cream/30">&middot;</span>
                         {related.readTime} {t('listing.readTime')}

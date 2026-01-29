@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import Container from '@/components/Container';
@@ -8,6 +9,7 @@ import NewsletterForm from '@/components/NewsletterForm';
 import { getProducts } from '@/lib/woocommerce';
 import { mapWooProduct } from '@/types/product';
 import { generatePageMetadata } from '@/lib/seo';
+import { breadcrumbSchema, jsonLd } from '@/lib/structured-data';
 
 export const revalidate = 3600;
 
@@ -33,8 +35,16 @@ export default async function HomePage({ params }: HomePageProps) {
     currency: 'EUR'
   });
 
+  const homeBreadcrumb = breadcrumbSchema([
+    { name: 'Home', url: `https://caferico.be/${locale}` },
+  ]);
+
   return (
     <main className="min-h-screen bg-noir text-cream">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(homeBreadcrumb) }}
+      />
       <HeroParallax
         imageUrl="https://www.caferico.be/wp-content/uploads/2025/05/DSCF3617.jpg"
         imageAlt="Honduras coffee landscape"
@@ -76,7 +86,7 @@ export default async function HomePage({ params }: HomePageProps) {
       </HeroParallax>
 
       <Reveal>
-        <section className="py-20">
+        <section className="py-16 sm:py-24">
           <Container className="space-y-10">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-xl space-y-3">
@@ -95,21 +105,21 @@ export default async function HomePage({ params }: HomePageProps) {
               </Link>
             </div>
 
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 lg:gap-8">
               {featuredProducts.map((product, index) => (
                 <Reveal key={product.id} delay={index * 120} className="h-full">
                   <Link
                     href={`/shop/${product.slug}`}
-                    className="group flex h-full flex-col rounded-2xl border border-cream/10 bg-[#140b08] p-4 transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_30px_60px_rgba(0,0,0,0.4)]"
+                    className="group flex h-full flex-col rounded-2xl border border-cream/10 bg-surface-darker p-4 transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_30px_60px_rgba(0,0,0,0.4)]"
                   >
-                    <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-gradient-to-br from-espresso via-[#1d120d] to-noir">
+                    <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-gradient-to-br from-espresso via-surface-mid to-noir">
                       {product.images?.[0]?.src ? (
-                        <img
+                        <Image
                           src={product.images[0].src}
                           alt={product.images[0].alt || product.name}
-                          className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                          loading="lazy"
-                          decoding="async"
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                         />
                       ) : (
                         <>
@@ -117,11 +127,11 @@ export default async function HomePage({ params }: HomePageProps) {
                           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,165,116,0.25),_transparent_60%)]" />
                         </>
                       )}
-                      <div className="absolute bottom-4 left-4 rounded-full border border-cream/20 bg-noir/70 px-3 py-1 text-[10px] uppercase tracking-[0.3em] text-cream/70">
+                      <div className="absolute bottom-4 left-4 rounded-full border border-cream/20 bg-noir/70 px-3 py-1 text-xs uppercase tracking-[0.3em] text-cream/70">
                         {product.categories[0]?.name ?? product.collection}
                       </div>
                       <div className="absolute inset-0 flex items-center justify-center bg-noir/0 transition-colors duration-300 group-hover:bg-noir/40">
-                        <span className="translate-y-4 rounded-full bg-gold px-5 py-2.5 text-[10px] font-semibold uppercase tracking-[0.3em] text-noir opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                        <span className="translate-y-4 rounded-full bg-gold px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.3em] text-noir opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                           {t('featured.quickAdd')}
                         </span>
                       </div>
@@ -145,7 +155,7 @@ export default async function HomePage({ params }: HomePageProps) {
       </Reveal>
 
       <Reveal>
-        <section className="relative overflow-hidden bg-espresso py-24 sm:py-32">
+        <section className="relative overflow-hidden bg-espresso py-16 sm:py-24">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(201,169,98,0.08),transparent_70%)]" />
           <div className="pointer-events-none absolute inset-0 bg-coffee-grain opacity-20" />
           <Container className="relative text-center">
@@ -188,12 +198,12 @@ export default async function HomePage({ params }: HomePageProps) {
             </div>
 
             <div className="mx-auto mt-10 max-w-xs">
-              <img
+              <Image
                 src="https://www.caferico.be/wp-content/uploads/2024/10/bonen_500.png"
                 alt="Caférico coffee package"
+                width={300}
+                height={400}
                 className="mx-auto h-48 w-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)] sm:h-56"
-                loading="lazy"
-                decoding="async"
               />
             </div>
 
@@ -210,7 +220,7 @@ export default async function HomePage({ params }: HomePageProps) {
       </Reveal>
 
       <Reveal>
-        <section className="py-20 sm:py-28">
+        <section className="py-16 sm:py-24">
           <Container>
             <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
               <div className="order-2 lg:order-1 space-y-6">
@@ -231,13 +241,13 @@ export default async function HomePage({ params }: HomePageProps) {
                   <span aria-hidden="true">&rarr;</span>
                 </Link>
               </div>
-              <div className="order-1 lg:order-2 overflow-hidden rounded-2xl">
-                <img
+              <div className="order-1 lg:order-2 relative h-72 overflow-hidden rounded-2xl sm:h-96 lg:h-[480px]">
+                <Image
                   src="https://www.caferico.be/wp-content/uploads/2018/05/koffieboer-4-Copy-1000×536.jpg"
                   alt="Koffieboer in Honduras"
-                  className="h-72 w-full object-cover sm:h-96 lg:h-[480px]"
-                  loading="lazy"
-                  decoding="async"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>
             </div>
@@ -246,7 +256,7 @@ export default async function HomePage({ params }: HomePageProps) {
       </Reveal>
 
       <Reveal>
-        <section className="bg-[#0f0906] py-20 sm:py-28">
+        <section className="bg-surface-deep py-16 sm:py-24">
           <Container className="space-y-10">
             <div className="max-w-2xl space-y-3">
               <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
@@ -254,10 +264,10 @@ export default async function HomePage({ params }: HomePageProps) {
               </p>
               <h2 className="font-serif text-3xl sm:text-4xl">{t('testimonials.title')}</h2>
             </div>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8">
               {(['tom', 'lesly', 'joke'] as const).map((key, index) => (
                 <Reveal key={key} delay={index * 120} className="h-full">
-                  <blockquote className="flex h-full flex-col rounded-2xl border border-cream/10 bg-[#140b08] p-6 sm:p-8">
+                  <blockquote className="flex h-full flex-col rounded-2xl border border-cream/10 bg-surface-darker p-6 sm:p-8">
                     <svg className="mb-4 h-8 w-8 text-gold/40" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311C9.591 11.69 11 13.166 11 15c0 1.933-1.567 3.5-3.5 3.5-1.073 0-2.099-.49-2.917-1.179zM15.583 17.321C14.553 16.227 14 15 14 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311C20.591 11.69 22 13.166 22 15c0 1.933-1.567 3.5-3.5 3.5-1.073 0-2.099-.49-2.917-1.179z" />
                     </svg>
@@ -266,12 +276,12 @@ export default async function HomePage({ params }: HomePageProps) {
                     </p>
                     <div className="mt-6 flex items-center gap-3 border-t border-cream/10 pt-6">
                       {key === 'tom' && (
-                        <img
+                        <Image
                           src="https://www.caferico.be/wp-content/uploads/2018/05/Tom-Janssens.jpg"
                           alt={t(`testimonials.items.${key}.name`)}
+                          width={40}
+                          height={40}
                           className="h-10 w-10 rounded-full object-cover"
-                          loading="lazy"
-                          decoding="async"
                         />
                       )}
                       {key !== 'tom' && (
@@ -297,7 +307,7 @@ export default async function HomePage({ params }: HomePageProps) {
       </Reveal>
 
       <Reveal>
-        <section className="py-20">
+        <section className="py-16 sm:py-24">
           <Container className="space-y-10">
             <div className="max-w-2xl space-y-3">
               <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
@@ -306,10 +316,10 @@ export default async function HomePage({ params }: HomePageProps) {
               <h2 className="font-serif text-3xl sm:text-4xl">{t('values.title')}</h2>
               <p className="text-sm text-cream/70 sm:text-base">{t('values.description')}</p>
             </div>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 lg:gap-8">
               {['fresh', 'fair', 'belgian', 'craft'].map((key, index) => (
                 <Reveal key={key} delay={index * 100} className="h-full">
-                  <div className="flex h-full flex-col rounded-2xl border border-cream/10 bg-[#140b08] p-6">
+                  <div className="flex h-full flex-col rounded-2xl border border-cream/10 bg-surface-darker p-6">
                     <div className="flex h-12 w-12 items-center justify-center rounded-full border border-gold/40 text-xs uppercase tracking-[0.3em] text-gold">
                       {index + 1}
                     </div>
@@ -328,7 +338,7 @@ export default async function HomePage({ params }: HomePageProps) {
       </Reveal>
 
       <Reveal>
-        <section className="relative overflow-hidden bg-espresso py-20 sm:py-28">
+        <section className="relative overflow-hidden bg-espresso py-16 sm:py-24">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(201,169,98,0.06),transparent_60%)]" />
           <Container className="relative">
             <div className="mx-auto max-w-2xl text-center">
@@ -353,7 +363,7 @@ export default async function HomePage({ params }: HomePageProps) {
                   errorText={t('newsletter.error')}
                 />
               </div>
-              <p className="mt-4 text-xs text-cream/40">
+              <p className="mt-4 text-xs text-cream/60">
                 {t('newsletter.privacy')}
               </p>
             </div>

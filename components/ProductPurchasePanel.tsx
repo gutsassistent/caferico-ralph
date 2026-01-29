@@ -24,8 +24,8 @@ function StarRating({ rating, count }: { rating: number; count: number }) {
             <svg key={star} viewBox="0 0 20 20" className="h-4 w-4" aria-hidden="true">
               <defs>
                 <linearGradient id={`star-fill-${star}`}>
-                  <stop offset={`${fill * 100}%`} stopColor="#C9A962" />
-                  <stop offset={`${fill * 100}%`} stopColor="#C9A96230" />
+                  <stop offset={`${fill * 100}%`} stopColor="var(--color-primary)" />
+                  <stop offset={`${fill * 100}%`} stopColor="var(--color-primary)" stopOpacity={0.19} />
                 </linearGradient>
               </defs>
               <path
@@ -181,11 +181,11 @@ export default function ProductPurchasePanel({ product }: ProductPurchasePanelPr
   /* Trust badges component */
   const TrustBadges = () => (
     <div className="flex flex-wrap gap-3">
-      <span className="inline-flex items-center gap-1.5 rounded-full border border-green-800/40 bg-green-900/20 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-green-400">
+      <span className="inline-flex items-center gap-1.5 rounded-full border border-green-800/40 bg-green-900/20 px-3 py-1 text-xs uppercase tracking-[0.2em] text-green-400">
         <svg viewBox="0 0 16 16" className="h-3 w-3" fill="currentColor"><path d="M8 0a8 8 0 110 16A8 8 0 018 0zm3.41 5.59L7 10l-2.41-2.41L5.7 6.5 7 7.79l3.29-3.3 1.12 1.1z"/></svg>
         {t('purchase.trustBio')}
       </span>
-      <span className="inline-flex items-center gap-1.5 rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-gold">
+      <span className="inline-flex items-center gap-1.5 rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-xs uppercase tracking-[0.2em] text-gold">
         <svg viewBox="0 0 16 16" className="h-3 w-3" fill="currentColor"><path d="M8 0a8 8 0 110 16A8 8 0 018 0zm3.41 5.59L7 10l-2.41-2.41L5.7 6.5 7 7.79l3.29-3.3 1.12 1.1z"/></svg>
         {t('purchase.trustFairTrade')}
       </span>
@@ -208,7 +208,7 @@ export default function ProductPurchasePanel({ product }: ProductPurchasePanelPr
       <div className="space-y-6">
         <StarRating rating={4.5} count={24} />
 
-        <div className="rounded-3xl border border-cream/10 bg-[#120907]/90 p-6 shadow-[0_30px_70px_rgba(0,0,0,0.35)]">
+        <div className="rounded-3xl border border-cream/10 bg-surface-darkest/90 p-6 shadow-[0_30px_70px_rgba(0,0,0,0.35)]">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="space-y-1">
               <p className="font-serif text-3xl text-cream">
@@ -217,7 +217,7 @@ export default function ProductPurchasePanel({ product }: ProductPurchasePanelPr
                 {priceFormatter.format(Math.max(...product.groupedChildren.map((c) => c.price)))}
               </p>
             </div>
-            <span className="rounded-full border border-gold/40 px-3 py-1 text-[10px] uppercase tracking-[0.3em] text-gold">
+            <span className="rounded-full border border-gold/40 px-3 py-1 text-xs uppercase tracking-[0.3em] text-gold">
               {t('purchase.availability')}
             </span>
           </div>
@@ -235,7 +235,7 @@ export default function ProductPurchasePanel({ product }: ProductPurchasePanelPr
                       type="button"
                       onClick={() => handleChildQty(child.id, -1)}
                       disabled={qty <= 0}
-                      className={`px-3 py-1 text-sm transition ${
+                      className={`px-3 py-2 text-sm transition ${
                         qty <= 0
                           ? 'cursor-not-allowed text-cream/30'
                           : 'text-cream/70 hover:text-cream'
@@ -248,7 +248,7 @@ export default function ProductPurchasePanel({ product }: ProductPurchasePanelPr
                       type="button"
                       onClick={() => handleChildQty(child.id, 1)}
                       disabled={qty >= 99}
-                      className={`px-3 py-1 text-sm transition ${
+                      className={`px-3 py-2 text-sm transition ${
                         qty >= 99
                           ? 'cursor-not-allowed text-cream/30'
                           : 'text-cream/70 hover:text-cream'
@@ -293,7 +293,7 @@ export default function ProductPurchasePanel({ product }: ProductPurchasePanelPr
 
         <ShippingInfo />
         <TrustBadges />
-        <p className="text-xs text-cream/40">{t('purchase.hint')}</p>
+        <p className="text-xs text-cream/60">{t('purchase.hint')}</p>
       </div>
     );
   }
@@ -317,10 +317,10 @@ export default function ProductPurchasePanel({ product }: ProductPurchasePanelPr
       </div>
 
       {/* Purchase panel */}
-      <div className="rounded-3xl border border-cream/10 bg-[#120907]/90 p-6 shadow-[0_30px_70px_rgba(0,0,0,0.35)]">
+      <div className="rounded-3xl border border-cream/10 bg-surface-darkest/90 p-6 shadow-[0_30px_70px_rgba(0,0,0,0.35)]">
         <div className="flex items-center justify-between">
           <p className="text-xs uppercase tracking-[0.3em] text-gold/70">{t('purchase.eyebrow')}</p>
-          <span className="rounded-full border border-gold/40 px-3 py-1 text-[10px] uppercase tracking-[0.3em] text-gold">
+          <span className="rounded-full border border-gold/40 px-3 py-1 text-xs uppercase tracking-[0.3em] text-gold">
             {t('purchase.availability')}
           </span>
         </div>
@@ -340,7 +340,7 @@ export default function ProductPurchasePanel({ product }: ProductPurchasePanelPr
                       type="button"
                       onClick={() => setGrind(option)}
                       aria-pressed={isActive}
-                      className={`rounded-full border px-3 py-2 text-xs uppercase tracking-[0.2em] transition ${
+                      className={`rounded-full border px-3 py-2.5 text-xs uppercase tracking-[0.2em] transition ${
                         isActive
                           ? 'border-gold bg-gold text-noir'
                           : 'border-cream/10 bg-noir/70 text-cream/70 hover:border-gold/60 hover:text-cream'
@@ -366,7 +366,7 @@ export default function ProductPurchasePanel({ product }: ProductPurchasePanelPr
                       type="button"
                       onClick={() => setWeight(option)}
                       aria-pressed={isActive}
-                      className={`rounded-full border px-3 py-2 text-xs uppercase tracking-[0.2em] transition ${
+                      className={`rounded-full border px-3 py-2.5 text-xs uppercase tracking-[0.2em] transition ${
                         isActive
                           ? 'border-gold bg-gold text-noir'
                           : 'border-cream/10 bg-noir/70 text-cream/70 hover:border-gold/60 hover:text-cream'
@@ -450,7 +450,7 @@ export default function ProductPurchasePanel({ product }: ProductPurchasePanelPr
       {/* Trust badges */}
       <TrustBadges />
 
-      <p className="text-xs text-cream/40">{t('purchase.hint')}</p>
+      <p className="text-xs text-cream/60">{t('purchase.hint')}</p>
     </div>
   );
 }

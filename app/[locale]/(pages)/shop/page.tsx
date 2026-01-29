@@ -8,6 +8,7 @@ import { mapWooProduct } from '@/types/product';
 import type { Product } from '@/types/product';
 import mockProductData from '@/data/mock-products.json';
 import { generatePageMetadata } from '@/lib/seo';
+import { breadcrumbSchema, jsonLd } from '@/lib/structured-data';
 
 export const revalidate = 3600;
 
@@ -16,7 +17,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return generatePageMetadata({ locale, page: 'shop', path: 'shop' });
 }
 
-export default async function ShopPage() {
+export default async function ShopPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
   const t = await getTranslations('Shop');
 
   let products: Product[] = [];
@@ -57,8 +59,17 @@ export default async function ShopPage() {
     categories = Array.from(catSet.values());
   }
 
+  const shopBreadcrumb = breadcrumbSchema([
+    { name: 'Home', url: `https://caferico.be/${locale}` },
+    { name: 'Shop', url: `https://caferico.be/${locale}/shop` },
+  ]);
+
   return (
     <main className="min-h-screen bg-noir text-cream">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(shopBreadcrumb) }}
+      />
       <section className="relative isolate overflow-hidden border-b border-cream/10">
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(110deg,rgba(26,15,10,0.95),rgba(60,21,24,0.9),rgba(26,15,10,0.98))]" />
         <div className="pointer-events-none absolute inset-0 bg-coffee-grain opacity-35" />
@@ -75,7 +86,7 @@ export default async function ShopPage() {
       </section>
 
       <Reveal>
-        <section className="py-16">
+        <section className="py-16 sm:py-24">
           <Container className="space-y-10">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-xl space-y-3">
