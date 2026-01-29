@@ -226,5 +226,155 @@
       "cta": "Bekijk de shop",
       "priceLabel": "Prijs"
     }
+  },
+  "Subscriptions": {
+    "hero": {
+      "eyebrow": "Abonnementen",
+      "title": "Jouw maandelijkse Caférico-ritueel",
+      "description": "Kies bonen of gemalen, ontvang vers gebrande koffie op jouw tempo.",
+      "primaryCta": "Kies je abonnement",
+      "secondaryCta": "Lees de FAQ",
+      "badge": "Altijd vers gebrand",
+      "card": {
+        "eyebrow": "Flexibel",
+        "title": "Volledig in jouw handen",
+        "description": "Pauzeer, wissel of pas aan tussen leveringen.",
+        "detail": "Geen vaste looptijd."
+      }
+    },
+    "tiers": {
+      "eyebrow": "Kies je ritme",
+      "title": "Twee lijnen, één gouden standaard",
+      "description": "Selecteer bonen of gemalen koffie in een maandelijkse cadans.",
+      "priceLabel": "{price} / maand",
+      "cta": "Kies dit abonnement",
+      "beans": {
+        "eyebrow": "Koffiebonen",
+        "title": "Hele bonen, maximale aroma's",
+        "description": "Voor espresso, filter en alles ertussen.",
+        "starter": {
+          "title": "Ochtendlicht",
+          "size": "250g / maand",
+          "description": "Een subtiel en helder profiel voor doordeweekse ochtenden.",
+          "benefits": {
+            "one": "Kleine batch, elke maand vers",
+            "two": "Pauzeer of wissel wanneer je wil",
+            "three": "Proefkaart bij je eerste levering"
+          }
+        },
+        "signature": {
+          "title": "Signature Roast",
+          "size": "500g / maand",
+          "description": "Onze meest geliefde balans van cacao en karamel.",
+          "badge": "Meest gekozen",
+          "benefits": {
+            "one": "Volledige smaakrange voor dagelijkse rituelen",
+            "two": "Prioritaire brandplanning",
+            "three": "Seizoensblend-notities inbegrepen"
+          }
+        },
+        "atelier": {
+          "title": "Grand Atelier",
+          "size": "1kg / maand",
+          "description": "Voor studio's, teams en lange brunchtafels.",
+          "benefits": {
+            "one": "Ruime voorraad zonder verspilling",
+            "two": "Geselecteerde micro-lots",
+            "three": "Persoonlijke roast-notities"
+          }
+        }
+      },
+      "ground": {
+        "eyebrow": "Gemalen koffie",
+        "title": "Direct klaar voor jouw brew",
+        "description": "Afgestemd op filter, moka of French press.",
+        "starter": {
+          "title": "Zachte maling",
+          "size": "250g / maand",
+          "description": "Een lichte maling voor zachte, zijdeachtige kopjes.",
+          "benefits": {
+            "one": "Afgestemd op jouw methode",
+            "two": "Direct na branding gemalen",
+            "three": "Eenvoudig pauzeren of wisselen"
+          }
+        },
+        "signature": {
+          "title": "Ritueel Blend",
+          "size": "500g / maand",
+          "description": "Onze middenmaling voor dagelijkse balans.",
+          "badge": "Populair",
+          "benefits": {
+            "one": "Signature Caférico-profiel",
+            "two": "Flexibele levercadans",
+            "three": "Beperkte seizoensadd-ons"
+          }
+        },
+        "atelier": {
+          "title": "Studio Reserve",
+          "size": "1kg / maand",
+          "description": "Voor hospitality, teams en creatieve ruimtes.",
+          "benefits": {
+            "one": "Stabiele voorraad voor drukke weken",
+            "two": "Gemalen op bestelling",
+            "three": "Dedicated roast-notities"
+          }
+        }
+      }
+    },
+    "steps": {
+      "eyebrow": "Hoe het werkt",
+      "title": "Van selectie tot ritueel",
+      "description": "Drie stappen, elke maand opnieuw.",
+      "items": {
+        "one": {
+          "title": "Kies je profiel",
+          "description": "Selecteer bonen of gemalen koffie en je maandelijkse hoeveelheid."
+        },
+        "two": {
+          "title": "Wij branden op bestelling",
+          "description": "Je koffie wordt gebrand en binnen 24 uur verzonden."
+        },
+        "three": {
+          "title": "Geniet & pas aan",
+          "description": "Pauzeer, sla over of upgrade voor elke levering."
+        }
+      },
+      "card": {
+        "eyebrow": "Brandkalender",
+        "title": "Altijd op piekaroma",
+        "description": "We branden vlak voor verzending voor maximale zachtheid.",
+        "detail": "Geen vaste looptijd, altijd aanpasbaar."
+      }
+    },
+    "faq": {
+      "eyebrow": "Abonnement FAQ",
+      "title": "Antwoorden op je vragen",
+      "description": "Alles wat je wilt weten voor je start.",
+      "items": {
+        "one": {
+          "question": "Kan ik pauzeren of annuleren?",
+          "answer": "Ja. Pas je ritme aan of stop vóór de volgende branding."
+        },
+        "two": {
+          "question": "Wanneer wordt mijn koffie gebrand?",
+          "answer": "Elke batch wordt vlak voor verzending gebrand."
+        },
+        "three": {
+          "question": "Kan ik wisselen tussen bonen en gemalen?",
+          "answer": "Zeker, wissel per levering zonder extra kosten."
+        },
+        "four": {
+          "question": "Hoe zit het met verzending?",
+          "answer": "Verzenddetails worden bevestigd vóór elke levering."
+        }
+      }
+    },
+    "cta": {
+      "eyebrow": "Begin vandaag",
+      "title": "Klaar voor een maandelijks ritueel?",
+      "description": "Start klein en schaal op wanneer je routine groeit.",
+      "button": "Start een abonnement",
+      "note": "Geen vaste looptijd, stop wanneer je wil."
+    }
   }
 }

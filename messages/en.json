@@ -226,5 +226,155 @@
       "cta": "Browse the shop",
       "priceLabel": "Price"
     }
+  },
+  "Subscriptions": {
+    "hero": {
+      "eyebrow": "Subscriptions",
+      "title": "Your monthly Caférico ritual",
+      "description": "Choose whole beans or ground coffee and receive fresh roasts on your cadence.",
+      "primaryCta": "Choose your plan",
+      "secondaryCta": "Read the FAQ",
+      "badge": "Always freshly roasted",
+      "card": {
+        "eyebrow": "Flexibility",
+        "title": "Always in your control",
+        "description": "Pause, swap, or adjust between deliveries.",
+        "detail": "No long-term commitment."
+      }
+    },
+    "tiers": {
+      "eyebrow": "Choose your cadence",
+      "title": "Two collections, one golden standard",
+      "description": "Pick whole beans or ground coffee in a monthly rhythm.",
+      "priceLabel": "{price} / month",
+      "cta": "Select this plan",
+      "beans": {
+        "eyebrow": "Whole beans",
+        "title": "Whole beans, maximum aroma",
+        "description": "For espresso, filter, and everything in between.",
+        "starter": {
+          "title": "Morning Light",
+          "size": "250g / month",
+          "description": "A gentle, bright profile for weekday mornings.",
+          "benefits": {
+            "one": "Small-batch roasted every month",
+            "two": "Pause or swap anytime",
+            "three": "Tasting card in your first delivery"
+          }
+        },
+        "signature": {
+          "title": "Signature Roast",
+          "size": "500g / month",
+          "description": "Our most loved balance of cocoa and caramel.",
+          "badge": "Most popular",
+          "benefits": {
+            "one": "Full flavour range for daily rituals",
+            "two": "Priority roast scheduling",
+            "three": "Seasonal blend notes included"
+          }
+        },
+        "atelier": {
+          "title": "Grand Atelier",
+          "size": "1kg / month",
+          "description": "Built for studios, teams, and long brunch tables.",
+          "benefits": {
+            "one": "Generous supply without waste",
+            "two": "Selected micro-lots",
+            "three": "Personal roast notes with every drop"
+          }
+        }
+      },
+      "ground": {
+        "eyebrow": "Ground coffee",
+        "title": "Ready-to-brew textures",
+        "description": "Dialed-in for filter, moka, or French press.",
+        "starter": {
+          "title": "Soft Grind",
+          "size": "250g / month",
+          "description": "A light grind for mellow, silky cups.",
+          "benefits": {
+            "one": "Matched to your brew method",
+            "two": "Freshly ground after roasting",
+            "three": "Easy pause or swap"
+          }
+        },
+        "signature": {
+          "title": "Ritual Blend",
+          "size": "500g / month",
+          "description": "Balanced mid-grind for everyday comfort.",
+          "badge": "Popular",
+          "benefits": {
+            "one": "Signature Caférico profile",
+            "two": "Flexible delivery rhythm",
+            "three": "Limited seasonal add-ons"
+          }
+        },
+        "atelier": {
+          "title": "Studio Reserve",
+          "size": "1kg / month",
+          "description": "For hospitality, teams, and creative spaces.",
+          "benefits": {
+            "one": "Steady stock for busy weeks",
+            "two": "Ground to order",
+            "three": "Dedicated roast notes"
+          }
+        }
+      }
+    },
+    "steps": {
+      "eyebrow": "How it works",
+      "title": "From selection to ritual",
+      "description": "Three steps, renewed every month.",
+      "items": {
+        "one": {
+          "title": "Choose your profile",
+          "description": "Select beans or ground coffee and your monthly size."
+        },
+        "two": {
+          "title": "We roast to order",
+          "description": "Your coffee is roasted and shipped within 24 hours."
+        },
+        "three": {
+          "title": "Enjoy & adjust",
+          "description": "Pause, skip, or upgrade before each delivery."
+        }
+      },
+      "card": {
+        "eyebrow": "Roast calendar",
+        "title": "Always timed to peak flavour",
+        "description": "We roast right before shipping so your first cup is vibrant and aromatic.",
+        "detail": "Adjust before every roast."
+      }
+    },
+    "faq": {
+      "eyebrow": "Subscription FAQ",
+      "title": "Answers to common questions",
+      "description": "Everything you need before you start.",
+      "items": {
+        "one": {
+          "question": "Can I pause or cancel?",
+          "answer": "Yes. Adjust your cadence or stop before the next roast."
+        },
+        "two": {
+          "question": "When is my coffee roasted?",
+          "answer": "Each batch is roasted right before shipping for peak aroma."
+        },
+        "three": {
+          "question": "Can I switch between beans and ground?",
+          "answer": "Absolutely. Change your grind between deliveries without extra cost."
+        },
+        "four": {
+          "question": "What about shipping?",
+          "answer": "Shipping details are confirmed before every delivery."
+        }
+      }
+    },
+    "cta": {
+      "eyebrow": "Begin today",
+      "title": "Ready for a monthly ritual?",
+      "description": "Start with a small plan and evolve it as your routine grows.",
+      "button": "Start a subscription",
+      "note": "No fixed term, cancel anytime."
+    }
   }
 }

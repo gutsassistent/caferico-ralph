@@ -59,3 +59,12 @@ Started: Caférico Front-End
   - Gotchas encountered: none.
   - Useful context: cart drawer uses `Cart` messages and product variant labels from `Product` translations.
 ---
+## 2026-01-29 02:56 - US-007
+- Built the premium subscriptions page with hero, tier cards for beans and ground coffee (including recommended badges), how-it-works steps, subscription FAQ, and closing CTA.
+- Added full NL/EN/FR/ES translations for all subscription content.
+- Files changed: `app/[locale]/(pages)/subscriptions/page.tsx`, `messages/nl.json`, `messages/en.json`, `messages/fr.json`, `messages/es.json`, `prd.json`, `progress.txt`.
+- **Learnings for future iterations:**
+  - Patterns discovered: none.
+  - Gotchas encountered: none.
+  - Useful context: subscription pricing uses locale-aware `Intl.NumberFormat` with `tiers.priceLabel` interpolation.
+---

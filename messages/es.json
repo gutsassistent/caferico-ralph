@@ -226,5 +226,155 @@
       "cta": "Ver la tienda",
       "priceLabel": "Precio"
     }
+  },
+  "Subscriptions": {
+    "hero": {
+      "eyebrow": "Suscripciones",
+      "title": "Tu ritual Caférico cada mes",
+      "description": "Elige grano o café molido y recibe tueste fresco a tu ritmo.",
+      "primaryCta": "Elegir plan",
+      "secondaryCta": "Leer la FAQ",
+      "badge": "Siempre recién tostado",
+      "card": {
+        "eyebrow": "Flexibilidad",
+        "title": "Siempre bajo tu control",
+        "description": "Pausa, cambia o ajusta entre entregas.",
+        "detail": "Sin permanencia."
+      }
+    },
+    "tiers": {
+      "eyebrow": "Elige tu ritmo",
+      "title": "Dos líneas, un mismo estándar dorado",
+      "description": "Grano entero o molido con cadencia mensual.",
+      "priceLabel": "{price} / mes",
+      "cta": "Elegir este plan",
+      "beans": {
+        "eyebrow": "Grano entero",
+        "title": "Grano entero, máximo aroma",
+        "description": "Para espresso, filtro y todo lo demás.",
+        "starter": {
+          "title": "Luz de mañana",
+          "size": "250g / mes",
+          "description": "Perfil suave y luminoso para días entre semana.",
+          "benefits": {
+            "one": "Tostado en small-batch cada mes",
+            "two": "Pausa o cambio cuando quieras",
+            "three": "Tarjeta de cata en la primera entrega"
+          }
+        },
+        "signature": {
+          "title": "Signature Roast",
+          "size": "500g / mes",
+          "description": "Nuestro equilibrio favorito de cacao y caramelo.",
+          "badge": "Más elegido",
+          "benefits": {
+            "one": "Rango de sabor completo para el día a día",
+            "two": "Prioridad de tueste",
+            "three": "Notas de blends estacionales incluidas"
+          }
+        },
+        "atelier": {
+          "title": "Gran Atelier",
+          "size": "1kg / mes",
+          "description": "Para estudios, equipos y mesas largas.",
+          "benefits": {
+            "one": "Abastecimiento generoso sin desperdicio",
+            "two": "Microlotes seleccionados",
+            "three": "Notas de tueste personalizadas"
+          }
+        }
+      },
+      "ground": {
+        "eyebrow": "Café molido",
+        "title": "Texturas listas para preparar",
+        "description": "Ajustado para filtro, moka o French press.",
+        "starter": {
+          "title": "Molienda suave",
+          "size": "250g / mes",
+          "description": "Molienda ligera para tazas sedosas.",
+          "benefits": {
+            "one": "Ajustado a tu método",
+            "two": "Molido después del tueste",
+            "three": "Pausa o cambio sencillo"
+          }
+        },
+        "signature": {
+          "title": "Ritual Blend",
+          "size": "500g / mes",
+          "description": "Molienda media equilibrada para cada día.",
+          "badge": "Popular",
+          "benefits": {
+            "one": "Perfil Caférico signature",
+            "two": "Ritmo de entrega flexible",
+            "three": "Extras estacionales limitados"
+          }
+        },
+        "atelier": {
+          "title": "Reserva Studio",
+          "size": "1kg / mes",
+          "description": "Para hospitalidad, equipos y espacios creativos.",
+          "benefits": {
+            "one": "Stock estable para semanas intensas",
+            "two": "Molido a demanda",
+            "three": "Notas de tueste dedicadas"
+          }
+        }
+      }
+    },
+    "steps": {
+      "eyebrow": "Cómo funciona",
+      "title": "De la selección al ritual",
+      "description": "Tres pasos, cada mes.",
+      "items": {
+        "one": {
+          "title": "Elige tu perfil",
+          "description": "Selecciona grano o molido y tu cantidad mensual."
+        },
+        "two": {
+          "title": "Tostamos a pedido",
+          "description": "Tu café se tuesta y envía en 24 horas."
+        },
+        "three": {
+          "title": "Disfruta y ajusta",
+          "description": "Pausa, salta o mejora antes de cada entrega."
+        }
+      },
+      "card": {
+        "eyebrow": "Calendario de tueste",
+        "title": "Siempre en el punto ideal",
+        "description": "Tostamos justo antes del envío para un primer sorbo vibrante.",
+        "detail": "Sin permanencia, ajustable en cualquier momento."
+      }
+    },
+    "faq": {
+      "eyebrow": "FAQ de suscripción",
+      "title": "Respuestas a preguntas comunes",
+      "description": "Lo esencial antes de empezar.",
+      "items": {
+        "one": {
+          "question": "¿Puedo pausar o cancelar?",
+          "answer": "Sí. Ajusta tu ritmo o detente antes del próximo tueste."
+        },
+        "two": {
+          "question": "¿Cuándo se tuesta mi café?",
+          "answer": "Cada lote se tuesta justo antes del envío."
+        },
+        "three": {
+          "question": "¿Puedo alternar entre grano y molido?",
+          "answer": "Claro, cambia la molienda entre entregas sin costo extra."
+        },
+        "four": {
+          "question": "¿Y el envío?",
+          "answer": "Los detalles de envío se confirman antes de cada entrega."
+        }
+      }
+    },
+    "cta": {
+      "eyebrow": "Empezar",
+      "title": "¿Listo para un ritual mensual?",
+      "description": "Empieza con un plan pequeño y ajústalo cuando lo necesites.",
+      "button": "Iniciar suscripción",
+      "note": "Sin permanencia, cancela cuando quieras."
+    }
   }
 }

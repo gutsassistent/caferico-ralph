@@ -226,5 +226,155 @@
       "cta": "Voir la boutique",
       "priceLabel": "Prix"
     }
+  },
+  "Subscriptions": {
+    "hero": {
+      "eyebrow": "Abonnements",
+      "title": "Votre rituel Caférico chaque mois",
+      "description": "Choisissez des grains ou du café moulu et recevez des torréfactions fraîches à votre rythme.",
+      "primaryCta": "Choisir mon abonnement",
+      "secondaryCta": "Lire la FAQ",
+      "badge": "Toujours fraîchement torréfié",
+      "card": {
+        "eyebrow": "Flexibilité",
+        "title": "Toujours sous votre contrôle",
+        "description": "Mettez en pause, changez ou ajustez entre les livraisons.",
+        "detail": "Sans engagement long terme."
+      }
+    },
+    "tiers": {
+      "eyebrow": "Choisissez votre cadence",
+      "title": "Deux collections, une même exigence",
+      "description": "Grains entiers ou moulu, avec un rythme mensuel.",
+      "priceLabel": "{price} / mois",
+      "cta": "Choisir cette formule",
+      "beans": {
+        "eyebrow": "Grains entiers",
+        "title": "Grains entiers, arômes maximum",
+        "description": "Pour espresso, filtre et tout l'entre-deux.",
+        "starter": {
+          "title": "Lumière du matin",
+          "size": "250g / mois",
+          "description": "Profil doux et lumineux pour les matins de semaine.",
+          "benefits": {
+            "one": "Torréfié en small-batch chaque mois",
+            "two": "Pause ou changement à tout moment",
+            "three": "Carte de dégustation à la première livraison"
+          }
+        },
+        "signature": {
+          "title": "Signature Roast",
+          "size": "500g / mois",
+          "description": "Notre équilibre préféré, cacao et caramel.",
+          "badge": "Le plus choisi",
+          "benefits": {
+            "one": "Palette aromatique complète au quotidien",
+            "two": "Priorité de torréfaction",
+            "three": "Notes de blends saisonniers incluses"
+          }
+        },
+        "atelier": {
+          "title": "Grand Atelier",
+          "size": "1kg / mois",
+          "description": "Pour les studios, équipes et grandes tables.",
+          "benefits": {
+            "one": "Stock généreux sans gaspillage",
+            "two": "Micro-lots sélectionnés",
+            "three": "Notes de torréfaction personnalisées"
+          }
+        }
+      },
+      "ground": {
+        "eyebrow": "Café moulu",
+        "title": "Textures prêtes à infuser",
+        "description": "Réglé pour filtre, moka ou French press.",
+        "starter": {
+          "title": "Mouture douce",
+          "size": "250g / mois",
+          "description": "Une mouture légère pour des tasses soyeuses.",
+          "benefits": {
+            "one": "Adapté à votre méthode",
+            "two": "Moulu juste après torréfaction",
+            "three": "Pause ou changement facile"
+          }
+        },
+        "signature": {
+          "title": "Rituel Blend",
+          "size": "500g / mois",
+          "description": "Mouture équilibrée pour le quotidien.",
+          "badge": "Populaire",
+          "benefits": {
+            "one": "Profil Caférico signature",
+            "two": "Cadence flexible",
+            "three": "Suppléments saisonniers limités"
+          }
+        },
+        "atelier": {
+          "title": "Studio Reserve",
+          "size": "1kg / mois",
+          "description": "Pour l'hospitalité, équipes et espaces créatifs.",
+          "benefits": {
+            "one": "Stock stable pour les semaines actives",
+            "two": "Moulu à la demande",
+            "three": "Notes de torréfaction dédiées"
+          }
+        }
+      }
+    },
+    "steps": {
+      "eyebrow": "Comment ça marche",
+      "title": "De la sélection au rituel",
+      "description": "Trois étapes, renouvelées chaque mois.",
+      "items": {
+        "one": {
+          "title": "Choisissez votre profil",
+          "description": "Sélectionnez grains ou moulu et votre quantité mensuelle."
+        },
+        "two": {
+          "title": "Nous torréfions à la commande",
+          "description": "Votre café est torréfié et expédié sous 24 h."
+        },
+        "three": {
+          "title": "Savourez & ajustez",
+          "description": "Mettez en pause, sautez ou changez avant chaque livraison."
+        }
+      },
+      "card": {
+        "eyebrow": "Calendrier de torréfaction",
+        "title": "Toujours au pic aromatique",
+        "description": "Nous torréfions juste avant l'envoi pour un premier café vibrant.",
+        "detail": "Sans engagement, ajustable à tout moment."
+      }
+    },
+    "faq": {
+      "eyebrow": "FAQ abonnements",
+      "title": "Réponses aux questions fréquentes",
+      "description": "Tout ce qu'il faut savoir avant de commencer.",
+      "items": {
+        "one": {
+          "question": "Puis-je mettre en pause ou annuler ?",
+          "answer": "Oui. Ajustez votre cadence ou stoppez avant la prochaine torréfaction."
+        },
+        "two": {
+          "question": "Quand le café est-il torréfié ?",
+          "answer": "Chaque batch est torréfié juste avant l'expédition."
+        },
+        "three": {
+          "question": "Puis-je alterner grains et moulu ?",
+          "answer": "Oui, changez de mouture entre les livraisons sans frais."
+        },
+        "four": {
+          "question": "Et la livraison ?",
+          "answer": "Les détails d'expédition sont confirmés avant chaque envoi."
+        }
+      }
+    },
+    "cta": {
+      "eyebrow": "Commencer",
+      "title": "Prêt pour un rituel mensuel ?",
+      "description": "Démarrez doucement et ajustez au fil de vos habitudes.",
+      "button": "Commencer l'abonnement",
+      "note": "Aucun engagement, annulation possible."
+    }
   }
 }
