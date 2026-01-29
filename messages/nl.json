@@ -241,6 +241,82 @@
       }
     }
   },
+  "Contact": {
+    "hero": {
+      "eyebrow": "Contact",
+      "title": "Laten we je volgende koffieritueel vormgeven",
+      "description": "Of je nu koffie zoekt voor thuis, kantoor of horeca, we reageren binnen één werkdag.",
+      "badge": "Atelier ondersteuning",
+      "card": {
+        "eyebrow": "Concierge",
+        "title": "Het Caférico atelier",
+        "description": "Van proefnotities tot wholesale, we begeleiden elke keuze.",
+        "detail": "Reactie binnen 24 uur"
+      }
+    },
+    "labels": {
+      "phone": "Telefoon",
+      "email": "E-mail",
+      "address": "Adres",
+      "vat": "BTW"
+    },
+    "form": {
+      "eyebrow": "Stuur een bericht",
+      "title": "Vertel ons hoe we kunnen helpen",
+      "description": "Vul het formulier in en ons team neemt snel contact op.",
+      "fields": {
+        "name": {
+          "label": "Naam",
+          "placeholder": "Jouw naam"
+        },
+        "email": {
+          "label": "E-mailadres",
+          "placeholder": "jij@example.com"
+        },
+        "subject": {
+          "label": "Onderwerp",
+          "placeholder": "Wholesale, proeverij of order support"
+        },
+        "message": {
+          "label": "Bericht",
+          "placeholder": "Deel enkele details over je aanvraag"
+        }
+      },
+      "submit": "Verstuur bericht",
+      "successTitle": "Bericht ontvangen",
+      "successMessage": "Dankjewel voor je bericht. We reageren binnen één werkdag.",
+      "validation": {
+        "nameRequired": "Vul je naam in.",
+        "emailRequired": "Vul je e-mailadres in.",
+        "emailInvalid": "Vul een geldig e-mailadres in.",
+        "subjectRequired": "Voeg een onderwerp toe.",
+        "messageRequired": "Schrijf een bericht."
+      }
+    },
+    "details": {
+      "eyebrow": "Bedrijfsgegevens",
+      "title": "Bezoek of contacteer ons atelier",
+      "description": "Je bent welkom voor proeverijen en consults op afspraak.",
+      "addressTitle": "Atelieradres",
+      "addressLine1": "Rue du Cacao 18",
+      "addressLine2": "1000 Brussel, België",
+      "phone": "+32 2 555 01 00",
+      "email": "hello@caferico.be",
+      "vat": "BTW: BE 0123.456.789"
+    },
+    "hours": {
+      "title": "Openingsuren",
+      "weekdays": "Ma - Vr: 08:00 - 18:00",
+      "weekend": "Za: 09:00 - 16:00 · Zo gesloten",
+      "note": "Privé cuppings op afspraak."
+    },
+    "map": {
+      "eyebrow": "Atelierkaart",
+      "title": "Vind ons in Brussel",
+      "description": "Onze branderij ligt langs de rivier, op enkele minuten van het historische centrum.",
+      "placeholder": "Kaartplaceholder — atelier Brussel"
+    }
+  },
   "Layout": {
     "logo": "Caférico",
     "nav": {

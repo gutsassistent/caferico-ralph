@@ -241,6 +241,82 @@
       }
     }
   },
+  "Contact": {
+    "hero": {
+      "eyebrow": "Contact",
+      "title": "Let's shape your next coffee ritual",
+      "description": "Whether you're sourcing for home, office, or hospitality, our team responds within one business day.",
+      "badge": "Atelier support",
+      "card": {
+        "eyebrow": "Concierge",
+        "title": "The Caférico atelier",
+        "description": "From tasting notes to wholesale, we guide you through each decision.",
+        "detail": "Response within 24 hours"
+      }
+    },
+    "labels": {
+      "phone": "Phone",
+      "email": "Email",
+      "address": "Address",
+      "vat": "VAT"
+    },
+    "form": {
+      "eyebrow": "Send a message",
+      "title": "Tell us how we can help",
+      "description": "Complete the form and our team will reach out shortly.",
+      "fields": {
+        "name": {
+          "label": "Full name",
+          "placeholder": "Your name"
+        },
+        "email": {
+          "label": "Email address",
+          "placeholder": "you@example.com"
+        },
+        "subject": {
+          "label": "Subject",
+          "placeholder": "Wholesale, tasting, or order support"
+        },
+        "message": {
+          "label": "Message",
+          "placeholder": "Share a few details about your request"
+        }
+      },
+      "submit": "Send message",
+      "successTitle": "Message received",
+      "successMessage": "Thank you for reaching out. We'll reply within one business day.",
+      "validation": {
+        "nameRequired": "Please enter your name.",
+        "emailRequired": "Please enter your email address.",
+        "emailInvalid": "Please enter a valid email address.",
+        "subjectRequired": "Please add a subject.",
+        "messageRequired": "Please write a message."
+      }
+    },
+    "details": {
+      "eyebrow": "Company details",
+      "title": "Visit or contact our atelier",
+      "description": "You are welcome to schedule tastings and consultations.",
+      "addressTitle": "Atelier address",
+      "addressLine1": "Rue du Cacao 18",
+      "addressLine2": "1000 Brussels, Belgium",
+      "phone": "+32 2 555 01 00",
+      "email": "hello@caferico.be",
+      "vat": "VAT: BE 0123.456.789"
+    },
+    "hours": {
+      "title": "Opening hours",
+      "weekdays": "Mon - Fri: 08:00 - 18:00",
+      "weekend": "Sat: 09:00 - 16:00 · Sun closed",
+      "note": "Private cupping sessions by appointment."
+    },
+    "map": {
+      "eyebrow": "Atelier map",
+      "title": "Find us in Brussels",
+      "description": "Our roastery is tucked beside the river, a few minutes from the historic center.",
+      "placeholder": "Map placeholder — Brussels atelier"
+    }
+  },
   "Layout": {
     "logo": "Caférico",
     "nav": {

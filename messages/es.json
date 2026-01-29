@@ -241,6 +241,82 @@
       }
     }
   },
+  "Contact": {
+    "hero": {
+      "eyebrow": "Contacto",
+      "title": "Diseñemos tu próximo ritual de café",
+      "description": "Tanto para casa, oficina u hostelería, respondemos en un día hábil.",
+      "badge": "Soporte del atelier",
+      "card": {
+        "eyebrow": "Conserjería",
+        "title": "El atelier Caférico",
+        "description": "De notas de cata a venta mayorista, guiamos cada decisión.",
+        "detail": "Respuesta en 24 h"
+      }
+    },
+    "labels": {
+      "phone": "Teléfono",
+      "email": "Email",
+      "address": "Dirección",
+      "vat": "IVA"
+    },
+    "form": {
+      "eyebrow": "Enviar un mensaje",
+      "title": "Cuéntanos cómo podemos ayudar",
+      "description": "Completa el formulario y nuestro equipo se pondrá en contacto.",
+      "fields": {
+        "name": {
+          "label": "Nombre completo",
+          "placeholder": "Tu nombre"
+        },
+        "email": {
+          "label": "Correo electrónico",
+          "placeholder": "tu@example.com"
+        },
+        "subject": {
+          "label": "Asunto",
+          "placeholder": "Mayorista, catas o soporte de pedidos"
+        },
+        "message": {
+          "label": "Mensaje",
+          "placeholder": "Comparte algunos detalles de tu solicitud"
+        }
+      },
+      "submit": "Enviar mensaje",
+      "successTitle": "Mensaje recibido",
+      "successMessage": "Gracias por escribirnos. Responderemos en un día hábil.",
+      "validation": {
+        "nameRequired": "Por favor, escribe tu nombre.",
+        "emailRequired": "Por favor, escribe tu correo electrónico.",
+        "emailInvalid": "Por favor, escribe un correo electrónico válido.",
+        "subjectRequired": "Por favor, añade un asunto.",
+        "messageRequired": "Por favor, escribe un mensaje."
+      }
+    },
+    "details": {
+      "eyebrow": "Datos de la empresa",
+      "title": "Visita o contacta el atelier",
+      "description": "Catas y asesorías con cita previa.",
+      "addressTitle": "Dirección del atelier",
+      "addressLine1": "Rue du Cacao 18",
+      "addressLine2": "1000 Bruselas, Bélgica",
+      "phone": "+32 2 555 01 00",
+      "email": "hello@caferico.be",
+      "vat": "IVA: BE 0123.456.789"
+    },
+    "hours": {
+      "title": "Horario",
+      "weekdays": "Lun - Vie: 08:00 - 18:00",
+      "weekend": "Sáb: 09:00 - 16:00 · Dom cerrado",
+      "note": "Sesiones privadas de cata con cita previa."
+    },
+    "map": {
+      "eyebrow": "Mapa del atelier",
+      "title": "Encuéntranos en Bruselas",
+      "description": "Nuestra tostadora está junto al río, a pocos minutos del centro histórico.",
+      "placeholder": "Mapa de referencia — atelier de Bruselas"
+    }
+  },
   "Layout": {
     "logo": "Caférico",
     "nav": {

@@ -1,0 +1,234 @@
+'use client';
+
+import type { ChangeEvent, FormEvent } from 'react';
+import { useState } from 'react';
+import { useTranslations } from 'next-intl';
+
+type ContactValues = {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+};
+
+type FieldName = keyof ContactValues;
+
+const initialValues: ContactValues = {
+  name: '',
+  email: '',
+  subject: '',
+  message: ''
+};
+
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+export default function ContactForm() {
+  const t = useTranslations('Contact');
+  const [values, setValues] = useState<ContactValues>(initialValues);
+  const [errors, setErrors] = useState<Partial<Record<FieldName, string>>>({});
+  const [submitAttempted, setSubmitAttempted] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const validate = (draft: ContactValues) => {
+    const nextErrors: Partial<Record<FieldName, string>> = {};
+
+    if (!draft.name.trim()) {
+      nextErrors.name = t('form.validation.nameRequired');
+    }
+
+    if (!draft.email.trim()) {
+      nextErrors.email = t('form.validation.emailRequired');
+    } else if (!emailPattern.test(draft.email)) {
+      nextErrors.email = t('form.validation.emailInvalid');
+    }
+
+    if (!draft.subject.trim()) {
+      nextErrors.subject = t('form.validation.subjectRequired');
+    }
+
+    if (!draft.message.trim()) {
+      nextErrors.message = t('form.validation.messageRequired');
+    }
+
+    return nextErrors;
+  };
+
+  const handleChange =
+    (field: FieldName) => (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const nextValues = { ...values, [field]: event.target.value };
+      setValues(nextValues);
+
+      if (submitAttempted) {
+        setErrors(validate(nextValues));
+      }
+
+      if (isSuccess) {
+        setIsSuccess(false);
+      }
+    };
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setSubmitAttempted(true);
+
+    const nextErrors = validate(values);
+    setErrors(nextErrors);
+
+    if (Object.keys(nextErrors).length > 0) {
+      setIsSuccess(false);
+      return;
+    }
+
+    setIsSuccess(true);
+    setSubmitAttempted(false);
+    setValues(initialValues);
+    setErrors({});
+  };
+
+  const fieldError = (field: FieldName) =>
+    submitAttempted && errors[field] ? errors[field] : undefined;
+
+  const inputBase =
+    'w-full rounded-2xl border bg-noir/70 px-4 py-3 text-sm text-cream placeholder:text-cream/40 transition focus:border-gold/70 focus:outline-none';
+  const inputError = 'border-rose-400/70 focus:border-rose-300';
+  const inputDefault = 'border-cream/20';
+
+  return (
+    <div className="rounded-3xl border border-cream/10 bg-[#140b08] p-8 shadow-[0_35px_80px_rgba(0,0,0,0.55)]">
+      <div className="space-y-3">
+        <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
+          {t('form.eyebrow')}
+        </p>
+        <h2 className="text-3xl font-serif">{t('form.title')}</h2>
+        <p className="text-sm text-cream/70 sm:text-base">{t('form.description')}</p>
+      </div>
+
+      <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+        {isSuccess ? (
+          <div
+            role="status"
+            aria-live="polite"
+            className="rounded-2xl border border-gold/30 bg-gold/10 p-4"
+          >
+            <p className="text-xs uppercase tracking-[0.3em] text-gold/80">
+              {t('form.successTitle')}
+            </p>
+            <p className="mt-2 text-sm text-cream/80">{t('form.successMessage')}</p>
+          </div>
+        ) : null}
+
+        <div className="grid gap-5 sm:grid-cols-2">
+          <div className="space-y-2">
+            <label
+              htmlFor="contact-name"
+              className="text-xs uppercase tracking-[0.3em] text-cream/60"
+            >
+              {t('form.fields.name.label')}
+            </label>
+            <input
+              id="contact-name"
+              name="name"
+              type="text"
+              autoComplete="name"
+              value={values.name}
+              onChange={handleChange('name')}
+              className={`${inputBase} ${fieldError('name') ? inputError : inputDefault}`}
+              placeholder={t('form.fields.name.placeholder')}
+              aria-invalid={Boolean(fieldError('name'))}
+              aria-describedby={fieldError('name') ? 'contact-name-error' : undefined}
+            />
+            {fieldError('name') ? (
+              <p id="contact-name-error" className="text-xs text-rose-200">
+                {fieldError('name')}
+              </p>
+            ) : null}
+          </div>
+
+          <div className="space-y-2">
+            <label
+              htmlFor="contact-email"
+              className="text-xs uppercase tracking-[0.3em] text-cream/60"
+            >
+              {t('form.fields.email.label')}
+            </label>
+            <input
+              id="contact-email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              value={values.email}
+              onChange={handleChange('email')}
+              className={`${inputBase} ${fieldError('email') ? inputError : inputDefault}`}
+              placeholder={t('form.fields.email.placeholder')}
+              aria-invalid={Boolean(fieldError('email'))}
+              aria-describedby={fieldError('email') ? 'contact-email-error' : undefined}
+            />
+            {fieldError('email') ? (
+              <p id="contact-email-error" className="text-xs text-rose-200">
+                {fieldError('email')}
+              </p>
+            ) : null}
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          <label
+            htmlFor="contact-subject"
+            className="text-xs uppercase tracking-[0.3em] text-cream/60"
+          >
+            {t('form.fields.subject.label')}
+          </label>
+          <input
+            id="contact-subject"
+            name="subject"
+            type="text"
+            value={values.subject}
+            onChange={handleChange('subject')}
+            className={`${inputBase} ${fieldError('subject') ? inputError : inputDefault}`}
+            placeholder={t('form.fields.subject.placeholder')}
+            aria-invalid={Boolean(fieldError('subject'))}
+            aria-describedby={fieldError('subject') ? 'contact-subject-error' : undefined}
+          />
+          {fieldError('subject') ? (
+            <p id="contact-subject-error" className="text-xs text-rose-200">
+              {fieldError('subject')}
+            </p>
+          ) : null}
+        </div>
+
+        <div className="space-y-2">
+          <label
+            htmlFor="contact-message"
+            className="text-xs uppercase tracking-[0.3em] text-cream/60"
+          >
+            {t('form.fields.message.label')}
+          </label>
+          <textarea
+            id="contact-message"
+            name="message"
+            value={values.message}
+            onChange={handleChange('message')}
+            className={`${inputBase} min-h-[160px] resize-none ${
+              fieldError('message') ? inputError : inputDefault
+            }`}
+            placeholder={t('form.fields.message.placeholder')}
+            aria-invalid={Boolean(fieldError('message'))}
+            aria-describedby={fieldError('message') ? 'contact-message-error' : undefined}
+          />
+          {fieldError('message') ? (
+            <p id="contact-message-error" className="text-xs text-rose-200">
+              {fieldError('message')}
+            </p>
+          ) : null}
+        </div>
+
+        <button
+          type="submit"
+          className="w-full rounded-full border border-gold/60 px-6 py-3 text-xs uppercase tracking-[0.3em] text-gold transition hover:bg-gold hover:text-noir"
+        >
+          {t('form.submit')}
+        </button>
+      </form>
+    </div>
+  );
+}

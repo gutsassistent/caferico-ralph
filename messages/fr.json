@@ -241,6 +241,82 @@
       }
     }
   },
+  "Contact": {
+    "hero": {
+      "eyebrow": "Contact",
+      "title": "Façonnons votre prochain rituel café",
+      "description": "Que ce soit pour la maison, le bureau ou l’hospitalité, nous répondons sous un jour ouvré.",
+      "badge": "Assistance atelier",
+      "card": {
+        "eyebrow": "Conciergerie",
+        "title": "L’atelier Caférico",
+        "description": "Des notes de dégustation au wholesale, nous guidons chaque décision.",
+        "detail": "Réponse sous 24 h"
+      }
+    },
+    "labels": {
+      "phone": "Téléphone",
+      "email": "Email",
+      "address": "Adresse",
+      "vat": "TVA"
+    },
+    "form": {
+      "eyebrow": "Envoyer un message",
+      "title": "Dites-nous comment vous aider",
+      "description": "Remplissez le formulaire et notre équipe vous recontacte rapidement.",
+      "fields": {
+        "name": {
+          "label": "Nom complet",
+          "placeholder": "Votre nom"
+        },
+        "email": {
+          "label": "Adresse email",
+          "placeholder": "vous@example.com"
+        },
+        "subject": {
+          "label": "Sujet",
+          "placeholder": "Wholesale, dégustation ou suivi de commande"
+        },
+        "message": {
+          "label": "Message",
+          "placeholder": "Partagez quelques détails sur votre demande"
+        }
+      },
+      "submit": "Envoyer le message",
+      "successTitle": "Message reçu",
+      "successMessage": "Merci pour votre message. Nous répondons sous un jour ouvré.",
+      "validation": {
+        "nameRequired": "Merci d’indiquer votre nom.",
+        "emailRequired": "Merci d’indiquer votre adresse email.",
+        "emailInvalid": "Merci de saisir une adresse email valide.",
+        "subjectRequired": "Merci d’ajouter un sujet.",
+        "messageRequired": "Merci d’écrire un message."
+      }
+    },
+    "details": {
+      "eyebrow": "Coordonnées",
+      "title": "Visitez ou contactez l’atelier",
+      "description": "Dégustations et consultations sur rendez-vous.",
+      "addressTitle": "Adresse de l’atelier",
+      "addressLine1": "Rue du Cacao 18",
+      "addressLine2": "1000 Bruxelles, Belgique",
+      "phone": "+32 2 555 01 00",
+      "email": "hello@caferico.be",
+      "vat": "TVA: BE 0123.456.789"
+    },
+    "hours": {
+      "title": "Horaires d’ouverture",
+      "weekdays": "Lun - Ven: 08:00 - 18:00",
+      "weekend": "Sam: 09:00 - 16:00 · Dim fermé",
+      "note": "Sessions de cupping privées sur rendez-vous."
+    },
+    "map": {
+      "eyebrow": "Plan de l’atelier",
+      "title": "Nous trouver à Bruxelles",
+      "description": "Notre torréfaction est située près de la rivière, à quelques minutes du centre historique.",
+      "placeholder": "Plan fictif — atelier de Bruxelles"
+    }
+  },
   "Layout": {
     "logo": "Caférico",
     "nav": {

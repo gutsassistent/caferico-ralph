@@ -243,7 +243,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
                 {t('team.quote.eyebrow')}
               </p>
               <p className="mt-4 text-xl font-serif text-cream">
-                "{t('team.quote.text')}"
+                &ldquo;{t('team.quote.text')}&rdquo;
               </p>
               <p className="mt-3 text-sm text-cream/60">{t('team.quote.author')}</p>
             </div>

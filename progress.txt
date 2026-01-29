@@ -78,3 +78,12 @@ Started: Caférico Front-End
   - Gotchas encountered: none.
   - Useful context: About page sections use the `About` translation namespace with timeline/team key arrays.
 ---
+## 2026-01-29 03:15 - US-009
+- Built the Contact page with hero, validated contact form + success state, company details, opening hours, and a map placeholder; added NL/EN/FR/ES translations.
+- Fixed a lint issue with unescaped quotes in the About page.
+- Files changed: `app/[locale]/(pages)/contact/page.tsx`, `components/ContactForm.tsx`, `messages/nl.json`, `messages/en.json`, `messages/fr.json`, `messages/es.json`, `app/[locale]/(pages)/about/page.tsx`, `prd.json`, `progress.txt`.
+- **Learnings for future iterations:**
+  - Patterns discovered: none.
+  - Gotchas encountered: `react/no-unescaped-entities` flags literal quotes in JSX; use entities like `&ldquo;` and `&rdquo;`.
+  - Useful context: contact form validation lives in `components/ContactForm.tsx` and uses next-intl messages under `Contact.form.validation`.
+---
