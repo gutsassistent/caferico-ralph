@@ -1,0 +1,21 @@
+{
+  "Home": {
+    "eyebrow": "Collection Caférico",
+    "title": "Un café belge à la lueur dorée",
+    "description": "Torréfié en petites séries et issu de domaines soigneusement choisis.",
+    "ctaPrimary": "Découvrir la collection",
+    "ctaSecondary": "Notre origine",
+    "craft": {
+      "title": "L'art dans chaque grain",
+      "description": "Une torréfaction lente pour des arômes profonds sans amertume."
+    },
+    "origin": {
+      "title": "Origine traçable",
+      "description": "Des relations équitables avec des familles qui cultivent le café depuis des générations."
+    },
+    "ritual": {
+      "title": "Un rituel quotidien",
+      "description": "Des matins calmes aux soirées paisibles, Caférico sublime chaque tasse."
+    }
+  }
+}

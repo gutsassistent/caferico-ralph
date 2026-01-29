@@ -1,0 +1,21 @@
+{
+  "Home": {
+    "eyebrow": "Caférico collection",
+    "title": "Belgian coffee with a soft, golden glow",
+    "description": "Small-batch roasted and sourced directly from carefully selected estates.",
+    "ctaPrimary": "Explore the collection",
+    "ctaSecondary": "Our origin",
+    "craft": {
+      "title": "Craft in every bean",
+      "description": "Slow roasting for layered aromas without bitterness."
+    },
+    "origin": {
+      "title": "Traceable origin",
+      "description": "Fair trade relationships with families perfecting coffee for generations."
+    },
+    "ritual": {
+      "title": "A daily ritual",
+      "description": "From quiet mornings to evening pauses, Caférico elevates every cup."
+    }
+  }
+}

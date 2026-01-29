@@ -31,7 +31,7 @@
         "Dev server start zonder errors"
       ],
       "priority": 1,
-      "passes": false,
+      "passes": true,
       "notes": "Alle product/content data is mock data in JSON bestanden. Geen backend nodig."
     },
     {

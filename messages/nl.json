@@ -1,0 +1,21 @@
+{
+  "Home": {
+    "eyebrow": "Caférico collectie",
+    "title": "Belgische koffie met een zachte, goudbruine gloed",
+    "description": "Ambachtelijk gebrand in kleine batches, rechtstreeks van zorgvuldig geselecteerde plantages.",
+    "ctaPrimary": "Ontdek de collectie",
+    "ctaSecondary": "Onze herkomst",
+    "craft": {
+      "title": "Ambacht in elke boon",
+      "description": "Langzame branding voor rijke, gelaagde aroma's zonder bitterheid."
+    },
+    "origin": {
+      "title": "Traceerbare oorsprong",
+      "description": "Fair trade relaties met families die generaties lang koffie perfectioneren."
+    },
+    "ritual": {
+      "title": "Een dagelijks ritueel",
+      "description": "Van ochtendstilte tot avondmomenten: Caférico maakt elk kopje bijzonder."
+    }
+  }
+}

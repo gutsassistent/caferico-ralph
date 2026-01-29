@@ -1,0 +1,21 @@
+{
+  "Home": {
+    "eyebrow": "Colección Caférico",
+    "title": "Café belga con un brillo dorado",
+    "description": "Tostado en pequeños lotes y obtenido de fincas cuidadosamente seleccionadas.",
+    "ctaPrimary": "Explorar la colección",
+    "ctaSecondary": "Nuestro origen",
+    "craft": {
+      "title": "Artesanía en cada grano",
+      "description": "Tostado lento para aromas profundos sin amargor."
+    },
+    "origin": {
+      "title": "Origen trazable",
+      "description": "Relaciones de comercio justo con familias que perfeccionan el café desde hace generaciones."
+    },
+    "ritual": {
+      "title": "Un ritual diario",
+      "description": "De mañanas serenas a tardes tranquilas, Caférico realza cada taza."
+    }
+  }
+}

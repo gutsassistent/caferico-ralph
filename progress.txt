@@ -1,3 +1,16 @@
 # Ralph Progress Log
+## Codebase Patterns
+- Exclude the `flowchart` folder from root `tsconfig.json` to keep app typechecking isolated from the React Flow demo.
+
 Started: Caférico Front-End
+---
+## 2026-01-29 01:57 - US-001
+- Bootstrapped Next.js 15 app structure with App Router, Tailwind theme, next-intl setup, and base layout/homepage wiring.
+- Added mock JSON data for products, collections, blog posts, and FAQ.
+- Added TypeScript, ESLint, Prettier configs plus base global styles and i18n middleware.
+- Files changed: `app/[locale]/layout.tsx`, `app/[locale]/(pages)/page.tsx`, `app/globals.css`, `lib/i18n.ts`, `middleware.ts`, `messages/*.json`, `data/*.json`, `components/Container.tsx`, `types/product.ts`, `tsconfig.json`, `next-env.d.ts`, `.eslintrc.json`, `.prettierrc.json`, `.prettierignore`, `.gitignore`, `prd.json`, `progress.txt`.
+- **Learnings for future iterations:**
+  - Patterns discovered: exclude `flowchart` from root `tsconfig.json` to avoid unrelated typecheck errors.
+  - Gotchas encountered: root typecheck will include nested demo folders unless excluded.
+  - Useful context: next-intl is wired via `middleware.ts` + `app/[locale]/layout.tsx` with `messages/*.json`.
 ---

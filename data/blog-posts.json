@@ -1,0 +1,38 @@
+[
+  {
+    "id": "slow-roast",
+    "title": "Waarom slow roast het verschil maakt",
+    "date": "2025-11-10",
+    "author": "Amelie De Wilde",
+    "excerpt": "Onze brandmeester vertelt waarom tijd het geheime ingrediënt is.",
+    "tags": ["roasting", "craft"],
+    "content": [
+      "Langzaam branden geeft de suikers de tijd om volledig te karamelliseren.",
+      "Het resultaat is een fluweelzachte body en een lange afdronk."
+    ]
+  },
+  {
+    "id": "origin-stories",
+    "title": "Oorsprong: Rwanda in het ochtendlicht",
+    "date": "2025-10-02",
+    "author": "Noor Van Hove",
+    "excerpt": "Een reis naar de heuvels van Rwanda waar onze Golden Dawn ontstaat.",
+    "tags": ["origin", "travel"],
+    "content": [
+      "Onze partners oogsten met de hand en drogen de bonen op verhoogde bedden.",
+      "De frisse nachten zorgen voor helder fruit en florale tonen."
+    ]
+  },
+  {
+    "id": "brewing-rituals",
+    "title": "Rituelen voor de perfecte morning brew",
+    "date": "2025-09-18",
+    "author": "Lars Peeters",
+    "excerpt": "Drie simpele stappen om elke ochtend opnieuw te genieten.",
+    "tags": ["brew", "ritual"],
+    "content": [
+      "Gebruik vers gefilterd water en maal pas net voor het zetten.",
+      "Neem de tijd om te ruiken en te proeven, het maakt het verschil."
+    ]
+  }
+]
