@@ -26,3 +26,20 @@ h6 {
   background-color: rgba(212, 165, 116, 0.35);
   color: #f2e8cf;
 }
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Focus ring for accessibility */
+:focus-visible {
+  outline: 2px solid rgba(212, 165, 116, 0.6);
+  outline-offset: 2px;
+}

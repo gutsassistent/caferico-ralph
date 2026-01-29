@@ -500,6 +500,12 @@
       "pinterest": "Pinterest"
     }
   },
+  "NotFound": {
+    "eyebrow": "Page introuvable",
+    "title": "Cette tasse n'a pas encore été infusée",
+    "description": "La page recherchée n'existe pas ou a été déplacée. Retournez à l'accueil pour explorer l'atelier Caférico.",
+    "cta": "Retour à l'accueil"
+  },
   "Cart": {
     "eyebrow": "Panier",
     "title": "Votre panier",

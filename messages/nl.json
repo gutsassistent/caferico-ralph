@@ -500,6 +500,12 @@
       "pinterest": "Pinterest"
     }
   },
+  "NotFound": {
+    "eyebrow": "Pagina niet gevonden",
+    "title": "Deze kop is nog niet gezet",
+    "description": "De pagina die je zoekt bestaat niet of is verplaatst. Ga terug naar het begin en ontdek het Caférico-atelier.",
+    "cta": "Terug naar home"
+  },
   "Cart": {
     "eyebrow": "Winkelmand",
     "title": "Jouw winkelwagen",

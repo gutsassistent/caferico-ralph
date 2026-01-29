@@ -500,6 +500,12 @@
       "pinterest": "Pinterest"
     }
   },
+  "NotFound": {
+    "eyebrow": "Página no encontrada",
+    "title": "Esta taza aún no se ha preparado",
+    "description": "La página que buscas no existe o ha sido movida. Regresa al inicio para explorar el atelier Caférico.",
+    "cta": "Volver al inicio"
+  },
   "Cart": {
     "eyebrow": "Carrito",
     "title": "Tu carrito",

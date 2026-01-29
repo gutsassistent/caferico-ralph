@@ -8,6 +8,8 @@ import { CartProvider } from '@/components/CartProvider';
 import CartDrawer from '@/components/CartDrawer';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import PageTransition from '@/components/PageTransition';
+import ScrollToTop from '@/components/ScrollToTop';
 import '@/app/globals.css';
 
 const inter = Inter({
@@ -48,10 +50,11 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
           <CartProvider>
             <div className="flex min-h-screen flex-col">
               <Header />
-              <div className="flex-1">{children}</div>
+              <PageTransition><div className="flex-1">{children}</div></PageTransition>
               <Footer />
             </div>
             <CartDrawer />
+            <ScrollToTop />
           </CartProvider>
         </NextIntlClientProvider>
       </body>
