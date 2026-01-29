@@ -3,7 +3,6 @@
 # Usage: ./ralph.sh [max_iterations]
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-cd "$SCRIPT_DIR"
 
 MAX_ITERATIONS=${1:-200}
 iteration=0
@@ -19,12 +18,12 @@ while true; do
   fi
 
   # Check status file for stop condition
-  if [ -f "./status.md" ]; then
-    STATUS=$(grep -o 'Status: [a-zA-Z]*' ./status.md | cut -d' ' -f2)
+  if [ -f "$SCRIPT_DIR/status.md" ]; then
+    STATUS=$(grep -o 'Status: [a-zA-Z]*' "$SCRIPT_DIR/status.md" | cut -d' ' -f2)
 
     if [ "$STATUS" = "done" ] || [ "$STATUS" = "blocked" ]; then
       echo "Agent stopped with status: $STATUS"
-      cat ./status.md
+      cat "$SCRIPT_DIR/status.md"
       break
     fi
   fi
@@ -34,9 +33,14 @@ while true; do
   echo "Current status: ${STATUS:-running}"
   echo ""
 
-  # Run Codex with the prompt file
-  prompt=$(cat ./CLAUDE.md)
-  codex exec "$prompt" --model gpt-5.2-codex --dangerously-bypass-approvals-and-sandbox --config model_reasoning_effort="xhigh" || true
+  # Run Codex with the prompt from CLAUDE.md, working directory set to script dir
+  codex exec \
+    -m gpt-5.2-codex \
+    -C "$SCRIPT_DIR" \
+    -c model_reasoning_effort='"xhigh"' \
+    --dangerously-bypass-approvals-and-sandbox \
+    "$(cat "$SCRIPT_DIR/CLAUDE.md")" \
+    || true
 
   # Small delay to avoid hammering the API
   sleep 2
