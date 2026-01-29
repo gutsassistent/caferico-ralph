@@ -2,20 +2,69 @@
   "Home": {
     "eyebrow": "Colección Caférico",
     "title": "Café belga con un brillo dorado",
-    "description": "Tostado en pequeños lotes y obtenido de fincas cuidadosamente seleccionadas.",
-    "ctaPrimary": "Explorar la colección",
+    "description": "Tostado en pequeños lotes y seleccionado directamente de fincas cuidadas.",
+    "ctaPrimary": "Descubrir la colección",
     "ctaSecondary": "Nuestro origen",
     "craft": {
       "title": "Artesanía en cada grano",
-      "description": "Tostado lento para aromas profundos sin amargor."
+      "description": "Tueste lento para aromas profundos sin amargor."
     },
     "origin": {
       "title": "Origen trazable",
-      "description": "Relaciones de comercio justo con familias que perfeccionan el café desde hace generaciones."
+      "description": "Relaciones fair trade con familias que perfeccionan el café por generaciones."
     },
     "ritual": {
       "title": "Un ritual diario",
-      "description": "De mañanas serenas a tardes tranquilas, Caférico realza cada taza."
+      "description": "De mañanas tranquilas a pausas nocturnas: Caférico eleva cada taza."
+    }
+  },
+  "Layout": {
+    "logo": "Caférico",
+    "nav": {
+      "shop": "Tienda",
+      "subscriptions": "Suscripciones",
+      "about": "Sobre nosotros",
+      "blog": "Blog",
+      "contact": "Contacto",
+      "faq": "FAQ"
+    },
+    "languages": {
+      "nl": "Nederlands",
+      "en": "English",
+      "fr": "Français",
+      "es": "Español"
+    },
+    "actions": {
+      "language": "Idioma",
+      "cart": "Carrito",
+      "account": "Cuenta",
+      "menu": "Menú",
+      "closeMenu": "Cerrar menú"
+    },
+    "footer": {
+      "tagline": "Café de especialidad belga, tostado con intención.",
+      "socialTitle": "Social",
+      "sitemapTitle": "Mapa del sitio",
+      "contactTitle": "Contacto",
+      "addressLine1": "Rue du Cacao 18",
+      "addressLine2": "1000 Bruselas, Bélgica",
+      "phone": "+32 2 555 01 00",
+      "email": "hello@caferico.be",
+      "vat": "IVA: BE 0123.456.789",
+      "hoursTitle": "Horario",
+      "hoursWeekdays": "Lun - Vie: 08:00 - 18:00",
+      "hoursWeekend": "Sáb: 09:00 - 16:00 · Dom cerrado",
+      "newsletterTitle": "Newsletter",
+      "newsletterDescription": "Recibe micro-tostados, guías y lanzamientos exclusivos.",
+      "newsletterLabel": "Correo electrónico",
+      "newsletterPlaceholder": "tu@ejemplo.com",
+      "newsletterButton": "Suscribirse",
+      "copyright": "© {year} Caférico. Todos los derechos reservados."
+    },
+    "social": {
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn",
+      "pinterest": "Pinterest"
     }
   }
 }

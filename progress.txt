@@ -1,6 +1,7 @@
 # Ralph Progress Log
 ## Codebase Patterns
 - Exclude the `flowchart` folder from root `tsconfig.json` to keep app typechecking isolated from the React Flow demo.
+- Locale switcher pattern: replace the first path segment with the target locale and preserve query params via `usePathname` + `useSearchParams`.
 
 Started: Caférico Front-End
 ---
@@ -13,4 +14,12 @@ Started: Caférico Front-End
   - Patterns discovered: exclude `flowchart` from root `tsconfig.json` to avoid unrelated typecheck errors.
   - Gotchas encountered: root typecheck will include nested demo folders unless excluded.
   - Useful context: next-intl is wired via `middleware.ts` + `app/[locale]/layout.tsx` with `messages/*.json`.
+---
+## 2026-01-29 02:06 - US-002
+- Built premium header with navigation, locale switcher, cart/account icons, and animated mobile menu; added sticky scroll effect and footer with sitemap, contact, social, and newsletter sections.
+- Files changed: `app/[locale]/layout.tsx`, `components/Header.tsx`, `components/Footer.tsx`, `lib/navigation.ts`, `messages/nl.json`, `messages/en.json`, `messages/fr.json`, `messages/es.json`, `progress.txt`.
+- **Learnings for future iterations:**
+  - Patterns discovered: locale switcher uses pathname segment replacement with query preservation.
+  - Gotchas encountered: none.
+  - Useful context: header/footer live in `app/[locale]/layout.tsx` to keep global chrome consistent.
 ---

@@ -93,3 +93,6 @@ If there are still stories with `passes: false`, do NOT write status.md — just
 - Commit frequently
 - Keep CI green
 - Read the Codebase Patterns section in progress.txt before starting
+
+## Codebase Patterns
+- Locale switcher: replace the first path segment with the target locale and preserve query params via `usePathname` + `useSearchParams`.

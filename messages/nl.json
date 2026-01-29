@@ -17,5 +17,54 @@
       "title": "Een dagelijks ritueel",
       "description": "Van ochtendstilte tot avondmomenten: Caférico maakt elk kopje bijzonder."
     }
+  },
+  "Layout": {
+    "logo": "Caférico",
+    "nav": {
+      "shop": "Shop",
+      "subscriptions": "Abonnementen",
+      "about": "Over ons",
+      "blog": "Blog",
+      "contact": "Contact",
+      "faq": "FAQ"
+    },
+    "languages": {
+      "nl": "Nederlands",
+      "en": "English",
+      "fr": "Français",
+      "es": "Español"
+    },
+    "actions": {
+      "language": "Taal",
+      "cart": "Winkelwagen",
+      "account": "Account",
+      "menu": "Menu",
+      "closeMenu": "Sluit menu"
+    },
+    "footer": {
+      "tagline": "Belgische specialty koffie, gebrand met aandacht.",
+      "socialTitle": "Social",
+      "sitemapTitle": "Sitemap",
+      "contactTitle": "Contact",
+      "addressLine1": "Rue du Cacao 18",
+      "addressLine2": "1000 Brussel, België",
+      "phone": "+32 2 555 01 00",
+      "email": "hello@caferico.be",
+      "vat": "BTW: BE 0123.456.789",
+      "hoursTitle": "Openingsuren",
+      "hoursWeekdays": "Ma - Vr: 08:00 - 18:00",
+      "hoursWeekend": "Za: 09:00 - 16:00 · Zo gesloten",
+      "newsletterTitle": "Nieuwsbrief",
+      "newsletterDescription": "Ontvang proefroosterijen, brew guides en exclusieve lanceringen.",
+      "newsletterLabel": "E-mailadres",
+      "newsletterPlaceholder": "jij@voorbeeld.be",
+      "newsletterButton": "Inschrijven",
+      "copyright": "© {year} Caférico. Alle rechten voorbehouden."
+    },
+    "social": {
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn",
+      "pinterest": "Pinterest"
+    }
   }
 }
