@@ -160,5 +160,53 @@
       "linkedin": "LinkedIn",
       "pinterest": "Pinterest"
     }
+  },
+  "Product": {
+    "breadcrumbs": {
+      "label": "Migas de pan",
+      "home": "Inicio",
+      "shop": "Tienda"
+    },
+    "badge": "Tueste en pequeños lotes",
+    "description": "Con origen {origin} y notas de {notes}, pensado para mañanas lentas y noches doradas.",
+    "details": {
+      "title": "Perfil de cata",
+      "originLabel": "Origen",
+      "notesLabel": "Notas de sabor",
+      "collectionLabel": "Colección",
+      "roastLabel": "Nivel de tueste",
+      "roastValue": "Medio-oscuro"
+    },
+    "variants": {
+      "grindLabel": "Molienda",
+      "grind": {
+        "beans": "Grano entero",
+        "fine": "Fina",
+        "coarse": "Gruesa"
+      },
+      "weightLabel": "Peso",
+      "weight": {
+        "250": "250g",
+        "500": "500g",
+        "1000": "1kg"
+      }
+    },
+    "quantityLabel": "Cantidad",
+    "quantityIncrease": "Aumentar cantidad",
+    "quantityDecrease": "Disminuir cantidad",
+    "addToCart": "Agregar al carrito",
+    "purchase": {
+      "eyebrow": "Tu selección",
+      "availability": "En stock",
+      "totalLabel": "Total",
+      "hint": "Tostado fresco y enviado en 48 horas."
+    },
+    "related": {
+      "eyebrow": "Relacionado",
+      "title": "Más de {collection}",
+      "description": "Combínalo con rituales o notas que se complementen.",
+      "cta": "Ver la tienda",
+      "priceLabel": "Precio"
+    }
   }
 }

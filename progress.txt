@@ -41,3 +41,12 @@ Started: Caférico Front-End
   - Gotchas encountered: none.
   - Useful context: Shop filtering UI is implemented in `components/ShopCatalog.tsx` with next-intl hooks for labels.
 ---
+## 2026-01-29 02:33 - US-005
+- Built product detail page with breadcrumb navigation, gallery placeholders, product profile, variant/quantity selection panel, and related products section.
+- Linked shop cards and homepage featured cards to the new product detail route.
+- Files changed: `app/[locale]/(pages)/shop/[slug]/page.tsx`, `components/ProductPurchasePanel.tsx`, `components/ShopCatalog.tsx`, `app/[locale]/(pages)/page.tsx`, `messages/nl.json`, `messages/en.json`, `messages/fr.json`, `messages/es.json`, `prd.json`, `progress.txt`.
+- **Learnings for future iterations:**
+  - Patterns discovered: none.
+  - Gotchas encountered: none.
+  - Useful context: product purchase UI lives in `components/ProductPurchasePanel.tsx` for future cart integration.
+---

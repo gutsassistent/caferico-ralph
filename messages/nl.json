@@ -160,5 +160,53 @@
       "linkedin": "LinkedIn",
       "pinterest": "Pinterest"
     }
+  },
+  "Product": {
+    "breadcrumbs": {
+      "label": "Broodkruimel",
+      "home": "Home",
+      "shop": "Shop"
+    },
+    "badge": "Kleine batch branding",
+    "description": "Met {origin} als oorsprong en tonen van {notes}, gemaakt voor trage ochtenden en zachte avonden.",
+    "details": {
+      "title": "Proefprofiel",
+      "originLabel": "Oorsprong",
+      "notesLabel": "Smaaktonen",
+      "collectionLabel": "Collectie",
+      "roastLabel": "Roast",
+      "roastValue": "Medium donker"
+    },
+    "variants": {
+      "grindLabel": "Maling",
+      "grind": {
+        "beans": "Bonen",
+        "fine": "Fijn",
+        "coarse": "Grof"
+      },
+      "weightLabel": "Gewicht",
+      "weight": {
+        "250": "250g",
+        "500": "500g",
+        "1000": "1kg"
+      }
+    },
+    "quantityLabel": "Hoeveelheid",
+    "quantityIncrease": "Verhoog hoeveelheid",
+    "quantityDecrease": "Verlaag hoeveelheid",
+    "addToCart": "Voeg toe aan winkelwagen",
+    "purchase": {
+      "eyebrow": "Jouw selectie",
+      "availability": "Op voorraad",
+      "totalLabel": "Totaal",
+      "hint": "Vers gebrand en binnen 48 uur verzonden."
+    },
+    "related": {
+      "eyebrow": "Gerelateerd",
+      "title": "Meer uit {collection}",
+      "description": "Combineer met rituelen of smaken die elkaar aanvullen.",
+      "cta": "Bekijk de shop",
+      "priceLabel": "Prijs"
+    }
   }
 }

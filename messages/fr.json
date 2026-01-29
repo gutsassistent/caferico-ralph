@@ -160,5 +160,53 @@
       "linkedin": "LinkedIn",
       "pinterest": "Pinterest"
     }
+  },
+  "Product": {
+    "breadcrumbs": {
+      "label": "Fil d'Ariane",
+      "home": "Accueil",
+      "shop": "Boutique"
+    },
+    "badge": "Torréfié en petite série",
+    "description": "Origine {origin} avec des notes de {notes}, pensé pour les matinées lentes et les soirées dorées.",
+    "details": {
+      "title": "Profil gustatif",
+      "originLabel": "Origine",
+      "notesLabel": "Notes de dégustation",
+      "collectionLabel": "Collection",
+      "roastLabel": "Niveau de torréfaction",
+      "roastValue": "Moyen-foncé"
+    },
+    "variants": {
+      "grindLabel": "Mouture",
+      "grind": {
+        "beans": "Grains",
+        "fine": "Fine",
+        "coarse": "Grossière"
+      },
+      "weightLabel": "Poids",
+      "weight": {
+        "250": "250g",
+        "500": "500g",
+        "1000": "1kg"
+      }
+    },
+    "quantityLabel": "Quantité",
+    "quantityIncrease": "Augmenter la quantité",
+    "quantityDecrease": "Réduire la quantité",
+    "addToCart": "Ajouter au panier",
+    "purchase": {
+      "eyebrow": "Votre sélection",
+      "availability": "En stock",
+      "totalLabel": "Total",
+      "hint": "Torréfié frais et expédié sous 48 heures."
+    },
+    "related": {
+      "eyebrow": "Associé",
+      "title": "Plus de {collection}",
+      "description": "Associez ce profil à un rituel ou à des notes complémentaires.",
+      "cta": "Voir la boutique",
+      "priceLabel": "Prix"
+    }
   }
 }

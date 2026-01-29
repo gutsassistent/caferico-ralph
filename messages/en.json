@@ -160,5 +160,53 @@
       "linkedin": "LinkedIn",
       "pinterest": "Pinterest"
     }
+  },
+  "Product": {
+    "breadcrumbs": {
+      "label": "Breadcrumb",
+      "home": "Home",
+      "shop": "Shop"
+    },
+    "badge": "Small-batch roast",
+    "description": "Sourced from {origin} with notes of {notes}, crafted for slow mornings and golden evenings.",
+    "details": {
+      "title": "Tasting profile",
+      "originLabel": "Origin",
+      "notesLabel": "Tasting notes",
+      "collectionLabel": "Collection",
+      "roastLabel": "Roast level",
+      "roastValue": "Medium-dark"
+    },
+    "variants": {
+      "grindLabel": "Grind",
+      "grind": {
+        "beans": "Whole bean",
+        "fine": "Fine",
+        "coarse": "Coarse"
+      },
+      "weightLabel": "Weight",
+      "weight": {
+        "250": "250g",
+        "500": "500g",
+        "1000": "1kg"
+      }
+    },
+    "quantityLabel": "Quantity",
+    "quantityIncrease": "Increase quantity",
+    "quantityDecrease": "Decrease quantity",
+    "addToCart": "Add to cart",
+    "purchase": {
+      "eyebrow": "Your selection",
+      "availability": "In stock",
+      "totalLabel": "Total",
+      "hint": "Roasted fresh and shipped within 48 hours."
+    },
+    "related": {
+      "eyebrow": "Related",
+      "title": "More from {collection}",
+      "description": "Pair this roast with a matching ritual or complementary notes.",
+      "cta": "Browse the shop",
+      "priceLabel": "Price"
+    }
   }
 }

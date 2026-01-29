@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import Reveal from '@/components/Reveal';
 import products from '@/data/products.json';
@@ -164,7 +165,10 @@ export default function ShopCatalog() {
         ) : (
           filteredProducts.map((product, index) => (
             <Reveal key={product.id} delay={index * 70} className="h-full">
-              <article className="group flex h-full flex-col rounded-3xl border border-cream/10 bg-[#140b08] p-5 transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_30px_60px_rgba(0,0,0,0.4)]">
+              <Link
+                href={`/${locale}/shop/${product.slug}`}
+                className="group flex h-full flex-col rounded-3xl border border-cream/10 bg-[#140b08] p-5 transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_30px_60px_rgba(0,0,0,0.4)]"
+              >
                 <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-espresso via-[#1d120d] to-noir">
                   <div className="absolute inset-0 bg-coffee-grain opacity-40" />
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,165,116,0.2),_transparent_60%)]" />
@@ -186,7 +190,7 @@ export default function ShopCatalog() {
                   <span className="text-cream/50">{t('card.priceLabel')}</span>
                   <span className="text-gold">{priceFormatter.format(product.price)}</span>
                 </div>
-              </article>
+              </Link>
             </Reveal>
           ))
         )}
