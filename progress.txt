@@ -87,3 +87,11 @@ Started: Caférico Front-End
   - Gotchas encountered: `react/no-unescaped-entities` flags literal quotes in JSX; use entities like `&ldquo;` and `&rdquo;`.
   - Useful context: contact form validation lives in `components/ContactForm.tsx` and uses next-intl messages under `Contact.form.validation`.
 ---
+## 2026-01-29 03:27 - US-010
+- Built the FAQ page with premium hero, search + category filters, a support card, and animated accordion items covering 15 questions.
+- Files changed: `app/[locale]/(pages)/faq/page.tsx`, `components/FaqExplorer.tsx`, `messages/nl.json`, `messages/en.json`, `messages/fr.json`, `messages/es.json`, `prd.json`, `progress.txt`.
+- **Learnings for future iterations:**
+  - Patterns discovered: none.
+  - Gotchas encountered: none.
+  - Useful context: FAQ interactions live in `components/FaqExplorer.tsx` with translation-driven item content.
+---

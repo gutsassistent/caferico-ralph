@@ -317,6 +317,112 @@
       "placeholder": "Map placeholder — Brussels atelier"
     }
   },
+  "Faq": {
+    "hero": {
+      "eyebrow": "FAQ",
+      "title": "Answers for every Caférico ritual",
+      "description": "Find guidance on orders, subscriptions, shipping, and product care.",
+      "badge": "Updated weekly",
+      "card": {
+        "eyebrow": "Support atelier",
+        "title": "Concierge answers in one place",
+        "description": "Browse the most requested questions or reach out for a custom response.",
+        "detail": "Average reply within 24 hours"
+      }
+    },
+    "search": {
+      "label": "Search the FAQ",
+      "placeholder": "Search by keyword, roast, or delivery",
+      "hint": "Tip: try shipping or subscription"
+    },
+    "categories": {
+      "label": "Browse by category",
+      "all": "All categories",
+      "orders": "Orders",
+      "subscriptions": "Subscriptions",
+      "products": "Products",
+      "shipping": "Shipping",
+      "returns": "Returns"
+    },
+    "results": {
+      "count": "{count, plural, one {# question} other {# questions}}",
+      "subtitle": "Curated for clarity"
+    },
+    "support": {
+      "eyebrow": "Still need help?",
+      "title": "Talk to the Caférico team",
+      "description": "We reply in one business day with tailored guidance.",
+      "cta": "Contact us",
+      "note": "Atelier support, Monday to Saturday."
+    },
+    "empty": {
+      "title": "No answers found",
+      "description": "Try another category or adjust your search.",
+      "cta": "Reset filters"
+    },
+    "items": {
+      "ordersOne": {
+        "question": "How fast is my order dispatched?",
+        "answer": "Orders placed before 12:00 are roasted and shipped the same day."
+      },
+      "ordersTwo": {
+        "question": "Can I change my order after placing it?",
+        "answer": "Updates are possible within two hours before it enters production."
+      },
+      "ordersThree": {
+        "question": "How do I track my order?",
+        "answer": "You'll receive a tracking link by email as soon as it leaves the atelier."
+      },
+      "subscriptionsOne": {
+        "question": "Can I pause my subscription?",
+        "answer": "Yes, skip a delivery or pause whenever you need a break."
+      },
+      "subscriptionsTwo": {
+        "question": "When am I billed for a subscription?",
+        "answer": "Payment is processed two days before the scheduled roast."
+      },
+      "subscriptionsThree": {
+        "question": "Can I switch grind size each delivery?",
+        "answer": "Absolutely—adjust the grind in your account before each shipment."
+      },
+      "productsOne": {
+        "question": "Are your coffees organic?",
+        "answer": "Selected single origins are certified organic; each product page notes this."
+      },
+      "productsTwo": {
+        "question": "Which grind suits my brew method?",
+        "answer": "Espresso prefers fine, filter uses medium, and French press is best with coarse."
+      },
+      "productsThree": {
+        "question": "How long does coffee stay fresh?",
+        "answer": "For peak flavour, enjoy within six weeks after roast date."
+      },
+      "shippingOne": {
+        "question": "Which countries do you ship to?",
+        "answer": "We deliver in Belgium, the Netherlands, Luxembourg, and Germany."
+      },
+      "shippingTwo": {
+        "question": "What are the shipping fees?",
+        "answer": "Shipping is free from €35; otherwise the fee is €4.95."
+      },
+      "shippingThree": {
+        "question": "How long does delivery take?",
+        "answer": "Most parcels arrive within 1-2 business days after roasting."
+      },
+      "returnsOne": {
+        "question": "Can I return coffee?",
+        "answer": "Unopened bags can be returned within 14 days."
+      },
+      "returnsTwo": {
+        "question": "How do I start a return?",
+        "answer": "Email us with your order number and reason to receive a return label."
+      },
+      "returnsThree": {
+        "question": "What if my order arrives damaged?",
+        "answer": "Send a photo within 48 hours and we'll replace it promptly."
+      }
+    }
+  },
   "Layout": {
     "logo": "Caférico",
     "nav": {

@@ -317,6 +317,112 @@
       "placeholder": "Mapa de referencia — atelier de Bruselas"
     }
   },
+  "Faq": {
+    "hero": {
+      "eyebrow": "FAQ",
+      "title": "Respuestas para cada ritual Caférico",
+      "description": "Encuentra ayuda sobre pedidos, suscripciones, envíos y productos.",
+      "badge": "Actualizado cada semana",
+      "card": {
+        "eyebrow": "Soporte del atelier",
+        "title": "Respuestas del concierge en un solo lugar",
+        "description": "Consulta las preguntas más habituales o contáctanos para una respuesta a medida.",
+        "detail": "Respuesta media en 24 h"
+      }
+    },
+    "search": {
+      "label": "Buscar en la FAQ",
+      "placeholder": "Busca por palabra clave, tueste o entrega",
+      "hint": "Consejo: prueba envío o suscripción"
+    },
+    "categories": {
+      "label": "Explorar por categoría",
+      "all": "Todas las categorías",
+      "orders": "Pedidos",
+      "subscriptions": "Suscripciones",
+      "products": "Productos",
+      "shipping": "Envío",
+      "returns": "Devoluciones"
+    },
+    "results": {
+      "count": "{count, plural, one {# pregunta} other {# preguntas}}",
+      "subtitle": "Seleccionadas para claridad"
+    },
+    "support": {
+      "eyebrow": "¿Necesitas ayuda?",
+      "title": "Habla con el equipo Caférico",
+      "description": "Respondemos en un día laborable con asesoramiento personalizado.",
+      "cta": "Contáctanos",
+      "note": "Soporte del atelier, de lunes a sábado."
+    },
+    "empty": {
+      "title": "No se encontraron respuestas",
+      "description": "Prueba otra categoría o ajusta tu búsqueda.",
+      "cta": "Restablecer filtros"
+    },
+    "items": {
+      "ordersOne": {
+        "question": "¿Qué tan rápido se envía mi pedido?",
+        "answer": "Los pedidos realizados antes de las 12:00 se tuestan y envían el mismo día."
+      },
+      "ordersTwo": {
+        "question": "¿Puedo modificar mi pedido?",
+        "answer": "Puedes cambiarlo dentro de las dos horas posteriores antes de entrar en producción."
+      },
+      "ordersThree": {
+        "question": "¿Cómo hago el seguimiento de mi pedido?",
+        "answer": "Recibirás un enlace de seguimiento por correo en cuanto salga del atelier."
+      },
+      "subscriptionsOne": {
+        "question": "¿Puedo pausar mi suscripción?",
+        "answer": "Sí, puedes saltarte una entrega o pausar cuando quieras."
+      },
+      "subscriptionsTwo": {
+        "question": "¿Cuándo se cobra mi suscripción?",
+        "answer": "El pago se procesa dos días antes del tueste programado."
+      },
+      "subscriptionsThree": {
+        "question": "¿Puedo cambiar el molido en cada entrega?",
+        "answer": "Claro, ajusta el molido en tu cuenta antes de cada envío."
+      },
+      "productsOne": {
+        "question": "¿Sus cafés son orgánicos?",
+        "answer": "Algunos single origins están certificados como orgánicos; se indica en la ficha del producto."
+      },
+      "productsTwo": {
+        "question": "¿Qué molido es ideal para mi método?",
+        "answer": "Espresso: fino, filtro: medio, French press: grueso."
+      },
+      "productsThree": {
+        "question": "¿Cuánto tiempo se mantiene fresco el café?",
+        "answer": "Para el mejor sabor, disfrútalo dentro de las seis semanas posteriores al tueste."
+      },
+      "shippingOne": {
+        "question": "¿A qué países realizan envíos?",
+        "answer": "Entregamos en Bélgica, Países Bajos, Luxemburgo y Alemania."
+      },
+      "shippingTwo": {
+        "question": "¿Cuáles son los costos de envío?",
+        "answer": "El envío es gratis a partir de 35 €; si no, cuesta 4,95 €."
+      },
+      "shippingThree": {
+        "question": "¿Cuánto tarda la entrega?",
+        "answer": "La mayoría de los paquetes llegan en 1-2 días laborables tras el tueste."
+      },
+      "returnsOne": {
+        "question": "¿Puedo devolver café?",
+        "answer": "Las bolsas sin abrir se pueden devolver dentro de 14 días."
+      },
+      "returnsTwo": {
+        "question": "¿Cómo inicio una devolución?",
+        "answer": "Envíanos tu número de pedido y motivo para recibir una etiqueta de devolución."
+      },
+      "returnsThree": {
+        "question": "¿Qué pasa si mi pedido llega dañado?",
+        "answer": "Envía una foto dentro de 48 h y lo reemplazaremos enseguida."
+      }
+    }
+  },
   "Layout": {
     "logo": "Caférico",
     "nav": {

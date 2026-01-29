@@ -317,6 +317,112 @@
       "placeholder": "Kaartplaceholder — atelier Brussel"
     }
   },
+  "Faq": {
+    "hero": {
+      "eyebrow": "FAQ",
+      "title": "Antwoorden voor elk Caférico-ritueel",
+      "description": "Vind hulp bij bestellingen, abonnementen, verzending en productzorg.",
+      "badge": "Wekelijks bijgewerkt",
+      "card": {
+        "eyebrow": "Atelier support",
+        "title": "Concierge-antwoorden op één plek",
+        "description": "Bekijk de meest gestelde vragen of neem contact op voor advies.",
+        "detail": "Reactie gemiddeld binnen 24 uur"
+      }
+    },
+    "search": {
+      "label": "Zoek in de FAQ",
+      "placeholder": "Zoek op trefwoord, branding of levering",
+      "hint": "Tip: probeer verzending of abonnement"
+    },
+    "categories": {
+      "label": "Blader per categorie",
+      "all": "Alle categorieën",
+      "orders": "Bestellingen",
+      "subscriptions": "Abonnementen",
+      "products": "Producten",
+      "shipping": "Verzending",
+      "returns": "Retour"
+    },
+    "results": {
+      "count": "{count, plural, one {# vraag} other {# vragen}}",
+      "subtitle": "Samengesteld voor duidelijkheid"
+    },
+    "support": {
+      "eyebrow": "Nog hulp nodig?",
+      "title": "Spreek met het Caférico-team",
+      "description": "We reageren binnen één werkdag met persoonlijk advies.",
+      "cta": "Neem contact op",
+      "note": "Atelier support, maandag tot zaterdag."
+    },
+    "empty": {
+      "title": "Geen antwoorden gevonden",
+      "description": "Probeer een andere categorie of pas je zoekterm aan.",
+      "cta": "Filters resetten"
+    },
+    "items": {
+      "ordersOne": {
+        "question": "Hoe snel wordt mijn bestelling verzonden?",
+        "answer": "Bestellingen geplaatst voor 12:00 worden dezelfde dag gebrand en verzonden."
+      },
+      "ordersTwo": {
+        "question": "Kan ik mijn bestelling aanpassen?",
+        "answer": "Tot twee uur na plaatsen kun je wijzigen voordat het de productie ingaat."
+      },
+      "ordersThree": {
+        "question": "Hoe volg ik mijn bestelling?",
+        "answer": "Zodra je order vertrekt ontvang je een trackinglink per mail."
+      },
+      "subscriptionsOne": {
+        "question": "Kan ik mijn abonnement pauzeren?",
+        "answer": "Ja, je kunt een levering overslaan of tijdelijk pauzeren."
+      },
+      "subscriptionsTwo": {
+        "question": "Wanneer wordt mijn abonnement gefactureerd?",
+        "answer": "De betaling gebeurt twee dagen voor de geplande branding."
+      },
+      "subscriptionsThree": {
+        "question": "Kan ik de maling aanpassen per levering?",
+        "answer": "Zeker. Pas de maling aan in je account voor elke verzending."
+      },
+      "productsOne": {
+        "question": "Zijn jullie koffies biologisch?",
+        "answer": "Een deel van onze single origins is biologisch gecertificeerd; dit staat op de productpagina."
+      },
+      "productsTwo": {
+        "question": "Welke maling past bij mijn zetmethode?",
+        "answer": "Espresso vraagt om fijne maling, filter om medium en French press om grof."
+      },
+      "productsThree": {
+        "question": "Hoe lang blijft koffie vers?",
+        "answer": "Voor de beste smaak geniet je binnen zes weken na branding."
+      },
+      "shippingOne": {
+        "question": "Naar welke landen verzenden jullie?",
+        "answer": "We leveren in België, Nederland, Luxemburg en Duitsland."
+      },
+      "shippingTwo": {
+        "question": "Wat zijn de verzendkosten?",
+        "answer": "Vanaf €35 is verzending gratis, daaronder rekenen we €4,95."
+      },
+      "shippingThree": {
+        "question": "Hoe lang duurt de levering?",
+        "answer": "De meeste pakketten arriveren binnen 1-2 werkdagen na branding."
+      },
+      "returnsOne": {
+        "question": "Kan ik koffie retourneren?",
+        "answer": "Ongeopende verpakkingen kun je binnen 14 dagen retourneren."
+      },
+      "returnsTwo": {
+        "question": "Hoe meld ik een retour aan?",
+        "answer": "Mail ons met je ordernummer en reden, dan ontvang je een retourlabel."
+      },
+      "returnsThree": {
+        "question": "Wat als mijn bestelling beschadigd aankomt?",
+        "answer": "Stuur binnen 48 uur een foto en we vervangen het meteen."
+      }
+    }
+  },
   "Layout": {
     "logo": "Caférico",
     "nav": {

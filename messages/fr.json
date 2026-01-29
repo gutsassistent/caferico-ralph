@@ -317,6 +317,112 @@
       "placeholder": "Plan fictif — atelier de Bruxelles"
     }
   },
+  "Faq": {
+    "hero": {
+      "eyebrow": "FAQ",
+      "title": "Des réponses pour chaque rituel Caférico",
+      "description": "Trouvez des réponses sur les commandes, abonnements, livraisons et produits.",
+      "badge": "Mis à jour chaque semaine",
+      "card": {
+        "eyebrow": "Support atelier",
+        "title": "Les réponses du concierge, au même endroit",
+        "description": "Parcourez les questions les plus posées ou contactez-nous pour un conseil.",
+        "detail": "Réponse moyenne en 24 h"
+      }
+    },
+    "search": {
+      "label": "Rechercher dans la FAQ",
+      "placeholder": "Rechercher par mot-clé, torréfaction ou livraison",
+      "hint": "Astuce : essayez livraison ou abonnement"
+    },
+    "categories": {
+      "label": "Par catégorie",
+      "all": "Toutes les catégories",
+      "orders": "Commandes",
+      "subscriptions": "Abonnements",
+      "products": "Produits",
+      "shipping": "Livraison",
+      "returns": "Retours"
+    },
+    "results": {
+      "count": "{count, plural, one {# question} other {# questions}}",
+      "subtitle": "Sélectionnées pour la clarté"
+    },
+    "support": {
+      "eyebrow": "Besoin d'aide ?",
+      "title": "Parlez avec l'équipe Caférico",
+      "description": "Nous répondons sous un jour ouvré avec un conseil personnalisé.",
+      "cta": "Nous contacter",
+      "note": "Support atelier, du lundi au samedi."
+    },
+    "empty": {
+      "title": "Aucune réponse trouvée",
+      "description": "Essayez une autre catégorie ou modifiez votre recherche.",
+      "cta": "Réinitialiser les filtres"
+    },
+    "items": {
+      "ordersOne": {
+        "question": "À quelle vitesse ma commande est-elle expédiée ?",
+        "answer": "Les commandes passées avant 12 h sont torréfiées et expédiées le jour même."
+      },
+      "ordersTwo": {
+        "question": "Puis-je modifier ma commande ?",
+        "answer": "Les changements sont possibles dans les deux heures suivant l'achat, avant la production."
+      },
+      "ordersThree": {
+        "question": "Comment suivre ma commande ?",
+        "answer": "Vous recevez un lien de suivi par e-mail dès l'expédition."
+      },
+      "subscriptionsOne": {
+        "question": "Puis-je mettre mon abonnement en pause ?",
+        "answer": "Oui, sautez une livraison ou mettez en pause quand vous le souhaitez."
+      },
+      "subscriptionsTwo": {
+        "question": "Quand suis-je facturé pour un abonnement ?",
+        "answer": "Le paiement est prélevé deux jours avant la torréfaction prévue."
+      },
+      "subscriptionsThree": {
+        "question": "Puis-je changer la mouture à chaque livraison ?",
+        "answer": "Absolument, ajustez la mouture dans votre compte avant chaque envoi."
+      },
+      "productsOne": {
+        "question": "Vos cafés sont-ils bio ?",
+        "answer": "Certains single origins sont certifiés bio; cela est indiqué sur la fiche produit."
+      },
+      "productsTwo": {
+        "question": "Quelle mouture pour ma méthode ?",
+        "answer": "Espresso : fine, filtre : moyenne, French press : grosse."
+      },
+      "productsThree": {
+        "question": "Combien de temps le café reste-t-il frais ?",
+        "answer": "Pour un goût optimal, consommez dans les six semaines après torréfaction."
+      },
+      "shippingOne": {
+        "question": "Dans quels pays livrez-vous ?",
+        "answer": "Nous livrons en Belgique, aux Pays-Bas, au Luxembourg et en Allemagne."
+      },
+      "shippingTwo": {
+        "question": "Quels sont les frais de livraison ?",
+        "answer": "La livraison est offerte dès 35 €, sinon 4,95 €."
+      },
+      "shippingThree": {
+        "question": "Quels sont les délais de livraison ?",
+        "answer": "La plupart des colis arrivent sous 1-2 jours ouvrés après torréfaction."
+      },
+      "returnsOne": {
+        "question": "Puis-je retourner du café ?",
+        "answer": "Les paquets non ouverts peuvent être retournés sous 14 jours."
+      },
+      "returnsTwo": {
+        "question": "Comment initier un retour ?",
+        "answer": "Envoyez-nous votre numéro de commande et la raison; nous vous envoyons une étiquette de retour."
+      },
+      "returnsThree": {
+        "question": "Que faire si ma commande arrive endommagée ?",
+        "answer": "Envoyez une photo sous 48 h et nous la remplaçons rapidement."
+      }
+    }
+  },
   "Layout": {
     "logo": "Caférico",
     "nav": {
