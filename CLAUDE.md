@@ -48,6 +48,15 @@ Je bent een front-end redesign agent voor Caférico (caferico.be), een Belgische
 - **Geen nieuwe dependencies** tenzij de story het expliciet vereist.
 - **Mobile-first.** Elke component eerst voor 375px, dan opschalen.
 
+## Skills (GEBRUIK DEZE)
+Je hebt skills geïnstalleerd die je ACTIEF moet inzetten:
+- **ui-ux-pro-max** — design patterns, kleurtheorie, typography, accessibility. Laad bij elke visuele story.
+- **next-best-practices** — Next.js optimalisaties. Laad bij performance en architectuur stories.
+- **agent-browser** — visueel verifiëren in de browser. Gebruik om je wijzigingen te checken.
+- **frontend-design** — bold, memorable design keuzes. Laad bij elke design story.
+
+Laad een skill met: "Load the [skill-name] skill" of lees de SKILL.md in de skills/ directory.
+
 ## Bekende Issues (huidige staat)
 - Shop pagina toont geen producten (grid rendert niet)
 - Subscription pagina toont alleen hero + footer
