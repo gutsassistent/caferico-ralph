@@ -50,3 +50,23 @@ Remaining: 42
 - Removed navItems dependency, footer now has its own link structure
 - Responsive: 1 col mobile, 2 col tablet (sm:grid-cols-2), 4 col desktop (lg:grid-cols-4)
 - typecheck ✅ build ✅
+
+### RD-004: Homepage Hero - Dramatische First Impression ✅
+- Replaced gradient hero with full-screen (90vh) parallax hero using Honduras sfeerbeeld (DSCF3617.jpg)
+- Created HeroParallax client component: handles scroll-based parallax (0.15 factor) and fade-in on page load
+- Updated i18n keys: new tagline "Biologische Koffie uit Honduras", subtitle about fair trade, CTAs "Ontdek Onze Koffie" + "Ons Verhaal"
+- Added trust badges above fold: BE-BIO-02, Fair Trade, 500+ klanten as pill badges with gold dot indicators
+- Primary CTA now links to /shop (solid gold button), secondary to /about (outline button)
+- Removed old heroCard, highlights sections from hero — replaced with cleaner single-column layout
+- Dark gradient overlays ensure text readability on any image
+- Mobile-first: text scales from text-4xl to text-7xl
+- Old i18n keys removed: highlights.roast, highlights.delivery, heroCard.* — replaced with trustBadges.*
+- typecheck ✅ build ✅
+
+### RD-005: Homepage - Featured Products Section ✅
+- Section already existed with WooCommerce API integration, responsive grid (1→2→4 cols), product cards, and "Bekijk Alles" CTA
+- Added image zoom on hover: `transition-transform duration-500 group-hover:scale-105` on product images
+- Added quick-add overlay button appearing on hover: dark overlay with gold "Bekijk product" button, fade+slide-up animation
+- Added `featured.quickAdd` i18n key in all 4 languages (NL: "Bekijk product", EN: "View product", FR: "Voir le produit", ES: "Ver producto")
+- Cards already had hover effects (translate-y, shadow, border-gold) from previous implementation
+- typecheck ✅ build ✅

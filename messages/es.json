@@ -1,24 +1,14 @@
 {
   "Home": {
-    "eyebrow": "Colección Caférico",
-    "title": "Café belga con un brillo dorado",
-    "description": "Tostado en pequeños lotes y seleccionado directamente en fincas cuidadas.",
-    "ctaPrimary": "Explorar la colección",
-    "ctaSecondary": "Iniciar suscripción",
-    "highlights": {
-      "roast": {
-        "title": "Tostado en Amberes",
-        "description": "48 horas de reposo para aromas equilibrados."
-      },
-      "delivery": {
-        "title": "Entrega fresca",
-        "description": "Envío en 24 h en Bélgica."
-      }
-    },
-    "heroCard": {
-      "eyebrow": "Tueste insignia",
-      "title": "Velours Espresso",
-      "description": "Crema sedosa, notas de cacao y avellana tostada."
+    "eyebrow": "Café de Especialidad de Honduras",
+    "title": "Café Orgánico de Honduras",
+    "description": "Comercio justo, directamente del caficultor a tu taza.",
+    "ctaPrimary": "Descubre Nuestro Café",
+    "ctaSecondary": "Nuestra Historia",
+    "trustBadges": {
+      "bio": "BE-BIO-02",
+      "fairTrade": "Fair Trade",
+      "customers": "500+ clientes"
     },
     "featured": {
       "eyebrow": "Destacados",
@@ -26,7 +16,8 @@
       "description": "Cuatro perfiles para mañanas lentas y tardes luminosas.",
       "cta": "Ver todos los productos",
       "detail": "Tueste artesanal en lotes pequeños y dulzura profunda.",
-      "priceLabel": "Desde"
+      "priceLabel": "Desde",
+      "quickAdd": "Ver producto"
     },
     "subscription": {
       "eyebrow": "Suscripción",

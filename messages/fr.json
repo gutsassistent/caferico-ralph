@@ -1,24 +1,14 @@
 {
   "Home": {
-    "eyebrow": "Collection Caférico",
-    "title": "Le café belge à l'éclat doré",
-    "description": "Torréfié en petites séries, issu de domaines soigneusement choisis.",
-    "ctaPrimary": "Découvrir la collection",
-    "ctaSecondary": "Démarrer un abonnement",
-    "highlights": {
-      "roast": {
-        "title": "Torréfié à Anvers",
-        "description": "48 heures de repos pour des arômes équilibrés."
-      },
-      "delivery": {
-        "title": "Livré frais",
-        "description": "Expédié sous 24 h en Belgique."
-      }
-    },
-    "heroCard": {
-      "eyebrow": "Torréfaction signature",
-      "title": "Velours Espresso",
-      "description": "Crème soyeuse, notes de cacao et de noisette grillée."
+    "eyebrow": "Café de Spécialité du Honduras",
+    "title": "Café Biologique du Honduras",
+    "description": "Commerce équitable, directement du producteur à votre tasse.",
+    "ctaPrimary": "Découvrir Notre Café",
+    "ctaSecondary": "Notre Histoire",
+    "trustBadges": {
+      "bio": "BE-BIO-02",
+      "fairTrade": "Fair Trade",
+      "customers": "500+ clients"
     },
     "featured": {
       "eyebrow": "Sélection",
@@ -26,7 +16,8 @@
       "description": "Quatre profils pour les matins lents et les après-midis lumineux.",
       "cta": "Voir tous les produits",
       "detail": "Torréfié en petites séries pour une douceur profonde.",
-      "priceLabel": "À partir de"
+      "priceLabel": "À partir de",
+      "quickAdd": "Voir le produit"
     },
     "subscription": {
       "eyebrow": "Abonnement",

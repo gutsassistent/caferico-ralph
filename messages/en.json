@@ -1,24 +1,14 @@
 {
   "Home": {
-    "eyebrow": "Caférico collection",
-    "title": "Belgian coffee with a soft, golden glow",
-    "description": "Small-batch roasted and sourced directly from carefully chosen estates.",
-    "ctaPrimary": "Explore the collection",
-    "ctaSecondary": "Start a subscription",
-    "highlights": {
-      "roast": {
-        "title": "Roasted in Antwerp",
-        "description": "48-hour resting for balanced aromatics."
-      },
-      "delivery": {
-        "title": "Delivered fresh",
-        "description": "Ships within 24 hours across Belgium."
-      }
-    },
-    "heroCard": {
-      "eyebrow": "Signature roast",
-      "title": "Velours Espresso",
-      "description": "Silky crema, notes of cocoa and toasted hazelnut."
+    "eyebrow": "Specialty Coffee from Honduras",
+    "title": "Organic Coffee from Honduras",
+    "description": "Fair trade, directly from the coffee farmer to your cup.",
+    "ctaPrimary": "Discover Our Coffee",
+    "ctaSecondary": "Our Story",
+    "trustBadges": {
+      "bio": "BE-BIO-02",
+      "fairTrade": "Fair Trade",
+      "customers": "500+ customers"
     },
     "featured": {
       "eyebrow": "Featured roasts",
@@ -26,7 +16,8 @@
       "description": "Four profiles curated for slow mornings and luminous afternoons.",
       "cta": "View all products",
       "detail": "Small-batch roasted for layered sweetness.",
-      "priceLabel": "From"
+      "priceLabel": "From",
+      "quickAdd": "View product"
     },
     "subscription": {
       "eyebrow": "Subscription",

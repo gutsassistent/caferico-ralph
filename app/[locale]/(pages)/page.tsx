@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import Container from '@/components/Container';
 import Reveal from '@/components/Reveal';
+import HeroParallax from '@/components/HeroParallax';
 import { getProducts } from '@/lib/woocommerce';
 import { mapWooProduct } from '@/types/product';
 
@@ -26,76 +27,45 @@ export default async function HomePage({ params }: HomePageProps) {
 
   return (
     <main className="min-h-screen bg-noir text-cream">
-      <section className="relative isolate overflow-hidden border-b border-cream/10">
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(26,15,10,0.95),rgba(60,21,24,0.88),rgba(26,15,10,0.96))]" />
-        <div className="pointer-events-none absolute inset-0 bg-coffee-glow" />
-        <div className="pointer-events-none absolute inset-0 bg-coffee-grain opacity-40" />
-        <div className="pointer-events-none absolute -right-32 top-16 h-64 w-64 rounded-full bg-gold/20 blur-3xl" />
-        <div className="pointer-events-none absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-roast/50 blur-3xl" />
-
-        <Container className="relative grid min-h-[70vh] gap-12 py-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-          <div className="space-y-6">
+      <HeroParallax
+        imageUrl="https://www.caferico.be/wp-content/uploads/2025/05/DSCF3617.jpg"
+        imageAlt="Honduras coffee landscape"
+      >
+        <Container className="py-24">
+          <div className="max-w-2xl space-y-8">
             <p className="text-xs uppercase tracking-[0.4em] text-gold/80">{t('eyebrow')}</p>
-            <h1 className="font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl">
+            <h1 className="font-serif text-4xl leading-tight text-cream sm:text-5xl md:text-6xl lg:text-7xl">
               {t('title')}
             </h1>
-            <p className="text-base text-cream/80 sm:text-lg">{t('description')}</p>
+            <p className="text-lg text-cream/90 sm:text-xl">{t('description')}</p>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/shop"
-                className="rounded-full border border-gold/60 px-6 py-3 text-xs uppercase tracking-[0.3em] text-gold transition hover:bg-gold hover:text-noir"
+                className="rounded-full bg-gold px-8 py-4 text-xs font-semibold uppercase tracking-[0.3em] text-noir transition hover:bg-gold/90 hover:shadow-[0_0_30px_rgba(201,169,98,0.3)]"
               >
                 {t('ctaPrimary')}
               </Link>
               <Link
-                href="/subscriptions"
-                className="rounded-full border border-cream/30 px-6 py-3 text-xs uppercase tracking-[0.3em] text-cream/80 transition hover:border-cream/60 hover:text-cream"
+                href="/about"
+                className="rounded-full border border-cream/40 px-8 py-4 text-xs uppercase tracking-[0.3em] text-cream transition hover:border-cream hover:bg-cream/10"
               >
                 {t('ctaSecondary')}
               </Link>
             </div>
-            <div className="grid gap-4 pt-6 sm:grid-cols-2">
-              {['roast', 'delivery'].map((item) => (
-                <div
-                  key={item}
-                  className="rounded-2xl border border-cream/10 bg-[#140b08]/80 p-4 shadow-[0_0_30px_rgba(0,0,0,0.35)]"
+            <div className="flex flex-wrap gap-3 pt-4">
+              {(['bio', 'fairTrade', 'customers'] as const).map((badge) => (
+                <span
+                  key={badge}
+                  className="inline-flex items-center gap-2 rounded-full border border-cream/20 bg-noir/50 px-4 py-2 text-xs uppercase tracking-[0.2em] text-cream/80 backdrop-blur-sm"
                 >
-                  <p className="text-xs uppercase tracking-[0.3em] text-cream/50">
-                    {t(`highlights.${item}.title`)}
-                  </p>
-                  <p className="mt-2 text-sm text-cream/80">
-                    {t(`highlights.${item}.description`)}
-                  </p>
-                </div>
+                  <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+                  {t(`trustBadges.${badge}`)}
+                </span>
               ))}
             </div>
           </div>
-
-          <div className="relative">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] border border-cream/10 bg-gradient-to-br from-espresso via-[#1f130d] to-noir shadow-[0_40px_80px_rgba(0,0,0,0.6)]">
-              {featuredProducts[0]?.images?.[0]?.src ? (
-                <img
-                  src={featuredProducts[0].images[0].src}
-                  alt={featuredProducts[0].images[0].alt || featuredProducts[0].name}
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
-              ) : (
-                <>
-                  <div className="absolute inset-0 bg-coffee-grain opacity-40" />
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,165,116,0.3),_transparent_60%)]" />
-                </>
-              )}
-              <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-cream/10 bg-noir/70 p-4 backdrop-blur">
-                <p className="text-xs uppercase tracking-[0.3em] text-gold/80">
-                  {t('heroCard.eyebrow')}
-                </p>
-                <p className="mt-2 font-serif text-lg text-cream">{t('heroCard.title')}</p>
-                <p className="mt-1 text-sm text-cream/70">{t('heroCard.description')}</p>
-              </div>
-            </div>
-          </div>
         </Container>
-      </section>
+      </HeroParallax>
 
       <Reveal>
         <section className="py-20">
@@ -129,7 +99,7 @@ export default async function HomePage({ params }: HomePageProps) {
                         <img
                           src={product.images[0].src}
                           alt={product.images[0].alt || product.name}
-                          className="absolute inset-0 h-full w-full object-cover"
+                          className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                           loading="lazy"
                           decoding="async"
                         />
@@ -141,6 +111,11 @@ export default async function HomePage({ params }: HomePageProps) {
                       )}
                       <div className="absolute bottom-4 left-4 rounded-full border border-cream/20 bg-noir/70 px-3 py-1 text-[10px] uppercase tracking-[0.3em] text-cream/70">
                         {product.categories[0]?.name ?? product.collection}
+                      </div>
+                      <div className="absolute inset-0 flex items-center justify-center bg-noir/0 transition-colors duration-300 group-hover:bg-noir/40">
+                        <span className="translate-y-4 rounded-full bg-gold px-5 py-2.5 text-[10px] font-semibold uppercase tracking-[0.3em] text-noir opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                          {t('featured.quickAdd')}
+                        </span>
                       </div>
                     </div>
                     <div className="mt-4 flex-1">

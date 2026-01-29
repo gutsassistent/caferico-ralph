@@ -1,24 +1,14 @@
 {
   "Home": {
-    "eyebrow": "Caférico collectie",
-    "title": "Belgische koffie met een zachte, goudbruine gloed",
-    "description": "Ambachtelijk gebrand in kleine batches, rechtstreeks van zorgvuldig geselecteerde plantages.",
-    "ctaPrimary": "Ontdek de collectie",
-    "ctaSecondary": "Start een abonnement",
-    "highlights": {
-      "roast": {
-        "title": "Gebrand in Antwerpen",
-        "description": "48 uur rust voor uitgebalanceerde aroma's."
-      },
-      "delivery": {
-        "title": "Vers geleverd",
-        "description": "Binnen 24 uur verstuurd in België."
-      }
-    },
-    "heroCard": {
-      "eyebrow": "Signature roast",
-      "title": "Velours Espresso",
-      "description": "Zijdezachte crema met tonen van cacao en geroosterde hazelnoot."
+    "eyebrow": "Specialty Coffee uit Honduras",
+    "title": "Biologische Koffie uit Honduras",
+    "description": "Fair trade, direct van de koffieboer tot jouw kopje.",
+    "ctaPrimary": "Ontdek Onze Koffie",
+    "ctaSecondary": "Ons Verhaal",
+    "trustBadges": {
+      "bio": "BE-BIO-02",
+      "fairTrade": "Fair Trade",
+      "customers": "500+ klanten"
     },
     "featured": {
       "eyebrow": "Uitgelicht",
@@ -26,7 +16,8 @@
       "description": "Vier profielen voor trage ochtenden en zachte avonden.",
       "cta": "Bekijk alle producten",
       "detail": "Kleine batch roasting met gelaagde zoetheid.",
-      "priceLabel": "Vanaf"
+      "priceLabel": "Vanaf",
+      "quickAdd": "Bekijk product"
     },
     "subscription": {
       "eyebrow": "Abonnement",
