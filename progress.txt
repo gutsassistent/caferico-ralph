@@ -256,3 +256,25 @@ Remaining: 42
 - Replaced all old i18n keys (story, mission, vision, timeline, team) with new structure (hero, intro, pillars, farmers, process) in all 4 languages
 - Used React.ReactNode instead of JSX.Element for icon type records (TSC 5.x compat)
 - typecheck ✅ build ✅
+
+### RD-021: About Pagina - Certificeringen & Impact Section ✅
+- Added new "Kwaliteit & Certificeringen" section between process visualization and Honduras images
+- 3 certification cards (BE-BIO-02, Mayacert, Fair Trade) with green checkmark icons in grid (sm:grid-cols-3)
+- 4 metric cards in grid (lg:grid-cols-4): SCAA score (84), Marcala score (86), 193 families, 100% organic
+- Score/impact cards feature large serif numbers in gold with labels and descriptions
+- Certification cards have green icon circles; score cards have gold/5 bg with gold/20 border for visual distinction
+- Subtle radial gold gradient background on section
+- Staggered Reveal animations on all cards
+- Added `certifications.*` i18n keys in all 4 languages (NL, EN, FR, ES)
+- typecheck ✅ build ✅
+
+### RD-022: Contact Pagina - Form & Info Redesign ✅
+- Updated hero title to "Contact" and subtitle to "Een vraag, een suggestie? Geef ons een seintje." in all 4 languages
+- Fixed fake contact details to real company data: Beekstraat 138, 9420 Erpe-Mere; 0474 96 40 90; info@caferico.be
+- Updated map section references from Brussels to Erpe-Mere in all 4 languages
+- Added loading state to ContactForm: isLoading state, 1.2s simulated delay, spinner SVG animation, disabled button during submit
+- Added `form.submitting` i18n key in all 4 languages (NL: "Verzenden...", EN: "Sending...", FR: "Envoi en cours...", ES: "Enviando...")
+- Added SVG icons (map pin, phone, envelope, building) to contact info items in details card
+- Made phone and email clickable (tel: and mailto: links) with gold hover effect in both hero card and details card
+- Page already had: 2-col layout (form left, info right), form validation, success message, map placeholder, hours card
+- typecheck ✅ build ✅

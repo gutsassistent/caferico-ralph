@@ -239,13 +239,55 @@
           "description": "Du Honduras à votre cuisine — équitable, bio et délicieux."
         }
       }
+    },
+    "certifications": {
+      "eyebrow": "Qualité & Certifications",
+      "title": "Qualité certifiée, impact mesurable",
+      "certs": {
+        "bio": {
+          "label": "BE-BIO-02",
+          "description": "Label bio européen — agriculture biologique contrôlée"
+        },
+        "mayacert": {
+          "label": "Mayacert",
+          "description": "Certifié par Mayacert pour une agriculture durable"
+        },
+        "fairTrade": {
+          "label": "Fair Trade",
+          "description": "Prix équitables pour les caféiculteurs et leur communauté"
+        }
+      },
+      "scores": {
+        "scaa": {
+          "value": "84",
+          "label": "Score SCAA",
+          "description": "Évalué par le Q-grader Tom Janssen"
+        },
+        "marcala": {
+          "value": "86",
+          "label": "Score Marcala",
+          "description": "Conseil du café de Marcala, Honduras"
+        }
+      },
+      "impact": {
+        "families": {
+          "value": "193",
+          "label": "familles d'agriculteurs soutenues",
+          "description": "Via la coopérative COMBRIFOL au Honduras"
+        },
+        "bio": {
+          "value": "100%",
+          "label": "biologique",
+          "description": "De la culture à l'emballage, entièrement écologique"
+        }
+      }
     }
   },
   "Contact": {
     "hero": {
       "eyebrow": "Contact",
-      "title": "Façonnons votre prochain rituel café",
-      "description": "Que ce soit pour la maison, le bureau ou l’hospitalité, nous répondons sous un jour ouvré.",
+      "title": "Contact",
+      "description": "Une question, une suggestion ? Contactez-nous.",
       "badge": "Assistance atelier",
       "card": {
         "eyebrow": "Conciergerie",
@@ -283,6 +325,7 @@
         }
       },
       "submit": "Envoyer le message",
+      "submitting": "Envoi en cours...",
       "successTitle": "Message reçu",
       "successMessage": "Merci pour votre message. Nous répondons sous un jour ouvré.",
       "validation": {
@@ -298,11 +341,11 @@
       "title": "Visitez ou contactez l’atelier",
       "description": "Dégustations et consultations sur rendez-vous.",
       "addressTitle": "Adresse de l’atelier",
-      "addressLine1": "Rue du Cacao 18",
-      "addressLine2": "1000 Bruxelles, Belgique",
-      "phone": "+32 2 555 01 00",
-      "email": "hello@caferico.be",
-      "vat": "TVA: BE 0123.456.789"
+      "addressLine1": "Beekstraat 138",
+      "addressLine2": "9420 Erpe-Mere, Belgique",
+      "phone": "0474 96 40 90",
+      "email": "info@caferico.be",
+      "vat": "Café RICO"
     },
     "hours": {
       "title": "Horaires d’ouverture",
@@ -312,9 +355,9 @@
     },
     "map": {
       "eyebrow": "Plan de l’atelier",
-      "title": "Nous trouver à Bruxelles",
-      "description": "Notre torréfaction est située près de la rivière, à quelques minutes du centre historique.",
-      "placeholder": "Plan fictif — atelier de Bruxelles"
+      "title": "Nous trouver à Erpe-Mere",
+      "description": "Notre atelier se trouve au cœur d'Erpe-Mere, Flandre-Orientale.",
+      "placeholder": "Carte fictive — Beekstraat 138, Erpe-Mere"
     }
   },
   "Faq": {

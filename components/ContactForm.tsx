@@ -27,6 +27,7 @@ export default function ContactForm() {
   const [values, setValues] = useState<ContactValues>(initialValues);
   const [errors, setErrors] = useState<Partial<Record<FieldName, string>>>({});
   const [submitAttempted, setSubmitAttempted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
   const validate = (draft: ContactValues) => {
@@ -67,7 +68,7 @@ export default function ContactForm() {
       }
     };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitAttempted(true);
 
@@ -79,6 +80,11 @@ export default function ContactForm() {
       return;
     }
 
+    setIsLoading(true);
+    // Mock: simulate API call
+    console.log('Contact form submitted:', values);
+    await new Promise((resolve) => setTimeout(resolve, 1200));
+    setIsLoading(false);
     setIsSuccess(true);
     setSubmitAttempted(false);
     setValues(initialValues);
@@ -226,9 +232,20 @@ export default function ContactForm() {
 
         <button
           type="submit"
-          className="w-full rounded-full border border-gold/60 px-6 py-3 text-xs uppercase tracking-[0.3em] text-gold transition hover:bg-gold hover:text-noir"
+          disabled={isLoading}
+          className="flex w-full items-center justify-center gap-2 rounded-full border border-gold/60 px-6 py-3 text-xs uppercase tracking-[0.3em] text-gold transition hover:bg-gold hover:text-noir disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {t('form.submit')}
+          {isLoading ? (
+            <>
+              <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+              </svg>
+              {t('form.submitting')}
+            </>
+          ) : (
+            t('form.submit')
+          )}
         </button>
       </form>
     </div>

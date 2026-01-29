@@ -239,13 +239,55 @@
           "description": "From Honduras to your kitchen — fair, organic and delicious."
         }
       }
+    },
+    "certifications": {
+      "eyebrow": "Quality & Certifications",
+      "title": "Certified quality, measurable impact",
+      "certs": {
+        "bio": {
+          "label": "BE-BIO-02",
+          "description": "European organic label — certified organic farming"
+        },
+        "mayacert": {
+          "label": "Mayacert",
+          "description": "Certified by Mayacert for sustainable agriculture"
+        },
+        "fairTrade": {
+          "label": "Fair Trade",
+          "description": "Fair prices for coffee farmers and their communities"
+        }
+      },
+      "scores": {
+        "scaa": {
+          "value": "84",
+          "label": "SCAA score",
+          "description": "Rated by Q-grader Tom Janssen"
+        },
+        "marcala": {
+          "value": "86",
+          "label": "Marcala score",
+          "description": "Coffee Council of Marcala, Honduras"
+        }
+      },
+      "impact": {
+        "families": {
+          "value": "193",
+          "label": "farming families supported",
+          "description": "Through cooperative COMBRIFOL in Honduras"
+        },
+        "bio": {
+          "value": "100%",
+          "label": "organic",
+          "description": "From cultivation to packaging, fully ecological"
+        }
+      }
     }
   },
   "Contact": {
     "hero": {
       "eyebrow": "Contact",
-      "title": "Let's shape your next coffee ritual",
-      "description": "Whether you're sourcing for home, office, or hospitality, our team responds within one business day.",
+      "title": "Contact",
+      "description": "A question, a suggestion? Drop us a line.",
       "badge": "Atelier support",
       "card": {
         "eyebrow": "Concierge",
@@ -283,6 +325,7 @@
         }
       },
       "submit": "Send message",
+      "submitting": "Sending...",
       "successTitle": "Message received",
       "successMessage": "Thank you for reaching out. We'll reply within one business day.",
       "validation": {
@@ -298,11 +341,11 @@
       "title": "Visit or contact our atelier",
       "description": "You are welcome to schedule tastings and consultations.",
       "addressTitle": "Atelier address",
-      "addressLine1": "Rue du Cacao 18",
-      "addressLine2": "1000 Brussels, Belgium",
-      "phone": "+32 2 555 01 00",
-      "email": "hello@caferico.be",
-      "vat": "VAT: BE 0123.456.789"
+      "addressLine1": "Beekstraat 138",
+      "addressLine2": "9420 Erpe-Mere, Belgium",
+      "phone": "0474 96 40 90",
+      "email": "info@caferico.be",
+      "vat": "Café RICO"
     },
     "hours": {
       "title": "Opening hours",
@@ -312,9 +355,9 @@
     },
     "map": {
       "eyebrow": "Atelier map",
-      "title": "Find us in Brussels",
-      "description": "Our roastery is tucked beside the river, a few minutes from the historic center.",
-      "placeholder": "Map placeholder — Brussels atelier"
+      "title": "Find us in Erpe-Mere",
+      "description": "Our atelier is located in the heart of Erpe-Mere, East Flanders.",
+      "placeholder": "Map placeholder — Beekstraat 138, Erpe-Mere"
     }
   },
   "Faq": {

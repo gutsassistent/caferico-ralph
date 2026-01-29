@@ -239,13 +239,55 @@
           "description": "Van Honduras naar jouw keuken — eerlijk, biologisch en heerlijk."
         }
       }
+    },
+    "certifications": {
+      "eyebrow": "Kwaliteit & Certificeringen",
+      "title": "Gecertificeerde kwaliteit, meetbare impact",
+      "certs": {
+        "bio": {
+          "label": "BE-BIO-02",
+          "description": "Europees biolabel — gecontroleerde biologische teelt"
+        },
+        "mayacert": {
+          "label": "Mayacert",
+          "description": "Gecertificeerd door Mayacert voor duurzame landbouw"
+        },
+        "fairTrade": {
+          "label": "Fair Trade",
+          "description": "Eerlijke prijzen voor koffieboeren en hun gemeenschap"
+        }
+      },
+      "scores": {
+        "scaa": {
+          "value": "84",
+          "label": "SCAA-score",
+          "description": "Beoordeeld door Q-grader Tom Janssen"
+        },
+        "marcala": {
+          "value": "86",
+          "label": "Marcala-score",
+          "description": "Koffieraad van Marcala, Honduras"
+        }
+      },
+      "impact": {
+        "families": {
+          "value": "193",
+          "label": "boerenfamilies ondersteund",
+          "description": "Via coöperatieve COMBRIFOL in Honduras"
+        },
+        "bio": {
+          "value": "100%",
+          "label": "biologisch",
+          "description": "Van teelt tot verpakking volledig ecologisch"
+        }
+      }
     }
   },
   "Contact": {
     "hero": {
       "eyebrow": "Contact",
-      "title": "Laten we je volgende koffieritueel vormgeven",
-      "description": "Of je nu koffie zoekt voor thuis, kantoor of horeca, we reageren binnen één werkdag.",
+      "title": "Contact",
+      "description": "Een vraag, een suggestie? Geef ons een seintje.",
       "badge": "Atelier ondersteuning",
       "card": {
         "eyebrow": "Concierge",
@@ -283,6 +325,7 @@
         }
       },
       "submit": "Verstuur bericht",
+      "submitting": "Verzenden...",
       "successTitle": "Bericht ontvangen",
       "successMessage": "Dankjewel voor je bericht. We reageren binnen één werkdag.",
       "validation": {
@@ -298,11 +341,11 @@
       "title": "Bezoek of contacteer ons atelier",
       "description": "Je bent welkom voor proeverijen en consults op afspraak.",
       "addressTitle": "Atelieradres",
-      "addressLine1": "Rue du Cacao 18",
-      "addressLine2": "1000 Brussel, België",
-      "phone": "+32 2 555 01 00",
-      "email": "hello@caferico.be",
-      "vat": "BTW: BE 0123.456.789"
+      "addressLine1": "Beekstraat 138",
+      "addressLine2": "9420 Erpe-Mere, België",
+      "phone": "0474 96 40 90",
+      "email": "info@caferico.be",
+      "vat": "Café RICO"
     },
     "hours": {
       "title": "Openingsuren",
@@ -312,9 +355,9 @@
     },
     "map": {
       "eyebrow": "Atelierkaart",
-      "title": "Vind ons in Brussel",
-      "description": "Onze branderij ligt langs de rivier, op enkele minuten van het historische centrum.",
-      "placeholder": "Kaartplaceholder — atelier Brussel"
+      "title": "Vind ons in Erpe-Mere",
+      "description": "Ons atelier bevindt zich in het hart van Erpe-Mere, Oost-Vlaanderen.",
+      "placeholder": "Kaartplaceholder — Beekstraat 138, Erpe-Mere"
     }
   },
   "Faq": {

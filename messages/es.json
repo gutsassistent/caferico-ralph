@@ -239,13 +239,55 @@
           "description": "De Honduras a tu cocina — justo, orgánico y delicioso."
         }
       }
+    },
+    "certifications": {
+      "eyebrow": "Calidad y Certificaciones",
+      "title": "Calidad certificada, impacto medible",
+      "certs": {
+        "bio": {
+          "label": "BE-BIO-02",
+          "description": "Sello ecológico europeo — cultivo orgánico certificado"
+        },
+        "mayacert": {
+          "label": "Mayacert",
+          "description": "Certificado por Mayacert para agricultura sostenible"
+        },
+        "fairTrade": {
+          "label": "Fair Trade",
+          "description": "Precios justos para caficultores y sus comunidades"
+        }
+      },
+      "scores": {
+        "scaa": {
+          "value": "84",
+          "label": "Puntuación SCAA",
+          "description": "Evaluado por el Q-grader Tom Janssen"
+        },
+        "marcala": {
+          "value": "86",
+          "label": "Puntuación Marcala",
+          "description": "Consejo del café de Marcala, Honduras"
+        }
+      },
+      "impact": {
+        "families": {
+          "value": "193",
+          "label": "familias agricultoras apoyadas",
+          "description": "A través de la cooperativa COMBRIFOL en Honduras"
+        },
+        "bio": {
+          "value": "100%",
+          "label": "orgánico",
+          "description": "Del cultivo al embalaje, completamente ecológico"
+        }
+      }
     }
   },
   "Contact": {
     "hero": {
       "eyebrow": "Contacto",
-      "title": "Diseñemos tu próximo ritual de café",
-      "description": "Tanto para casa, oficina u hostelería, respondemos en un día hábil.",
+      "title": "Contacto",
+      "description": "¿Una pregunta, una sugerencia? Escríbenos.",
       "badge": "Soporte del atelier",
       "card": {
         "eyebrow": "Conserjería",
@@ -283,6 +325,7 @@
         }
       },
       "submit": "Enviar mensaje",
+      "submitting": "Enviando...",
       "successTitle": "Mensaje recibido",
       "successMessage": "Gracias por escribirnos. Responderemos en un día hábil.",
       "validation": {
@@ -298,11 +341,11 @@
       "title": "Visita o contacta el atelier",
       "description": "Catas y asesorías con cita previa.",
       "addressTitle": "Dirección del atelier",
-      "addressLine1": "Rue du Cacao 18",
-      "addressLine2": "1000 Bruselas, Bélgica",
-      "phone": "+32 2 555 01 00",
-      "email": "hello@caferico.be",
-      "vat": "IVA: BE 0123.456.789"
+      "addressLine1": "Beekstraat 138",
+      "addressLine2": "9420 Erpe-Mere, Bélgica",
+      "phone": "0474 96 40 90",
+      "email": "info@caferico.be",
+      "vat": "Café RICO"
     },
     "hours": {
       "title": "Horario",
@@ -312,9 +355,9 @@
     },
     "map": {
       "eyebrow": "Mapa del atelier",
-      "title": "Encuéntranos en Bruselas",
-      "description": "Nuestra tostadora está junto al río, a pocos minutos del centro histórico.",
-      "placeholder": "Mapa de referencia — atelier de Bruselas"
+      "title": "Encuéntranos en Erpe-Mere",
+      "description": "Nuestro atelier se encuentra en el corazón de Erpe-Mere, Flandes Oriental.",
+      "placeholder": "Mapa de referencia — Beekstraat 138, Erpe-Mere"
     }
   },
   "Faq": {
