@@ -4,7 +4,7 @@ import { useEffect, useMemo } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import { useCart } from '@/components/CartProvider';
-import { isAccessory } from '@/types/product';
+import { isCoffee } from '@/types/product';
 
 export default function CartDrawer() {
   const t = useTranslations('Cart');
@@ -135,7 +135,7 @@ export default function CartDrawer() {
                         {t('remove')}
                       </button>
                     </div>
-                    {!isAccessory(item.collection) && item.grind && item.weight && (
+                    {isCoffee(item.collection) && item.grind && item.weight && (
                       <div className="flex flex-wrap gap-3 text-xs text-cream/60">
                         <span>
                           {productT('variants.grindLabel')}:{' '}

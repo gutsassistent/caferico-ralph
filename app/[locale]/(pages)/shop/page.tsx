@@ -10,13 +10,25 @@ export const revalidate = 3600;
 export default async function ShopPage() {
   const t = await getTranslations('Shop');
 
-  const [wcProducts, wcCategories] = await Promise.all([
-    getProducts(),
-    getProductCategories(),
-  ]);
+  const [wcProducts, wcCategories] = await Promise.all([getProducts(), getProductCategories()]);
 
-  const products = wcProducts.map(mapWooProduct);
-  const categories = wcCategories.map((c) => ({ id: c.id, name: c.name, slug: c.slug }));
+  // Collect all child IDs of grouped products so we can exclude them from the listing
+  const groupedChildIds = new Set(
+    wcProducts.filter((p) => p.type === 'grouped').flatMap((p) => p.grouped_products ?? [])
+  );
+
+  const products = wcProducts
+    .filter((p) => !groupedChildIds.has(p.id))
+    .filter((p) => {
+      // Also exclude products only in "geen-categorie" (uncategorized children)
+      const cats = p.categories.map((c) => c.slug);
+      return !(cats.length === 1 && cats[0] === 'geen-categorie');
+    })
+    .map(mapWooProduct);
+
+  const categories = wcCategories
+    .filter((c) => c.slug !== 'geen-categorie')
+    .map((c) => ({ id: c.id, name: c.name, slug: c.slug }));
 
   return (
     <main className="min-h-screen bg-noir text-cream">
@@ -28,12 +40,8 @@ export default async function ShopPage() {
 
         <Container className="relative py-20">
           <div className="max-w-2xl space-y-5">
-            <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
-              {t('hero.eyebrow')}
-            </p>
-            <h1 className="text-4xl font-serif leading-tight sm:text-5xl">
-              {t('hero.title')}
-            </h1>
+            <p className="text-xs uppercase tracking-[0.4em] text-gold/70">{t('hero.eyebrow')}</p>
+            <h1 className="font-serif text-4xl leading-tight sm:text-5xl">{t('hero.title')}</h1>
             <p className="text-sm text-cream/70 sm:text-base">{t('hero.description')}</p>
           </div>
         </Container>
@@ -47,7 +55,7 @@ export default async function ShopPage() {
                 <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
                   {t('intro.eyebrow')}
                 </p>
-                <h2 className="text-3xl font-serif sm:text-4xl">{t('intro.title')}</h2>
+                <h2 className="font-serif text-3xl sm:text-4xl">{t('intro.title')}</h2>
                 <p className="text-sm text-cream/70 sm:text-base">{t('intro.description')}</p>
               </div>
               <div className="rounded-full border border-cream/10 bg-noir/70 px-5 py-3 text-xs uppercase tracking-[0.3em] text-cream/60">

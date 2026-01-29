@@ -6,11 +6,27 @@ const CONSUMER_SECRET = process.env.WOOCOMMERCE_CONSUMER_SECRET;
 
 // Only request the fields we actually use
 const PRODUCT_FIELDS = [
-  'id', 'name', 'slug', 'type', 'status', 'featured',
-  'description', 'short_description', 'sku',
-  'price', 'regular_price', 'sale_price', 'on_sale',
-  'stock_status', 'categories', 'images', 'attributes',
-  'variations', 'related_ids', 'tags',
+  'id',
+  'name',
+  'slug',
+  'type',
+  'status',
+  'featured',
+  'description',
+  'short_description',
+  'sku',
+  'price',
+  'regular_price',
+  'sale_price',
+  'on_sale',
+  'stock_status',
+  'categories',
+  'images',
+  'attributes',
+  'variations',
+  'grouped_products',
+  'related_ids',
+  'tags'
 ].join(',');
 
 const CATEGORY_FIELDS = 'id,name,slug,parent,description,count,image';
@@ -73,7 +89,9 @@ async function wcFetch<T>(endpoint: string, params: Record<string, string> = {})
   throw lastError!;
 }
 
-async function fetchAllProducts(params: Record<string, string> = {}): Promise<WooCommerceProduct[]> {
+async function fetchAllProducts(
+  params: Record<string, string> = {}
+): Promise<WooCommerceProduct[]> {
   const allProducts: WooCommerceProduct[] = [];
   let page = 1;
   const perPage = params.per_page || '100';
@@ -84,7 +102,7 @@ async function fetchAllProducts(params: Record<string, string> = {}): Promise<Wo
       per_page: perPage,
       page: String(page),
       status: 'publish',
-      ...params,
+      ...params
     });
 
     allProducts.push(...products);
@@ -96,7 +114,9 @@ async function fetchAllProducts(params: Record<string, string> = {}): Promise<Wo
   return allProducts;
 }
 
-export async function getProducts(params: Record<string, string> = {}): Promise<WooCommerceProduct[]> {
+export async function getProducts(
+  params: Record<string, string> = {}
+): Promise<WooCommerceProduct[]> {
   const cacheKey = `products:${JSON.stringify(params)}`;
   const cached = getCached<WooCommerceProduct[]>(cacheKey);
   if (cached) return cached;
@@ -113,7 +133,7 @@ export async function getProduct(slug: string): Promise<WooCommerceProduct | nul
 
   const products = await wcFetch<WooCommerceProduct[]>('products', {
     slug,
-    _fields: PRODUCT_FIELDS,
+    _fields: PRODUCT_FIELDS
   });
   const product = products[0] ?? null;
   setCache(cacheKey, product);
@@ -130,7 +150,7 @@ export async function getProductsByIds(ids: number[]): Promise<WooCommerceProduc
   const data = await wcFetch<WooCommerceProduct[]>('products', {
     include: ids.join(','),
     per_page: String(ids.length),
-    _fields: PRODUCT_FIELDS,
+    _fields: PRODUCT_FIELDS
   });
   setCache(cacheKey, data);
   return data;
@@ -144,7 +164,7 @@ export async function getProductCategories(): Promise<WooCommerceCategory[]> {
   const data = await wcFetch<WooCommerceCategory[]>('products/categories', {
     per_page: '100',
     hide_empty: 'true',
-    _fields: CATEGORY_FIELDS,
+    _fields: CATEGORY_FIELDS
   });
   setCache(cacheKey, data);
   return data;

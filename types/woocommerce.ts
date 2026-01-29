@@ -45,6 +45,7 @@ export type WooCommerceProduct = {
   images: WooCommerceImage[];
   attributes: WooCommerceAttribute[];
   variations: number[];
+  grouped_products: number[];
   related_ids: number[];
   tags: { id: number; name: string; slug: string }[];
   meta_data: { id: number; key: string; value: string }[];

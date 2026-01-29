@@ -6,7 +6,7 @@ import Container from '@/components/Container';
 import ProductPurchasePanel from '@/components/ProductPurchasePanel';
 import Reveal from '@/components/Reveal';
 import { getProduct, getProductsByIds } from '@/lib/woocommerce';
-import { mapWooProduct } from '@/types/product';
+import { mapWooProduct, isCoffee } from '@/types/product';
 
 type ProductPageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -26,23 +26,47 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   const product = mapWooProduct(wcProduct);
 
-  let relatedProducts: ReturnType<typeof mapWooProduct>[] = [];
-  if (product.related_ids.length > 0) {
-    const wcRelated = await getProductsByIds(product.related_ids.slice(0, 4));
-    relatedProducts = wcRelated.map(mapWooProduct);
+  // Fetch grouped children and related products in parallel
+  const [groupedChildren, relatedWc] = await Promise.all([
+    product.type === 'grouped' && product.grouped_products.length > 0
+      ? getProductsByIds(product.grouped_products)
+      : Promise.resolve([]),
+    product.related_ids.length > 0
+      ? getProductsByIds(product.related_ids.slice(0, 4))
+      : Promise.resolve([])
+  ]);
+
+  if (groupedChildren.length > 0) {
+    product.grouped_children = groupedChildren.map((wc) => ({
+      id: wc.id,
+      name: wc.name,
+      slug: wc.slug,
+      price: parseFloat(wc.price) || 0,
+      regular_price: parseFloat(wc.regular_price) || 0,
+      images: wc.images
+    }));
   }
+
+  const relatedProducts = relatedWc.map(mapWooProduct);
 
   const priceFormatter = new Intl.NumberFormat('nl-NL', {
     style: 'currency',
     currency: 'EUR'
   });
 
-  const detailItems = [
-    product.origin ? { label: t('details.originLabel'), value: product.origin } : null,
-    product.notes ? { label: t('details.notesLabel'), value: product.notes } : null,
-    { label: t('details.collectionLabel'), value: product.categories[0]?.name ?? product.collection },
-    { label: t('details.roastLabel'), value: t('details.roastValue') }
-  ].filter(Boolean) as { label: string; value: string }[];
+  const coffeeProduct = isCoffee(product.collection);
+
+  const detailItems = coffeeProduct
+    ? ([
+        product.origin ? { label: t('details.originLabel'), value: product.origin } : null,
+        product.notes ? { label: t('details.notesLabel'), value: product.notes } : null,
+        {
+          label: t('details.collectionLabel'),
+          value: product.categories[0]?.name ?? product.collection
+        },
+        { label: t('details.roastLabel'), value: t('details.roastValue') }
+      ].filter(Boolean) as { label: string; value: string }[])
+    : [];
 
   const mainImage = product.images[0];
   const thumbImages = product.images.slice(1, 4);
@@ -124,21 +148,23 @@ export default async function ProductPage({ params }: ProductPageProps) {
                       ))}
                 </div>
               </div>
-              <div className="rounded-2xl border border-cream/10 bg-[#120907]/80 p-5 text-sm text-cream/70">
-                <p className="text-xs uppercase tracking-[0.3em] text-gold/70">
-                  {t('details.title')}
-                </p>
-                <dl className="mt-4 grid gap-4 sm:grid-cols-2">
-                  {detailItems.map((item) => (
-                    <div key={item.label} className="space-y-1">
-                      <dt className="text-[10px] uppercase tracking-[0.3em] text-cream/40">
-                        {item.label}
-                      </dt>
-                      <dd className="text-sm text-cream">{item.value}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
+              {detailItems.length > 0 && (
+                <div className="rounded-2xl border border-cream/10 bg-[#120907]/80 p-5 text-sm text-cream/70">
+                  <p className="text-xs uppercase tracking-[0.3em] text-gold/70">
+                    {t('details.title')}
+                  </p>
+                  <dl className="mt-4 grid gap-4 sm:grid-cols-2">
+                    {detailItems.map((item) => (
+                      <div key={item.label} className="space-y-1">
+                        <dt className="text-[10px] uppercase tracking-[0.3em] text-cream/40">
+                          {item.label}
+                        </dt>
+                        <dd className="text-sm text-cream">{item.value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              )}
             </div>
           </Reveal>
 
@@ -155,7 +181,19 @@ export default async function ProductPage({ params }: ProductPageProps) {
                     dangerouslySetInnerHTML={{ __html: product.short_description }}
                   />
                 )}
-                <p className="text-2xl text-gold">{priceFormatter.format(product.price)}</p>
+                {product.grouped_children.length > 0 ? (
+                  <p className="text-2xl text-gold">
+                    {priceFormatter.format(
+                      Math.min(...product.grouped_children.map((c) => c.price))
+                    )}
+                    {' – '}
+                    {priceFormatter.format(
+                      Math.max(...product.grouped_children.map((c) => c.price))
+                    )}
+                  </p>
+                ) : (
+                  <p className="text-2xl text-gold">{priceFormatter.format(product.price)}</p>
+                )}
               </div>
               {product.description ? (
                 <div
@@ -173,7 +211,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
                   name: product.name,
                   slug: product.slug,
                   price: product.price,
-                  collection: product.collection
+                  type: product.type,
+                  collection: product.collection,
+                  groupedChildren: product.grouped_children
                 }}
               />
             </div>
