@@ -112,6 +112,135 @@
       "accessories": "Accesorios"
     }
   },
+  "About": {
+    "hero": {
+      "eyebrow": "Nuestra historia",
+      "title": "El atelier Caf\u00e9rico, arraigado en la artesan\u00eda belga",
+      "description": "De Amberes a las fincas que visitamos, damos forma al caf\u00e9 como un ritual de calidez y precisi\u00f3n.",
+      "primaryCta": "Explorar los caf\u00e9s",
+      "secondaryCta": "Leer la historia",
+      "badge": "Micro-lotes desde 2016",
+      "card": {
+        "eyebrow": "Nota de la fundadora",
+        "title": "Una taza serena y luminosa",
+        "description": "Cada mezcla se compone como una ma\u00f1ana c\u00e1lida."
+      }
+    },
+    "story": {
+      "eyebrow": "Herencia",
+      "title": "Una tostadora belga con alma pausada",
+      "description": "Caf\u00e9rico empez\u00f3 como un estudio de dos personas y creci\u00f3 hasta una comunidad de baristas, productores y dise\u00f1adores.",
+      "paragraphs": {
+        "one": "Tostamos en micro-lotes y catamos cada lote por su equilibrio.",
+        "two": "Nuestro abastecimiento se basa en conversaciones largas, no en contratos breves.",
+        "three": "Dise\u00f1o, empaque y servicio se trabajan con el mismo cuidado que el caf\u00e9."
+      },
+      "highlightsTitle": "En resumen",
+      "highlights": {
+        "one": {
+          "label": "Tostados por semana",
+          "value": "12 micro-lotes"
+        },
+        "two": {
+          "label": "Fincas aliadas",
+          "value": "9 fincas a largo plazo"
+        },
+        "three": {
+          "label": "Atelier belga",
+          "value": "Amberes, B\u00e9lgica"
+        }
+      },
+      "card": {
+        "eyebrow": "El atelier",
+        "title": "Un espacio para el aroma y el detalle",
+        "description": "Nuestro estudio de tueste mezcla perfiles modernos con rituales de cata."
+      }
+    },
+    "mission": {
+      "eyebrow": "Misi\u00f3n",
+      "title": "Hacer que cada taza se sienta intencional",
+      "description": "Creamos caf\u00e9 que baja el ritmo y honra a las personas detr\u00e1s de cada grano.",
+      "points": {
+        "one": "Tostar con claridad y dulzor en el centro.",
+        "two": "Construir alianzas que protejan los or\u00edgenes.",
+        "three": "Dise\u00f1ar rituales tranquilos y lujosos."
+      }
+    },
+    "vision": {
+      "eyebrow": "Visi\u00f3n",
+      "title": "La cultura cafetera belga, reinventada",
+      "description": "Queremos elevar el caf\u00e9 diario a un momento de oficio, belleza y conexi\u00f3n.",
+      "points": {
+        "one": "Defender un abastecimiento transparente y trazable.",
+        "two": "Crear espacios donde el caf\u00e9 se sienta como arte.",
+        "three": "Crecer con una huella m\u00e1s ligera."
+      }
+    },
+    "timeline": {
+      "eyebrow": "Hitos",
+      "title": "Una l\u00ednea de tiempo de crecimiento consciente",
+      "description": "Cada a\u00f1o a\u00f1ade una nueva capa al ritual Caf\u00e9rico.",
+      "items": {
+        "one": {
+          "year": "2016",
+          "title": "La microtostadora de Amberes",
+          "description": "Primeros lotes para ateliers y hoteles locales."
+        },
+        "two": {
+          "year": "2018",
+          "title": "Viajes de origen directo",
+          "description": "Viajes a Colombia y Etiop\u00eda para conocer productores."
+        },
+        "three": {
+          "year": "2020",
+          "title": "La caja ritual Caf\u00e9rico",
+          "description": "Lanzamiento de tarjetas de cata y suscripciones."
+        },
+        "four": {
+          "year": "2022",
+          "title": "Sala de cata del estudio",
+          "description": "Apertura de un espacio tranquilo para talleres sensoriales."
+        },
+        "five": {
+          "year": "2025",
+          "title": "Red de ateliers europeos",
+          "description": "Compartimos tostados con caf\u00e9s aliados en Europa."
+        }
+      }
+    },
+    "team": {
+      "eyebrow": "El equipo",
+      "title": "Hecho por manos y corazones",
+      "description": "Un peque\u00f1o colectivo que da forma a cada tostado, historia y detalle.",
+      "members": {
+        "founder": {
+          "name": "Elise Van Doren",
+          "role": "Fundadora y directora de tueste",
+          "bio": "Cura perfiles y viaja al origen con nuestros productores."
+        },
+        "roaster": {
+          "name": "Noah Vermeulen",
+          "role": "Jefe de tueste",
+          "bio": "Lidera el calendario de tueste y las sesiones de calidad."
+        },
+        "curator": {
+          "name": "Sofie Lemaire",
+          "role": "Curadora de experiencia",
+          "bio": "Dise\u00f1a catas, empaques y nuestra biblioteca arom\u00e1tica."
+        },
+        "hospitality": {
+          "name": "Matteo Rossi",
+          "role": "Responsable de hospitalidad",
+          "bio": "Anima talleres del atelier y ma\u00f1anas de comunidad."
+        }
+      },
+      "quote": {
+        "eyebrow": "De la fundadora",
+        "text": "Creamos Caf\u00e9rico para quienes quieren que el caf\u00e9 se sienta como una peque\u00f1a ceremonia.",
+        "author": "Elise Van Doren \u2014 Amberes"
+      }
+    }
+  },
   "Layout": {
     "logo": "Caférico",
     "nav": {

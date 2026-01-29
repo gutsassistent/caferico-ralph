@@ -98,3 +98,4 @@ If there are still stories with `passes: false`, do NOT write status.md — just
 - Locale switcher: replace the first path segment with the target locale and preserve query params via `usePathname` + `useSearchParams`.
 - Scroll reveal: wrap sections/cards in `components/Reveal.tsx` and use the optional `delay` prop for staggered fade-ins.
 - Cart state: use `components/CartProvider.tsx` + `useCart`, with the slide-over UI in `components/CartDrawer.tsx` mounted from `app/[locale]/layout.tsx`.
+- Parallax accents: use `components/ParallaxOrb.tsx` for scroll-based decorative elements (respects reduced motion).

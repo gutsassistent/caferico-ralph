@@ -112,6 +112,135 @@
       "accessories": "Accessories"
     }
   },
+  "About": {
+    "hero": {
+      "eyebrow": "Our story",
+      "title": "The Caférico atelier, rooted in Belgian craft",
+      "description": "From Antwerp to the estates we visit, we shape coffee as a ritual of warmth and precision.",
+      "primaryCta": "Explore the roasts",
+      "secondaryCta": "Read the story",
+      "badge": "Small-batch since 2016",
+      "card": {
+        "eyebrow": "Founder's note",
+        "title": "A quiet, luminous cup",
+        "description": "Every blend is composed to feel like a warm morning."
+      }
+    },
+    "story": {
+      "eyebrow": "Heritage",
+      "title": "A Belgian roastery with a slow soul",
+      "description": "Caf\u00e9rico began as a two-person studio and grew into a gentle community of baristas, growers, and designers.",
+      "paragraphs": {
+        "one": "We roast in micro-lots, cupping every batch for balance and brightness.",
+        "two": "Our sourcing is built on long conversations with producers, not short-term contracts.",
+        "three": "Design, packaging, and service are crafted to feel as composed as the coffee itself."
+      },
+      "highlightsTitle": "At a glance",
+      "highlights": {
+        "one": {
+          "label": "Roasts per week",
+          "value": "12 micro-lots"
+        },
+        "two": {
+          "label": "Partner estates",
+          "value": "9 long-term farms"
+        },
+        "three": {
+          "label": "Belgian studio",
+          "value": "Antwerp, Belgium"
+        }
+      },
+      "card": {
+        "eyebrow": "The atelier",
+        "title": "A space for aroma and detail",
+        "description": "Our roasting studio blends modern profiling with hand-finished tasting rituals."
+      }
+    },
+    "mission": {
+      "eyebrow": "Mission",
+      "title": "Make every cup feel intentional",
+      "description": "We craft coffee that slows the pace and honours the people behind every bean.",
+      "points": {
+        "one": "Roast with clarity and sweetness at the centre.",
+        "two": "Build partnerships that protect origin communities.",
+        "three": "Design rituals that feel calm and luxurious."
+      }
+    },
+    "vision": {
+      "eyebrow": "Vision",
+      "title": "Belgian coffee culture, reimagined",
+      "description": "We aim to elevate daily coffee into a moment of craft, beauty, and connection.",
+      "points": {
+        "one": "Champion transparent, traceable sourcing.",
+        "two": "Create spaces where coffee feels like art.",
+        "three": "Grow with a lighter footprint."
+      }
+    },
+    "timeline": {
+      "eyebrow": "Milestones",
+      "title": "A timeline of deliberate growth",
+      "description": "Each year adds a new layer to the Caf\u00e9rico ritual.",
+      "items": {
+        "one": {
+          "year": "2016",
+          "title": "The Antwerp micro-roastery",
+          "description": "First batches roasted for local ateliers and hotels."
+        },
+        "two": {
+          "year": "2018",
+          "title": "Direct sourcing journeys",
+          "description": "Trips to Colombia and Ethiopia to meet producers."
+        },
+        "three": {
+          "year": "2020",
+          "title": "The Caf\u00e9rico ritual box",
+          "description": "Launch of our signature tasting cards and subscriptions."
+        },
+        "four": {
+          "year": "2022",
+          "title": "Studio tasting lounge",
+          "description": "Opened a calm space for sensory workshops."
+        },
+        "five": {
+          "year": "2025",
+          "title": "European atelier network",
+          "description": "Shared roasts with partner caf\u00e9s across Europe."
+        }
+      }
+    },
+    "team": {
+      "eyebrow": "The team",
+      "title": "Crafted by hands and hearts",
+      "description": "A small collective shaping each roast, story, and sensory detail.",
+      "members": {
+        "founder": {
+          "name": "Elise Van Doren",
+          "role": "Founder & Roast Director",
+          "bio": "Curates profiles and travels to origin with our growers."
+        },
+        "roaster": {
+          "name": "Noah Vermeulen",
+          "role": "Head Roaster",
+          "bio": "Leads our roasting calendar and quality sessions."
+        },
+        "curator": {
+          "name": "Sofie Lemaire",
+          "role": "Experience Curator",
+          "bio": "Designs tastings, packaging, and our scent library."
+        },
+        "hospitality": {
+          "name": "Matteo Rossi",
+          "role": "Hospitality Lead",
+          "bio": "Hosts atelier workshops and community mornings."
+        }
+      },
+      "quote": {
+        "eyebrow": "From the founder",
+        "text": "We built Caf\u00e9rico for people who want coffee to feel like a small ceremony.",
+        "author": "Elise Van Doren \u2014 Antwerp"
+      }
+    }
+  },
   "Layout": {
     "logo": "Caférico",
     "nav": {

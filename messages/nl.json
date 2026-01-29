@@ -112,6 +112,135 @@
       "accessories": "Accessoires"
     }
   },
+  "About": {
+    "hero": {
+      "eyebrow": "Ons verhaal",
+      "title": "Het Caf\u00e9rico-atelier, geworteld in Belgisch vakmanschap",
+      "description": "Van Antwerpen tot de plantages die we bezoeken, vormen we koffie tot een ritueel van warmte en precisie.",
+      "primaryCta": "Ontdek de roasts",
+      "secondaryCta": "Lees het verhaal",
+      "badge": "Small-batch sinds 2016",
+      "card": {
+        "eyebrow": "Notitie van de oprichter",
+        "title": "Een stille, lichte kop",
+        "description": "Elke blend is samengesteld als een warme ochtend."
+      }
+    },
+    "story": {
+      "eyebrow": "Erfgoed",
+      "title": "Een Belgische branderij met een rustige ziel",
+      "description": "Caf\u00e9rico begon als een tweemansstudio en groeide uit tot een zachte community van barista\u2019s, boeren en designers.",
+      "paragraphs": {
+        "one": "We branden micro-lots en cuppen elke batch op balans en helderheid.",
+        "two": "Onze inkoop is gebaseerd op langdurige gesprekken, niet op kortlopende contracten.",
+        "three": "Design, verpakking en service zijn even zorgvuldig als de koffie zelf."
+      },
+      "highlightsTitle": "In het kort",
+      "highlights": {
+        "one": {
+          "label": "Brandingen per week",
+          "value": "12 micro-lots"
+        },
+        "two": {
+          "label": "Partnerboerderijen",
+          "value": "9 langetermijnboerderijen"
+        },
+        "three": {
+          "label": "Belgisch atelier",
+          "value": "Antwerpen, Belgi\u00eb"
+        }
+      },
+      "card": {
+        "eyebrow": "Het atelier",
+        "title": "Een plek voor aroma en detail",
+        "description": "Onze brandstudio combineert moderne profielen met handmatige proefrituelen."
+      }
+    },
+    "mission": {
+      "eyebrow": "Missie",
+      "title": "Maak van elke kop een bewuste ervaring",
+      "description": "We maken koffie die vertraagt en de mensen achter elke boon eert.",
+      "points": {
+        "one": "Branden met helderheid en zoetheid als kern.",
+        "two": "Partnerschappen bouwen die oorsprongsgebieden beschermen.",
+        "three": "Rituelen ontwerpen die rustig en luxueus voelen."
+      }
+    },
+    "vision": {
+      "eyebrow": "Visie",
+      "title": "Belgische koffiecultuur, heruitgevonden",
+      "description": "We willen dagelijkse koffie verheffen tot een moment van vakmanschap, schoonheid en verbinding.",
+      "points": {
+        "one": "Transparante, traceerbare sourcing verdedigen.",
+        "two": "Ruimtes cre\u00ebren waar koffie als kunst voelt.",
+        "three": "Groei met een lichtere voetafdruk."
+      }
+    },
+    "timeline": {
+      "eyebrow": "Mijlpalen",
+      "title": "Een tijdlijn van doordachte groei",
+      "description": "Elk jaar voegt een nieuwe laag toe aan het Caf\u00e9rico-ritueel.",
+      "items": {
+        "one": {
+          "year": "2016",
+          "title": "De Antwerpse microbranderij",
+          "description": "Eerste batches voor lokale ateliers en hotels."
+        },
+        "two": {
+          "year": "2018",
+          "title": "Directe sourcingreizen",
+          "description": "Reizen naar Colombia en Ethiopi\u00eb om boeren te ontmoeten."
+        },
+        "three": {
+          "year": "2020",
+          "title": "De Caf\u00e9rico ritueelbox",
+          "description": "Lancering van onze proefkaarten en abonnementen."
+        },
+        "four": {
+          "year": "2022",
+          "title": "Studio proeflounge",
+          "description": "Opening van een rustige ruimte voor sensorische workshops."
+        },
+        "five": {
+          "year": "2025",
+          "title": "Europees ateliernetwerk",
+          "description": "Deelroasts met partnercaf\u00e9s in Europa."
+        }
+      }
+    },
+    "team": {
+      "eyebrow": "Het team",
+      "title": "Gemaakt door handen en harten",
+      "description": "Een klein collectief dat elke roast, elk verhaal en elk detail vormgeeft.",
+      "members": {
+        "founder": {
+          "name": "Elise Van Doren",
+          "role": "Oprichter & Branddirector",
+          "bio": "Cureert profielen en bezoekt oorsprong samen met onze boeren."
+        },
+        "roaster": {
+          "name": "Noah Vermeulen",
+          "role": "Hoofdbrander",
+          "bio": "Stuurt onze brandkalender en kwaliteitsessies."
+        },
+        "curator": {
+          "name": "Sofie Lemaire",
+          "role": "Belevingscurator",
+          "bio": "Ontwerpt tastings, verpakkingen en onze geurbibliotheek."
+        },
+        "hospitality": {
+          "name": "Matteo Rossi",
+          "role": "Hospitality lead",
+          "bio": "Host atelierworkshops en community-ochtenden."
+        }
+      },
+      "quote": {
+        "eyebrow": "Van de oprichter",
+        "text": "We bouwden Caf\u00e9rico voor mensen die koffie als een klein ceremonieel moment willen ervaren.",
+        "author": "Elise Van Doren \u2014 Antwerpen"
+      }
+    }
+  },
   "Layout": {
     "logo": "Caférico",
     "nav": {

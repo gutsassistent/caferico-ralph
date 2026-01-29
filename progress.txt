@@ -4,6 +4,7 @@
 - Locale switcher pattern: replace the first path segment with the target locale and preserve query params via `usePathname` + `useSearchParams`.
 - Scroll reveal pattern: wrap sections/cards in `components/Reveal.tsx` and use the optional `delay` prop for staggered fade-ins.
 - Cart state lives in `components/CartProvider.tsx` with `useCart`; the slide-over UI is `components/CartDrawer.tsx` mounted in `app/[locale]/layout.tsx`.
+- Parallax accents: use `components/ParallaxOrb.tsx` for scroll-based decorative elements (respects reduced motion).
 
 Started: Caférico Front-End
 ---
@@ -67,4 +68,13 @@ Started: Caférico Front-End
   - Patterns discovered: none.
   - Gotchas encountered: none.
   - Useful context: subscription pricing uses locale-aware `Intl.NumberFormat` with `tiers.priceLabel` interpolation.
+---
+## 2026-01-29 03:05 - US-008
+- Built the premium About page with hero, story, mission/vision, timeline, team, and parallax accents.
+- Added a ParallaxOrb component for scroll-based decorative motion and wired translations in NL/EN/FR/ES.
+- Files changed: `app/[locale]/(pages)/about/page.tsx`, `components/ParallaxOrb.tsx`, `messages/nl.json`, `messages/en.json`, `messages/fr.json`, `messages/es.json`, `CLAUDE.md`, `prd.json`, `progress.txt`.
+- **Learnings for future iterations:**
+  - Patterns discovered: Parallax accents use `components/ParallaxOrb.tsx` with reduced-motion guard.
+  - Gotchas encountered: none.
+  - Useful context: About page sections use the `About` translation namespace with timeline/team key arrays.
 ---
