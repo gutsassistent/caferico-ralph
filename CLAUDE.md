@@ -73,10 +73,19 @@ If you discover a **reusable pattern**, add it to the `## Codebase Patterns` sec
 
 After completing a user story, check if ALL stories have `passes: true`.
 
-If ALL stories are complete and passing, reply with:
-<promise>COMPLETE</promise>
+If ALL stories are complete and passing, write `status.md` with:
+```
+Status: done
+All user stories completed.
+```
 
-If there are still stories with `passes: false`, end your response normally.
+If you are blocked and cannot continue, write `status.md` with:
+```
+Status: blocked
+Reason: [explain why you are blocked]
+```
+
+If there are still stories with `passes: false`, do NOT write status.md — just end your response normally (another iteration will pick up the next story).
 
 ## Important
 

@@ -2,8 +2,6 @@
 # Ralph Wiggum - Long-running AI agent loop (Codex edition)
 # Usage: ./ralph.sh [max_iterations]
 
-set -e
-
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
@@ -33,16 +31,12 @@ while true; do
 
   echo ""
   echo "=== Running iteration $iteration/$MAX_ITERATIONS at $(date) ==="
-  echo "Current status: ${STATUS:-unknown}"
+  echo "Current status: ${STATUS:-running}"
   echo ""
 
-  # Run Codex with the prompt file, explicitly setting working directory
-  prompt="Working directory: $SCRIPT_DIR
-
-$(cat ./CLAUDE.md)
-
-IMPORTANT: All files (prd.json, progress.txt, CLAUDE.md) are in $SCRIPT_DIR. The Next.js project will also be created here. Read prd.json from this directory to find user stories."
-  codex exec "$prompt" --model gpt-5.2-codex --full-auto --config model_reasoning_effort="xhigh"
+  # Run Codex with the prompt file
+  prompt=$(cat ./CLAUDE.md)
+  codex exec "$prompt" --model gpt-5.2-codex --full-auto --config model_reasoning_effort="xhigh" || true
 
   # Small delay to avoid hammering the API
   sleep 2
