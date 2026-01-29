@@ -1,3 +1,4 @@
+import sanitize from 'sanitize-html';
 import type { WooCommerceProduct } from '@/types/woocommerce';
 
 export type ProductCollection = 'beans' | 'ground' | 'accessories';
@@ -37,25 +38,34 @@ export type Product = {
 };
 
 /**
- * Strip Divi/Elementor shortcodes, sconnect injected divs, and &nbsp; junk
- * from WooCommerce HTML content.
+ * Sanitize WooCommerce HTML content:
+ * 1. Strip Divi/WPBakery shortcodes and sconnect junk (regex pre-pass)
+ * 2. Run through sanitize-html for proper XSS protection
  */
 function sanitizeHtml(html: string): string {
   if (!html) return '';
 
   let clean = html;
-  // Remove Divi/WPBakery shortcodes: [et_pb_*], [/et_pb_*], etc.
+  // Pre-pass: remove Divi/WPBakery shortcodes
   clean = clean.replace(/\[(?:\/)?et_pb_[^\]]*\]/g, '');
   clean = clean.replace(/\[(?:\/)?et_[^\]]*\]/g, '');
-  // Remove any remaining shortcodes like [shortcode attr="val"]
   clean = clean.replace(/\[[^\]]{3,}\]/g, '');
   // Remove sconnect-is-installed injected divs
   clean = clean.replace(/<div[^>]*id="sconnect-is-installed"[^>]*>[\s\S]*?<\/div>/gi, '');
-  // Collapse multiple &nbsp; and trim
+  // Collapse &nbsp;
   clean = clean.replace(/(&nbsp;\s*)+/g, ' ');
-  // Remove empty <p> tags
+
+  // XSS sanitization — allow safe HTML tags only
+  clean = sanitize(clean, {
+    allowedTags: sanitize.defaults.allowedTags.concat(['img']),
+    allowedAttributes: {
+      ...sanitize.defaults.allowedAttributes,
+      img: ['src', 'alt', 'width', 'height', 'class', 'loading', 'decoding']
+    }
+  });
+
+  // Remove empty <p> tags left after stripping
   clean = clean.replace(/<p>\s*<\/p>/g, '');
-  // If nothing meaningful remains, return empty
   const textOnly = clean.replace(/<[^>]*>/g, '').trim();
   if (!textOnly) return '';
 
