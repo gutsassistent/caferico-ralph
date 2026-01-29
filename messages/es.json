@@ -86,6 +86,18 @@
         }
       }
     },
+    "newsletter": {
+      "eyebrow": "Boletín",
+      "title": "Mantente al Día",
+      "subtitle": "Obtén 10% de descuento en tu primer pedido",
+      "description": "Suscríbete para consejos de preparación, nuevos tuestes y ofertas exclusivas — directo a tu bandeja de entrada.",
+      "placeholder": "tu@ejemplo.com",
+      "button": "Suscribirse",
+      "loading": "Enviando...",
+      "success": "¡Gracias! Revisa tu bandeja de entrada para tu código de descuento.",
+      "error": "Algo salió mal. Inténtalo de nuevo.",
+      "privacy": "Respetamos tu privacidad. Puedes darte de baja en cualquier momento."
+    },
     "collections": {
       "beans": "Granos",
       "ground": "Café molido",
@@ -122,7 +134,9 @@
     },
     "card": {
       "originLabel": "Origen",
-      "priceLabel": "Precio"
+      "priceLabel": "Precio",
+      "addToCart": "Añadir al carrito",
+      "saleBadge": "Oferta"
     },
     "empty": {
       "title": "Sin resultados",

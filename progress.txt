@@ -105,3 +105,29 @@ Remaining: 42
 - Staggered Reveal animation (delay={index * 120}) for each card
 - Added `testimonials.*` i18n keys in all 4 languages (NL, EN, FR, ES)
 - typecheck ✅ build ✅
+
+### RD-009: Homepage - Newsletter Section ✅
+- Added newsletter section between values section and page end
+- Created NewsletterForm client component with email validation, loading state, and success message
+- Dark espresso background with radial gold gradient, centered layout
+- Title "Blijf op de Hoogte", subtitle "Ontvang 10% korting op je eerste bestelling"
+- Email input + submit button in row on desktop, stacked on mobile
+- Mock submit: console.log email, 1.2s simulated delay, then success state with checkmark
+- Success state shows gold-bordered pill with confirmation text
+- Privacy notice below form
+- Added `newsletter.*` i18n keys in all 4 languages (NL, EN, FR, ES)
+- Wrapped in Reveal component for fade-in on scroll
+- typecheck ✅ build ✅
+
+### RD-010: Shop Pagina - Fix Product Grid Rendering ✅
+- Root cause: shop page relied entirely on WooCommerce API; when API unavailable/empty, grid showed nothing
+- Created `data/mock-products.json` with 6 products (Mild, Intens, Espresso, Decaf, Proefpakket, Hervulbaar Tonnetje) using real images from CONTEXT.md
+- Shop page now wraps API calls in try/catch and falls back to mock data when products array is empty
+- Added image zoom on hover: `transition-transform duration-500 group-hover:scale-105` on product images
+- Added "In Winkelwagen" button on each card (gold outline, fills gold on hover via group-hover)
+- Added sale badge (gold pill, top-right) for products with `on_sale: true`
+- Added SkeletonCard component with animate-pulse placeholders for loading state
+- Added `card.addToCart` and `card.saleBadge` i18n keys in all 4 languages (NL, EN, FR, ES)
+- Grid: 1 col mobile, 2 col tablet (md), 3 col desktop (lg), 4 col large (xl)
+- Existing filters (search, collection, sort) and empty state remain intact
+- typecheck ✅ build ✅

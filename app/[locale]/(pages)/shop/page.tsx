@@ -4,31 +4,51 @@ import Reveal from '@/components/Reveal';
 import ShopCatalog from '@/components/ShopCatalog';
 import { getProducts, getProductCategories } from '@/lib/woocommerce';
 import { mapWooProduct } from '@/types/product';
+import type { Product } from '@/types/product';
+import mockProductData from '@/data/mock-products.json';
 
 export const revalidate = 3600;
 
 export default async function ShopPage() {
   const t = await getTranslations('Shop');
 
-  const [wcProducts, wcCategories] = await Promise.all([getProducts(), getProductCategories()]);
+  let products: Product[] = [];
+  let categories: { id: number; name: string; slug: string }[] = [];
 
-  // Collect all child IDs of grouped products so we can exclude them from the listing
-  const groupedChildIds = new Set(
-    wcProducts.filter((p) => p.type === 'grouped').flatMap((p) => p.grouped_products ?? [])
-  );
+  try {
+    const [wcProducts, wcCategories] = await Promise.all([getProducts(), getProductCategories()]);
 
-  const products = wcProducts
-    .filter((p) => !groupedChildIds.has(p.id))
-    .filter((p) => {
-      // Also exclude products only in "geen-categorie" (uncategorized children)
-      const cats = p.categories.map((c) => c.slug);
-      return !(cats.length === 1 && cats[0] === 'geen-categorie');
-    })
-    .map(mapWooProduct);
+    // Collect all child IDs of grouped products so we can exclude them from the listing
+    const groupedChildIds = new Set(
+      wcProducts.filter((p) => p.type === 'grouped').flatMap((p) => p.grouped_products ?? [])
+    );
 
-  const categories = wcCategories
-    .filter((c) => c.slug !== 'geen-categorie')
-    .map((c) => ({ id: c.id, name: c.name, slug: c.slug }));
+    products = wcProducts
+      .filter((p) => !groupedChildIds.has(p.id))
+      .filter((p) => {
+        const cats = p.categories.map((c) => c.slug);
+        return !(cats.length === 1 && cats[0] === 'geen-categorie');
+      })
+      .map(mapWooProduct);
+
+    categories = wcCategories
+      .filter((c) => c.slug !== 'geen-categorie')
+      .map((c) => ({ id: c.id, name: c.name, slug: c.slug }));
+  } catch {
+    // API unavailable — silently fall through to mock data
+  }
+
+  // Fallback to mock data when API returns no products
+  if (products.length === 0) {
+    products = mockProductData as Product[];
+    const catSet = new Map<string, { id: number; name: string; slug: string }>();
+    for (const p of products) {
+      for (const c of p.categories) {
+        if (!catSet.has(c.slug)) catSet.set(c.slug, c);
+      }
+    }
+    categories = Array.from(catSet.values());
+  }
 
   return (
     <main className="min-h-screen bg-noir text-cream">

@@ -86,6 +86,18 @@
         }
       }
     },
+    "newsletter": {
+      "eyebrow": "Newsletter",
+      "title": "Stay in the Loop",
+      "subtitle": "Get 10% off your first order",
+      "description": "Sign up for brew tips, new roasts and exclusive offers — straight to your inbox.",
+      "placeholder": "you@example.com",
+      "button": "Subscribe",
+      "loading": "Sending...",
+      "success": "Thank you! Check your inbox for your discount code.",
+      "error": "Something went wrong. Please try again.",
+      "privacy": "We respect your privacy. Unsubscribe anytime."
+    },
     "collections": {
       "beans": "Whole beans",
       "ground": "Ground coffee",
@@ -122,7 +134,9 @@
     },
     "card": {
       "originLabel": "Origin",
-      "priceLabel": "Price"
+      "priceLabel": "Price",
+      "addToCart": "Add to Cart",
+      "saleBadge": "Sale"
     },
     "empty": {
       "title": "No matches yet",

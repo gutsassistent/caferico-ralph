@@ -15,12 +15,31 @@ type ShopCatalogProps = {
   categories: { id: number; name: string; slug: string }[];
 };
 
+function SkeletonCard() {
+  return (
+    <div className="flex h-full flex-col rounded-3xl border border-cream/10 bg-[#140b08] p-5">
+      <div className="relative aspect-[4/3] animate-pulse overflow-hidden rounded-2xl bg-espresso/50" />
+      <div className="mt-4 flex-1 space-y-3">
+        <div className="h-5 w-3/4 animate-pulse rounded bg-cream/10" />
+        <div className="h-4 w-full animate-pulse rounded bg-cream/5" />
+        <div className="h-3 w-1/2 animate-pulse rounded bg-cream/5" />
+      </div>
+      <div className="mt-4 flex items-center justify-between">
+        <div className="h-4 w-12 animate-pulse rounded bg-cream/10" />
+        <div className="h-4 w-16 animate-pulse rounded bg-gold/20" />
+      </div>
+      <div className="mt-4 h-10 w-full animate-pulse rounded-full bg-cream/5" />
+    </div>
+  );
+}
+
 export default function ShopCatalog({ products, categories }: ShopCatalogProps) {
   const t = useTranslations('Shop');
   const locale = useLocale();
   const [query, setQuery] = useState('');
   const [collection, setCollection] = useState<CollectionFilter>('all');
   const [sort, setSort] = useState<SortOption>('price-asc');
+  const [isLoading] = useState(false);
 
   const normalizedQuery = query.trim().toLowerCase();
   const priceFormatter = useMemo(
@@ -151,7 +170,9 @@ export default function ShopCatalog({ products, categories }: ShopCatalogProps) 
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {filteredProducts.length === 0 ? (
+        {isLoading ? (
+          Array.from({ length: 6 }).map((_, i) => <SkeletonCard key={i} />)
+        ) : filteredProducts.length === 0 ? (
           <div className="col-span-full rounded-3xl border border-cream/10 bg-[#120907]/80 p-10 text-center">
             <p className="font-serif text-lg text-cream">{t('empty.title')}</p>
             <p className="mt-3 text-sm text-cream/60">{t('empty.description')}</p>
@@ -175,7 +196,7 @@ export default function ShopCatalog({ products, categories }: ShopCatalogProps) 
                     <img
                       src={product.images[0].src}
                       alt={product.images[0].alt || product.name}
-                      className="absolute inset-0 h-full w-full object-cover"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       loading="lazy"
                       decoding="async"
                     />
@@ -184,6 +205,11 @@ export default function ShopCatalog({ products, categories }: ShopCatalogProps) 
                       <div className="absolute inset-0 bg-coffee-grain opacity-40" />
                       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,165,116,0.2),_transparent_60%)]" />
                     </>
+                  )}
+                  {product.on_sale && (
+                    <div className="absolute right-3 top-3 rounded-full bg-gold px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-noir">
+                      {t('card.saleBadge')}
+                    </div>
                   )}
                   <div className="absolute bottom-3 left-3 rounded-full border border-cream/20 bg-noir/70 px-3 py-1 text-[10px] uppercase tracking-[0.3em] text-cream/70">
                     {product.categories[0]?.name ?? product.collection}
@@ -204,6 +230,9 @@ export default function ShopCatalog({ products, categories }: ShopCatalogProps) 
                 <div className="mt-4 flex items-center justify-between text-sm">
                   <span className="text-cream/50">{t('card.priceLabel')}</span>
                   <span className="text-gold">{priceFormatter.format(product.price)}</span>
+                </div>
+                <div className="mt-4 flex items-center justify-center rounded-full border border-gold/40 py-2.5 text-xs uppercase tracking-[0.2em] text-gold transition-colors duration-300 group-hover:bg-gold group-hover:text-noir">
+                  {t('card.addToCart')}
                 </div>
               </Link>
             </Reveal>

@@ -86,6 +86,18 @@
         }
       }
     },
+    "newsletter": {
+      "eyebrow": "Nieuwsbrief",
+      "title": "Blijf op de Hoogte",
+      "subtitle": "Ontvang 10% korting op je eerste bestelling",
+      "description": "Schrijf je in voor brew tips, nieuwe roasts en exclusieve acties — rechtstreeks in je inbox.",
+      "placeholder": "jij@voorbeeld.be",
+      "button": "Inschrijven",
+      "loading": "Bezig...",
+      "success": "Bedankt! Check je inbox voor je kortingscode.",
+      "error": "Er ging iets mis. Probeer het opnieuw.",
+      "privacy": "We respecteren je privacy. Uitschrijven kan altijd."
+    },
     "collections": {
       "beans": "Koffiebonen",
       "ground": "Gemalen koffie",
@@ -122,7 +134,9 @@
     },
     "card": {
       "originLabel": "Oorsprong",
-      "priceLabel": "Prijs"
+      "priceLabel": "Prijs",
+      "addToCart": "In Winkelwagen",
+      "saleBadge": "Aanbieding"
     },
     "empty": {
       "title": "Geen resultaten",
