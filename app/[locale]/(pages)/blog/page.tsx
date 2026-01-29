@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
+import { Link } from '@/i18n/routing';
 import Container from '@/components/Container';
 import ParallaxOrb from '@/components/ParallaxOrb';
 import Reveal from '@/components/Reveal';
@@ -11,15 +11,10 @@ const POSTS = (blogPosts as BlogPost[]).sort(
   (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
 );
 
-export default async function BlogPage({
-  params
-}: {
-  params: { locale: string };
-}) {
+export default async function BlogPage() {
   const t = await getTranslations('Blog');
-  const { locale } = params;
 
-  const dateFormatter = new Intl.DateTimeFormat(locale, {
+  const dateFormatter = new Intl.DateTimeFormat('nl-NL', {
     year: 'numeric',
     month: 'long',
     day: 'numeric'
@@ -42,15 +37,11 @@ export default async function BlogPage({
 
         <Container className="relative py-20 lg:py-28">
           <div className="max-w-2xl space-y-6">
-            <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
-              {t('hero.eyebrow')}
-            </p>
-            <h1 className="text-4xl font-serif leading-tight sm:text-5xl lg:text-6xl">
+            <p className="text-xs uppercase tracking-[0.4em] text-gold/70">{t('hero.eyebrow')}</p>
+            <h1 className="font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl">
               {t('hero.title')}
             </h1>
-            <p className="text-sm text-cream/70 sm:text-base lg:text-lg">
-              {t('hero.description')}
-            </p>
+            <p className="text-sm text-cream/70 sm:text-base lg:text-lg">{t('hero.description')}</p>
           </div>
         </Container>
       </section>
@@ -63,9 +54,7 @@ export default async function BlogPage({
               <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
                 {t('listing.eyebrow')}
               </p>
-              <h2 className="text-3xl font-serif sm:text-4xl">
-                {t('listing.title')}
-              </h2>
+              <h2 className="font-serif text-3xl sm:text-4xl">{t('listing.title')}</h2>
               <p className="max-w-xl text-sm text-cream/70 sm:text-base">
                 {t('listing.description')}
               </p>
@@ -76,7 +65,7 @@ export default async function BlogPage({
             {POSTS.map((post, index) => (
               <Reveal key={post.id} delay={index * 80} className="h-full">
                 <Link
-                  href={`/${locale}/blog/${post.slug}`}
+                  href={`/blog/${post.slug}`}
                   className="group flex h-full flex-col rounded-2xl border border-cream/10 bg-[#140b08] transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_30px_60px_rgba(0,0,0,0.4)]"
                 >
                   {/* Image placeholder */}
@@ -102,12 +91,10 @@ export default async function BlogPage({
                       <span className="mx-2 text-cream/30">&middot;</span>
                       {post.author}
                     </p>
-                    <h3 className="mt-3 text-lg font-serif leading-snug text-cream group-hover:text-gold transition-colors duration-300">
+                    <h3 className="mt-3 font-serif text-lg leading-snug text-cream transition-colors duration-300 group-hover:text-gold">
                       {post.title}
                     </h3>
-                    <p className="mt-2 flex-1 text-sm text-cream/60">
-                      {post.excerpt}
-                    </p>
+                    <p className="mt-2 flex-1 text-sm text-cream/60">{post.excerpt}</p>
                     <span className="mt-4 inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-gold transition group-hover:text-cream">
                       {t('listing.readMore')}
                       <span aria-hidden="true">&rarr;</span>

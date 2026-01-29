@@ -1,12 +1,8 @@
-import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
+import { Link } from '@/i18n/routing';
 import Container from '@/components/Container';
 import ParallaxOrb from '@/components/ParallaxOrb';
 import Reveal from '@/components/Reveal';
-
-type AboutPageProps = {
-  params: { locale: string };
-};
 
 const highlightKeys = ['one', 'two', 'three'] as const;
 const missionPoints = ['one', 'two', 'three'] as const;
@@ -14,9 +10,8 @@ const visionPoints = ['one', 'two', 'three'] as const;
 const timelineKeys = ['one', 'two', 'three', 'four', 'five'] as const;
 const teamKeys = ['founder', 'roaster', 'curator', 'hospitality'] as const;
 
-export default async function AboutPage({ params }: AboutPageProps) {
+export default async function AboutPage() {
   const t = await getTranslations('About');
-  const locale = params.locale;
 
   return (
     <main className="min-h-screen bg-noir text-cream">
@@ -34,22 +29,20 @@ export default async function AboutPage({ params }: AboutPageProps) {
 
         <Container className="relative grid gap-12 py-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div className="space-y-6">
-            <p className="text-xs uppercase tracking-[0.4em] text-gold/80">
-              {t('hero.eyebrow')}
-            </p>
-            <h1 className="text-4xl font-serif leading-tight sm:text-5xl lg:text-6xl">
+            <p className="text-xs uppercase tracking-[0.4em] text-gold/80">{t('hero.eyebrow')}</p>
+            <h1 className="font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl">
               {t('hero.title')}
             </h1>
             <p className="text-base text-cream/80 sm:text-lg">{t('hero.description')}</p>
             <div className="flex flex-wrap gap-4">
               <Link
-                href={`/${locale}/shop`}
+                href="/shop"
                 className="rounded-full border border-gold/60 px-6 py-3 text-xs uppercase tracking-[0.3em] text-gold transition hover:bg-gold hover:text-noir"
               >
                 {t('hero.primaryCta')}
               </Link>
               <Link
-                href={`/${locale}/about#story`}
+                href="/about#story"
                 className="rounded-full border border-cream/30 px-6 py-3 text-xs uppercase tracking-[0.3em] text-cream/80 transition hover:border-cream/60 hover:text-cream"
               >
                 {t('hero.secondaryCta')}
@@ -69,10 +62,8 @@ export default async function AboutPage({ params }: AboutPageProps) {
                 <p className="text-xs uppercase tracking-[0.3em] text-gold/80">
                   {t('hero.card.eyebrow')}
                 </p>
-                <p className="mt-2 text-lg font-serif text-cream">{t('hero.card.title')}</p>
-                <p className="mt-1 text-sm text-cream/70">
-                  {t('hero.card.description')}
-                </p>
+                <p className="mt-2 font-serif text-lg text-cream">{t('hero.card.title')}</p>
+                <p className="mt-1 text-sm text-cream/70">{t('hero.card.description')}</p>
               </div>
             </div>
           </div>
@@ -86,10 +77,8 @@ export default async function AboutPage({ params }: AboutPageProps) {
               <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
                 {t('story.eyebrow')}
               </p>
-              <h2 className="text-3xl font-serif sm:text-4xl">{t('story.title')}</h2>
-              <p className="text-sm text-cream/70 sm:text-base">
-                {t('story.description')}
-              </p>
+              <h2 className="font-serif text-3xl sm:text-4xl">{t('story.title')}</h2>
+              <p className="text-sm text-cream/70 sm:text-base">{t('story.description')}</p>
               <div className="space-y-4 text-sm text-cream/70">
                 <p>{t('story.paragraphs.one')}</p>
                 <p>{t('story.paragraphs.two')}</p>
@@ -108,7 +97,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
                         <p className="text-xs uppercase tracking-[0.3em] text-cream/50">
                           {t(`story.highlights.${key}.label`)}
                         </p>
-                        <p className="mt-2 text-2xl font-serif text-cream">
+                        <p className="mt-2 font-serif text-2xl text-cream">
                           {t(`story.highlights.${key}.value`)}
                         </p>
                       </div>
@@ -120,12 +109,8 @@ export default async function AboutPage({ params }: AboutPageProps) {
                 <p className="text-xs uppercase tracking-[0.3em] text-gold/70">
                   {t('story.card.eyebrow')}
                 </p>
-                <h3 className="mt-3 text-2xl font-serif text-cream">
-                  {t('story.card.title')}
-                </h3>
-                <p className="mt-2 text-sm text-cream/70">
-                  {t('story.card.description')}
-                </p>
+                <h3 className="mt-3 font-serif text-2xl text-cream">{t('story.card.title')}</h3>
+                <p className="mt-2 text-sm text-cream/70">{t('story.card.description')}</p>
               </div>
             </div>
           </Container>
@@ -146,12 +131,8 @@ export default async function AboutPage({ params }: AboutPageProps) {
                   <p className="text-xs uppercase tracking-[0.3em] text-gold/70">
                     {t(`${item.key}.eyebrow`)}
                   </p>
-                  <h3 className="mt-3 text-2xl font-serif text-cream">
-                    {t(`${item.key}.title`)}
-                  </h3>
-                  <p className="mt-4 text-sm text-cream/70">
-                    {t(`${item.key}.description`)}
-                  </p>
+                  <h3 className="mt-3 font-serif text-2xl text-cream">{t(`${item.key}.title`)}</h3>
+                  <p className="mt-4 text-sm text-cream/70">{t(`${item.key}.description`)}</p>
                   <ul className="mt-6 space-y-3 text-sm text-cream/70">
                     {item.points.map((point) => (
                       <li key={point} className="flex items-start gap-3">
@@ -181,10 +162,8 @@ export default async function AboutPage({ params }: AboutPageProps) {
               <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
                 {t('timeline.eyebrow')}
               </p>
-              <h2 className="text-3xl font-serif sm:text-4xl">{t('timeline.title')}</h2>
-              <p className="text-sm text-cream/70 sm:text-base">
-                {t('timeline.description')}
-              </p>
+              <h2 className="font-serif text-3xl sm:text-4xl">{t('timeline.title')}</h2>
+              <p className="text-sm text-cream/70 sm:text-base">{t('timeline.description')}</p>
             </div>
             <div className="grid gap-6 lg:grid-cols-2">
               {timelineKeys.map((key, index) => (
@@ -193,7 +172,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
                     <p className="text-xs uppercase tracking-[0.3em] text-cream/50">
                       {t(`timeline.items.${key}.year`)}
                     </p>
-                    <h3 className="mt-3 text-xl font-serif text-cream">
+                    <h3 className="mt-3 font-serif text-xl text-cream">
                       {t(`timeline.items.${key}.title`)}
                     </h3>
                     <p className="mt-2 text-sm text-cream/70">
@@ -211,10 +190,8 @@ export default async function AboutPage({ params }: AboutPageProps) {
         <section className="py-20">
           <Container className="space-y-10">
             <div className="max-w-2xl space-y-3">
-              <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
-                {t('team.eyebrow')}
-              </p>
-              <h2 className="text-3xl font-serif sm:text-4xl">{t('team.title')}</h2>
+              <p className="text-xs uppercase tracking-[0.4em] text-gold/70">{t('team.eyebrow')}</p>
+              <h2 className="font-serif text-3xl sm:text-4xl">{t('team.title')}</h2>
               <p className="text-sm text-cream/70 sm:text-base">{t('team.description')}</p>
             </div>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -225,15 +202,13 @@ export default async function AboutPage({ params }: AboutPageProps) {
                       <div className="absolute inset-0 bg-coffee-grain opacity-40" />
                       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,165,116,0.25),_transparent_60%)]" />
                     </div>
-                    <h3 className="mt-4 text-lg font-serif text-cream">
+                    <h3 className="mt-4 font-serif text-lg text-cream">
                       {t(`team.members.${key}.name`)}
                     </h3>
                     <p className="text-xs uppercase tracking-[0.3em] text-gold/70">
                       {t(`team.members.${key}.role`)}
                     </p>
-                    <p className="mt-3 text-sm text-cream/70">
-                      {t(`team.members.${key}.bio`)}
-                    </p>
+                    <p className="mt-3 text-sm text-cream/70">{t(`team.members.${key}.bio`)}</p>
                   </div>
                 </Reveal>
               ))}
@@ -242,7 +217,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
               <p className="text-xs uppercase tracking-[0.3em] text-gold/70">
                 {t('team.quote.eyebrow')}
               </p>
-              <p className="mt-4 text-xl font-serif text-cream">
+              <p className="mt-4 font-serif text-xl text-cream">
                 &ldquo;{t('team.quote.text')}&rdquo;
               </p>
               <p className="mt-3 text-sm text-cream/60">{t('team.quote.author')}</p>

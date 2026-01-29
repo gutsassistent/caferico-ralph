@@ -1,18 +1,11 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import Link from 'next/link';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/routing';
 import Reveal from '@/components/Reveal';
 
-const categoryKeys = [
-  'all',
-  'orders',
-  'subscriptions',
-  'products',
-  'shipping',
-  'returns'
-] as const;
+const categoryKeys = ['all', 'orders', 'subscriptions', 'products', 'shipping', 'returns'] as const;
 
 type CategoryKey = (typeof categoryKeys)[number];
 type ItemCategory = Exclude<CategoryKey, 'all'>;
@@ -50,13 +43,7 @@ type AccordionItemProps = {
   index: number;
 };
 
-function AccordionItem({
-  item,
-  categoryLabel,
-  isOpen,
-  onToggle,
-  index
-}: AccordionItemProps) {
+function AccordionItem({ item, categoryLabel, isOpen, onToggle, index }: AccordionItemProps) {
   const contentRef = useRef<HTMLDivElement | null>(null);
   const [contentHeight, setContentHeight] = useState(0);
 
@@ -90,7 +77,7 @@ function AccordionItem({
             <span className="text-[10px] uppercase tracking-[0.3em] text-cream/50">
               {categoryLabel}
             </span>
-            <h3 className="text-lg font-serif text-cream">{item.question}</h3>
+            <h3 className="font-serif text-lg text-cream">{item.question}</h3>
           </div>
           <span
             className={`mt-2 flex h-8 w-8 items-center justify-center rounded-full border border-cream/20 text-xs uppercase tracking-[0.2em] text-cream/70 transition ${
@@ -124,7 +111,6 @@ function AccordionItem({
 
 export default function FaqExplorer() {
   const t = useTranslations('Faq');
-  const locale = useLocale();
   const [search, setSearch] = useState('');
   const [activeCategory, setActiveCategory] = useState<CategoryKey>('all');
   const [openItems, setOpenItems] = useState<Set<string>>(() => new Set());
@@ -183,9 +169,7 @@ export default function FaqExplorer() {
       <div className="space-y-6">
         <Reveal>
           <div className="rounded-3xl border border-cream/10 bg-noir/80 p-6 shadow-[0_30px_70px_rgba(0,0,0,0.4)]">
-            <p className="text-xs uppercase tracking-[0.3em] text-gold/70">
-              {t('search.label')}
-            </p>
+            <p className="text-xs uppercase tracking-[0.3em] text-gold/70">{t('search.label')}</p>
             <label htmlFor="faq-search" className="sr-only">
               {t('search.label')}
             </label>
@@ -237,11 +221,11 @@ export default function FaqExplorer() {
             <p className="text-xs uppercase tracking-[0.3em] text-gold/70">
               {t('support.eyebrow')}
             </p>
-            <h3 className="mt-3 text-2xl font-serif">{t('support.title')}</h3>
+            <h3 className="mt-3 font-serif text-2xl">{t('support.title')}</h3>
             <p className="mt-2 text-sm text-cream/70">{t('support.description')}</p>
             <div className="mt-5 flex flex-wrap items-center gap-4">
               <Link
-                href={`/${locale}/contact`}
+                href="/contact"
                 className="rounded-full border border-gold/60 px-5 py-2 text-xs uppercase tracking-[0.3em] text-gold transition hover:bg-gold hover:text-noir"
               >
                 {t('support.cta')}
@@ -260,7 +244,7 @@ export default function FaqExplorer() {
             <p className="text-xs uppercase tracking-[0.3em] text-cream/50">
               {t('results.subtitle')}
             </p>
-            <p className="text-2xl font-serif">
+            <p className="font-serif text-2xl">
               {t('results.count', { count: filteredItems.length })}
             </p>
           </div>
@@ -277,9 +261,7 @@ export default function FaqExplorer() {
 
         {filteredItems.length === 0 ? (
           <div className="rounded-3xl border border-cream/10 bg-[#140b08] p-10 text-center">
-            <p className="text-xs uppercase tracking-[0.3em] text-gold/70">
-              {t('empty.title')}
-            </p>
+            <p className="text-xs uppercase tracking-[0.3em] text-gold/70">{t('empty.title')}</p>
             <p className="mt-3 text-sm text-cream/70">{t('empty.description')}</p>
             <button
               type="button"

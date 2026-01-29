@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { Link, usePathname, useRouter } from '@/i18n/routing';
+import { useSearchParams } from 'next/navigation';
 import { useCart } from '@/components/CartProvider';
 import Container from '@/components/Container';
 import { locales } from '@/lib/i18n';
@@ -18,6 +18,11 @@ export default function Header() {
   const { totalItems, openCart } = useCart();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,10 +42,10 @@ export default function Header() {
     () =>
       navItems.map((item) => ({
         key: item.key,
-        href: `/${locale}${item.href}`,
+        href: item.href,
         label: t(`nav.${item.key}`)
       })),
-    [locale, t]
+    [t]
   );
 
   const languageOptions = useMemo(
@@ -57,17 +62,9 @@ export default function Header() {
       return;
     }
 
-    const segments = pathname.split('/');
-    if (segments.length > 1) {
-      segments[1] = nextLocale;
-    } else {
-      segments.push(nextLocale);
-    }
-
-    const nextPath = segments.join('/');
     const query = searchParams.toString();
-    const url = query ? `${nextPath}?${query}` : nextPath;
-    router.push(url);
+    const url = query ? `${pathname}?${query}` : pathname;
+    router.replace(url, { locale: nextLocale as typeof locale });
     setMobileOpen(false);
   };
 
@@ -82,19 +79,15 @@ export default function Header() {
       <Container className="py-4">
         <div className="flex items-center justify-between gap-6">
           <Link
-            href={`/${locale}`}
-            className="text-lg font-serif tracking-[0.2em] text-cream transition hover:text-gold"
+            href="/"
+            className="font-serif text-lg tracking-[0.2em] text-cream transition hover:text-gold"
           >
             {t('logo')}
           </Link>
 
           <nav className="hidden items-center gap-6 text-xs uppercase tracking-[0.3em] text-cream/70 lg:flex">
             {navLinks.map((item) => (
-              <Link
-                key={item.key}
-                href={item.href}
-                className="transition hover:text-gold"
-              >
+              <Link key={item.key} href={item.href} className="transition hover:text-gold">
                 {item.label}
               </Link>
             ))}
@@ -133,16 +126,14 @@ export default function Header() {
                 stroke="currentColor"
                 strokeWidth="1.5"
               >
-                <path
-                  d="M6 7h12l-1.2 12H7.2L6 7Z"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
+                <path d="M6 7h12l-1.2 12H7.2L6 7Z" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M9 7a3 3 0 0 1 6 0" strokeLinecap="round" />
               </svg>
-              <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-gold text-[10px] font-semibold text-noir">
-                {totalItems}
-              </span>
+              {mounted && totalItems > 0 && (
+                <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-gold text-[10px] font-semibold text-noir">
+                  {totalItems}
+                </span>
+              )}
             </button>
 
             <button
@@ -158,11 +149,7 @@ export default function Header() {
                 stroke="currentColor"
                 strokeWidth="1.5"
               >
-                <path
-                  d="M20 20a8 8 0 1 0-16 0"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
+                <path d="M20 20a8 8 0 1 0-16 0" strokeLinecap="round" strokeLinejoin="round" />
                 <circle cx="12" cy="8" r="3" />
               </svg>
             </button>
@@ -202,11 +189,7 @@ export default function Header() {
           <div className="mt-4 rounded-2xl border border-cream/10 bg-[#120907]/95 p-4 shadow-[0_20px_50px_rgba(0,0,0,0.45)]">
             <nav className="flex flex-col gap-3 text-sm uppercase tracking-[0.2em] text-cream/80">
               {navLinks.map((item) => (
-                <Link
-                  key={item.key}
-                  href={item.href}
-                  className="transition hover:text-gold"
-                >
+                <Link key={item.key} href={item.href} className="transition hover:text-gold">
                   {item.label}
                 </Link>
               ))}

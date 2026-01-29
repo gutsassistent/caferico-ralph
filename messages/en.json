@@ -572,6 +572,11 @@
       "priceLabel": "Price"
     }
   },
+  "Toast": {
+    "subscriptionComingSoon": "Subscriptions coming soon! We're working on the integration.",
+    "newsletterSuccess": "Thanks for subscribing! You'll hear from us soon.",
+    "addedToCart": "Added to your cart"
+  },
   "Subscriptions": {
     "hero": {
       "eyebrow": "Subscriptions",

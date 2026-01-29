@@ -1,6 +1,6 @@
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
+import { Link } from '@/i18n/routing';
 import Container from '@/components/Container';
 import ParallaxOrb from '@/components/ParallaxOrb';
 import Reveal from '@/components/Reveal';
@@ -14,13 +14,9 @@ export function generateStaticParams() {
   return POSTS.map((post) => ({ slug: post.slug }));
 }
 
-export default async function BlogPostPage({
-  params
-}: {
-  params: { locale: string; slug: string };
-}) {
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   const t = await getTranslations('Blog');
-  const { locale, slug } = params;
 
   const post = POSTS.find((p) => p.slug === slug);
 
@@ -28,7 +24,7 @@ export default async function BlogPostPage({
     notFound();
   }
 
-  const dateFormatter = new Intl.DateTimeFormat(locale, {
+  const dateFormatter = new Intl.DateTimeFormat('nl-NL', {
     year: 'numeric',
     month: 'long',
     day: 'numeric'
@@ -54,14 +50,11 @@ export default async function BlogPostPage({
             aria-label={t('breadcrumbs.label')}
             className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.3em] text-cream/60"
           >
-            <Link href={`/${locale}`} className="transition hover:text-cream">
+            <Link href="/" className="transition hover:text-cream">
               {t('breadcrumbs.home')}
             </Link>
             <span className="text-cream/40">/</span>
-            <Link
-              href={`/${locale}/blog`}
-              className="transition hover:text-cream"
-            >
+            <Link href="/blog" className="transition hover:text-cream">
               {t('breadcrumbs.blog')}
             </Link>
             <span className="text-cream/40">/</span>
@@ -85,13 +78,13 @@ export default async function BlogPostPage({
                   </span>
                 ))}
               </div>
-              <h1 className="text-3xl font-serif leading-tight sm:text-4xl lg:text-5xl">
+              <h1 className="font-serif text-3xl leading-tight sm:text-4xl lg:text-5xl">
                 {post.title}
               </h1>
               <div className="flex items-center gap-4 text-sm text-cream/60">
                 <div className="flex items-center gap-3">
                   {/* Author avatar placeholder */}
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full border border-cream/15 bg-gradient-to-br from-espresso to-noir text-xs font-serif text-gold">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full border border-cream/15 bg-gradient-to-br from-espresso to-noir font-serif text-xs text-gold">
                     {post.author
                       .split(' ')
                       .map((n) => n[0])
@@ -127,7 +120,7 @@ export default async function BlogPostPage({
                   key={`p-${index}`}
                   className={`text-base leading-relaxed sm:text-lg ${
                     index === 0
-                      ? 'text-cream/90 first-letter:float-left first-letter:mr-2 first-letter:text-5xl first-letter:font-serif first-letter:leading-[0.8] first-letter:text-gold'
+                      ? 'text-cream/90 first-letter:float-left first-letter:mr-2 first-letter:font-serif first-letter:text-5xl first-letter:leading-[0.8] first-letter:text-gold'
                       : 'text-cream/70'
                   }`}
                 >
@@ -137,10 +130,10 @@ export default async function BlogPostPage({
 
               {/* Blockquote */}
               <blockquote className="my-8 border-l-2 border-gold/50 pl-6">
-                <p className="text-lg font-serif italic text-cream/80 sm:text-xl">
+                <p className="font-serif text-lg italic text-cream/80 sm:text-xl">
                   {t('detail.quote')}
                 </p>
-                <cite className="mt-3 block text-xs uppercase tracking-[0.3em] text-gold/60 not-italic">
+                <cite className="mt-3 block text-xs uppercase not-italic tracking-[0.3em] text-gold/60">
                   &mdash; {post.author}
                 </cite>
               </blockquote>
@@ -158,15 +151,11 @@ export default async function BlogPostPage({
                 <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
                   {t('related.eyebrow')}
                 </p>
-                <h2 className="text-3xl font-serif sm:text-4xl">
-                  {t('related.title')}
-                </h2>
-                <p className="text-sm text-cream/70 sm:text-base">
-                  {t('related.description')}
-                </p>
+                <h2 className="font-serif text-3xl sm:text-4xl">{t('related.title')}</h2>
+                <p className="text-sm text-cream/70 sm:text-base">{t('related.description')}</p>
               </div>
               <Link
-                href={`/${locale}/blog`}
+                href="/blog"
                 className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-gold transition hover:text-cream"
               >
                 {t('related.cta')}
@@ -178,7 +167,7 @@ export default async function BlogPostPage({
               {relatedPosts.map((related, index) => (
                 <Reveal key={related.id} delay={index * 80} className="h-full">
                   <Link
-                    href={`/${locale}/blog/${related.slug}`}
+                    href={`/blog/${related.slug}`}
                     className="group flex h-full flex-col rounded-2xl border border-cream/10 bg-[#140b08] p-4 transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_30px_60px_rgba(0,0,0,0.4)]"
                   >
                     <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-gradient-to-br from-espresso via-[#1d120d] to-noir">
@@ -189,12 +178,10 @@ export default async function BlogPostPage({
                       <p className="text-[10px] uppercase tracking-[0.3em] text-cream/50">
                         {dateFormatter.format(new Date(related.date))}
                       </p>
-                      <h3 className="mt-2 text-lg font-serif text-cream group-hover:text-gold transition-colors duration-300">
+                      <h3 className="mt-2 font-serif text-lg text-cream transition-colors duration-300 group-hover:text-gold">
                         {related.title}
                       </h3>
-                      <p className="mt-2 text-sm text-cream/60">
-                        {related.excerpt}
-                      </p>
+                      <p className="mt-2 text-sm text-cream/60">{related.excerpt}</p>
                     </div>
                   </Link>
                 </Reveal>

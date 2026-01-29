@@ -1,29 +1,36 @@
 'use client';
 
 import type { FormEvent } from 'react';
-import { useMemo } from 'react';
-import Link from 'next/link';
-import { useLocale, useTranslations } from 'next-intl';
+import { useMemo, useState } from 'react';
+import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/routing';
 import Container from '@/components/Container';
+import { useToast } from '@/components/Toast';
 import { navItems } from '@/lib/navigation';
 
 export default function Footer() {
   const t = useTranslations('Layout');
-  const locale = useLocale();
+  const toastT = useTranslations('Toast');
+  const { showToast } = useToast();
   const year = new Date().getFullYear();
+  const [email, setEmail] = useState('');
 
   const navLinks = useMemo(
     () =>
       navItems.map((item) => ({
         key: item.key,
-        href: `/${locale}${item.href}`,
+        href: item.href,
         label: t(`nav.${item.key}`)
       })),
-    [locale, t]
+    [t]
   );
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (email.trim()) {
+      showToast(toastT('newsletterSuccess'), 'success');
+      setEmail('');
+    }
   };
 
   return (
@@ -33,10 +40,12 @@ export default function Footer() {
       <Container className="relative py-16">
         <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr_1.2fr_1.2fr]">
           <div className="space-y-4">
-            <p className="text-lg font-serif tracking-[0.2em] text-cream">{t('logo')}</p>
+            <p className="font-serif text-lg tracking-[0.2em] text-cream">{t('logo')}</p>
             <p className="text-sm text-cream/70">{t('footer.tagline')}</p>
             <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-cream/50">{t('footer.socialTitle')}</p>
+              <p className="text-xs uppercase tracking-[0.3em] text-cream/50">
+                {t('footer.socialTitle')}
+              </p>
               <div className="mt-3 flex flex-wrap gap-4 text-sm text-cream/70">
                 <a href="#" className="transition hover:text-gold">
                   {t('social.instagram')}
@@ -99,7 +108,11 @@ export default function Footer() {
               </label>
               <input
                 id="newsletter"
+                name="email"
                 type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder={t('footer.newsletterPlaceholder')}
                 className="w-full rounded-full border border-cream/20 bg-transparent px-4 py-2 text-sm text-cream placeholder:text-cream/40 focus:border-gold/70 focus:outline-none"
               />

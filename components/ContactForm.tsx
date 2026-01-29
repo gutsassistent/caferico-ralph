@@ -96,10 +96,8 @@ export default function ContactForm() {
   return (
     <div className="rounded-3xl border border-cream/10 bg-[#140b08] p-8 shadow-[0_35px_80px_rgba(0,0,0,0.55)]">
       <div className="space-y-3">
-        <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
-          {t('form.eyebrow')}
-        </p>
-        <h2 className="text-3xl font-serif">{t('form.title')}</h2>
+        <p className="text-xs uppercase tracking-[0.4em] text-gold/70">{t('form.eyebrow')}</p>
+        <h2 className="font-serif text-3xl">{t('form.title')}</h2>
         <p className="text-sm text-cream/70 sm:text-base">{t('form.description')}</p>
       </div>
 
@@ -129,6 +127,7 @@ export default function ContactForm() {
               id="contact-name"
               name="name"
               type="text"
+              required
               autoComplete="name"
               value={values.name}
               onChange={handleChange('name')}
@@ -155,6 +154,7 @@ export default function ContactForm() {
               id="contact-email"
               name="email"
               type="email"
+              required
               autoComplete="email"
               value={values.email}
               onChange={handleChange('email')}
@@ -182,6 +182,7 @@ export default function ContactForm() {
             id="contact-subject"
             name="subject"
             type="text"
+            required
             value={values.subject}
             onChange={handleChange('subject')}
             className={`${inputBase} ${fieldError('subject') ? inputError : inputDefault}`}
@@ -206,6 +207,7 @@ export default function ContactForm() {
           <textarea
             id="contact-message"
             name="message"
+            required
             value={values.message}
             onChange={handleChange('message')}
             className={`${inputBase} min-h-[160px] resize-none ${

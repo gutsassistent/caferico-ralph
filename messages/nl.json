@@ -572,6 +572,11 @@
       "priceLabel": "Prijs"
     }
   },
+  "Toast": {
+    "subscriptionComingSoon": "Abonnementen komen binnenkort! We werken aan de integratie.",
+    "newsletterSuccess": "Bedankt voor je inschrijving! Je ontvangt binnenkort nieuws van ons.",
+    "addedToCart": "Toegevoegd aan je winkelwagen"
+  },
   "Subscriptions": {
     "hero": {
       "eyebrow": "Abonnementen",

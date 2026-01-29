@@ -5,7 +5,7 @@ const config: Config = {
     './app/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
     './lib/**/*.{ts,tsx}',
-    './messages/**/*.{json}'
+    './messages/**/*.json'
   ],
   theme: {
     extend: {

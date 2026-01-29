@@ -1,6 +1,11 @@
-import Link from 'next/link';
+'use client';
+
+import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/routing';
 
 export default function NotFound() {
+  const t = useTranslations('NotFound');
+
   return (
     <main className="flex min-h-[80vh] flex-col items-center justify-center px-6 text-center">
       <div className="relative">
@@ -8,14 +13,10 @@ export default function NotFound() {
           404
         </span>
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
-          <p className="text-xs uppercase tracking-[0.3em] text-gold/80">
-            Pagina niet gevonden
-          </p>
-          <h1 className="font-serif text-3xl text-cream sm:text-4xl">
-            Deze kop is nog niet gezet
-          </h1>
+          <p className="text-xs uppercase tracking-[0.3em] text-gold/80">{t('eyebrow')}</p>
+          <h1 className="font-serif text-3xl text-cream sm:text-4xl">{t('title')}</h1>
           <p className="mx-auto max-w-md text-sm leading-relaxed text-cream/60">
-            De pagina die je zoekt bestaat niet of is verplaatst. Ga terug naar het begin en ontdek het Caférico-atelier.
+            {t('description')}
           </p>
           <Link
             href="/"
@@ -32,7 +33,7 @@ export default function NotFound() {
               <path d="M19 12H5" strokeLinecap="round" strokeLinejoin="round" />
               <path d="m12 19-7-7 7-7" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            Terug naar home
+            {t('cta')}
           </Link>
         </div>
       </div>

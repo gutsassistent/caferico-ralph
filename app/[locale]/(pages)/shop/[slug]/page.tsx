@@ -1,6 +1,6 @@
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
+import { Link } from '@/i18n/routing';
 import Container from '@/components/Container';
 import ProductPurchasePanel from '@/components/ProductPurchasePanel';
 import Reveal from '@/components/Reveal';
@@ -9,7 +9,7 @@ import products from '@/data/products.json';
 type Product = (typeof products)[number];
 
 type ProductPageProps = {
-  params: { locale: string; slug: string };
+  params: Promise<{ locale: string; slug: string }>;
 };
 
 const PRODUCT_LIST = products as Product[];
@@ -19,9 +19,9 @@ export function generateStaticParams() {
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
+  const { slug } = await params;
   const t = await getTranslations('Product');
   const shopT = await getTranslations('Shop');
-  const { locale, slug } = params;
 
   const product = PRODUCT_LIST.find((item) => item.slug === slug);
 
@@ -33,7 +33,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
     (item) => item.collection === product.collection && item.id !== product.id
   ).slice(0, 4);
 
-  const priceFormatter = new Intl.NumberFormat(locale, {
+  const priceFormatter = new Intl.NumberFormat('nl-NL', {
     style: 'currency',
     currency: 'EUR'
   });
@@ -55,11 +55,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
             aria-label={t('breadcrumbs.label')}
             className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.3em] text-cream/60"
           >
-            <Link href={`/${locale}`} className="transition hover:text-cream">
+            <Link href="/" className="transition hover:text-cream">
               {t('breadcrumbs.home')}
             </Link>
             <span className="text-cream/40">/</span>
-            <Link href={`/${locale}/shop`} className="transition hover:text-cream">
+            <Link href="/shop" className="transition hover:text-cream">
               {t('breadcrumbs.shop')}
             </Link>
             <span className="text-cream/40">/</span>
@@ -93,7 +93,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 </div>
               </div>
               <div className="rounded-2xl border border-cream/10 bg-[#120907]/80 p-5 text-sm text-cream/70">
-                <p className="text-xs uppercase tracking-[0.3em] text-gold/70">{t('details.title')}</p>
+                <p className="text-xs uppercase tracking-[0.3em] text-gold/70">
+                  {t('details.title')}
+                </p>
                 <dl className="mt-4 grid gap-4 sm:grid-cols-2">
                   {detailItems.map((item) => (
                     <div key={item.label} className="space-y-1">
@@ -114,7 +116,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
                   {shopT(`collections.${product.collection}`)}
                 </p>
-                <h1 className="text-4xl font-serif leading-tight sm:text-5xl">{product.name}</h1>
+                <h1 className="font-serif text-4xl leading-tight sm:text-5xl">{product.name}</h1>
                 <p className="text-sm text-cream/60">{product.notes}</p>
                 <p className="text-2xl text-gold">{priceFormatter.format(product.price)}</p>
               </div>
@@ -143,17 +145,15 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
                   {t('related.eyebrow')}
                 </p>
-                <h2 className="text-3xl font-serif sm:text-4xl">
+                <h2 className="font-serif text-3xl sm:text-4xl">
                   {t('related.title', {
                     collection: shopT(`collections.${product.collection}`)
                   })}
                 </h2>
-                <p className="text-sm text-cream/70 sm:text-base">
-                  {t('related.description')}
-                </p>
+                <p className="text-sm text-cream/70 sm:text-base">{t('related.description')}</p>
               </div>
               <Link
-                href={`/${locale}/shop`}
+                href="/shop"
                 className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-gold transition hover:text-cream"
               >
                 {t('related.cta')}
@@ -165,7 +165,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               {relatedProducts.map((item, index) => (
                 <Reveal key={item.id} delay={index * 80} className="h-full">
                   <Link
-                    href={`/${locale}/shop/${item.slug}`}
+                    href={`/shop/${item.slug}`}
                     className="group flex h-full flex-col rounded-2xl border border-cream/10 bg-[#140b08] p-4 transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_30px_60px_rgba(0,0,0,0.4)]"
                   >
                     <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-gradient-to-br from-espresso via-[#1d120d] to-noir">
@@ -176,7 +176,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                       </div>
                     </div>
                     <div className="mt-4 flex-1">
-                      <h3 className="text-lg font-serif text-cream">{item.name}</h3>
+                      <h3 className="font-serif text-lg text-cream">{item.name}</h3>
                       <p className="mt-2 text-sm text-cream/60">{item.notes}</p>
                     </div>
                     <div className="mt-4 flex items-center justify-between text-sm">

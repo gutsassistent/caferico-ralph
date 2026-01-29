@@ -1,18 +1,18 @@
-import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
+import { Link } from '@/i18n/routing';
 import Container from '@/components/Container';
 import Reveal from '@/components/Reveal';
 import products from '@/data/products.json';
 
 type HomePageProps = {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 };
 
 export default async function HomePage({ params }: HomePageProps) {
+  const { locale } = await params;
   const t = await getTranslations('Home');
-  const locale = params.locale;
   const featuredProducts = products.slice(0, 4);
-  const priceFormatter = new Intl.NumberFormat(locale, {
+  const priceFormatter = new Intl.NumberFormat(locale || 'nl', {
     style: 'currency',
     currency: 'EUR'
   });
@@ -28,22 +28,20 @@ export default async function HomePage({ params }: HomePageProps) {
 
         <Container className="relative grid min-h-[70vh] gap-12 py-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div className="space-y-6">
-            <p className="text-xs uppercase tracking-[0.4em] text-gold/80">
-              {t('eyebrow')}
-            </p>
-            <h1 className="text-4xl font-serif leading-tight sm:text-5xl lg:text-6xl">
+            <p className="text-xs uppercase tracking-[0.4em] text-gold/80">{t('eyebrow')}</p>
+            <h1 className="font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl">
               {t('title')}
             </h1>
             <p className="text-base text-cream/80 sm:text-lg">{t('description')}</p>
             <div className="flex flex-wrap gap-4">
               <Link
-                href={`/${locale}/shop`}
+                href="/shop"
                 className="rounded-full border border-gold/60 px-6 py-3 text-xs uppercase tracking-[0.3em] text-gold transition hover:bg-gold hover:text-noir"
               >
                 {t('ctaPrimary')}
               </Link>
               <Link
-                href={`/${locale}/subscriptions`}
+                href="/subscriptions"
                 className="rounded-full border border-cream/30 px-6 py-3 text-xs uppercase tracking-[0.3em] text-cream/80 transition hover:border-cream/60 hover:text-cream"
               >
                 {t('ctaSecondary')}
@@ -74,7 +72,7 @@ export default async function HomePage({ params }: HomePageProps) {
                 <p className="text-xs uppercase tracking-[0.3em] text-gold/80">
                   {t('heroCard.eyebrow')}
                 </p>
-                <p className="mt-2 text-lg font-serif text-cream">{t('heroCard.title')}</p>
+                <p className="mt-2 font-serif text-lg text-cream">{t('heroCard.title')}</p>
                 <p className="mt-1 text-sm text-cream/70">{t('heroCard.description')}</p>
               </div>
             </div>
@@ -90,13 +88,11 @@ export default async function HomePage({ params }: HomePageProps) {
                 <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
                   {t('featured.eyebrow')}
                 </p>
-                <h2 className="text-3xl font-serif sm:text-4xl">{t('featured.title')}</h2>
-                <p className="text-sm text-cream/70 sm:text-base">
-                  {t('featured.description')}
-                </p>
+                <h2 className="font-serif text-3xl sm:text-4xl">{t('featured.title')}</h2>
+                <p className="text-sm text-cream/70 sm:text-base">{t('featured.description')}</p>
               </div>
               <Link
-                href={`/${locale}/shop`}
+                href="/shop"
                 className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-gold transition hover:text-cream"
               >
                 {t('featured.cta')}
@@ -108,7 +104,7 @@ export default async function HomePage({ params }: HomePageProps) {
               {featuredProducts.map((product, index) => (
                 <Reveal key={product.id} delay={index * 120} className="h-full">
                   <Link
-                    href={`/${locale}/shop/${product.slug}`}
+                    href={`/shop/${product.slug}`}
                     className="group flex h-full flex-col rounded-2xl border border-cream/10 bg-[#140b08] p-4 transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_30px_60px_rgba(0,0,0,0.4)]"
                   >
                     <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-gradient-to-br from-espresso via-[#1d120d] to-noir">
@@ -119,7 +115,7 @@ export default async function HomePage({ params }: HomePageProps) {
                       </div>
                     </div>
                     <div className="mt-4 flex-1">
-                      <h3 className="text-lg font-serif text-cream">{product.name}</h3>
+                      <h3 className="font-serif text-lg text-cream">{product.name}</h3>
                       <p className="mt-2 text-sm text-cream/60">{t('featured.detail')}</p>
                     </div>
                     <div className="mt-4 flex items-center justify-between text-sm">
@@ -143,12 +139,10 @@ export default async function HomePage({ params }: HomePageProps) {
               <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
                 {t('subscription.eyebrow')}
               </p>
-              <h2 className="text-3xl font-serif sm:text-4xl">{t('subscription.title')}</h2>
-              <p className="text-sm text-cream/70 sm:text-base">
-                {t('subscription.description')}
-              </p>
+              <h2 className="font-serif text-3xl sm:text-4xl">{t('subscription.title')}</h2>
+              <p className="text-sm text-cream/70 sm:text-base">{t('subscription.description')}</p>
               <Link
-                href={`/${locale}/subscriptions`}
+                href="/subscriptions"
                 className="inline-flex items-center gap-3 rounded-full border border-gold/60 px-6 py-3 text-xs uppercase tracking-[0.3em] text-gold transition hover:bg-gold hover:text-noir"
               >
                 {t('subscription.cta')}
@@ -180,7 +174,7 @@ export default async function HomePage({ params }: HomePageProps) {
               <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
                 {t('values.eyebrow')}
               </p>
-              <h2 className="text-3xl font-serif sm:text-4xl">{t('values.title')}</h2>
+              <h2 className="font-serif text-3xl sm:text-4xl">{t('values.title')}</h2>
               <p className="text-sm text-cream/70 sm:text-base">{t('values.description')}</p>
             </div>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -190,7 +184,7 @@ export default async function HomePage({ params }: HomePageProps) {
                     <div className="flex h-12 w-12 items-center justify-center rounded-full border border-gold/40 text-xs uppercase tracking-[0.3em] text-gold">
                       {index + 1}
                     </div>
-                    <h3 className="mt-4 text-lg font-serif text-cream">
+                    <h3 className="mt-4 font-serif text-lg text-cream">
                       {t(`values.items.${key}.title`)}
                     </h3>
                     <p className="mt-2 text-sm text-cream/70">

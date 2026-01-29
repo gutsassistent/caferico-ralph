@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { type ReactNode, Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
@@ -10,6 +10,7 @@ import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import PageTransition from '@/components/PageTransition';
 import ScrollToTop from '@/components/ScrollToTop';
+import { ToastProvider } from '@/components/Toast';
 import '@/app/globals.css';
 
 const inter = Inter({
@@ -30,11 +31,11 @@ export function generateStaticParams() {
 
 type LocaleLayoutProps = {
   children: ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 };
 
 export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
-  const { locale } = params;
+  const { locale } = await params;
 
   if (!locales.includes(locale as (typeof locales)[number])) {
     notFound();
@@ -47,15 +48,21 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     <html lang={locale}>
       <body className={`${inter.variable} ${playfair.variable} bg-noir text-cream antialiased`}>
         <NextIntlClientProvider messages={messages}>
-          <CartProvider>
-            <div className="flex min-h-screen flex-col">
-              <Header />
-              <PageTransition><div className="flex-1">{children}</div></PageTransition>
-              <Footer />
-            </div>
-            <CartDrawer />
-            <ScrollToTop />
-          </CartProvider>
+          <ToastProvider>
+            <CartProvider>
+              <div className="flex min-h-screen flex-col">
+                <Suspense fallback={null}>
+                  <Header />
+                </Suspense>
+                <PageTransition>
+                  <div className="flex-1">{children}</div>
+                </PageTransition>
+                <Footer />
+              </div>
+              <CartDrawer />
+              <ScrollToTop />
+            </CartProvider>
+          </ToastProvider>
         </NextIntlClientProvider>
       </body>
     </html>

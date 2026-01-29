@@ -7,8 +7,8 @@ export type CartItem = {
   name: string;
   price: number;
   collection: string;
-  grind: GrindOption;
-  weight: WeightOption;
+  grind: GrindOption | null;
+  weight: WeightOption | null;
   quantity: number;
 };
 

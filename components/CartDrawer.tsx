@@ -1,9 +1,10 @@
 'use client';
 
 import { useEffect, useMemo } from 'react';
-import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
+import { Link } from '@/i18n/routing';
 import { useCart } from '@/components/CartProvider';
+import { isAccessory } from '@/types/product';
 
 export default function CartDrawer() {
   const t = useTranslations('Cart');
@@ -61,7 +62,7 @@ export default function CartDrawer() {
         <div className="flex items-start justify-between border-b border-cream/10 px-6 py-5">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-gold/70">{t('eyebrow')}</p>
-            <h2 className="mt-2 text-2xl font-serif text-cream">{t('title')}</h2>
+            <h2 className="mt-2 font-serif text-2xl text-cream">{t('title')}</h2>
             <p className="mt-1 text-xs text-cream/50">{t('itemsCount', { count: totalItems })}</p>
           </div>
           <button
@@ -88,13 +89,11 @@ export default function CartDrawer() {
           {!hasItems ? (
             <div className="rounded-3xl border border-cream/10 bg-[#140b08] p-6 text-center shadow-[0_25px_60px_rgba(0,0,0,0.35)]">
               <div className="mx-auto mb-5 h-16 w-16 rounded-full border border-gold/40 bg-noir/70 text-gold" />
-              <p className="text-xs uppercase tracking-[0.3em] text-gold/70">
-                {t('emptyEyebrow')}
-              </p>
-              <h3 className="mt-2 text-xl font-serif text-cream">{t('emptyTitle')}</h3>
+              <p className="text-xs uppercase tracking-[0.3em] text-gold/70">{t('emptyEyebrow')}</p>
+              <h3 className="mt-2 font-serif text-xl text-cream">{t('emptyTitle')}</h3>
               <p className="mt-3 text-sm text-cream/60">{t('emptyDescription')}</p>
               <Link
-                href={`/${locale}/shop`}
+                href="/shop"
                 onClick={closeCart}
                 className="mt-6 inline-flex items-center justify-center rounded-full border border-gold/60 px-5 py-3 text-xs uppercase tracking-[0.3em] text-gold transition hover:bg-gold hover:text-noir"
               >
@@ -119,9 +118,9 @@ export default function CartDrawer() {
                           {shopT(`collections.${item.collection}`)}
                         </p>
                         <Link
-                          href={`/${locale}/shop/${item.slug}`}
+                          href={`/shop/${item.slug}`}
                           onClick={closeCart}
-                          className="mt-1 block text-lg font-serif text-cream transition hover:text-gold"
+                          className="mt-1 block font-serif text-lg text-cream transition hover:text-gold"
                         >
                           {item.name}
                         </Link>
@@ -136,16 +135,18 @@ export default function CartDrawer() {
                         {t('remove')}
                       </button>
                     </div>
-                    <div className="flex flex-wrap gap-3 text-xs text-cream/60">
-                      <span>
-                        {productT('variants.grindLabel')}:{' '}
-                        {productT(`variants.grind.${item.grind}`)}
-                      </span>
-                      <span>
-                        {productT('variants.weightLabel')}:{' '}
-                        {productT(`variants.weight.${item.weight}`)}
-                      </span>
-                    </div>
+                    {!isAccessory(item.collection) && item.grind && item.weight && (
+                      <div className="flex flex-wrap gap-3 text-xs text-cream/60">
+                        <span>
+                          {productT('variants.grindLabel')}:{' '}
+                          {productT(`variants.grind.${item.grind}`)}
+                        </span>
+                        <span>
+                          {productT('variants.weightLabel')}:{' '}
+                          {productT(`variants.weight.${item.weight}`)}
+                        </span>
+                      </div>
+                    )}
                     <div className="flex flex-wrap items-center justify-between gap-4">
                       <div className="flex items-center rounded-full border border-cream/10 bg-noir/60">
                         <button

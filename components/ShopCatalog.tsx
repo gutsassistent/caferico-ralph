@@ -1,8 +1,8 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
+import { Link } from '@/i18n/routing';
 import Reveal from '@/components/Reveal';
 import products from '@/data/products.json';
 
@@ -143,16 +143,14 @@ export default function ShopCatalog() {
         </div>
         <div className="mt-6 flex flex-wrap items-center justify-between gap-3 text-sm text-cream/60">
           <p>{t('results.count', { count: filteredProducts.length })}</p>
-          <p className="text-xs uppercase tracking-[0.3em] text-gold/70">
-            {t('results.subtitle')}
-          </p>
+          <p className="text-xs uppercase tracking-[0.3em] text-gold/70">{t('results.subtitle')}</p>
         </div>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {filteredProducts.length === 0 ? (
           <div className="col-span-full rounded-3xl border border-cream/10 bg-[#120907]/80 p-10 text-center">
-            <p className="text-lg font-serif text-cream">{t('empty.title')}</p>
+            <p className="font-serif text-lg text-cream">{t('empty.title')}</p>
             <p className="mt-3 text-sm text-cream/60">{t('empty.description')}</p>
             <button
               type="button"
@@ -166,7 +164,7 @@ export default function ShopCatalog() {
           filteredProducts.map((product, index) => (
             <Reveal key={product.id} delay={index * 70} className="h-full">
               <Link
-                href={`/${locale}/shop/${product.slug}`}
+                href={`/shop/${product.slug}`}
                 className="group flex h-full flex-col rounded-3xl border border-cream/10 bg-[#140b08] p-5 transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_30px_60px_rgba(0,0,0,0.4)]"
               >
                 <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-espresso via-[#1d120d] to-noir">
@@ -177,7 +175,7 @@ export default function ShopCatalog() {
                   </div>
                 </div>
                 <div className="mt-4 flex-1 space-y-2">
-                  <h3 className="text-lg font-serif text-cream">{product.name}</h3>
+                  <h3 className="font-serif text-lg text-cream">{product.name}</h3>
                   <p className="text-sm text-cream/60">{product.notes}</p>
                   <p className="text-xs text-cream/60">
                     <span className="uppercase tracking-[0.3em] text-cream/40">

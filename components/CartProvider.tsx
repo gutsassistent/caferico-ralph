@@ -14,10 +14,7 @@ type CartContextValue = {
   toggleCart: () => void;
   addItem: (item: CartItemInput) => void;
   removeItem: (item: Pick<CartItem, 'id' | 'grind' | 'weight'>) => void;
-  updateItemQuantity: (
-    item: Pick<CartItem, 'id' | 'grind' | 'weight'>,
-    quantity: number
-  ) => void;
+  updateItemQuantity: (item: Pick<CartItem, 'id' | 'grind' | 'weight'>, quantity: number) => void;
 };
 
 const CART_STORAGE_KEY = 'caferico.cart';
@@ -43,17 +40,24 @@ const isValidCartItem = (value: unknown): value is CartItem => {
   }
 
   const item = value as CartItem;
-  return (
+  const hasValidBase =
     typeof item.id === 'string' &&
     typeof item.slug === 'string' &&
     typeof item.name === 'string' &&
     typeof item.collection === 'string' &&
     typeof item.price === 'number' &&
     Number.isFinite(item.price) &&
-    typeof item.quantity === 'number' &&
-    GRIND_OPTIONS.includes(item.grind) &&
-    WEIGHT_OPTIONS.includes(item.weight)
-  );
+    typeof item.quantity === 'number';
+
+  if (!hasValidBase) {
+    return false;
+  }
+
+  // For accessories, grind and weight can be null
+  const hasValidGrind = item.grind === null || GRIND_OPTIONS.includes(item.grind);
+  const hasValidWeight = item.weight === null || WEIGHT_OPTIONS.includes(item.weight);
+
+  return hasValidGrind && hasValidWeight;
 };
 
 const loadStoredItems = () => {
@@ -127,9 +131,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     const quantity = normalizeQuantity(item.quantity ?? 1);
     setItems((current) => {
       const key = getItemKey(item);
-      const existingIndex = current.findIndex(
-        (existing) => getItemKey(existing) === key
-      );
+      const existingIndex = current.findIndex((existing) => getItemKey(existing) === key);
 
       if (existingIndex >= 0) {
         const nextItems = [...current];
@@ -146,9 +148,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const removeItem = useCallback((item: Pick<CartItem, 'id' | 'grind' | 'weight'>) => {
-    setItems((current) =>
-      current.filter((existing) => getItemKey(existing) !== getItemKey(item))
-    );
+    setItems((current) => current.filter((existing) => getItemKey(existing) !== getItemKey(item)));
   }, []);
 
   const updateItemQuantity = useCallback(
