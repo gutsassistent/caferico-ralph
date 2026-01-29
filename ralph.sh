@@ -36,7 +36,7 @@ while true; do
 
   # Run Codex with the prompt file
   prompt=$(cat ./CLAUDE.md)
-  codex exec "$prompt" --model gpt-5.2-codex --full-auto --config model_reasoning_effort="xhigh" || true
+  codex exec "$prompt" --model gpt-5.2-codex --dangerously-bypass-approvals-and-sandbox --config model_reasoning_effort="xhigh" || true
 
   # Small delay to avoid hammering the API
   sleep 2
