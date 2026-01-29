@@ -2,7 +2,10 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import Container from '@/components/Container';
 import Reveal from '@/components/Reveal';
-import products from '@/data/products.json';
+import { getProducts } from '@/lib/woocommerce';
+import { mapWooProduct } from '@/types/product';
+
+export const revalidate = 3600;
 
 type HomePageProps = {
   params: Promise<{ locale: string }>;
@@ -11,7 +14,11 @@ type HomePageProps = {
 export default async function HomePage({ params }: HomePageProps) {
   const { locale } = await params;
   const t = await getTranslations('Home');
-  const featuredProducts = products.slice(0, 4);
+
+  // Single API call — fetch first 4 products (avoids double call when none are featured)
+  const wcProducts = await getProducts({ per_page: '4' });
+  const featuredProducts = wcProducts.map(mapWooProduct);
+
   const priceFormatter = new Intl.NumberFormat(locale || 'nl', {
     style: 'currency',
     currency: 'EUR'
@@ -66,8 +73,18 @@ export default async function HomePage({ params }: HomePageProps) {
 
           <div className="relative">
             <div className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] border border-cream/10 bg-gradient-to-br from-espresso via-[#1f130d] to-noir shadow-[0_40px_80px_rgba(0,0,0,0.6)]">
-              <div className="absolute inset-0 bg-coffee-grain opacity-40" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,165,116,0.3),_transparent_60%)]" />
+              {featuredProducts[0]?.images?.[0]?.src ? (
+                <img
+                  src={featuredProducts[0].images[0].src}
+                  alt={featuredProducts[0].images[0].alt || featuredProducts[0].name}
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+              ) : (
+                <>
+                  <div className="absolute inset-0 bg-coffee-grain opacity-40" />
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,165,116,0.3),_transparent_60%)]" />
+                </>
+              )}
               <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-cream/10 bg-noir/70 p-4 backdrop-blur">
                 <p className="text-xs uppercase tracking-[0.3em] text-gold/80">
                   {t('heroCard.eyebrow')}
@@ -96,7 +113,7 @@ export default async function HomePage({ params }: HomePageProps) {
                 className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-gold transition hover:text-cream"
               >
                 {t('featured.cta')}
-                <span aria-hidden="true">→</span>
+                <span aria-hidden="true">&rarr;</span>
               </Link>
             </div>
 
@@ -108,15 +125,29 @@ export default async function HomePage({ params }: HomePageProps) {
                     className="group flex h-full flex-col rounded-2xl border border-cream/10 bg-[#140b08] p-4 transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_30px_60px_rgba(0,0,0,0.4)]"
                   >
                     <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-gradient-to-br from-espresso via-[#1d120d] to-noir">
-                      <div className="absolute inset-0 bg-coffee-grain opacity-40" />
-                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,165,116,0.25),_transparent_60%)]" />
+                      {product.images?.[0]?.src ? (
+                        <img
+                          src={product.images[0].src}
+                          alt={product.images[0].alt || product.name}
+                          className="absolute inset-0 h-full w-full object-cover"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      ) : (
+                        <>
+                          <div className="absolute inset-0 bg-coffee-grain opacity-40" />
+                          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,165,116,0.25),_transparent_60%)]" />
+                        </>
+                      )}
                       <div className="absolute bottom-4 left-4 rounded-full border border-cream/20 bg-noir/70 px-3 py-1 text-[10px] uppercase tracking-[0.3em] text-cream/70">
-                        {t(`collections.${product.collection}`)}
+                        {product.categories[0]?.name ?? product.collection}
                       </div>
                     </div>
                     <div className="mt-4 flex-1">
                       <h3 className="font-serif text-lg text-cream">{product.name}</h3>
-                      <p className="mt-2 text-sm text-cream/60">{t('featured.detail')}</p>
+                      <p className="mt-2 text-sm text-cream/60">
+                        {product.notes || t('featured.detail')}
+                      </p>
                     </div>
                     <div className="mt-4 flex items-center justify-between text-sm">
                       <span className="text-cream/60">{t('featured.priceLabel')}</span>
