@@ -32,3 +32,12 @@ Started: Caférico Front-End
   - Gotchas encountered: none.
   - Useful context: homepage uses `products.json` for featured items and formats prices via `Intl.NumberFormat`.
 ---
+## 2026-01-29 02:23 - US-004
+- Built the Shop page with premium hero, intro, and a client-side catalog featuring search, collection filters, sorting, responsive grid, and empty state.
+- Added Shop translations for NL/EN/FR/ES.
+- Files changed: `app/[locale]/(pages)/shop/page.tsx`, `components/ShopCatalog.tsx`, `messages/nl.json`, `messages/en.json`, `messages/fr.json`, `messages/es.json`, `prd.json`, `progress.txt`.
+- **Learnings for future iterations:**
+  - Patterns discovered: none.
+  - Gotchas encountered: none.
+  - Useful context: Shop filtering UI is implemented in `components/ShopCatalog.tsx` with next-intl hooks for labels.
+---

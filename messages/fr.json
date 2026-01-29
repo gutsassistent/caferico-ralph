@@ -69,6 +69,49 @@
       "accessories": "Accessoires"
     }
   },
+  "Shop": {
+    "hero": {
+      "eyebrow": "L'atelier Caférico",
+      "title": "Tous les roasts, outils et rituels",
+      "description": "Découvrez des cafés small-batch et des accessoires pour des matins lumineux."
+    },
+    "intro": {
+      "eyebrow": "Sélection soignée",
+      "title": "Trouvez votre rituel café",
+      "description": "Filtrez par type, origine et style pour trouver le profil qui vous ressemble.",
+      "badge": "Torréfié chaque semaine"
+    },
+    "filters": {
+      "searchLabel": "Recherche",
+      "searchPlaceholder": "Rechercher par nom, origine ou notes",
+      "collectionLabel": "Collection",
+      "allCollections": "Toutes les collections",
+      "sortLabel": "Trier par",
+      "sort": {
+        "priceAsc": "Prix : du plus bas au plus haut",
+        "priceDesc": "Prix : du plus haut au plus bas",
+        "nameAsc": "Nom : A à Z"
+      }
+    },
+    "results": {
+      "count": "{count} produits",
+      "subtitle": "Micro-lots limités"
+    },
+    "card": {
+      "originLabel": "Origine",
+      "priceLabel": "Prix"
+    },
+    "empty": {
+      "title": "Aucun résultat",
+      "description": "Ajustez vos filtres ou votre recherche pour découvrir d'autres roasts.",
+      "cta": "Réinitialiser"
+    },
+    "collections": {
+      "beans": "Grains entiers",
+      "ground": "Café moulu",
+      "accessories": "Accessoires"
+    }
+  },
   "Layout": {
     "logo": "Caférico",
     "nav": {

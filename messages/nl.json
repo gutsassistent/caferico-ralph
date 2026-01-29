@@ -69,6 +69,49 @@
       "accessories": "Accessoires"
     }
   },
+  "Shop": {
+    "hero": {
+      "eyebrow": "Het Caférico atelier",
+      "title": "Alle roasts, tools en rituelen",
+      "description": "Ontdek small-batch koffie en accessoires voor trage, gouden ochtenden."
+    },
+    "intro": {
+      "eyebrow": "Geselecteerde selectie",
+      "title": "Vind jouw koffieritueel",
+      "description": "Filter op type, oorsprong en stijl om het profiel te vinden dat bij je past.",
+      "badge": "Wekelijks geroosterd"
+    },
+    "filters": {
+      "searchLabel": "Zoek",
+      "searchPlaceholder": "Zoek op naam, oorsprong of smaaktonen",
+      "collectionLabel": "Collectie",
+      "allCollections": "Alle collecties",
+      "sortLabel": "Sorteer op",
+      "sort": {
+        "priceAsc": "Prijs: laag naar hoog",
+        "priceDesc": "Prijs: hoog naar laag",
+        "nameAsc": "Naam: A tot Z"
+      }
+    },
+    "results": {
+      "count": "{count} producten",
+      "subtitle": "Beperkte microlots"
+    },
+    "card": {
+      "originLabel": "Oorsprong",
+      "priceLabel": "Prijs"
+    },
+    "empty": {
+      "title": "Geen resultaten",
+      "description": "Pas je filters of zoekopdracht aan om nieuwe roasts te zien.",
+      "cta": "Filters resetten"
+    },
+    "collections": {
+      "beans": "Koffiebonen",
+      "ground": "Gemalen koffie",
+      "accessories": "Accessoires"
+    }
+  },
   "Layout": {
     "logo": "Caférico",
     "nav": {

@@ -69,6 +69,49 @@
       "accessories": "Accessories"
     }
   },
+  "Shop": {
+    "hero": {
+      "eyebrow": "The Caférico atelier",
+      "title": "All roasts, tools, and rituals",
+      "description": "Explore small-batch coffee and accessories curated for slow, luminous mornings."
+    },
+    "intro": {
+      "eyebrow": "Curated selection",
+      "title": "Find your coffee ritual",
+      "description": "Filter by roast type, origin, and style to discover the profile that suits you.",
+      "badge": "Roasted weekly"
+    },
+    "filters": {
+      "searchLabel": "Search",
+      "searchPlaceholder": "Search by name, origin, or tasting notes",
+      "collectionLabel": "Collection",
+      "allCollections": "All collections",
+      "sortLabel": "Sort by",
+      "sort": {
+        "priceAsc": "Price: low to high",
+        "priceDesc": "Price: high to low",
+        "nameAsc": "Name: A to Z"
+      }
+    },
+    "results": {
+      "count": "{count} products",
+      "subtitle": "Limited micro-lots"
+    },
+    "card": {
+      "originLabel": "Origin",
+      "priceLabel": "Price"
+    },
+    "empty": {
+      "title": "No matches yet",
+      "description": "Try adjusting your filters or search to reveal new roasts.",
+      "cta": "Reset filters"
+    },
+    "collections": {
+      "beans": "Whole beans",
+      "ground": "Ground coffee",
+      "accessories": "Accessories"
+    }
+  },
   "Layout": {
     "logo": "Caférico",
     "nav": {

@@ -69,6 +69,49 @@
       "accessories": "Accesorios"
     }
   },
+  "Shop": {
+    "hero": {
+      "eyebrow": "El atelier Caférico",
+      "title": "Todos los roasts, herramientas y rituales",
+      "description": "Explora café small-batch y accesorios para mañanas lentas y luminosas."
+    },
+    "intro": {
+      "eyebrow": "Selección curada",
+      "title": "Encuentra tu ritual de café",
+      "description": "Filtra por tipo, origen y estilo para descubrir el perfil ideal.",
+      "badge": "Tostado cada semana"
+    },
+    "filters": {
+      "searchLabel": "Buscar",
+      "searchPlaceholder": "Buscar por nombre, origen o notas",
+      "collectionLabel": "Colección",
+      "allCollections": "Todas las colecciones",
+      "sortLabel": "Ordenar por",
+      "sort": {
+        "priceAsc": "Precio: de menor a mayor",
+        "priceDesc": "Precio: de mayor a menor",
+        "nameAsc": "Nombre: A a Z"
+      }
+    },
+    "results": {
+      "count": "{count} productos",
+      "subtitle": "Microlotes limitados"
+    },
+    "card": {
+      "originLabel": "Origen",
+      "priceLabel": "Precio"
+    },
+    "empty": {
+      "title": "Sin resultados",
+      "description": "Ajusta los filtros o la búsqueda para ver nuevos roasts.",
+      "cta": "Restablecer filtros"
+    },
+    "collections": {
+      "beans": "Granos enteros",
+      "ground": "Café molido",
+      "accessories": "Accesorios"
+    }
+  },
   "Layout": {
     "logo": "Caférico",
     "nav": {
