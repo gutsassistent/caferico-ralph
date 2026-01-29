@@ -1,8 +1,19 @@
-# Ralph working files (generated during runs)
+# Ralph working files (keep locally, don't push)
+ralph.sh
+ralph.webp
+ralph-flowchart.png
+prompt.md
+prd.json
+prd.json.example
+progress.txt
+status.md
+AGENTS.md
+CLAUDE.md
 .last-branch
-
-# Archive is optional to commit
-# archive/
+skills/
+flowchart/
+.github/
+archive/
 
 # OS files
 .DS_Store
