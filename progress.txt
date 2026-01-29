@@ -104,3 +104,17 @@ Started: Caférico Front-End
   - Gotchas encountered: none.
   - Useful context: Blog pages use `data/blog-posts.json` with slug-based routing; detail page includes drop-cap first letter and blockquote styling.
 ---
+## 2026-01-29 - US-012
+- Added page transition animation via `components/PageTransition.tsx` with Tailwind `animate-fadeIn` keyframe.
+- Added scroll-to-top button via `components/ScrollToTop.tsx` mounted from layout.
+- Added loading skeleton components (`components/Skeleton.tsx`) and `loading.tsx` for the pages route group.
+- Created premium 404 page (`app/[locale]/not-found.tsx`) with on-brand design, decorative glow, and back-to-home CTA.
+- Enhanced `globals.css` with smooth scroll, reduced-motion fallback, and gold focus-visible ring.
+- Added `NotFound` translations for all 4 locales.
+- Extended `tailwind.config.ts` with `fadeIn` keyframe and animation.
+- Files changed: `app/[locale]/layout.tsx`, `app/[locale]/not-found.tsx`, `app/[locale]/(pages)/loading.tsx`, `app/globals.css`, `tailwind.config.ts`, `components/ScrollToTop.tsx`, `components/PageTransition.tsx`, `components/Skeleton.tsx`, `messages/nl.json`, `messages/en.json`, `messages/fr.json`, `messages/es.json`, `prd.json`, `progress.txt`.
+- **Learnings for future iterations:**
+  - Patterns discovered: use `animate-fadeIn` class for page entry animations.
+  - Gotchas encountered: glob characters in git add paths need quoting or use `git add -A`.
+  - Useful context: loading.tsx in route groups provides Suspense boundaries; not-found.tsx at locale level catches 404s.
+---

@@ -231,7 +231,7 @@
         "Typecheck passes"
       ],
       "priority": 12,
-      "passes": false,
+      "passes": true,
       "notes": "Dit is de final polish story. Alles moet er premium uitzien."
     }
   ]
