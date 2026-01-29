@@ -3,6 +3,7 @@
 import type { ChangeEvent, FormEvent } from 'react';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { useToast } from '@/components/Toast';
 
 type ContactValues = {
   name: string;
@@ -24,6 +25,7 @@ const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function ContactForm() {
   const t = useTranslations('Contact');
+  const { showToast } = useToast();
   const [values, setValues] = useState<ContactValues>(initialValues);
   const [errors, setErrors] = useState<Partial<Record<FieldName, string>>>({});
   const [submitAttempted, setSubmitAttempted] = useState(false);
@@ -86,6 +88,7 @@ export default function ContactForm() {
     await new Promise((resolve) => setTimeout(resolve, 1200));
     setIsLoading(false);
     setIsSuccess(true);
+    showToast(t('form.successTitle'), 'success');
     setSubmitAttempted(false);
     setValues(initialValues);
     setErrors({});
@@ -233,7 +236,7 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={isLoading}
-          className="flex w-full items-center justify-center gap-2 rounded-full border border-gold/60 px-6 py-3 text-xs uppercase tracking-[0.3em] text-gold transition hover:bg-gold hover:text-noir disabled:cursor-not-allowed disabled:opacity-50"
+          className="flex w-full items-center justify-center gap-2 rounded-full border border-gold/60 px-6 py-3 text-xs uppercase tracking-[0.3em] text-gold transition hover:bg-gold hover:text-noir active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isLoading ? (
             <>

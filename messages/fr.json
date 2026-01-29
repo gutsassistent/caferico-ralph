@@ -620,7 +620,8 @@
       "shippingInfo": "Livraison gratuite dès 25€",
       "reviewsPlaceholder": "{count} avis",
       "trustBio": "Biologique",
-      "trustFairTrade": "Commerce équitable"
+      "trustFairTrade": "Commerce équitable",
+      "addedToCart": "Ajouté à votre panier"
     },
     "related": {
       "eyebrow": "Associé",

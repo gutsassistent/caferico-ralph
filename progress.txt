@@ -343,3 +343,86 @@ Remaining: 42
 - Blog detail uses slug-specific hero image as og:image
 - Product detail tries WooCommerce API first, falls back to mock data for product name
 - typecheck ✅ build ✅
+
+### RD-028: SEO - Structured Data (Schema.org) ✅
+- Created `lib/structured-data.ts` with helper functions: organizationSchema(), localBusinessSchema(), breadcrumbSchema(), productSchema(), jsonLd()
+- Organization schema in root layout: name, url, logo, foundingDate, sameAs (Facebook, Instagram), contactPoint
+- LocalBusiness schema in root layout: address (Beekstraat 138, 9420 Erpe-Mere, BE), telephone, email, geo coordinates, priceRange
+- Both schemas injected as JSON-LD `<script>` tags in `<head>` of `app/[locale]/layout.tsx`
+- Product schema on product detail page: name, description, image, sku, brand, offers (price, currency, availability, seller)
+- BreadcrumbList schema on ALL 10 pages: home, shop, shop/[slug], about, contact, faq, blog, blog/[slug], subscriptions, verkooppunten
+- Each breadcrumb includes full URL path with locale prefix (e.g., `https://caferico.be/nl/shop`)
+- Several pages needed `params` added to component function signature to access `locale`
+- typecheck ✅ build ✅
+
+### RD-029: SEO - Sitemap & Robots.txt ✅
+- Created `app/sitemap.ts` using Next.js MetadataRoute.Sitemap API
+- Sitemap includes all static pages (home, shop, subscriptions, about, blog, contact, faq, verkooppunten) + 6 product detail pages + 5 blog detail pages
+- Each entry has hreflang alternates: nl-BE, fr-BE, en, es + x-default → nl
+- Priority: home 1.0, shop/products/subscriptions 0.8-0.9, info pages 0.6-0.7, blog posts 0.5
+- changeFrequency: weekly for shop/blog/home, monthly for static info pages
+- Created `app/robots.ts` using Next.js MetadataRoute.Robots API
+- Robots allows all, disallows /admin, /cart, /checkout
+- References sitemap at https://caferico.be/sitemap.xml
+- Build output confirms `/sitemap.xml` and `/robots.txt` routes generated
+- typecheck ✅ build ✅
+
+### RD-030: Performance - Image Optimization ✅
+- Replaced all 7 raw `<img>` tags with Next.js `<Image>` component across 4 files
+- HeroParallax.tsx: replaced `<img>` with `<Image fill priority sizes="100vw">` for above-fold hero images
+- ShopCatalog.tsx: replaced product card `<img>` with `<Image fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw">`
+- Homepage (page.tsx): replaced 4 `<img>` tags — featured products (fill, responsive sizes), coffee package (width/height), farmer photo (fill), Tom avatar (40x40)
+- Product detail page (shop/[slug]/page.tsx): replaced related products `<img>` with `<Image fill sizes>`
+- Removed `unoptimized` prop from all 3 Image instances in ProductImageGallery.tsx (main image, thumbnails, lightbox)
+- Added `Image` import to 4 files: HeroParallax, ShopCatalog, homepage, product detail
+- Added `relative` + fixed height classes to farmer photo container div (required for `fill` mode)
+- All images now benefit from Next.js automatic WebP conversion, responsive srcset, and lazy loading by default
+- Hero images use `priority` for above-fold LCP optimization
+- Below-fold images use default lazy loading (no explicit `loading="lazy"` needed with Next.js Image)
+- Responsive `sizes` attribute specified on all fill images for correct srcset selection
+- Image domains already configured in next.config.mjs (www.caferico.be, caferico.be)
+- typecheck ✅ build ✅
+
+### RD-031: Performance - Core Web Vitals Optimization ✅
+- Added route-specific loading.tsx skeletons for: shop, shop/[slug], blog, blog/[slug], subscriptions
+- Each loading skeleton uses existing Skeleton components (ProductCardSkeleton, BlogCardSkeleton, HeroSkeleton)
+- Added dns-prefetch + preconnect hints for www.caferico.be in root layout <head>
+- Optimized HeroParallax: replaced React state-based parallax (setScrollY → re-render) with ref-based rAF approach (direct DOM manipulation, zero re-renders during scroll)
+- Added `will-change-transform` to parallax container for GPU compositing hint
+- Added `prefers-reduced-motion` support: HeroParallax skips parallax scroll listener entirely; PageTransition uses `motion-reduce:animate-none`; Reveal component already had `motion-reduce:` classes
+- ParallaxOrb already had reduced-motion support from previous iteration
+- Fonts already use `display: 'swap'` via next/font/google (automatic font preloading by Next.js)
+- Critical CSS inlined automatically by Next.js + Tailwind
+- Code splitting per route automatic in Next.js App Router; `'use client'` components get their own chunks
+- Cannot use `next/dynamic` with `ssr: false` in Server Components (layout.tsx) — Next.js 15 restriction
+- All images already use Next.js Image with fill/sizes/priority (from RD-030)
+- All scroll listeners already use `{ passive: true }` (from previous iterations)
+- Lighthouse screenshots require deployed Vercel preview — documented as future step
+- typecheck ✅ build ✅
+
+### RD-032: Animations - Page Transitions & Scroll Effects ✅
+- All acceptance criteria were already fulfilled by previous iterations:
+  - PageTransition.tsx: fade-in on route change (animate-fadeIn, 400ms ease-out)
+  - Reveal.tsx: IntersectionObserver scroll-triggered fade-in-up (700ms, threshold 0.05)
+  - HeroParallax.tsx: rAF-based parallax at 0.15x speed, will-change-transform
+  - ParallaxOrb.tsx: reusable parallax with configurable speed (0.08 default)
+  - Hover animations on product cards (lift, zoom, shadow) across shop and homepage
+  - Button hover states with scale/color transitions throughout
+  - globals.css: smooth scroll behavior (scroll-behavior: smooth)
+  - All components respect prefers-reduced-motion (motion-reduce classes, media queries)
+  - ScrollToTop.tsx: floating button after 400px scroll with fade transition
+  - Toast.tsx: slide-up + fade-in notifications (animate-toast-in)
+  - All scroll listeners use rAF and { passive: true } for 60fps performance
+- No code changes needed — story was effectively completed across RD-004, RD-007, RD-008, RD-031
+- typecheck ✅ build ✅
+
+### RD-033: Micro-Interactions - Buttons, Links, Forms ✅
+- Added `cartBounce` keyframe to tailwind.config.ts: scale 1→1.35→0.9→1 over 400ms
+- Cart badge in Header.tsx bounces on item add: tracks prevTotalRef, triggers `animate-cart-bounce` class when totalItems increases
+- Wired existing Toast component to ProductPurchasePanel (add-to-cart → success toast) and ContactForm (submit → success toast)
+- Added `purchase.addedToCart` i18n key in all 4 languages (NL, EN, FR, ES)
+- Added loading spinner SVG (animate-spin) to NewsletterForm submit button during loading state (was text-only before)
+- Added `active:scale-95` tactile press feedback to primary CTA buttons: ProductPurchasePanel (add to cart, subscribe, grouped add to cart), ContactForm submit, NewsletterForm submit
+- Updated ScrollToTop threshold from 400px to 500px per AC
+- Existing micro-interactions already in place: button hover states (color transitions), link underline animations (Header nav), custom checkboxes (ShopCatalog), form focus states (border-gold), hamburger→X animation, filter accordion, toast component with auto-dismiss
+- typecheck ✅ build ✅

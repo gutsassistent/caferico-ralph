@@ -620,7 +620,8 @@
       "shippingInfo": "Envío gratis desde 25€",
       "reviewsPlaceholder": "{count} reseñas",
       "trustBio": "Ecológico",
-      "trustFairTrade": "Comercio justo"
+      "trustFairTrade": "Comercio justo",
+      "addedToCart": "Añadido a tu carrito"
     },
     "related": {
       "eyebrow": "Relacionado",

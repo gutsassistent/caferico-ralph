@@ -620,7 +620,8 @@
       "shippingInfo": "Free shipping from €25",
       "reviewsPlaceholder": "{count} reviews",
       "trustBio": "Organic",
-      "trustFairTrade": "Fair Trade"
+      "trustFairTrade": "Fair Trade",
+      "addedToCart": "Added to your cart"
     },
     "related": {
       "eyebrow": "Related",

@@ -7,7 +7,7 @@ export default function ScrollToTop() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setVisible(window.scrollY > 400);
+      setVisible(window.scrollY > 500);
     };
 
     handleScroll();
