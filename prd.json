@@ -1,0 +1,759 @@
+{
+  "projectName": "caferico-redesign",
+  "branchName": "ralph/caferico-redesign",
+  "description": "Design upgrade van bestaande Caférico Next.js 15 website op basis van uitgebreid research rapport. Focus op premium design, SEO, performance en subscription model. Dit is GEEN volledige herbouw maar een strategische redesign van bestaande pagina's plus toevoeging van ontbrekende elementen.",
+  "userStories": [
+    {
+      "id": "RD-001",
+      "title": "Global Design System - Kleuren & Typography",
+      "description": "Update het globale design system met verfijnde kleuren en typography volgens research rapport. Behoud de warme kern maar moderniseer de uitvoering. Update Tailwind config en documenteer design tokens.",
+      "acceptanceCriteria": [
+        "Tailwind config bevat verfijnde kleurenpalet (behoud espresso/roast/cream/gold/noir als basis)",
+        "Primary kleur: #C9A962 (goud), secondary: #2C2419 (donker bruin), background: #FAF9F7 (warm wit)",
+        "Typography: Playfair Display voor headings, Inter voor body (reeds correct)",
+        "Spacing scale gedocumenteerd: 4px, 8px, 16px, 24px, 32px, 48px, 64px",
+        "Design tokens exported als CSS variabelen voor consistentie",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 1,
+      "passes": false
+    },
+    {
+      "id": "RD-002",
+      "title": "Header Redesign - Sticky Navigation & Mega Menu",
+      "description": "Moderniseer de header met sticky navigation, verfijnde styling, en voorbereiding voor mega menu (voor later). Verbeter mobile menu animatie en hover states.",
+      "acceptanceCriteria": [
+        "Header is sticky bij scroll (smooth transition)",
+        "Logo links, nav items center, cart/account/language rechts",
+        "Hover effects op nav items (subtle underline animatie)",
+        "Mobile hamburger menu met smooth slide-in animatie",
+        "Language switcher toont talen in native script (Nederlands, Français, English, Español)",
+        "Cart icon toont aantal items (badge)",
+        "Responsive: werkt op 375px, 768px, 1024px, 1440px",
+        "Focus states voor accessibility (keyboard navigatie)",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 2,
+      "passes": false
+    },
+    {
+      "id": "RD-003",
+      "title": "Footer Redesign - Visueel Aantrekkelijk & Informatief",
+      "description": "Redesign footer met betere structuur, visuele hiërarchie, en links naar alle belangrijke pagina's. Voeg social media links en certificeringen toe.",
+      "acceptanceCriteria": [
+        "4-kolom layout op desktop, collapsed op mobile",
+        "Kolommen: Producten, Info, Contact, Nieuwsbrief",
+        "Social media icons (Facebook, Instagram) met hover effects",
+        "Certificeringen visueel (BE-BIO-02, Fair Trade)",
+        "Copyright en payment methodes (Bancontact, PayPal, credit cards)",
+        "Nieuwsbrief formulier met validatie (mock voor nu)",
+        "Links werken naar alle pagina's",
+        "Responsive op alle breakpoints",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 3,
+      "passes": false
+    },
+    {
+      "id": "RD-004",
+      "title": "Homepage Hero - Dramatische First Impression",
+      "description": "Vervang de huidige gradient hero door een dramatische, visuele hero met hoogwaardige afbeelding of video. Focus op emotionele connectie en clear value proposition.",
+      "acceptanceCriteria": [
+        "Full-screen hero (min-height: 90vh)",
+        "Hoogwaardige achtergrond afbeelding van Honduras sfeerbeeld (van CONTEXT.md URLs)",
+        "Tagline: 'Biologische Koffie uit Honduras' (next-intl)",
+        "Subtitle: 'Fair trade, direct van de koffieboer tot jouw kopje'",
+        "Twee CTA buttons: primair 'Ontdek Onze Koffie', secundair 'Ons Verhaal'",
+        "Trust badges boven fold: BE-BIO-02, Fair Trade, '500+ klanten'",
+        "Parallax effect bij scroll (subtle)",
+        "Mobile: afbeelding blijft impactvol, tekst blijft leesbaar",
+        "Animatie: fade-in bij page load",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 4,
+      "passes": false
+    },
+    {
+      "id": "RD-005",
+      "title": "Homepage - Featured Products Section",
+      "description": "Redesign de featured products sectie met premium product cards, echte afbeeldingen, en uitnodigende hover effects. Toon 3-4 bestsellers.",
+      "acceptanceCriteria": [
+        "Section titel: 'Onze Koffie'",
+        "Grid: 3-4 product cards (responsive: 1 col mobile, 2 col tablet, 4 col desktop)",
+        "Product cards tonen: afbeelding (van CONTEXT.md URLs), naam, korte beschrijving, prijs",
+        "Hover effect: zoom op afbeelding, shadow intensiveert",
+        "Quick-add button verschijnt bij hover",
+        "Link naar product detail pagina",
+        "'Bekijk Alles' CTA button onderaan sectie",
+        "Genereuze padding en witruimte (64px top/bottom)",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 5,
+      "passes": false
+    },
+    {
+      "id": "RD-006",
+      "title": "Homepage - Subscription CTA Section",
+      "description": "Nieuwe sectie om subscription model te promoten. Visueel onderscheidend met benefits en clear CTA.",
+      "acceptanceCriteria": [
+        "Section titel: 'Nooit Meer Zonder Koffie'",
+        "Donkere achtergrond (espresso of roast kleur) met contrast",
+        "3 benefits icons + tekst: '15% korting', 'Gratis verzending', 'Flexibel pauzeerbaar'",
+        "Prominente CTA button: 'Start Abonnement' (link naar /subscriptions)",
+        "Afbeelding of illustratie van koffie pakket",
+        "Center-aligned, symmetrisch design",
+        "Animatie: fade-in bij scroll into view",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 6,
+      "passes": false
+    },
+    {
+      "id": "RD-007",
+      "title": "Homepage - Our Story Section",
+      "description": "Storytelling sectie met korte versie van 'Van koffieboer tot kopje' verhaal. Emotionele connectie met koffieboeren foto.",
+      "acceptanceCriteria": [
+        "Section titel: 'Ons Verhaal'",
+        "Split layout: 50% tekst, 50% afbeelding (koffieboer foto van CONTEXT.md)",
+        "Korte tekst: Honduras connectie, fair trade, 193 boerenfamilies",
+        "CTA: 'Lees Ons Verhaal' (link naar /about)",
+        "Reverse layout op mobile (afbeelding eerst)",
+        "Subtiele parallax op afbeelding",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 7,
+      "passes": false
+    },
+    {
+      "id": "RD-008",
+      "title": "Homepage - Testimonials Section",
+      "description": "Voeg testimonials sectie toe met quotes van klanten en koffieboeren (van CONTEXT.md). Carousel of grid layout.",
+      "acceptanceCriteria": [
+        "Section titel: 'Wat Klanten Zeggen'",
+        "3 testimonials: Tom Janssen (Q-grader), Lesly Yohana Dominguez (koffieboerin), Joke Scherpereel (klant)",
+        "Card design: quote, naam, rol, optioneel foto",
+        "Carousel functionaliteit (auto-play, manual controls)",
+        "Of: grid layout (3 col desktop, 1 col mobile)",
+        "Subtiele background kleur (cream)",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 8,
+      "passes": false
+    },
+    {
+      "id": "RD-009",
+      "title": "Homepage - Newsletter Section",
+      "description": "Nieuwsbrief signup sectie met incentive (10% korting op eerste bestelling). Voorbereiding voor latere integratie.",
+      "acceptanceCriteria": [
+        "Section titel: 'Blijf op de Hoogte'",
+        "Subtitle: 'Ontvang 10% korting op je eerste bestelling'",
+        "Email input veld met validatie",
+        "Submit button met loading state",
+        "Mock functionaliteit (console.log email voor nu)",
+        "Succes message na submit",
+        "Responsive form layout",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 9,
+      "passes": false
+    },
+    {
+      "id": "RD-010",
+      "title": "Shop Pagina - Fix Product Grid Rendering",
+      "description": "Fix het probleem dat shop pagina geen producten toont. Zorg dat de product grid correct rendert met mock data en premium styling.",
+      "acceptanceCriteria": [
+        "Product grid rendert zichtbaar (was kapot)",
+        "Grid: 1 col mobile, 2 col tablet, 3 col desktop, 4 col large screens",
+        "Premium product cards met afbeeldingen (van CONTEXT.md URLs)",
+        "Card design: afbeelding, naam, prijs, korte beschrijving, 'In Winkelwagen' button",
+        "Hover effects: lift up, shadow, zoom op afbeelding",
+        "Filters zichtbaar maar nog niet functioneel (mock UI)",
+        "Zoekbalk prominent boven grid",
+        "Loading state (skeleton cards)",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 10,
+      "passes": false
+    },
+    {
+      "id": "RD-011",
+      "title": "Shop Pagina - Filters & Search UI",
+      "description": "Voeg premium filters en zoek UI toe (functionaliteit komt later bij WooCommerce integratie). Focus op visueel design.",
+      "acceptanceCriteria": [
+        "Sidebar op desktop, collapsible op mobile",
+        "Filter categorieën: Type (Mild, Intens, Espresso, Decaf), Formaat (250g, 500g), Vorm (Bonen, Gemalen)",
+        "Checkboxes met custom styling (gold accent bij active)",
+        "Zoekbalk met search icon en placeholder tekst",
+        "Reset filters button",
+        "'Toon X producten' button onderaan filters",
+        "Nog niet functioneel, maar visueel compleet",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 11,
+      "passes": false
+    },
+    {
+      "id": "RD-012",
+      "title": "Product Detail - Image Gallery Redesign",
+      "description": "Verbeter de product detail pagina met een mooie image gallery (zoom, thumbnails) en betere layout.",
+      "acceptanceCriteria": [
+        "2-kolom layout: 60% afbeeldingen, 40% info",
+        "Main image + thumbnails onderaan",
+        "Zoom functionaliteit bij hover (of click op mobile)",
+        "Smooth transition tussen afbeeldingen",
+        "Lightbox optioneel (click voor fullscreen)",
+        "Mobile: stacked layout (afbeeldingen eerst)",
+        "Placeholder afbeeldingen van CONTEXT.md URLs",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 12,
+      "passes": false
+    },
+    {
+      "id": "RD-013",
+      "title": "Product Detail - Purchase Panel Redesign",
+      "description": "Redesign het purchase panel met prominente prijsweergave, variant selectors, en premium add-to-cart sectie.",
+      "acceptanceCriteria": [
+        "Duidelijke product titel (H1)",
+        "Reviews rating placeholder (sterren)",
+        "Prijs groot en prominent (met subscription vergelijking: 'Of €12.33/maand met abonnement')",
+        "Korte beschrijving (2-3 zinnen)",
+        "Variant selectors: Maat (250g, 500g), Vorm (Bonen, Gemalen)",
+        "Quantity selector (- aantal +)",
+        "Twee buttons: 'In Winkelwagen' (primair) en 'Abonneer' (secundair)",
+        "Shipping info: 'Gratis verzending vanaf €25'",
+        "Trust badges: Biologisch, Fair Trade",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 13,
+      "passes": false
+    },
+    {
+      "id": "RD-014",
+      "title": "Product Detail - Tasting Notes & Details Section",
+      "description": "Voeg tabbed sectie toe onder product info met tasting notes, brewing guide, en sourcing informatie.",
+      "acceptanceCriteria": [
+        "Tabs: Beschrijving, Smaakprofiel, Brewing Guide, Oorsprong",
+        "Beschrijving: uitgebreide product beschrijving",
+        "Smaakprofiel: fruitig, citrus, perzik, honing, chocolade (visuele tags)",
+        "Brewing Guide: instructies voor filter, espresso, French press",
+        "Oorsprong: Honduras, Marcala, 1350-1850m, COMBRIFOL coöperatieve",
+        "Tab animatie: smooth transition",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 14,
+      "passes": false
+    },
+    {
+      "id": "RD-015",
+      "title": "Product Detail - Related Products Section",
+      "description": "Voeg 'Ook interessant' sectie toe onderaan met gerelateerde producten in carousel of grid.",
+      "acceptanceCriteria": [
+        "Section titel: 'Ook Interessant'",
+        "4 gerelateerde producten (mock data)",
+        "Zelfde product card design als shop pagina",
+        "Carousel met arrows (of simpele grid)",
+        "Link naar product detail",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 15,
+      "passes": false
+    },
+    {
+      "id": "RD-016",
+      "title": "Subscriptions Pagina - Fix Rendering & Hero",
+      "description": "Fix het probleem dat subscription pagina alleen hero + footer toont. Maak volledige pagina met uitleg en tier cards.",
+      "acceptanceCriteria": [
+        "Hero: 'Koffie Abonnement' titel, 'Bespaar 15% en geniet elke maand van verse koffie' subtitle",
+        "Hero afbeelding of illustratie",
+        "Sectie rendert volledig (niet alleen hero + footer)",
+        "CTA button in hero: 'Bekijk Abonnementen'",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 16,
+      "passes": false
+    },
+    {
+      "id": "RD-017",
+      "title": "Subscriptions Pagina - How It Works Section",
+      "description": "Voeg '3 stappen' sectie toe die uitlegt hoe het abonnement werkt.",
+      "acceptanceCriteria": [
+        "Section titel: 'Hoe Het Werkt'",
+        "3 stappen met iconen: '1. Kies je koffie', '2. Selecteer frequentie', '3. Wij zorgen voor de rest'",
+        "Elke stap heeft icon, titel, beschrijving",
+        "Visuele flow (arrows tussen stappen optioneel)",
+        "Center-aligned layout",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 17,
+      "passes": false
+    },
+    {
+      "id": "RD-018",
+      "title": "Subscriptions Pagina - Luxe Tier Cards",
+      "description": "Voeg premium subscription tier cards toe met duidelijke pricing en benefits. 3 tiers volgens CONTEXT.md voorstel.",
+      "acceptanceCriteria": [
+        "3 tier cards: Proeverij (250g, €6.50), Klassiek (500g, €12.50), Atelier (1kg, €22.90)",
+        "Card design: titel, prijs/maand, korting percentage, lijst van features",
+        "Middle tier highlighted (recommended badge)",
+        "Features: koffie hoeveelheid, korting, gratis verzending, flexibel",
+        "CTA button per card: 'Kies [Tier]'",
+        "Hover effect: lift up, shadow",
+        "Responsive: 1 col mobile, 3 col desktop",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 18,
+      "passes": false
+    },
+    {
+      "id": "RD-019",
+      "title": "Subscriptions Pagina - FAQ & Benefits",
+      "description": "Voeg subscription FAQ sectie toe die bezwaren adresseert (flexibiliteit, pauzeren, annuleren).",
+      "acceptanceCriteria": [
+        "Section titel: 'Veelgestelde Vragen'",
+        "FAQ items: 'Kan ik pauzeren?', 'Kan ik wijzigen?', 'Waarom abonnement?', 'Hoe annuleren?'",
+        "Accordion style (vraag + antwoord, collapse/expand)",
+        "Benefits sectie met icons: Flexibel, Goedkoper, Altijd Verse Koffie",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 19,
+      "passes": false
+    },
+    {
+      "id": "RD-020",
+      "title": "About Pagina - Storytelling Redesign",
+      "description": "Redesign Over Ons pagina met betere storytelling flow, farmer profiles, en proces visualisatie.",
+      "acceptanceCriteria": [
+        "Hero: 'Ons Verhaal' met Honduras afbeelding achtergrond",
+        "Intro: bijna 20 jaar geleden in Honduras, 2018 Café RICO opgericht",
+        "4 secties met iconen: (H)eerlijk, Ecologisch, Honduras, Smaak",
+        "Elke sectie: icon, titel, tekst, optioneel afbeelding",
+        "Farmer profile cards: foto, naam, quote (van CONTEXT.md testimonials)",
+        "Timeline of proces visualisatie: pluk → wassen → drogen → branden → jouw kopje",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 20,
+      "passes": false
+    },
+    {
+      "id": "RD-021",
+      "title": "About Pagina - Certificeringen & Impact Section",
+      "description": "Voeg sectie toe met certificeringen, kwaliteitsscores, en impact metrics.",
+      "acceptanceCriteria": [
+        "Section titel: 'Kwaliteit & Certificeringen'",
+        "Certificeringen visueel: BE-BIO-02, Mayacert, Fair Trade",
+        "Scores: 84 (SCAA), 86 (Marcala)",
+        "Impact metrics: '193 boerenfamilies ondersteund', '100% biologisch'",
+        "Grid layout met icons en cijfers",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 21,
+      "passes": false
+    },
+    {
+      "id": "RD-022",
+      "title": "Contact Pagina - Form & Info Redesign",
+      "description": "Redesign contact pagina met beter formulier design en duidelijke contactgegevens.",
+      "acceptanceCriteria": [
+        "Hero: 'Contact' met subtitle 'Een vraag, een suggestie? Geef ons een seintje.'",
+        "2-kolom layout: formulier links, contact info rechts",
+        "Formulier: naam, email, onderwerp, bericht (validatie)",
+        "Submit button met loading state",
+        "Contact info: email, telefoon, adres (met iconen)",
+        "Google Maps embed (optioneel)",
+        "Mock functionaliteit (console.log data)",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 22,
+      "passes": false
+    },
+    {
+      "id": "RD-023",
+      "title": "FAQ Pagina - Accordion & Search Redesign",
+      "description": "Redesign FAQ pagina met betere accordion, zoekfunctie, en categorisatie.",
+      "acceptanceCriteria": [
+        "Hero: 'Veelgestelde Vragen'",
+        "Zoekbalk prominent boven FAQ items",
+        "FAQ categorieën: Koffie, Bestelling, Abonnement, Verzending",
+        "Accordion items: vraag + antwoord (expand/collapse)",
+        "Smooth animatie bij open/close",
+        "FAQ content van CONTEXT.md (specialty coffee, roast verschil, etc.)",
+        "Open één item tegelijk (andere sluiten automatisch)",
+        "Search functionaliteit (filter op vraag tekst)",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 23,
+      "passes": false
+    },
+    {
+      "id": "RD-024",
+      "title": "Verkooppunten Pagina - NIEUWE Pagina",
+      "description": "Maak nieuwe verkooppunten pagina met lijst van fysieke winkels waar Café RICO verkocht wordt.",
+      "acceptanceCriteria": [
+        "Nieuwe pagina: /nl/verkooppunten (+ andere talen)",
+        "Hero: 'Verkooppunten'",
+        "Lijst van locaties van CONTEXT.md: Café RICO (Mere), RICO lab (Antwerpen), OHNE winkels, etc.",
+        "Card per locatie: naam, adres, optioneel openingstijden",
+        "Google Maps met markers (optioneel, mag mock zijn)",
+        "Filter op provincie/regio (België)",
+        "Responsive grid: 1 col mobile, 2 col tablet, 3 col desktop",
+        "Link in footer en nav menu",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 24,
+      "passes": false
+    },
+    {
+      "id": "RD-025",
+      "title": "Blog Pagina - Grid & Card Redesign",
+      "description": "Redesign blog overview pagina met premium card design en betere grid layout.",
+      "acceptanceCriteria": [
+        "Hero: 'Blog' met subtitle",
+        "Grid: 1 col mobile, 2 col tablet, 3 col desktop",
+        "Blog card: featured image, titel, excerpt, datum, leestijd",
+        "Hover effect: lift up, shadow",
+        "Link naar blog detail pagina",
+        "Pagination (mock)",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 25,
+      "passes": false
+    },
+    {
+      "id": "RD-026",
+      "title": "Blog Detail Pagina - Typography & Reading Experience",
+      "description": "Verbeter blog detail pagina met betere typography, leesbare layout, en content styling.",
+      "acceptanceCriteria": [
+        "Hero met featured image",
+        "Titel (H1), datum, auteur, leestijd",
+        "Max-width: 680px voor content (optimale leeslengte)",
+        "Typography: grotere font size (18px), line-height: 1.7",
+        "Headings styling (H2, H3) met spacing",
+        "Lists, blockquotes, images styled",
+        "Share buttons (social media)",
+        "Related posts onderaan",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 26,
+      "passes": false
+    },
+    {
+      "id": "RD-027",
+      "title": "SEO - Meta Tags & Open Graph",
+      "description": "Implementeer SEO meta tags en Open Graph voor alle pagina's. Maak reusable metadata generator.",
+      "acceptanceCriteria": [
+        "Metadata helper functie in lib/ (generateMetadata)",
+        "Elke pagina heeft: title, description, keywords, og:image, og:title, og:description",
+        "Title format: '[Page Title] | Café RICO'",
+        "Descriptions max 155 karakters",
+        "Open Graph images voor sharing (1200x630)",
+        "Twitter Card meta tags",
+        "Canonical URLs",
+        "All meta tags dynamisch via next-intl (meerdere talen)",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 27,
+      "passes": false
+    },
+    {
+      "id": "RD-028",
+      "title": "SEO - Structured Data (Schema.org)",
+      "description": "Implementeer structured data voor Product, Organization, LocalBusiness, en BreadcrumbList schemas.",
+      "acceptanceCriteria": [
+        "Organization schema in root layout (bedrijfsinfo, logo, social links)",
+        "LocalBusiness schema voor Beekstraat 138 locatie",
+        "Product schema op product detail pagina's (naam, prijs, beschrijving, image)",
+        "BreadcrumbList schema op alle pagina's",
+        "JSON-LD format in <script> tag",
+        "Validatie met Google Rich Results Test",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 28,
+      "passes": false
+    },
+    {
+      "id": "RD-029",
+      "title": "SEO - Sitemap & Robots.txt",
+      "description": "Genereer XML sitemap en robots.txt voor betere crawlability. Implementeer hreflang voor multilingual.",
+      "acceptanceCriteria": [
+        "sitemap.xml automatisch gegenereerd (Next.js sitemap)",
+        "Bevat alle pagina's (home, shop, products, about, blog, etc.)",
+        "Lastmod, changefreq, priority ingevuld",
+        "robots.txt: allow all, disallow /admin, /cart, /checkout",
+        "Hreflang tags in head voor elke pagina (nl-be, fr-be, en, es)",
+        "x-default hreflang naar nl versie",
+        "Sitemap gesubmit aan Google Search Console (documentatie)",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 29,
+      "passes": false
+    },
+    {
+      "id": "RD-030",
+      "title": "Performance - Image Optimization",
+      "description": "Optimaliseer alle afbeeldingen met Next.js Image component, lazy loading, en responsive sizes.",
+      "acceptanceCriteria": [
+        "Alle <img> tags vervangen door Next.js <Image>",
+        "Priority loading voor hero images (above fold)",
+        "Lazy loading voor below fold images",
+        "Responsive sizes: multiple widths voor verschillende breakpoints",
+        "Alt teksten aanwezig (accessibility)",
+        "Placeholder blur effect tijdens laden",
+        "Width en height altijd gespecificeerd (prevent CLS)",
+        "WebP format support (Next.js default)",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 30,
+      "passes": false
+    },
+    {
+      "id": "RD-031",
+      "title": "Performance - Core Web Vitals Optimization",
+      "description": "Optimaliseer voor Core Web Vitals: LCP < 2.5s, INP < 200ms, CLS < 0.1. Test en documenteer scores.",
+      "acceptanceCriteria": [
+        "LCP < 2.5s: optimaliseer hero images, font loading",
+        "INP < 200ms: minimaliseer JavaScript blocking, optimize interactions",
+        "CLS < 0.1: width/height op alle images, geen layout shifts",
+        "Fonts preloaded (Playfair Display, Inter)",
+        "Critical CSS inlined",
+        "Code splitting per route (Next.js automatic)",
+        "Performance test op Vercel preview: Lighthouse score 90+ mobile/desktop",
+        "Screenshot van Lighthouse scores in /docs",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 31,
+      "passes": false
+    },
+    {
+      "id": "RD-032",
+      "title": "Animations - Page Transitions & Scroll Effects",
+      "description": "Voeg subtiele page transitions en scroll-triggered animaties toe voor premium feel.",
+      "acceptanceCriteria": [
+        "Page transition component: fade-in bij route change",
+        "Scroll-triggered animations: fade-in-up voor secties (Intersection Observer)",
+        "Parallax effect op hero images (subtle)",
+        "Hover animations: lift, zoom, shadow effects",
+        "Button hover states: scale, color transition",
+        "Smooth scroll behavior",
+        "Animaties respecteren prefers-reduced-motion",
+        "Performance: geen janky animations (60fps)",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 32,
+      "passes": false
+    },
+    {
+      "id": "RD-033",
+      "title": "Micro-Interactions - Buttons, Links, Forms",
+      "description": "Voeg micro-interacties toe aan buttons, links, en form elementen voor betere UX feedback.",
+      "acceptanceCriteria": [
+        "Button states: default, hover, active, disabled, loading",
+        "Loading spinners op async actions (add to cart, form submit)",
+        "Success/error toasts bij actions",
+        "Form field focus states (border color, glow)",
+        "Link hover: underline animatie (slide-in)",
+        "Checkbox/radio custom styling met smooth transitions",
+        "Cart icon bounce animatie bij item added",
+        "Scroll-to-top button: fade-in na scroll 500px",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 33,
+      "passes": false
+    },
+    {
+      "id": "RD-034",
+      "title": "Loading States - Skeleton & Spinners",
+      "description": "Implementeer mooie loading states met skeleton screens en spinners voor betere perceived performance.",
+      "acceptanceCriteria": [
+        "Skeleton cards voor product grid tijdens laden",
+        "Skeleton voor product detail pagina",
+        "Spinner component (reusable)",
+        "Loading state op buttons (disable + spinner)",
+        "Page loading bar (top of page, a la YouTube)",
+        "Shimmer effect op skeletons (subtle animation)",
+        "Loading.tsx per route segment (Next.js loading UI)",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 34,
+      "passes": false
+    },
+    {
+      "id": "RD-035",
+      "title": "404 Pagina - Branded Error Page",
+      "description": "Redesign 404 pagina met on-brand styling, humor, en nuttige links.",
+      "acceptanceCriteria": [
+        "Hero: '404 - Deze pagina bestaat niet' met leuke illustratie/afbeelding",
+        "Humor: 'Deze koffie is helaas nergens te vinden' of soortgelijk",
+        "CTA buttons: 'Naar Home', 'Shop Koffie'",
+        "Links naar populaire pagina's: Shop, Subscriptions, About",
+        "Zoekbalk",
+        "On-brand styling (kleuren, typography)",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 35,
+      "passes": false
+    },
+    {
+      "id": "RD-036",
+      "title": "Accessibility - WCAG 2.1 Compliance",
+      "description": "Audit en verbeter accessibility: contrast ratios, focus states, alt teksten, keyboard navigatie, ARIA labels.",
+      "acceptanceCriteria": [
+        "Contrast ratio check: alle tekst/achtergrond combinaties voldoen aan WCAG AA (4.5:1)",
+        "Focus states zichtbaar op alle interactieve elementen",
+        "Alt teksten op alle images (descriptive)",
+        "ARIA labels waar nodig (buttons, links, form fields)",
+        "Keyboard navigatie: tab door alle elementen, enter/space voor activatie",
+        "Skip to content link",
+        "Heading hiërarchie correct (H1 > H2 > H3)",
+        "Form labels associated met inputs",
+        "Test met screen reader (macOS VoiceOver of NVDA)",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 36,
+      "passes": false
+    },
+    {
+      "id": "RD-037",
+      "title": "Mobile Optimization - Touch Targets & Spacing",
+      "description": "Optimaliseer mobile experience: touch targets min 44x44px, genereuze spacing, thumb-friendly layout.",
+      "acceptanceCriteria": [
+        "Touch targets min 44x44px (buttons, links, icons)",
+        "Spacing tussen clickable elementen min 8px",
+        "Mobile menu: full-screen overlay, grote touch targets",
+        "Bottom navigation optie overwegen voor key actions",
+        "Forms: grote input fields, spacing tussen fields",
+        "Product cards: makkelijk tappable",
+        "Test op real device: iPhone SE (375px), iPhone 14 (390px), Android (360px)",
+        "No horizontal scroll",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 37,
+      "passes": false
+    },
+    {
+      "id": "RD-038",
+      "title": "Final Polish - Typography Refinement",
+      "description": "Final pass op typography: font sizes, line heights, letter spacing, hierarchy.",
+      "acceptanceCriteria": [
+        "Font scale: 14px (small), 16px (body), 18px (large), 20px, 24px, 32px, 48px, 64px (hero)",
+        "Line heights: 1.5 (body), 1.2 (headings)",
+        "Letter spacing: -0.02em voor grote headings",
+        "Font weights consistent: 400 (regular), 500 (medium), 600 (semibold), 700 (bold)",
+        "Headings all use font-serif (Playfair Display)",
+        "Body text all uses font-sans (Inter)",
+        "Readability check: geen tekst smaller dan 14px (behalve legal)",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 38,
+      "passes": false
+    },
+    {
+      "id": "RD-039",
+      "title": "Final Polish - Spacing & Layout Consistency",
+      "description": "Final pass op spacing en layout: 8px grid systeem consistent toegepast, genereuze witruimte.",
+      "acceptanceCriteria": [
+        "Alle spacing values zijn multiples van 4px (4, 8, 16, 24, 32, 48, 64, 96, 128)",
+        "Section padding: min 64px top/bottom op desktop, 32px op mobile",
+        "Container max-width: 1280px (consistent)",
+        "Grid gaps consistent: 16px (mobile), 24px (tablet), 32px (desktop)",
+        "No random margin/padding values (gebruik Tailwind classes)",
+        "Whitespace tussen secties: 96px (desktop), 64px (mobile)",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 39,
+      "passes": false
+    },
+    {
+      "id": "RD-040",
+      "title": "Final Polish - Color Consistency & Dark Mode Prep",
+      "description": "Final pass op kleuren: consistent gebruik van design tokens, voorbereiding voor dark mode (toekomstig).",
+      "acceptanceCriteria": [
+        "Alle kleuren via Tailwind classes (geen hardcoded hex values)",
+        "Primaire kleuren: gold (CTA, accenten), espresso (headings), roast (backgrounds)",
+        "Text kleuren: noir (primary text), espresso (headings), cream (light text on dark)",
+        "Background kleuren consistent: wit (default), cream (sections), espresso/roast (dark sections)",
+        "Hover states consistent: darken 10% voor buttons",
+        "CSS variabelen voor future dark mode (in globals.css)",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 40,
+      "passes": false
+    },
+    {
+      "id": "RD-041",
+      "title": "Documentation - Redesign Completion Report",
+      "description": "Schrijf completion rapport met before/after screenshots, design decisions, en performance metrics.",
+      "acceptanceCriteria": [
+        "REDESIGN-REPORT.md in root met secties: Overview, Design Changes, Technical Improvements, Performance, Next Steps",
+        "Before/after screenshots van key pages (home, shop, product, subscriptions)",
+        "Design decisions documented (waarom deze kleuren, typography, layout)",
+        "Performance metrics: Lighthouse scores, Core Web Vitals",
+        "Accessibility improvements listed",
+        "Known issues / future improvements",
+        "Link naar Vercel preview deployment",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 41,
+      "passes": false
+    },
+    {
+      "id": "RD-042",
+      "title": "Testing - Cross-Browser & Device Testing",
+      "description": "Test redesign op verschillende browsers en devices. Documenteer compatibility en fix critical issues.",
+      "acceptanceCriteria": [
+        "Test op Chrome, Safari, Firefox, Edge (latest versions)",
+        "Test op mobile devices: iOS Safari, Android Chrome",
+        "Test breakpoints: 375px (mobile), 768px (tablet), 1024px (desktop), 1440px (large)",
+        "No critical layout breaks",
+        "No JavaScript errors in console",
+        "All interactions work (cart, navigation, forms)",
+        "Test document in TESTING.md met screenshots en compatibility matrix",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 42,
+      "passes": false
+    }
+  ]
+}

@@ -1,14 +1,8 @@
-# Ralph working files (keep locally, don't push)
-ralph.sh
+# Ralph assets (not needed)
 ralph.webp
 ralph-flowchart.png
 prompt.md
-prd.json
 prd.json.example
-progress.txt
-status.md
-AGENTS.md
-CLAUDE.md
 .last-branch
 skills/
 flowchart/
