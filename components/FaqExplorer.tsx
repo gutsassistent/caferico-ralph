@@ -5,27 +5,26 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import Reveal from '@/components/Reveal';
 
-const categoryKeys = ['all', 'orders', 'subscriptions', 'products', 'shipping', 'returns'] as const;
+const categoryKeys = ['all', 'coffee', 'orders', 'subscriptions', 'shipping'] as const;
 
 type CategoryKey = (typeof categoryKeys)[number];
 type ItemCategory = Exclude<CategoryKey, 'all'>;
 
 const faqItems: { id: string; category: ItemCategory }[] = [
+  { id: 'coffeeOne', category: 'coffee' },
+  { id: 'coffeeTwo', category: 'coffee' },
+  { id: 'coffeeThree', category: 'coffee' },
+  { id: 'coffeeFour', category: 'coffee' },
+  { id: 'coffeeFive', category: 'coffee' },
   { id: 'ordersOne', category: 'orders' },
   { id: 'ordersTwo', category: 'orders' },
   { id: 'ordersThree', category: 'orders' },
   { id: 'subscriptionsOne', category: 'subscriptions' },
   { id: 'subscriptionsTwo', category: 'subscriptions' },
   { id: 'subscriptionsThree', category: 'subscriptions' },
-  { id: 'productsOne', category: 'products' },
-  { id: 'productsTwo', category: 'products' },
-  { id: 'productsThree', category: 'products' },
   { id: 'shippingOne', category: 'shipping' },
   { id: 'shippingTwo', category: 'shipping' },
-  { id: 'shippingThree', category: 'shipping' },
-  { id: 'returnsOne', category: 'returns' },
-  { id: 'returnsTwo', category: 'returns' },
-  { id: 'returnsThree', category: 'returns' }
+  { id: 'shippingThree', category: 'shipping' }
 ];
 
 type FaqItem = {
@@ -113,7 +112,7 @@ export default function FaqExplorer() {
   const t = useTranslations('Faq');
   const [search, setSearch] = useState('');
   const [activeCategory, setActiveCategory] = useState<CategoryKey>('all');
-  const [openItems, setOpenItems] = useState<Set<string>>(() => new Set());
+  const [openItem, setOpenItem] = useState<string | null>(null);
 
   const items = useMemo<FaqItem[]>(
     () =>
@@ -147,21 +146,13 @@ export default function FaqExplorer() {
   });
 
   const handleToggle = (id: string) => {
-    setOpenItems((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) {
-        next.delete(id);
-      } else {
-        next.add(id);
-      }
-      return next;
-    });
+    setOpenItem((prev) => (prev === id ? null : id));
   };
 
   const handleReset = () => {
     setSearch('');
     setActiveCategory('all');
-    setOpenItems(new Set());
+    setOpenItem(null);
   };
 
   return (
@@ -278,7 +269,7 @@ export default function FaqExplorer() {
                 key={item.id}
                 item={item}
                 categoryLabel={t(`categories.${item.category}`)}
-                isOpen={openItems.has(item.id)}
+                isOpen={openItem === item.id}
                 onToggle={() => handleToggle(item.id)}
                 index={index}
               />

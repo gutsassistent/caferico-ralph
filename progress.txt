@@ -278,3 +278,15 @@ Remaining: 42
 - Made phone and email clickable (tel: and mailto: links) with gold hover effect in both hero card and details card
 - Page already had: 2-col layout (form left, info right), form validation, success message, map placeholder, hours card
 - typecheck ✅ build ✅
+
+### RD-023: FAQ Pagina - Accordion & Search Redesign ✅
+- FAQ page and FaqExplorer component already existed with hero, search, categories, accordion, empty state, support CTA
+- Changed accordion from multi-open to single-open: replaced `openItems: Set<string>` with `openItem: string | null`
+- Updated categories from (orders, subscriptions, products, shipping, returns) to (coffee, orders, subscriptions, shipping) matching AC
+- Added 5 new "Koffie" category FAQ items from CONTEXT.md: specialty coffee, roast differences, Honduras as coffee country, Q-grader, bio decaf CO2 method
+- Removed old "products" and "returns" categories and their 6 items (productsOne-Three, returnsOne-Three)
+- Added `coffeeOne` through `coffeeFive` i18n keys in all 4 languages (NL, EN, FR, ES)
+- Updated `categories.coffee` key in all 4 languages (NL: "Koffie", EN: "Coffee", FR: "Café", ES: "Café")
+- Total FAQ items: 14 (5 coffee + 3 orders + 3 subscriptions + 3 shipping)
+- Fixed trailing comma JSON errors after removing items
+- typecheck ✅ build ✅

@@ -381,11 +381,10 @@
     "categories": {
       "label": "Explorar por categoría",
       "all": "Todas las categorías",
+      "coffee": "Café",
       "orders": "Pedidos",
       "subscriptions": "Suscripciones",
-      "products": "Productos",
-      "shipping": "Envío",
-      "returns": "Devoluciones"
+      "shipping": "Envío"
     },
     "results": {
       "count": "{count, plural, one {# pregunta} other {# preguntas}}",
@@ -404,6 +403,26 @@
       "cta": "Restablecer filtros"
     },
     "items": {
+      "coffeeOne": {
+        "question": "¿Qué es el café de especialidad?",
+        "answer": "El café de especialidad es café de un solo origen, sin mezclar, con una puntuación superior a 80 en la escala SCAA. Café RICO obtiene 84 en la escala SCAA, procedente de Marcala, Honduras."
+      },
+      "coffeeTwo": {
+        "question": "¿Cuál es la diferencia entre tueste claro, medio y oscuro?",
+        "answer": "El tueste claro conserva las notas frutales y florales de origen, el medio aporta equilibrio entre carácter de origen y dulzura acaramelada, y el oscuro ofrece cuerpo pleno con tonos de chocolate y frutos secos. Filtro y pour-over funcionan mejor con tueste claro a medio, espresso con medio a oscuro."
+      },
+      "coffeeThree": {
+        "question": "¿Es Honduras un país cafetero?",
+        "answer": "Sin duda. El café representa más del 3 % del PIB hondureño y el 30 % de la producción agrícola. Es el principal producto de exportación del país. Nuestro café crece en la región de Marcala a entre 1.350 y 1.850 metros de altitud."
+      },
+      "coffeeFour": {
+        "question": "¿Qué es un Q-grader?",
+        "answer": "Un Q-grader es un catador de café formado y certificado para evaluar profesionalmente el café en aroma, sabor, cuerpo, acidez y más. Nuestro café ha sido evaluado por el Q-grader Tom Janssen de OR Coffee."
+      },
+      "coffeeFive": {
+        "question": "¿Cómo se descafeína el café orgánico?",
+        "answer": "Nuestro descafeinado se obtiene de forma 100 % natural mediante el método CO2. Este proceso se realiza en Alemania y no utiliza productos químicos, solo dióxido de carbono a alta presión. Así se preserva todo el sabor."
+      },
       "ordersOne": {
         "question": "¿Qué tan rápido se envía mi pedido?",
         "answer": "Los pedidos realizados antes de las 12:00 se tuestan y envían el mismo día."
@@ -428,18 +447,6 @@
         "question": "¿Puedo cambiar el molido en cada entrega?",
         "answer": "Claro, ajusta el molido en tu cuenta antes de cada envío."
       },
-      "productsOne": {
-        "question": "¿Sus cafés son orgánicos?",
-        "answer": "Algunos single origins están certificados como orgánicos; se indica en la ficha del producto."
-      },
-      "productsTwo": {
-        "question": "¿Qué molido es ideal para mi método?",
-        "answer": "Espresso: fino, filtro: medio, French press: grueso."
-      },
-      "productsThree": {
-        "question": "¿Cuánto tiempo se mantiene fresco el café?",
-        "answer": "Para el mejor sabor, disfrútalo dentro de las seis semanas posteriores al tueste."
-      },
       "shippingOne": {
         "question": "¿A qué países realizan envíos?",
         "answer": "Entregamos en Bélgica, Países Bajos, Luxemburgo y Alemania."
@@ -451,18 +458,6 @@
       "shippingThree": {
         "question": "¿Cuánto tarda la entrega?",
         "answer": "La mayoría de los paquetes llegan en 1-2 días laborables tras el tueste."
-      },
-      "returnsOne": {
-        "question": "¿Puedo devolver café?",
-        "answer": "Las bolsas sin abrir se pueden devolver dentro de 14 días."
-      },
-      "returnsTwo": {
-        "question": "¿Cómo inicio una devolución?",
-        "answer": "Envíanos tu número de pedido y motivo para recibir una etiqueta de devolución."
-      },
-      "returnsThree": {
-        "question": "¿Qué pasa si mi pedido llega dañado?",
-        "answer": "Envía una foto dentro de 48 h y lo reemplazaremos enseguida."
       }
     }
   },

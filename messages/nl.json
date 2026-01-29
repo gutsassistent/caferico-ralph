@@ -381,11 +381,10 @@
     "categories": {
       "label": "Blader per categorie",
       "all": "Alle categorieën",
+      "coffee": "Koffie",
       "orders": "Bestellingen",
       "subscriptions": "Abonnementen",
-      "products": "Producten",
-      "shipping": "Verzending",
-      "returns": "Retour"
+      "shipping": "Verzending"
     },
     "results": {
       "count": "{count, plural, one {# vraag} other {# vragen}}",
@@ -404,6 +403,26 @@
       "cta": "Filters resetten"
     },
     "items": {
+      "coffeeOne": {
+        "question": "Wat is specialty coffee?",
+        "answer": "Specialty coffee is koffie van één bepaalde origine, niet gemengd, met een score boven 80 op de SCAA-schaal. Café RICO scoort 84 op de SCAA-schaal en is afkomstig uit Marcala, Honduras."
+      },
+      "coffeeTwo": {
+        "question": "Wat is het verschil tussen light, medium en dark roast?",
+        "answer": "Light roast behoudt de fruitige en bloemige herkomstnoten, medium brengt balans tussen oorsprong en karamelzoetheid, en dark roast geeft een volle body met chocolade- en nootachtige tonen. Filter en pour-over werken het best met light tot medium, espresso met medium tot dark."
+      },
+      "coffeeThree": {
+        "question": "Is Honduras een koffieland?",
+        "answer": "Absoluut. Koffie maakt meer dan 3% van het BBP uit en 30% van de landbouwproductie. Het is het belangrijkste exportproduct van Honduras. Onze koffie groeit in de Marcala-regio op 1350-1850 meter hoogte."
+      },
+      "coffeeFour": {
+        "question": "Wat is een Q-grader?",
+        "answer": "Een Q-grader is een opgeleide koffieproever die gecertificeerd is om koffie professioneel te beoordelen op aroma, smaak, body, zuurgraad en meer. Onze koffie is beoordeeld door Q-grader Tom Janssen van OR Coffee."
+      },
+      "coffeeFive": {
+        "question": "Hoe wordt biokoffie gedecafeïneerd?",
+        "answer": "Onze decaf wordt 100% natuurlijk gedecafeïneerd via de CO2-methode. Dit proces vindt plaats in Duitsland en gebruikt geen chemicaliën — enkel koolstofdioxide onder hoge druk. Zo blijft de volle smaak behouden."
+      },
       "ordersOne": {
         "question": "Hoe snel wordt mijn bestelling verzonden?",
         "answer": "Bestellingen geplaatst voor 12:00 worden dezelfde dag gebrand en verzonden."
@@ -428,18 +447,6 @@
         "question": "Kan ik de maling aanpassen per levering?",
         "answer": "Zeker. Pas de maling aan in je account voor elke verzending."
       },
-      "productsOne": {
-        "question": "Zijn jullie koffies biologisch?",
-        "answer": "Een deel van onze single origins is biologisch gecertificeerd; dit staat op de productpagina."
-      },
-      "productsTwo": {
-        "question": "Welke maling past bij mijn zetmethode?",
-        "answer": "Espresso vraagt om fijne maling, filter om medium en French press om grof."
-      },
-      "productsThree": {
-        "question": "Hoe lang blijft koffie vers?",
-        "answer": "Voor de beste smaak geniet je binnen zes weken na branding."
-      },
       "shippingOne": {
         "question": "Naar welke landen verzenden jullie?",
         "answer": "We leveren in België, Nederland, Luxemburg en Duitsland."
@@ -451,18 +458,6 @@
       "shippingThree": {
         "question": "Hoe lang duurt de levering?",
         "answer": "De meeste pakketten arriveren binnen 1-2 werkdagen na branding."
-      },
-      "returnsOne": {
-        "question": "Kan ik koffie retourneren?",
-        "answer": "Ongeopende verpakkingen kun je binnen 14 dagen retourneren."
-      },
-      "returnsTwo": {
-        "question": "Hoe meld ik een retour aan?",
-        "answer": "Mail ons met je ordernummer en reden, dan ontvang je een retourlabel."
-      },
-      "returnsThree": {
-        "question": "Wat als mijn bestelling beschadigd aankomt?",
-        "answer": "Stuur binnen 48 uur een foto en we vervangen het meteen."
       }
     }
   },

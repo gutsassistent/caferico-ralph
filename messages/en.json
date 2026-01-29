@@ -381,11 +381,10 @@
     "categories": {
       "label": "Browse by category",
       "all": "All categories",
+      "coffee": "Coffee",
       "orders": "Orders",
       "subscriptions": "Subscriptions",
-      "products": "Products",
-      "shipping": "Shipping",
-      "returns": "Returns"
+      "shipping": "Shipping"
     },
     "results": {
       "count": "{count, plural, one {# question} other {# questions}}",
@@ -404,6 +403,26 @@
       "cta": "Reset filters"
     },
     "items": {
+      "coffeeOne": {
+        "question": "What is specialty coffee?",
+        "answer": "Specialty coffee is single-origin coffee, unblended, scoring above 80 on the SCAA scale. Café RICO scores 84 on the SCAA scale, sourced from Marcala, Honduras."
+      },
+      "coffeeTwo": {
+        "question": "What is the difference between light, medium, and dark roast?",
+        "answer": "Light roast preserves fruity and floral origin notes, medium brings balance between origin character and caramel sweetness, and dark roast delivers a full body with chocolate and nutty tones. Filter and pour-over work best with light to medium, espresso with medium to dark."
+      },
+      "coffeeThree": {
+        "question": "Is Honduras a coffee country?",
+        "answer": "Absolutely. Coffee accounts for over 3% of Honduras's GDP and 30% of agricultural production. It is the country's most important export product. Our coffee grows in the Marcala region at 1,350–1,850 metres altitude."
+      },
+      "coffeeFour": {
+        "question": "What is a Q-grader?",
+        "answer": "A Q-grader is a trained coffee taster certified to professionally evaluate coffee on aroma, flavour, body, acidity and more. Our coffee has been graded by Q-grader Tom Janssen of OR Coffee."
+      },
+      "coffeeFive": {
+        "question": "How is organic coffee decaffeinated?",
+        "answer": "Our decaf is 100% naturally decaffeinated using the CO2 method. This process takes place in Germany and uses no chemicals — only carbon dioxide under high pressure. This preserves the full flavour."
+      },
       "ordersOne": {
         "question": "How fast is my order dispatched?",
         "answer": "Orders placed before 12:00 are roasted and shipped the same day."
@@ -428,18 +447,6 @@
         "question": "Can I switch grind size each delivery?",
         "answer": "Absolutely—adjust the grind in your account before each shipment."
       },
-      "productsOne": {
-        "question": "Are your coffees organic?",
-        "answer": "Selected single origins are certified organic; each product page notes this."
-      },
-      "productsTwo": {
-        "question": "Which grind suits my brew method?",
-        "answer": "Espresso prefers fine, filter uses medium, and French press is best with coarse."
-      },
-      "productsThree": {
-        "question": "How long does coffee stay fresh?",
-        "answer": "For peak flavour, enjoy within six weeks after roast date."
-      },
       "shippingOne": {
         "question": "Which countries do you ship to?",
         "answer": "We deliver in Belgium, the Netherlands, Luxembourg, and Germany."
@@ -451,18 +458,6 @@
       "shippingThree": {
         "question": "How long does delivery take?",
         "answer": "Most parcels arrive within 1-2 business days after roasting."
-      },
-      "returnsOne": {
-        "question": "Can I return coffee?",
-        "answer": "Unopened bags can be returned within 14 days."
-      },
-      "returnsTwo": {
-        "question": "How do I start a return?",
-        "answer": "Email us with your order number and reason to receive a return label."
-      },
-      "returnsThree": {
-        "question": "What if my order arrives damaged?",
-        "answer": "Send a photo within 48 hours and we'll replace it promptly."
       }
     }
   },
