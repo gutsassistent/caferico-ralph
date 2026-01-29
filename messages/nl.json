@@ -423,6 +423,34 @@
       }
     }
   },
+  "Blog": {
+    "hero": {
+      "eyebrow": "Het Caférico Journal",
+      "title": "Verhalen over oorsprong, vakmanschap en ritueel",
+      "description": "Inzichten van ons team over branden, herkomst en de kunst van koffie zetten."
+    },
+    "listing": {
+      "eyebrow": "Recente artikelen",
+      "title": "Ontdek het Caférico-verhaal",
+      "description": "Van brandingtechnieken tot reis naar oorsprong — verhalen uit ons atelier.",
+      "readMore": "Lees verder"
+    },
+    "breadcrumbs": {
+      "label": "Broodkruimel",
+      "home": "Home",
+      "blog": "Blog"
+    },
+    "detail": {
+      "imageBadge": "Caférico journal",
+      "quote": "Elke kop koffie is een klein ritueel — een moment van stilte en aandacht."
+    },
+    "related": {
+      "eyebrow": "Meer verhalen",
+      "title": "Verder lezen",
+      "description": "Ontdek meer artikelen uit het Caférico-atelier.",
+      "cta": "Alle artikelen"
+    }
+  },
   "Layout": {
     "logo": "Caférico",
     "nav": {

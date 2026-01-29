@@ -95,3 +95,12 @@ Started: Caférico Front-End
   - Gotchas encountered: none.
   - Useful context: FAQ interactions live in `components/FaqExplorer.tsx` with translation-driven item content.
 ---
+## 2026-01-29 - US-011
+- Built blog listing page with premium hero, preview card grid, and blog detail page with rich text styling, author info, blockquote, and related posts section.
+- Expanded blog-posts.json from 3 to 5 posts with slug fields. Added Blog translations in NL/EN/FR/ES.
+- Files changed: `app/[locale]/(pages)/blog/page.tsx`, `app/[locale]/(pages)/blog/[slug]/page.tsx`, `data/blog-posts.json`, `types/blog.ts`, `messages/nl.json`, `messages/en.json`, `messages/fr.json`, `messages/es.json`, `prd.json`, `progress.txt`.
+- **Learnings for future iterations:**
+  - Patterns discovered: none.
+  - Gotchas encountered: none.
+  - Useful context: Blog pages use `data/blog-posts.json` with slug-based routing; detail page includes drop-cap first letter and blockquote styling.
+---

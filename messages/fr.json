@@ -423,6 +423,34 @@
       }
     }
   },
+  "Blog": {
+    "hero": {
+      "eyebrow": "Le journal Caférico",
+      "title": "Histoires d'origine, de savoir-faire et de rituel",
+      "description": "Regards de notre équipe sur la torréfaction, la provenance et l'art de préparer le café."
+    },
+    "listing": {
+      "eyebrow": "Articles récents",
+      "title": "Explorez l'univers Caférico",
+      "description": "Des techniques de torréfaction aux voyages d'origine — récits de notre atelier.",
+      "readMore": "Lire la suite"
+    },
+    "breadcrumbs": {
+      "label": "Fil d'Ariane",
+      "home": "Accueil",
+      "blog": "Blog"
+    },
+    "detail": {
+      "imageBadge": "Journal Caférico",
+      "quote": "Chaque tasse de café est un petit rituel — un moment d'attention silencieuse."
+    },
+    "related": {
+      "eyebrow": "Plus d'histoires",
+      "title": "Continuer la lecture",
+      "description": "Découvrez d'autres articles de l'atelier Caférico.",
+      "cta": "Tous les articles"
+    }
+  },
   "Layout": {
     "logo": "Caférico",
     "nav": {

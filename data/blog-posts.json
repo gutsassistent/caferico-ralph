@@ -1,38 +1,72 @@
 [
   {
     "id": "slow-roast",
+    "slug": "slow-roast",
     "title": "Waarom slow roast het verschil maakt",
     "date": "2025-11-10",
     "author": "Amelie De Wilde",
     "excerpt": "Onze brandmeester vertelt waarom tijd het geheime ingrediënt is.",
     "tags": ["roasting", "craft"],
     "content": [
-      "Langzaam branden geeft de suikers de tijd om volledig te karamelliseren.",
-      "Het resultaat is een fluweelzachte body en een lange afdronk."
+      "Langzaam branden geeft de suikers de tijd om volledig te karamelliseren. Het geduld dat we in elke batch stoppen, vertaalt zich naar een zachte body en een smaak die lang blijft hangen.",
+      "Bij Caférico werken we met een specifiek brandprofiel dat we gedurende acht jaar hebben verfijnd. We monitoren de temperatuurcurve per seconde, waardoor elke batch de perfecte balans vindt tussen zoetheid en complexiteit.",
+      "Het resultaat is een fluweelzachte body en een lange afdronk die je doet terugkeren naar je kop, keer op keer."
     ]
   },
   {
     "id": "origin-stories",
+    "slug": "origin-stories",
     "title": "Oorsprong: Rwanda in het ochtendlicht",
     "date": "2025-10-02",
     "author": "Noor Van Hove",
     "excerpt": "Een reis naar de heuvels van Rwanda waar onze Golden Dawn ontstaat.",
     "tags": ["origin", "travel"],
     "content": [
-      "Onze partners oogsten met de hand en drogen de bonen op verhoogde bedden.",
-      "De frisse nachten zorgen voor helder fruit en florale tonen."
+      "De heuvels van Rwanda zijn gehuld in nevel als we aankomen bij de coöperatie die onze Golden Dawn produceert. De lucht is fris en het licht heeft een gouden gloed die je nergens anders vindt.",
+      "Onze partners oogsten met de hand en drogen de bonen op verhoogde bedden. Dit zorgvuldige proces geeft de koffie haar kenmerkende helderheid en fruittonen.",
+      "De frisse nachten zorgen voor helder fruit en florale tonen die we in onze branderij in Antwerpen tot hun volle potentieel brengen."
     ]
   },
   {
     "id": "brewing-rituals",
+    "slug": "brewing-rituals",
     "title": "Rituelen voor de perfecte morning brew",
     "date": "2025-09-18",
     "author": "Lars Peeters",
     "excerpt": "Drie simpele stappen om elke ochtend opnieuw te genieten.",
     "tags": ["brew", "ritual"],
     "content": [
-      "Gebruik vers gefilterd water en maal pas net voor het zetten.",
-      "Neem de tijd om te ruiken en te proeven, het maakt het verschil."
+      "Een goed koffieritueel begint voor je de waterkoker aanzet. Het begint met een moment van stilte, de geur van vers gemalen bonen en de anticipatie van die eerste slok.",
+      "Gebruik vers gefilterd water op 93°C en maal pas net voor het zetten. De verhouding van 60 gram koffie per liter water is een goed startpunt, maar pas aan naar jouw smaak.",
+      "Neem de tijd om te ruiken en te proeven — het maakt het verschil tussen koffie drinken en koffie beleven."
+    ]
+  },
+  {
+    "id": "belgian-coffee-culture",
+    "slug": "belgian-coffee-culture",
+    "title": "De opkomst van Belgische koffiecultuur",
+    "date": "2025-08-25",
+    "author": "Elise Van Doren",
+    "excerpt": "Hoe België stilletjes een koffierevolutie doormaakt.",
+    "tags": ["culture", "belgium"],
+    "content": [
+      "België staat bekend om chocolade, bier en wafels — maar een nieuwe generatie ambachtelijke branderijen verandert het koffieliefhebbers-landschap voorgoed.",
+      "Van Antwerpen tot Brussel openen micro-branderijen die kwaliteit, transparantie en directe relaties met telers centraal stellen. Het is een beweging die eerlijkheid en smaak verkiest boven volume.",
+      "Bij Caférico zijn we trots om deel uit te maken van deze golf. We geloven dat elke kop koffie een verhaal vertelt — en dat verhaal begint bij de mensen die de bonen telen."
+    ]
+  },
+  {
+    "id": "water-quality",
+    "slug": "water-quality",
+    "title": "Water: het onzichtbare ingrediënt",
+    "date": "2025-07-12",
+    "author": "Noah Vermeulen",
+    "excerpt": "Waarom waterkwaliteit 98% van je koffiesmaak bepaalt.",
+    "tags": ["brew", "science"],
+    "content": [
+      "Koffie bestaat voor 98% uit water. Toch besteden de meeste koffiedrinkers er nauwelijks aandacht aan. De mineraalsamenstelling van je water beïnvloedt direct hoe smaken worden geëxtraheerd uit de gemalen bonen.",
+      "Te hard water dempt de fijnere tonen, terwijl te zacht water een vlakke en scherpe kop oplevert. Het ideale water heeft een TDS (Total Dissolved Solids) tussen 75 en 150 ppm.",
+      "Bij Caférico filteren we ons water met een nauwkeurig systeem dat de perfecte mineralenbalans behoudt. Het resultaat: helderheid, zoetheid en een schone afdronk in elke kop."
     ]
   }
 ]

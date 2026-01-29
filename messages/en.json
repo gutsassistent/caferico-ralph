@@ -423,6 +423,34 @@
       }
     }
   },
+  "Blog": {
+    "hero": {
+      "eyebrow": "The Caférico Journal",
+      "title": "Stories of origin, craft, and ritual",
+      "description": "Insights from our team on roasting, provenance, and the art of brewing."
+    },
+    "listing": {
+      "eyebrow": "Recent articles",
+      "title": "Explore the Caférico story",
+      "description": "From roasting techniques to origin journeys — stories from our atelier.",
+      "readMore": "Read more"
+    },
+    "breadcrumbs": {
+      "label": "Breadcrumb",
+      "home": "Home",
+      "blog": "Blog"
+    },
+    "detail": {
+      "imageBadge": "Caférico journal",
+      "quote": "Every cup of coffee is a small ritual — a moment of quiet attention."
+    },
+    "related": {
+      "eyebrow": "More stories",
+      "title": "Continue reading",
+      "description": "Discover more articles from the Caférico atelier.",
+      "cta": "All articles"
+    }
+  },
   "Layout": {
     "logo": "Caférico",
     "nav": {

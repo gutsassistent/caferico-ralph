@@ -423,6 +423,34 @@
       }
     }
   },
+  "Blog": {
+    "hero": {
+      "eyebrow": "El diario Caférico",
+      "title": "Historias de origen, oficio y ritual",
+      "description": "Perspectivas de nuestro equipo sobre el tueste, la procedencia y el arte de preparar café."
+    },
+    "listing": {
+      "eyebrow": "Artículos recientes",
+      "title": "Explora la historia Caférico",
+      "description": "De técnicas de tueste a viajes de origen — relatos desde nuestro atelier.",
+      "readMore": "Leer más"
+    },
+    "breadcrumbs": {
+      "label": "Migas de pan",
+      "home": "Inicio",
+      "blog": "Blog"
+    },
+    "detail": {
+      "imageBadge": "Diario Caférico",
+      "quote": "Cada taza de café es un pequeño ritual — un momento de atención silenciosa."
+    },
+    "related": {
+      "eyebrow": "Más historias",
+      "title": "Seguir leyendo",
+      "description": "Descubre más artículos del atelier Caférico.",
+      "cta": "Todos los artículos"
+    }
+  },
   "Layout": {
     "logo": "Caférico",
     "nav": {
