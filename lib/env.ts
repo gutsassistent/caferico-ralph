@@ -37,6 +37,11 @@ const SERVER_ENV_VARS: EnvVar[] = [
     hint: 'Public URL for Mollie redirects/webhooks. Defaults to http://localhost:3000',
   },
   {
+    name: 'DATABASE_URL',
+    required: true,
+    hint: 'PostgreSQL connection string (e.g. postgres://user:pass@host:5432/caferico_auth)',
+  },
+  {
     name: 'AUTH_SECRET',
     required: true,
     hint: 'Generate with: npx auth secret',
