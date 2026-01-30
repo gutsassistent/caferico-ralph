@@ -3,7 +3,8 @@
 import type { ChangeEvent, FormEvent } from 'react';
 import { useEffect, useMemo, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { useRouter } from '@/i18n/routing';
+import { useSession } from 'next-auth/react';
+import { useRouter, Link } from '@/i18n/routing';
 import { useCart } from '@/components/CartProvider';
 import { isCoffee } from '@/types/product';
 import { calculateShipping, amountUntilFreeShipping } from '@/lib/shipping';
@@ -53,12 +54,46 @@ export default function CheckoutForm() {
   const locale = useLocale();
   const router = useRouter();
   const { items, subtotal } = useCart();
+  const { data: session, status: authStatus } = useSession();
 
   const [values, setValues] = useState<CheckoutValues>(initialValues);
   const [errors, setErrors] = useState<Partial<Record<FieldName, string>>>({});
   const [submitAttempted, setSubmitAttempted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [prefilled, setPrefilled] = useState(false);
+
+  // Pre-fill form with WooCommerce customer data when logged in
+  useEffect(() => {
+    if (authStatus !== 'authenticated' || prefilled) return;
+
+    async function fetchCustomerData() {
+      try {
+        const res = await fetch('/api/account');
+        if (!res.ok) return;
+        const data = await res.json();
+        const c = data.customer;
+        if (!c) return;
+
+        const billing = c.billing || {};
+        setValues((prev) => ({
+          firstName: billing.first_name || c.first_name || prev.firstName,
+          lastName: billing.last_name || c.last_name || prev.lastName,
+          email: billing.email || c.email || prev.email,
+          street: billing.address_1 || prev.street,
+          postalCode: billing.postcode || prev.postalCode,
+          city: billing.city || prev.city,
+          country: billing.country || prev.country,
+          phone: billing.phone || prev.phone,
+        }));
+        setPrefilled(true);
+      } catch {
+        // Silently fail — user can fill in manually
+      }
+    }
+
+    fetchCustomerData();
+  }, [authStatus, prefilled]);
 
   const priceFormatter = useMemo(
     () =>
@@ -148,6 +183,7 @@ export default function CheckoutForm() {
           })),
           customer: values,
           locale,
+          ...(session?.wcCustomerId && { wcCustomerId: session.wcCustomerId }),
         }),
       });
 
@@ -192,6 +228,17 @@ export default function CheckoutForm() {
             {t('form.description')}
           </p>
         </div>
+
+        {authStatus !== 'authenticated' && (
+          <div className="mt-6 rounded-2xl border border-gold/20 bg-gold/5 px-4 py-3 text-sm text-cream/80">
+            <Link
+              href={`/login?callbackUrl=/${locale}/checkout`}
+              className="font-medium text-gold underline decoration-gold/40 underline-offset-2 transition hover:decoration-gold"
+            >
+              {t('form.loginPrompt')}
+            </Link>
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="mt-8 space-y-6">
           {/* Name row */}

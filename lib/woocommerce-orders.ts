@@ -39,6 +39,7 @@ type CreateOrderPayload = {
   }[];
   molliePaymentId: string;
   total: string;
+  wcCustomerId?: number;
 };
 
 type WooCommerceOrderResponse = {
@@ -57,7 +58,7 @@ export async function createOrder(payload: CreateOrderPayload): Promise<WooComme
     throw new Error('WooCommerce environment variables not configured');
   }
 
-  const { customer, items, molliePaymentId, total } = payload;
+  const { customer, items, molliePaymentId, total, wcCustomerId } = payload;
 
   const billing: OrderAddress = {
     first_name: customer.firstName,
@@ -86,6 +87,7 @@ export async function createOrder(payload: CreateOrderPayload): Promise<WooComme
 
   const orderData = {
     status: 'processing',
+    ...(wcCustomerId && { customer_id: wcCustomerId }),
     billing,
     shipping: billing,
     line_items: lineItems,

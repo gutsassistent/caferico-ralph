@@ -9,6 +9,7 @@ const nextConfig = {
     remotePatterns: [
       { protocol: 'https', hostname: 'www.caferico.be' },
       { protocol: 'https', hostname: 'caferico.be' },
+      { protocol: 'https', hostname: 'lh3.googleusercontent.com' },
     ]
   }
 };

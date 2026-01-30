@@ -520,7 +520,10 @@
       "cart": "Winkelwagen",
       "account": "Account",
       "menu": "Menu",
-      "closeMenu": "Sluit menu"
+      "closeMenu": "Sluit menu",
+      "login": "Inloggen",
+      "logout": "Uitloggen",
+      "myAccount": "Mijn account"
     },
     "footer": {
       "tagline": "Belgische specialty koffie, gebrand met aandacht.",
@@ -962,7 +965,8 @@
       "description": "Vul onderstaande velden in om verder te gaan met betalen.",
       "submit": "Verder naar betaling",
       "submitting": "Bezig met verwerken...",
-      "errorGeneric": "Er is iets misgegaan. Probeer het opnieuw."
+      "errorGeneric": "Er is iets misgegaan. Probeer het opnieuw.",
+      "loginPrompt": "Log in voor sneller afrekenen"
     },
     "fields": {
       "firstName": { "label": "Voornaam", "placeholder": "Jan" },
@@ -1009,6 +1013,53 @@
       "ctaHome": "Naar Home",
       "ctaShop": "Verder winkelen",
       "ctaRetry": "Opnieuw proberen"
+    }
+  },
+  "Account": {
+    "eyebrow": "Mijn account",
+    "title": "Account",
+    "tabs": {
+      "profile": "Profiel",
+      "orders": "Bestellingen"
+    },
+    "billingAddress": "Factuuradres",
+    "shippingAddress": "Verzendadres",
+    "noAddress": "Nog geen adres opgeslagen.",
+    "logout": "Uitloggen",
+    "orders": {
+      "empty": "Je hebt nog geen bestellingen geplaatst.",
+      "items": "Artikelen",
+      "total": "Totaal",
+      "status": {
+        "processing": "In behandeling",
+        "completed": "Afgerond",
+        "on-hold": "In de wacht",
+        "pending": "In afwachting",
+        "cancelled": "Geannuleerd",
+        "refunded": "Terugbetaald",
+        "failed": "Mislukt"
+      }
+    }
+  },
+  "Login": {
+    "eyebrow": "Account",
+    "title": "Inloggen",
+    "subtitle": "Log in met je emailadres of Google account.",
+    "form": {
+      "emailLabel": "E-mailadres",
+      "emailPlaceholder": "jouw@email.be",
+      "emailRequired": "Vul een e-mailadres in.",
+      "emailInvalid": "Ongeldig e-mailadres.",
+      "magicLinkButton": "Stuur magic link",
+      "sending": "Verzenden...",
+      "googleButton": "Inloggen met Google",
+      "divider": "of",
+      "errorGeneric": "Er ging iets mis. Probeer het opnieuw."
+    },
+    "magicSent": {
+      "title": "Check je inbox",
+      "description": "We hebben een inloglink gestuurd naar je e-mailadres. Klik op de link om in te loggen.",
+      "hint": "Geen email ontvangen? Check je spam of probeer het opnieuw."
     }
   },
   "Seo": {
@@ -1060,6 +1111,14 @@
     "checkoutReturn": {
       "title": "Betalingsstatus",
       "description": "Bekijk de status van je betaling bij Café RICO."
+    },
+    "login": {
+      "title": "Inloggen",
+      "description": "Log in bij Café RICO met je e-mail of Google account."
+    },
+    "account": {
+      "title": "Mijn Account",
+      "description": "Bekijk je profiel, adressen en bestellingen bij Café RICO."
     }
   }
 }

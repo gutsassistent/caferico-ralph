@@ -12,6 +12,7 @@ import PageTransition from '@/components/PageTransition';
 import ScrollToTop from '@/components/ScrollToTop';
 import NavigationProgress from '@/components/NavigationProgress';
 import { ToastProvider } from '@/components/Toast';
+import AuthSessionProvider from '@/components/AuthSessionProvider';
 import { organizationSchema, localBusinessSchema, jsonLd } from '@/lib/structured-data';
 import '@/app/globals.css';
 
@@ -61,6 +62,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
         />
       </head>
       <body className={`${inter.variable} ${playfair.variable} bg-noir text-cream antialiased`}>
+        <AuthSessionProvider>
         <NextIntlClientProvider messages={messages}>
           <ToastProvider>
             <CartProvider>
@@ -85,6 +87,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
             </CartProvider>
           </ToastProvider>
         </NextIntlClientProvider>
+        </AuthSessionProvider>
       </body>
     </html>
   );

@@ -520,7 +520,10 @@
       "cart": "Cart",
       "account": "Account",
       "menu": "Menu",
-      "closeMenu": "Close menu"
+      "closeMenu": "Close menu",
+      "login": "Log in",
+      "logout": "Log out",
+      "myAccount": "My account"
     },
     "footer": {
       "tagline": "Belgian specialty coffee, roasted with intention.",
@@ -962,7 +965,8 @@
       "description": "Fill in the fields below to proceed to payment.",
       "submit": "Proceed to payment",
       "submitting": "Processing...",
-      "errorGeneric": "Something went wrong. Please try again."
+      "errorGeneric": "Something went wrong. Please try again.",
+      "loginPrompt": "Log in for faster checkout"
     },
     "fields": {
       "firstName": { "label": "First name", "placeholder": "John" },
@@ -1009,6 +1013,53 @@
       "ctaHome": "Go to Home",
       "ctaShop": "Continue shopping",
       "ctaRetry": "Try again"
+    }
+  },
+  "Account": {
+    "eyebrow": "My account",
+    "title": "Account",
+    "tabs": {
+      "profile": "Profile",
+      "orders": "Orders"
+    },
+    "billingAddress": "Billing Address",
+    "shippingAddress": "Shipping Address",
+    "noAddress": "No address saved yet.",
+    "logout": "Sign out",
+    "orders": {
+      "empty": "You haven't placed any orders yet.",
+      "items": "Items",
+      "total": "Total",
+      "status": {
+        "processing": "Processing",
+        "completed": "Completed",
+        "on-hold": "On hold",
+        "pending": "Pending",
+        "cancelled": "Cancelled",
+        "refunded": "Refunded",
+        "failed": "Failed"
+      }
+    }
+  },
+  "Login": {
+    "eyebrow": "Account",
+    "title": "Sign In",
+    "subtitle": "Sign in with your email address or Google account.",
+    "form": {
+      "emailLabel": "Email address",
+      "emailPlaceholder": "your@email.com",
+      "emailRequired": "Please enter an email address.",
+      "emailInvalid": "Invalid email address.",
+      "magicLinkButton": "Send magic link",
+      "sending": "Sending...",
+      "googleButton": "Sign in with Google",
+      "divider": "or",
+      "errorGeneric": "Something went wrong. Please try again."
+    },
+    "magicSent": {
+      "title": "Check your inbox",
+      "description": "We sent a login link to your email address. Click the link to sign in.",
+      "hint": "Didn't receive an email? Check your spam or try again."
     }
   },
   "Seo": {
@@ -1060,6 +1111,14 @@
     "checkoutReturn": {
       "title": "Payment Status",
       "description": "Check the status of your payment at Café RICO."
+    },
+    "login": {
+      "title": "Sign In",
+      "description": "Sign in to Café RICO with your email or Google account."
+    },
+    "account": {
+      "title": "My Account",
+      "description": "View your profile, addresses and orders at Café RICO."
     }
   }
 }
