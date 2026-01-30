@@ -56,6 +56,8 @@ export default function CheckoutForm() {
   const [values, setValues] = useState<CheckoutValues>(initialValues);
   const [errors, setErrors] = useState<Partial<Record<FieldName, string>>>({});
   const [submitAttempted, setSubmitAttempted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const priceFormatter = useMemo(
     () =>
@@ -115,9 +117,10 @@ export default function CheckoutForm() {
       }
     };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitAttempted(true);
+    setSubmitError(null);
 
     const nextErrors = validate(values);
     setErrors(nextErrors);
@@ -126,8 +129,41 @@ export default function CheckoutForm() {
       return;
     }
 
-    // MOL-004 will wire this to POST /api/checkout
-    console.log('Checkout form submitted:', { items, values, subtotal });
+    setIsLoading(true);
+
+    try {
+      const response = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: items.map((item) => ({
+            id: String(item.id),
+            slug: item.slug,
+            name: item.name,
+            price: item.price,
+            quantity: item.quantity,
+            grind: item.grind ?? null,
+            weight: item.weight ?? null,
+          })),
+          customer: values,
+          locale,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setSubmitError(data.error || t('form.errorGeneric'));
+        setIsLoading(false);
+        return;
+      }
+
+      // Redirect to Mollie hosted checkout
+      window.location.href = data.checkoutUrl;
+    } catch {
+      setSubmitError(t('form.errorGeneric'));
+      setIsLoading(false);
+    }
   };
 
   const fieldError = (field: FieldName) =>
@@ -381,12 +417,48 @@ export default function CheckoutForm() {
             </div>
           </div>
 
+          {/* Error message */}
+          {submitError && (
+            <div
+              role="alert"
+              className="rounded-2xl border border-rose-400/30 bg-rose-400/10 px-4 py-3 text-sm text-rose-200"
+            >
+              {submitError}
+            </div>
+          )}
+
           {/* Submit */}
           <button
             type="submit"
-            className="flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-noir transition hover:bg-gold/90 active:scale-95"
+            disabled={isLoading}
+            className="flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-noir transition hover:bg-gold/90 active:scale-95 disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {t('form.submit')}
+            {isLoading ? (
+              <>
+                <svg
+                  className="h-4 w-4 animate-spin"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                  />
+                </svg>
+                {t('form.submitting')}
+              </>
+            ) : (
+              t('form.submit')
+            )}
           </button>
         </form>
       </div>

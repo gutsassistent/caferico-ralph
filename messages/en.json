@@ -957,7 +957,9 @@
       "eyebrow": "Shipping details",
       "title": "Your details",
       "description": "Fill in the fields below to proceed to payment.",
-      "submit": "Proceed to payment"
+      "submit": "Proceed to payment",
+      "submitting": "Processing...",
+      "errorGeneric": "Something went wrong. Please try again."
     },
     "fields": {
       "firstName": { "label": "First name", "placeholder": "John" },

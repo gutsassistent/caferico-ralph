@@ -957,7 +957,9 @@
       "eyebrow": "Datos de envío",
       "title": "Tus datos",
       "description": "Completa los campos a continuación para proceder al pago.",
-      "submit": "Proceder al pago"
+      "submit": "Proceder al pago",
+      "submitting": "Procesando...",
+      "errorGeneric": "Algo salió mal. Inténtalo de nuevo."
     },
     "fields": {
       "firstName": { "label": "Nombre", "placeholder": "Juan" },

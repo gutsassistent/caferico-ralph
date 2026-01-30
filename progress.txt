@@ -593,3 +593,14 @@ Remaining: 42
 - Base URL from NEXT_PUBLIC_BASE_URL env var (fallback localhost:3000)
 - Handles both WooCommerce string prices and mock data number prices
 - typecheck ✅ build ✅
+
+### MOL-004: Checkout flow — redirect naar Mollie ✅
+- Wired CheckoutForm handleSubmit to POST /api/checkout with cart items + customer data
+- Cart items mapped to CheckoutItem format (id, slug, name, price, quantity, grind, weight)
+- Added isLoading state: spinner SVG + "Bezig met verwerken..." text on submit button, button disabled during API call
+- On success: window.location.href redirect to Mollie checkout URL (cart NOT cleared before redirect)
+- On error: error message displayed in rose-colored alert box above submit button (role="alert")
+- Error message uses server response error or generic fallback via i18n key form.errorGeneric
+- Added form.submitting and form.errorGeneric i18n keys in all 4 languages (NL, EN, FR, ES)
+- Submit button gets disabled:cursor-not-allowed disabled:opacity-60 during loading
+- typecheck ✅ build ✅

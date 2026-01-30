@@ -957,7 +957,9 @@
       "eyebrow": "Bezorggegevens",
       "title": "Jouw gegevens",
       "description": "Vul onderstaande velden in om verder te gaan met betalen.",
-      "submit": "Verder naar betaling"
+      "submit": "Verder naar betaling",
+      "submitting": "Bezig met verwerken...",
+      "errorGeneric": "Er is iets misgegaan. Probeer het opnieuw."
     },
     "fields": {
       "firstName": { "label": "Voornaam", "placeholder": "Jan" },

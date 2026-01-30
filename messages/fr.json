@@ -957,7 +957,9 @@
       "eyebrow": "Coordonnées de livraison",
       "title": "Vos coordonnées",
       "description": "Remplissez les champs ci-dessous pour procéder au paiement.",
-      "submit": "Procéder au paiement"
+      "submit": "Procéder au paiement",
+      "submitting": "Traitement en cours...",
+      "errorGeneric": "Une erreur est survenue. Veuillez réessayer."
     },
     "fields": {
       "firstName": { "label": "Prénom", "placeholder": "Jean" },
