@@ -2,7 +2,7 @@ import NextAuth from 'next-auth';
 import Google from 'next-auth/providers/google';
 import Resend from 'next-auth/providers/resend';
 import { DrizzleAdapter } from '@auth/drizzle-adapter';
-import { getDb } from '@/lib/db';
+import { getDbOrNull } from '@/lib/db';
 import { users, accounts, verificationTokens } from '@/lib/schema';
 import { getOrCreateCustomer } from '@/lib/woocommerce-customers';
 
@@ -46,11 +46,13 @@ function magicLinkText({ url }: { url: string }) {
 }
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  adapter: DrizzleAdapter(getDb(), {
-    usersTable: users,
-    accountsTable: accounts,
-    verificationTokensTable: verificationTokens,
-  }),
+  ...(getDbOrNull() ? {
+    adapter: DrizzleAdapter(getDbOrNull()!, {
+      usersTable: users,
+      accountsTable: accounts,
+      verificationTokensTable: verificationTokens,
+    }),
+  } : {}),
   session: {
     strategy: 'jwt',
   },

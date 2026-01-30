@@ -19,3 +19,15 @@ export function getDb(): PostgresJsDatabase<typeof schema> {
   _db = drizzle(client, { schema });
   return _db;
 }
+
+/**
+ * Safe version that returns null instead of throwing when DATABASE_URL is missing.
+ * Used for build-time safety where the adapter may be evaluated but not used.
+ */
+export function getDbOrNull(): PostgresJsDatabase<typeof schema> | null {
+  try {
+    return getDb();
+  } catch {
+    return null;
+  }
+}
