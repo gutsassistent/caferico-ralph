@@ -143,6 +143,8 @@ export async function POST(request: NextRequest) {
     const description = `Café RICO — ${items.length} ${items.length === 1 ? 'product' : 'producten'}`;
 
     // Create Mollie payment
+    const webhookUrl = baseUrl.includes('localhost') ? undefined : `${baseUrl}/api/webhook/mollie`;
+
     const payment = await mollieClient.payments.create({
       amount: {
         currency: 'EUR',
@@ -150,7 +152,7 @@ export async function POST(request: NextRequest) {
       },
       description,
       redirectUrl: `${baseUrl}/${locale}/checkout/return?id={id}`,
-      webhookUrl: `${baseUrl}/api/webhook/mollie`,
+      ...(webhookUrl && { webhookUrl }),
       metadata: {
         items: JSON.stringify(items),
         customer: JSON.stringify(customer),
