@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { redirect } from 'next/navigation';
+import { cookies } from 'next/headers';
 import Container from '@/components/Container';
 import ParallaxOrb from '@/components/ParallaxOrb';
 import LoginForm from '@/components/LoginForm';
 import { generatePageMetadata } from '@/lib/seo';
 import { breadcrumbSchema, jsonLd } from '@/lib/structured-data';
-import { auth } from '@/lib/auth';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -15,9 +15,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function LoginPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const session = await auth();
 
-  if (session?.user) {
+  // Check for session token cookie (consistent with middleware's getToken approach)
+  const cookieStore = await cookies();
+  const hasSession = cookieStore.has('authjs.session-token') || cookieStore.has('__Secure-authjs.session-token');
+
+  if (hasSession) {
     redirect(`/${locale}/account`);
   }
 
