@@ -15,6 +15,8 @@ export async function GET(request: NextRequest) {
 
     const payment = await mollieClient.payments.get(id);
 
+    console.log('[Mollie status]', { id, rawStatus: payment.status });
+
     const statusMap: Record<string, string> = {
       paid: 'paid',
       authorized: 'paid',
