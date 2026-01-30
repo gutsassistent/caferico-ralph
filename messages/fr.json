@@ -580,7 +580,10 @@
     "quantityDecrease": "Diminuer la quantité",
     "subtotalLabel": "Sous-total",
     "totalLabel": "Total",
-    "shippingNote": "Livraison et taxes calculées au paiement.",
+    "shippingLabel": "Livraison",
+    "freeShipping": "Gratuit !",
+    "freeShippingRemaining": "Plus que {amount} pour la livraison gratuite",
+    "freeShippingFrom": "Livraison gratuite à partir de {amount}",
     "checkout": "Passer au paiement",
     "emptyFooter": "Ajoutez une sélection pour commencer."
   },
@@ -947,6 +950,67 @@
       "button": "Nous contacter"
     }
   },
+  "Checkout": {
+    "hero": {
+      "eyebrow": "Paiement",
+      "title": "Passer au paiement",
+      "description": "Remplissez vos coordonnées pour finaliser votre commande."
+    },
+    "form": {
+      "eyebrow": "Coordonnées de livraison",
+      "title": "Vos coordonnées",
+      "description": "Remplissez les champs ci-dessous pour procéder au paiement.",
+      "submit": "Procéder au paiement",
+      "submitting": "Traitement en cours...",
+      "errorGeneric": "Une erreur est survenue. Veuillez réessayer."
+    },
+    "fields": {
+      "firstName": { "label": "Prénom", "placeholder": "Jean" },
+      "lastName": { "label": "Nom", "placeholder": "Dupont" },
+      "email": { "label": "Adresse e-mail", "placeholder": "jean@exemple.be" },
+      "street": { "label": "Rue + numéro", "placeholder": "Rue de l'Église 12" },
+      "postalCode": { "label": "Code postal", "placeholder": "1000" },
+      "city": { "label": "Ville", "placeholder": "Bruxelles" },
+      "country": { "label": "Pays" },
+      "phone": { "label": "Téléphone", "optional": "facultatif", "placeholder": "+32 470 00 00 00" }
+    },
+    "validation": {
+      "firstNameRequired": "Veuillez entrer votre prénom.",
+      "lastNameRequired": "Veuillez entrer votre nom.",
+      "emailRequired": "Veuillez entrer votre adresse e-mail.",
+      "emailInvalid": "Veuillez entrer une adresse e-mail valide.",
+      "streetRequired": "Veuillez entrer votre rue et numéro.",
+      "postalCodeRequired": "Veuillez entrer votre code postal.",
+      "postalCodeInvalid": "Code postal invalide pour ce pays.",
+      "cityRequired": "Veuillez entrer votre ville."
+    },
+    "summary": {
+      "eyebrow": "Résumé de commande",
+      "title": "Votre commande",
+      "quantity": "Quantité",
+      "subtotal": "Sous-total",
+      "shipping": "Livraison",
+      "shippingNote": "Calculé au paiement",
+      "freeShipping": "Gratuit !",
+      "freeShippingRemaining": "Encore {amount} pour la livraison gratuite",
+      "total": "Total"
+    },
+    "return": {
+      "eyebrow": "Commande",
+      "title": "Statut du paiement",
+      "loading": "Vérification du statut de paiement...",
+      "paidTitle": "Merci pour votre commande !",
+      "paidDescription": "Votre paiement a été reçu. Nous commençons immédiatement à torréfier et emballer votre café.",
+      "orderNumber": "Numéro de commande",
+      "pendingTitle": "Paiement en attente",
+      "pendingDescription": "Votre paiement est en cours de traitement. Vous recevrez un e-mail de confirmation dès que le paiement sera finalisé.",
+      "failedTitle": "Paiement échoué",
+      "failedDescription": "Votre paiement n'a pas pu être traité. Veuillez réessayer ou choisir un autre mode de paiement.",
+      "ctaHome": "Retour à l'accueil",
+      "ctaShop": "Continuer les achats",
+      "ctaRetry": "Réessayer"
+    }
+  },
   "Seo": {
     "keywords": "café biologique, specialty coffee, Honduras, commerce équitable, abonnement café, Café RICO, grains de café, café moulu",
     "home": {
@@ -988,6 +1052,14 @@
     "locations": {
       "title": "Points de Vente",
       "description": "Trouvez Café RICO dans des boutiques sélectionnées en Belgique. D'Anvers à Gand, des marchés fermiers aux magasins bio."
+    },
+    "checkout": {
+      "title": "Paiement",
+      "description": "Finalisez votre commande chez Café RICO. Paiement sécurisé via Mollie."
+    },
+    "checkoutReturn": {
+      "title": "Statut du paiement",
+      "description": "Consultez le statut de votre paiement chez Café RICO."
     }
   }
 }

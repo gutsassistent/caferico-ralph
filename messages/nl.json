@@ -580,7 +580,10 @@
     "quantityDecrease": "Verlaag hoeveelheid",
     "subtotalLabel": "Subtotaal",
     "totalLabel": "Totaal",
-    "shippingNote": "Verzending en belastingen worden berekend bij checkout.",
+    "shippingLabel": "Verzending",
+    "freeShipping": "Gratis!",
+    "freeShippingRemaining": "Nog {amount} voor gratis verzending",
+    "freeShippingFrom": "Gratis verzending vanaf {amount}",
     "checkout": "Afrekenen",
     "emptyFooter": "Voeg iets bijzonders toe om te starten."
   },
@@ -947,6 +950,67 @@
       "button": "Neem contact op"
     }
   },
+  "Checkout": {
+    "hero": {
+      "eyebrow": "Checkout",
+      "title": "Afrekenen",
+      "description": "Vul je gegevens in om je bestelling af te ronden."
+    },
+    "form": {
+      "eyebrow": "Bezorggegevens",
+      "title": "Jouw gegevens",
+      "description": "Vul onderstaande velden in om verder te gaan met betalen.",
+      "submit": "Verder naar betaling",
+      "submitting": "Bezig met verwerken...",
+      "errorGeneric": "Er is iets misgegaan. Probeer het opnieuw."
+    },
+    "fields": {
+      "firstName": { "label": "Voornaam", "placeholder": "Jan" },
+      "lastName": { "label": "Achternaam", "placeholder": "Peeters" },
+      "email": { "label": "E-mailadres", "placeholder": "jan@voorbeeld.be" },
+      "street": { "label": "Straat + huisnummer", "placeholder": "Kerkstraat 12" },
+      "postalCode": { "label": "Postcode", "placeholder": "9000" },
+      "city": { "label": "Stad", "placeholder": "Gent" },
+      "country": { "label": "Land" },
+      "phone": { "label": "Telefoon", "optional": "optioneel", "placeholder": "0470 00 00 00" }
+    },
+    "validation": {
+      "firstNameRequired": "Vul je voornaam in.",
+      "lastNameRequired": "Vul je achternaam in.",
+      "emailRequired": "Vul je e-mailadres in.",
+      "emailInvalid": "Vul een geldig e-mailadres in.",
+      "streetRequired": "Vul je straat en huisnummer in.",
+      "postalCodeRequired": "Vul je postcode in.",
+      "postalCodeInvalid": "Ongeldige postcode voor dit land.",
+      "cityRequired": "Vul je stad in."
+    },
+    "summary": {
+      "eyebrow": "Besteloverzicht",
+      "title": "Jouw bestelling",
+      "quantity": "Aantal",
+      "subtotal": "Subtotaal",
+      "shipping": "Verzending",
+      "shippingNote": "Berekend bij betaling",
+      "freeShipping": "Gratis!",
+      "freeShippingRemaining": "Nog {amount} voor gratis verzending",
+      "total": "Totaal"
+    },
+    "return": {
+      "eyebrow": "Bestelling",
+      "title": "Betalingsstatus",
+      "loading": "Betalingsstatus ophalen...",
+      "paidTitle": "Bedankt voor je bestelling!",
+      "paidDescription": "Je betaling is ontvangen. We gaan meteen aan de slag met het branden en verpakken van je koffie.",
+      "orderNumber": "Bestelnummer",
+      "pendingTitle": "Betaling in afwachting",
+      "pendingDescription": "Je betaling wordt nog verwerkt. Je ontvangt een bevestiging per e-mail zodra de betaling is afgerond.",
+      "failedTitle": "Betaling mislukt",
+      "failedDescription": "Je betaling kon niet worden verwerkt. Probeer het opnieuw of kies een andere betaalmethode.",
+      "ctaHome": "Naar Home",
+      "ctaShop": "Verder winkelen",
+      "ctaRetry": "Opnieuw proberen"
+    }
+  },
   "Seo": {
     "keywords": "biologische koffie, specialty coffee, Honduras, fair trade, koffie abonnement, Café RICO, koffiebonen, gemalen koffie",
     "home": {
@@ -988,6 +1052,14 @@
     "locations": {
       "title": "Verkooppunten",
       "description": "Vind Café RICO bij geselecteerde winkels in België. Van Antwerpen tot Gent, van boerenmarkten tot biowinkels."
+    },
+    "checkout": {
+      "title": "Afrekenen",
+      "description": "Rond je bestelling af bij Café RICO. Veilig betalen via Mollie."
+    },
+    "checkoutReturn": {
+      "title": "Betalingsstatus",
+      "description": "Bekijk de status van je betaling bij Café RICO."
     }
   }
 }

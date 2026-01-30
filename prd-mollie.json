@@ -16,7 +16,7 @@
         "npm run build slaagt"
       ],
       "priority": 1,
-      "passes": false
+      "passes": true
     },
     {
       "id": "MOL-002",
@@ -34,7 +34,7 @@
         "npm run build slaagt"
       ],
       "priority": 2,
-      "passes": false
+      "passes": true
     },
     {
       "id": "MOL-003",
@@ -51,7 +51,7 @@
         "npm run build slaagt"
       ],
       "priority": 3,
-      "passes": false
+      "passes": true
     },
     {
       "id": "MOL-004",
@@ -67,7 +67,7 @@
         "npm run build slaagt"
       ],
       "priority": 4,
-      "passes": false
+      "passes": true
     },
     {
       "id": "MOL-005",
@@ -85,7 +85,7 @@
         "npm run build slaagt"
       ],
       "priority": 5,
-      "passes": false
+      "passes": true
     },
     {
       "id": "MOL-006",
@@ -100,7 +100,7 @@
         "npm run build slaagt"
       ],
       "priority": 6,
-      "passes": false
+      "passes": true
     },
     {
       "id": "MOL-007",
@@ -117,7 +117,7 @@
         "npm run build slaagt"
       ],
       "priority": 7,
-      "passes": false
+      "passes": true
     },
     {
       "id": "MOL-008",
@@ -134,7 +134,7 @@
         "npm run build slaagt"
       ],
       "priority": 8,
-      "passes": false
+      "passes": true
     },
     {
       "id": "MOL-009",
@@ -150,7 +150,7 @@
         "npm run build slaagt"
       ],
       "priority": 9,
-      "passes": false
+      "passes": true
     },
     {
       "id": "MOL-010",
@@ -167,7 +167,7 @@
         "npm run build slaagt"
       ],
       "priority": 10,
-      "passes": false
+      "passes": true
     },
     {
       "id": "MOL-011",
@@ -183,7 +183,7 @@
         "npm run build slaagt"
       ],
       "priority": 11,
-      "passes": false
+      "passes": true
     }
   ]
 }

@@ -554,3 +554,129 @@ Remaining: 42
 - Afgeronde hoeken (rounded-lg) met subtiele schaduw (shadow-lg)
 - Translation keys toegevoegd: logoAlt in alle 4 talen
 - typecheck ✅ build ✅
+
+### MOL-001: Mollie Node.js SDK installatie en configuratie ✅
+- Installed @mollie/api-client (added 13 packages)
+- Created lib/mollie.ts: exports configured Mollie client using createMollieClient()
+- Reads MOLLIE_API_KEY from process.env
+- Throws descriptive error if key is missing (with link to Mollie dashboard)
+- Pattern follows existing lib/woocommerce.ts style
+- typecheck ✅ build ✅
+
+### MOL-002: Checkout pagina — adresgegevens formulier ✅
+- Created checkout page at app/[locale]/(pages)/checkout/page.tsx (server component)
+- Created CheckoutForm client component with full address form
+- Form fields: firstName, lastName, email, street, postalCode, city, country (dropdown, default BE), phone (optional)
+- Client-side validation: required fields, email format (regex), postcode format per country (BE/NL/LU/DE patterns)
+- Country dropdown supports BE, NL, LU, DE with native labels
+- Cart summary panel: sticky on desktop (lg:sticky lg:top-28), shows items with grind/weight details, subtotal, shipping note, total
+- Layout: 2-col on desktop (form left, summary right), single col on mobile
+- Redirect to homepage if cart is empty (useEffect with router.replace)
+- Hero section with parallax orbs, matching existing page patterns (contact, faq)
+- Breadcrumb structured data (JSON-LD)
+- SEO metadata via generatePageMetadata
+- Added Checkout.* i18n keys in all 4 languages (NL, EN, FR, ES)
+- Added Seo.checkout i18n keys in all 4 languages
+- Form submit currently logs to console (MOL-004 will wire to /api/checkout)
+- Follows ContactForm patterns: inputBase/inputError/inputDefault styling, aria attributes, error messages
+- typecheck ✅ build ✅
+
+### MOL-003: API route — Mollie payment aanmaken ✅
+- Created app/api/checkout/route.ts with POST handler
+- Accepts JSON body: { items: CheckoutItem[], customer: CheckoutCustomer, locale?: string }
+- Server-side price verification: fetches prices from WooCommerce API, falls back to mock-products.json
+- Total calculated server-side using verified prices (never trusts client-side amount)
+- Creates Mollie payment with: amount (EUR), description, redirectUrl (/{locale}/checkout/return?id={id}), webhookUrl (/api/webhook/mollie), metadata (items + customer JSON)
+- Returns { checkoutUrl, paymentId } on success
+- Input validation: required customer fields, email format, non-empty items array, quantity >= 1
+- Error handling: 400 for validation errors, 500 for Mollie/server errors with descriptive messages
+- Base URL from NEXT_PUBLIC_BASE_URL env var (fallback localhost:3000)
+- Handles both WooCommerce string prices and mock data number prices
+- typecheck ✅ build ✅
+
+### MOL-004: Checkout flow — redirect naar Mollie ✅
+- Wired CheckoutForm handleSubmit to POST /api/checkout with cart items + customer data
+- Cart items mapped to CheckoutItem format (id, slug, name, price, quantity, grind, weight)
+- Added isLoading state: spinner SVG + "Bezig met verwerken..." text on submit button, button disabled during API call
+- On success: window.location.href redirect to Mollie checkout URL (cart NOT cleared before redirect)
+- On error: error message displayed in rose-colored alert box above submit button (role="alert")
+- Error message uses server response error or generic fallback via i18n key form.errorGeneric
+- Added form.submitting and form.errorGeneric i18n keys in all 4 languages (NL, EN, FR, ES)
+- Submit button gets disabled:cursor-not-allowed disabled:opacity-60 during loading
+- typecheck ✅ build ✅
+
+### MOL-005: Return pagina — betaling bevestiging ✅
+- Created return page at app/[locale]/(pages)/checkout/return/page.tsx (server component)
+- Created CheckoutReturn client component with status-based UI (paid/pending/failed/canceled/expired/error)
+- Reads payment ID from URL query param (?id=tr_xxx)
+- Fetches status from GET /api/checkout/status?id=tr_xxx
+- Created API route app/api/checkout/status/route.ts: validates payment ID format (tr_xxx), fetches from Mollie API, maps statuses
+- Paid state: green checkmark, thank you message, order number display, cart cleared automatically, CTAs to home + shop
+- Pending state: yellow clock icon, message about processing, CTA to home
+- Failed/canceled/expired state: red X icon, error message, CTAs to retry (checkout) + home
+- Loading state: gold spinner while fetching status
+- Added clearCart() method to CartProvider (was missing), cart cleared on paid status only (once via cleared flag)
+- Hero section with parallax orbs, matching checkout page pattern
+- SEO metadata via generatePageMetadata with checkoutReturn page key
+- Breadcrumb structured data (Home → Checkout → Payment Status)
+- Added Checkout.return.* i18n keys in all 4 languages (NL, EN, FR, ES): 13 keys each
+- Added Seo.checkoutReturn i18n keys in all 4 languages
+- typecheck ✅ build ✅
+
+### MOL-006: API route — payment status ophalen ✅
+- Already implemented as part of MOL-005 (return page needed this endpoint)
+- GET /api/checkout/status?id=tr_xxx at app/api/checkout/status/route.ts
+- Validates payment ID format with regex /^tr_[a-zA-Z0-9]+$/
+- Fetches payment from Mollie API, maps statuses (paid/authorized→paid, pending/open→pending, failed, canceled, expired)
+- Returns { status, orderId } on success, { error } with 400/500 on failure
+- No code changes needed — already complete
+- typecheck ✅ build ✅
+
+### MOL-007: Mollie webhook — payment status updates ✅
+- Created POST /api/webhook/mollie endpoint at app/api/webhook/mollie/route.ts
+- Receives Mollie webhook (application/x-www-form-urlencoded, id=tr_xxx)
+- Verifies payment status via Mollie API (never trusts webhook body)
+- On status 'paid': creates WooCommerce order via createOrder() helper
+- Created lib/woocommerce-orders.ts with createOrder() function
+- createOrder() POSTs to WooCommerce REST API /wp-json/wc/v3/orders
+- Order includes: billing/shipping address, line items with grind/weight meta, payment method 'mollie', _mollie_payment_id meta
+- Order status set to 'processing' (paid)
+- Idempotency: in-memory Set tracks processed payment IDs, prevents duplicate orders
+- On WooCommerce order creation failure: removes from processed set, returns 500 so Mollie retries
+- Always returns 200 OK for non-paid statuses and successfully processed payments (Mollie requirement)
+- typecheck ✅ build ✅
+
+### MOL-008: WooCommerce order aanmaak helper ✅
+- Already implemented as part of MOL-007 (webhook needed createOrder)
+- lib/woocommerce-orders.ts was already complete with all AC met
+- No code changes needed — just marked as passes: true
+- typecheck ✅ build ✅
+
+### MOL-009: Verzendkosten berekening ✅
+- Created lib/shipping.ts with SHIPPING_COST (€4.95), FREE_SHIPPING_THRESHOLD (€35), calculateShipping(), amountUntilFreeShipping()
+- Updated CheckoutForm cart summary: shows actual shipping cost or "Gratis!" badge, "Nog €X voor gratis verzending" message, total includes shipping
+- Updated API route (app/api/checkout/route.ts): adds shipping to Mollie payment total server-side
+- Added freeShipping and freeShippingRemaining i18n keys in all 4 languages (NL, EN, FR, ES)
+- typecheck ✅ build ✅
+
+### MOL-010: Cart → Checkout navigatie ✅
+- Changed checkout button from non-functional `<button>` to router.push('/checkout') with closeCart()
+- Button styled as primary (solid gold bg) instead of outline for prominence
+- Added active:scale-95 press feedback
+- Added shipping cost display in cart footer: shows actual cost or "Gratis!" badge
+- Added "Nog €X voor gratis verzending" message when below threshold
+- Added "Gratis verzending vanaf €X" confirmation when threshold reached
+- Total now includes shipping cost (was showing subtotal only)
+- Replaced old shippingNote key with shippingLabel, freeShipping, freeShippingRemaining, freeShippingFrom in all 4 languages
+- Imported calculateShipping, amountUntilFreeShipping, FREE_SHIPPING_THRESHOLD from lib/shipping.ts
+- Used useRouter from @/i18n/routing for locale-aware navigation
+- typecheck ✅ build ✅
+
+### MOL-011: Environment variables documentatie en validatie ✅
+- Created .env.example with all 5 environment variables documented (MOLLIE_API_KEY, WOOCOMMERCE_URL, WOOCOMMERCE_CONSUMER_KEY, WOOCOMMERCE_CONSUMER_SECRET, NEXT_PUBLIC_BASE_URL)
+- Created lib/env.ts with validateEnv() function that checks all required server-side env vars at startup
+- Logs clear error messages with hints for each missing variable
+- Wired validation into Next.js instrumentation.ts (register() hook) for automatic startup checking
+- Updated README.md: added Environment Variables table, Mollie Setup section (account creation, API keys, checkout flow, going live), updated project structure
+- NEXT_PUBLIC_BASE_URL marked as optional (defaults to localhost:3000)
+- typecheck ✅ build ✅

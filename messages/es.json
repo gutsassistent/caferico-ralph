@@ -580,7 +580,10 @@
     "quantityDecrease": "Disminuir cantidad",
     "subtotalLabel": "Subtotal",
     "totalLabel": "Total",
-    "shippingNote": "Envío e impuestos calculados al finalizar.",
+    "shippingLabel": "Envío",
+    "freeShipping": "¡Gratis!",
+    "freeShippingRemaining": "Solo {amount} más para envío gratis",
+    "freeShippingFrom": "Envío gratis a partir de {amount}",
     "checkout": "Finalizar compra",
     "emptyFooter": "Agrega algo especial para empezar."
   },
@@ -947,6 +950,67 @@
       "button": "Contáctanos"
     }
   },
+  "Checkout": {
+    "hero": {
+      "eyebrow": "Pago",
+      "title": "Finalizar compra",
+      "description": "Completa tus datos para finalizar tu pedido."
+    },
+    "form": {
+      "eyebrow": "Datos de envío",
+      "title": "Tus datos",
+      "description": "Completa los campos a continuación para proceder al pago.",
+      "submit": "Proceder al pago",
+      "submitting": "Procesando...",
+      "errorGeneric": "Algo salió mal. Inténtalo de nuevo."
+    },
+    "fields": {
+      "firstName": { "label": "Nombre", "placeholder": "Juan" },
+      "lastName": { "label": "Apellido", "placeholder": "García" },
+      "email": { "label": "Correo electrónico", "placeholder": "juan@ejemplo.com" },
+      "street": { "label": "Calle + número", "placeholder": "Calle Mayor 12" },
+      "postalCode": { "label": "Código postal", "placeholder": "1000" },
+      "city": { "label": "Ciudad", "placeholder": "Bruselas" },
+      "country": { "label": "País" },
+      "phone": { "label": "Teléfono", "optional": "opcional", "placeholder": "+32 470 00 00 00" }
+    },
+    "validation": {
+      "firstNameRequired": "Introduce tu nombre.",
+      "lastNameRequired": "Introduce tu apellido.",
+      "emailRequired": "Introduce tu correo electrónico.",
+      "emailInvalid": "Introduce un correo electrónico válido.",
+      "streetRequired": "Introduce tu calle y número.",
+      "postalCodeRequired": "Introduce tu código postal.",
+      "postalCodeInvalid": "Código postal inválido para este país.",
+      "cityRequired": "Introduce tu ciudad."
+    },
+    "summary": {
+      "eyebrow": "Resumen del pedido",
+      "title": "Tu pedido",
+      "quantity": "Cantidad",
+      "subtotal": "Subtotal",
+      "shipping": "Envío",
+      "shippingNote": "Calculado en el pago",
+      "freeShipping": "¡Gratis!",
+      "freeShippingRemaining": "Faltan {amount} para envío gratis",
+      "total": "Total"
+    },
+    "return": {
+      "eyebrow": "Pedido",
+      "title": "Estado del pago",
+      "loading": "Verificando estado del pago...",
+      "paidTitle": "¡Gracias por tu pedido!",
+      "paidDescription": "Tu pago ha sido recibido. Comenzaremos a tostar y empacar tu café de inmediato.",
+      "orderNumber": "Número de pedido",
+      "pendingTitle": "Pago pendiente",
+      "pendingDescription": "Tu pago aún está siendo procesado. Recibirás un correo de confirmación cuando el pago se complete.",
+      "failedTitle": "Pago fallido",
+      "failedDescription": "No se pudo procesar tu pago. Inténtalo de nuevo o elige otro método de pago.",
+      "ctaHome": "Ir al inicio",
+      "ctaShop": "Seguir comprando",
+      "ctaRetry": "Intentar de nuevo"
+    }
+  },
   "Seo": {
     "keywords": "café orgánico, specialty coffee, Honduras, comercio justo, suscripción café, Café RICO, granos de café, café molido",
     "home": {
@@ -988,6 +1052,14 @@
     "locations": {
       "title": "Puntos de Venta",
       "description": "Encuentra Café RICO en tiendas seleccionadas en Bélgica. De Amberes a Gante, de mercados agrícolas a tiendas ecológicas."
+    },
+    "checkout": {
+      "title": "Pago",
+      "description": "Completa tu pedido en Café RICO. Pago seguro a través de Mollie."
+    },
+    "checkoutReturn": {
+      "title": "Estado del pago",
+      "description": "Consulta el estado de tu pago en Café RICO."
     }
   }
 }
