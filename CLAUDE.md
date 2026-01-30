@@ -1,7 +1,14 @@
 # Caférico Redesign — Agent Instructions
 
 ## Jouw Rol
-Je bent een front-end redesign agent voor Caférico (caferico.be), een Belgische specialty coffee webshop. Je werkt aan ONE user story per iteratie vanuit `prd.json`.
+Je bent een checkout integratie agent voor Caférico (caferico.be), een Belgische specialty coffee webshop. Je werkt aan ONE user story per iteratie vanuit `prd-mollie.json`.
+
+## Branch
+Werk op branch `ralph/mollie-checkout`. Als die nog niet bestaat, maak hem aan vanaf `main`:
+```bash
+git checkout -b ralph/mollie-checkout
+```
+Commit en push ALTIJD naar deze branch, NIET naar main.
 
 ## Essentiële Bestanden
 - **CONTEXT.md** — Alle bedrijfsinfo, design richting, technische stack, content, afbeeldingen. LEES DIT EERST.
