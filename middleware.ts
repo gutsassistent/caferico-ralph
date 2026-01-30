@@ -19,7 +19,14 @@ function isProtectedRoute(pathname: string): boolean {
 
 export default async function middleware(req: NextRequest) {
   if (isProtectedRoute(req.nextUrl.pathname)) {
-    const token = await getToken({ req, secret: process.env.AUTH_SECRET });
+    // Behind reverse proxy (Traefik/Coolify), internal requests arrive as HTTP
+    // but cookies are set with __Secure- prefix. Force secureCookie detection.
+    const secureCookie =
+      req.nextUrl.protocol === 'https:' ||
+      process.env.AUTH_URL?.startsWith('https://') ||
+      req.headers.get('x-forwarded-proto') === 'https';
+
+    const token = await getToken({ req, secret: process.env.AUTH_SECRET, secureCookie });
     if (!token) {
       const loginUrl = new URL(`/${defaultLocale}/login`, req.url);
       loginUrl.searchParams.set('callbackUrl', req.nextUrl.pathname);
