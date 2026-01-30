@@ -1,0 +1,189 @@
+{
+  "projectName": "caferico-mollie-checkout",
+  "branchName": "ralph/mollie-checkout",
+  "description": "Fase 2B: Mollie checkout integratie voor Caférico. Klanten kunnen producten afrekenen via Mollie hosted checkout (redirect). Cart → adresgegevens → Mollie betaling → bevestigingspagina. WooCommerce order wordt aangemaakt na succesvolle betaling. Test mode eerst.",
+  "userStories": [
+    {
+      "id": "MOL-001",
+      "title": "Mollie Node.js SDK installatie en configuratie",
+      "description": "Installeer @mollie/api-client, maak lib/mollie.ts aan met geconfigureerde client. Lees API key uit environment variable MOLLIE_API_KEY.",
+      "acceptanceCriteria": [
+        "@mollie/api-client is toegevoegd aan dependencies",
+        "lib/mollie.ts exporteert een geconfigureerde Mollie client",
+        "Client leest MOLLIE_API_KEY uit process.env",
+        "Error handling als key ontbreekt",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 1,
+      "passes": false
+    },
+    {
+      "id": "MOL-002",
+      "title": "Checkout pagina — adresgegevens formulier",
+      "description": "Maak een checkout pagina (app/[locale]/(pages)/checkout/page.tsx) met een formulier voor klantgegevens: naam, email, adres, postcode, stad, land, telefoon. Formulier validatie client-side. Toon cart samenvatting naast het formulier. Redirect naar homepage als cart leeg is.",
+      "acceptanceCriteria": [
+        "Checkout pagina bestaat op /[locale]/checkout",
+        "Formulier met velden: voornaam, achternaam, email, straat + huisnummer, postcode, stad, land (dropdown, default België), telefoon (optioneel)",
+        "Client-side validatie (required velden, email format, postcode format)",
+        "Cart samenvatting rechts (desktop) of boven (mobile): items, subtotaal, verzendkosten, totaal",
+        "Redirect naar / als cart leeg is",
+        "Alle teksten via next-intl",
+        "Responsive design passend bij bestaande stijl",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 2,
+      "passes": false
+    },
+    {
+      "id": "MOL-003",
+      "title": "API route — Mollie payment aanmaken",
+      "description": "Maak een Next.js API route (app/api/checkout/route.ts) die een Mollie payment aanmaakt. Ontvangt cart items + klantgegevens, berekent totaal server-side, maakt payment aan via Mollie API, returned checkout URL voor redirect.",
+      "acceptanceCriteria": [
+        "POST /api/checkout accepteert JSON body met items en klantgegevens",
+        "Server-side totaalberekening (NIET client-side bedrag vertrouwen)",
+        "Productprijzen worden geverifieerd via WooCommerce API",
+        "Mollie payment wordt aangemaakt met: amount, description, redirectUrl, webhookUrl, metadata (cart + klantgegevens)",
+        "Response bevat Mollie checkout URL",
+        "Error handling: ontbrekende velden, Mollie API errors, WooCommerce errors",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 3,
+      "passes": false
+    },
+    {
+      "id": "MOL-004",
+      "title": "Checkout flow — redirect naar Mollie",
+      "description": "Na formulier submit: POST naar /api/checkout, ontvang Mollie checkout URL, redirect klant naar Mollie hosted checkout pagina. Toon loading state tijdens API call.",
+      "acceptanceCriteria": [
+        "Submit knop stuurt cart + formulierdata naar /api/checkout",
+        "Loading state tijdens API call (spinner + disabled button)",
+        "Bij succes: window.location redirect naar Mollie checkout URL",
+        "Bij error: toon foutmelding in formulier",
+        "Cart wordt NIET geleegd voor redirect (pas na bevestiging)",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 4,
+      "passes": false
+    },
+    {
+      "id": "MOL-005",
+      "title": "Return pagina — betaling bevestiging",
+      "description": "Maak een return pagina (app/[locale]/(pages)/checkout/return/page.tsx) waar Mollie naartoe redirect na betaling. Toon status op basis van payment status. Leeg de cart bij succesvolle betaling.",
+      "acceptanceCriteria": [
+        "Return pagina op /[locale]/checkout/return",
+        "Leest payment ID uit URL query parameter",
+        "Haalt payment status op via API route (GET /api/checkout/status?id=...)",
+        "Toont juiste status: betaald (groen + vinkje), in afwachting (geel), mislukt/geannuleerd (rood + opnieuw proberen knop)",
+        "Bij status 'paid': cart wordt geleegd, bedankbericht met ordernummer",
+        "Bij status 'failed'/'canceled': knop om terug te gaan naar checkout",
+        "Alle teksten via next-intl",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 5,
+      "passes": false
+    },
+    {
+      "id": "MOL-006",
+      "title": "API route — payment status ophalen",
+      "description": "Maak GET /api/checkout/status endpoint dat de status van een Mollie payment ophaalt. Gebruikt door de return pagina.",
+      "acceptanceCriteria": [
+        "GET /api/checkout/status?id=tr_xxx returnt payment status",
+        "Response: { status: 'paid' | 'pending' | 'failed' | 'canceled' | 'expired', orderId?: string }",
+        "Valideert dat payment ID format correct is",
+        "Error handling voor ongeldige ID of Mollie API errors",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 6,
+      "passes": false
+    },
+    {
+      "id": "MOL-007",
+      "title": "Mollie webhook — payment status updates",
+      "description": "Maak een webhook endpoint (app/api/webhook/mollie/route.ts) dat Mollie POST notifications ontvangt bij payment status changes. Verifieer de payment en maak een WooCommerce order aan bij succesvolle betaling.",
+      "acceptanceCriteria": [
+        "POST /api/webhook/mollie ontvangt Mollie webhook (body: id=tr_xxx)",
+        "Haalt payment details op via Mollie API om status te verifiëren (NIET webhook body vertrouwen)",
+        "Bij status 'paid': WooCommerce order aanmaken via REST API",
+        "WooCommerce order bevat: klantgegevens, line items, totalen, betaalstatus",
+        "Idempotent: dezelfde webhook 2x ontvangen maakt geen dubbele order",
+        "Returns 200 OK (Mollie vereist dit)",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 7,
+      "passes": false
+    },
+    {
+      "id": "MOL-008",
+      "title": "WooCommerce order aanmaak helper",
+      "description": "Maak lib/woocommerce-orders.ts met functie om orders aan te maken via WooCommerce REST API. Gebruikt door de webhook.",
+      "acceptanceCriteria": [
+        "createOrder() functie in lib/woocommerce-orders.ts",
+        "Maakt order aan via POST /wp-json/wc/v3/orders",
+        "Stuurt klantgegevens, line items (product ID, quantity, prijs), shipping, payment method info",
+        "Zet order status op 'processing' (betaald)",
+        "Slaat Mollie payment ID op als order meta",
+        "Error handling met duidelijke foutmeldingen",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 8,
+      "passes": false
+    },
+    {
+      "id": "MOL-009",
+      "title": "Verzendkosten berekening",
+      "description": "Implementeer verzendkosten logica. Gratis verzending boven een drempelbedrag, anders vast tarief. Configeerbaar via environment variables of constanten.",
+      "acceptanceCriteria": [
+        "Verzendkosten constanten: SHIPPING_COST (bv. €4.95), FREE_SHIPPING_THRESHOLD (bv. €35)",
+        "Functie calculateShipping(subtotal) in lib/shipping.ts",
+        "Gebruikt in checkout pagina (cart samenvatting) en server-side (API route)",
+        "Toon 'Gratis verzending' badge als drempel bereikt",
+        "Toon 'Nog €X voor gratis verzending' als bijna bereikt",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 9,
+      "passes": false
+    },
+    {
+      "id": "MOL-010",
+      "title": "Cart → Checkout navigatie",
+      "description": "Voeg een 'Afrekenen' knop toe aan de cart drawer die naar de checkout pagina navigeert. Toon verzendkosten info in de cart.",
+      "acceptanceCriteria": [
+        "CartDrawer toont 'Afrekenen' knop (prominent, primaire kleur)",
+        "Knop navigeert naar /[locale]/checkout",
+        "Knop disabled als cart leeg",
+        "Cart toont subtotaal + verzendkosten indicatie",
+        "Toon 'Gratis verzending vanaf €X' of 'Gratis verzending!' badge",
+        "Alle teksten via next-intl",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 10,
+      "passes": false
+    },
+    {
+      "id": "MOL-011",
+      "title": "Environment variables documentatie en validatie",
+      "description": "Documenteer alle benodigde environment variables voor Mollie checkout. Voeg runtime validatie toe zodat de app duidelijke errors geeft als iets ontbreekt.",
+      "acceptanceCriteria": [
+        ".env.example bevat alle Mollie-gerelateerde variabelen met uitleg",
+        "MOLLIE_API_KEY, NEXT_PUBLIC_BASE_URL (voor redirect/webhook URLs)",
+        "lib/env.ts met validatie functie die bij startup checkt",
+        "Duidelijke error messages als variabelen ontbreken",
+        "README.md sectie over Mollie setup",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 11,
+      "passes": false
+    }
+  ]
+}

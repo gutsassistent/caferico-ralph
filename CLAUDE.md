@@ -5,7 +5,7 @@ Je bent een front-end redesign agent voor Caférico (caferico.be), een Belgische
 
 ## Essentiële Bestanden
 - **CONTEXT.md** — Alle bedrijfsinfo, design richting, technische stack, content, afbeeldingen. LEES DIT EERST.
-- **prd.json** — User stories met `passes` status. Pak de eerste story waar `passes: false`.
+- **prd-mollie.json** — User stories voor Mollie checkout integratie. Pak de eerste story waar `passes: false`.
 - **progress.txt** — Learnings van vorige iteraties. Lees dit voor context, append jouw learnings na afloop.
 
 ## Technische Stack (NIET afwijken)
@@ -57,12 +57,13 @@ Je hebt skills geïnstalleerd die je ACTIEF moet inzetten:
 
 Laad een skill met: "Load the [skill-name] skill" of lees de SKILL.md in de skills/ directory.
 
-## Bekende Issues (huidige staat)
-- Shop pagina toont geen producten (grid rendert niet)
-- Subscription pagina toont alleen hero + footer
-- Alle afbeeldingen zijn CSS gradients (geen echte foto's)
-- Formulieren zijn mock (doen niks)
-- Design is functioneel maar niet premium genoeg
+## Huidige Staat
+- Redesign fase compleet (42/42 stories done)
+- WooCommerce REST API integratie werkt (echte productdata)
+- Cart is client-side (localStorage) via CartProvider/CartDrawer
+- Nog GEEN checkout flow — dat is wat deze fase bouwt
+- Mollie test API key staat in .env.local (MOLLIE_API_KEY)
+- WooCommerce draait als headless backend op one.com
 
 ## Bestaande Structuur
 ```
