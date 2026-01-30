@@ -580,7 +580,10 @@
     "quantityDecrease": "Verlaag hoeveelheid",
     "subtotalLabel": "Subtotaal",
     "totalLabel": "Totaal",
-    "shippingNote": "Verzending en belastingen worden berekend bij checkout.",
+    "shippingLabel": "Verzending",
+    "freeShipping": "Gratis!",
+    "freeShippingRemaining": "Nog {amount} voor gratis verzending",
+    "freeShippingFrom": "Gratis verzending vanaf {amount}",
     "checkout": "Afrekenen",
     "emptyFooter": "Voeg iets bijzonders toe om te starten."
   },
@@ -988,6 +991,8 @@
       "subtotal": "Subtotaal",
       "shipping": "Verzending",
       "shippingNote": "Berekend bij betaling",
+      "freeShipping": "Gratis!",
+      "freeShippingRemaining": "Nog {amount} voor gratis verzending",
       "total": "Totaal"
     },
     "return": {

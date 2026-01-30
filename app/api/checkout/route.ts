@@ -3,6 +3,7 @@ import mollieClient from '@/lib/mollie';
 import { getProducts } from '@/lib/woocommerce';
 import type { WooCommerceProduct } from '@/types/woocommerce';
 import mockProducts from '@/data/mock-products.json';
+import { calculateShipping } from '@/lib/shipping';
 
 type CheckoutItem = {
   id: string;
@@ -130,7 +131,9 @@ export async function POST(request: NextRequest) {
 
     // Server-side price verification
     const priceMap = await getVerifiedPrices(items);
-    const total = calculateTotal(items, priceMap);
+    const subtotal = calculateTotal(items, priceMap);
+    const shipping = calculateShipping(subtotal);
+    const total = Math.round((subtotal + shipping) * 100) / 100;
 
     if (total <= 0) {
       return NextResponse.json({ error: 'Invalid order total' }, { status: 400 });

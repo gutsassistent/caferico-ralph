@@ -622,3 +622,61 @@ Remaining: 42
 - Added Checkout.return.* i18n keys in all 4 languages (NL, EN, FR, ES): 13 keys each
 - Added Seo.checkoutReturn i18n keys in all 4 languages
 - typecheck ✅ build ✅
+
+### MOL-006: API route — payment status ophalen ✅
+- Already implemented as part of MOL-005 (return page needed this endpoint)
+- GET /api/checkout/status?id=tr_xxx at app/api/checkout/status/route.ts
+- Validates payment ID format with regex /^tr_[a-zA-Z0-9]+$/
+- Fetches payment from Mollie API, maps statuses (paid/authorized→paid, pending/open→pending, failed, canceled, expired)
+- Returns { status, orderId } on success, { error } with 400/500 on failure
+- No code changes needed — already complete
+- typecheck ✅ build ✅
+
+### MOL-007: Mollie webhook — payment status updates ✅
+- Created POST /api/webhook/mollie endpoint at app/api/webhook/mollie/route.ts
+- Receives Mollie webhook (application/x-www-form-urlencoded, id=tr_xxx)
+- Verifies payment status via Mollie API (never trusts webhook body)
+- On status 'paid': creates WooCommerce order via createOrder() helper
+- Created lib/woocommerce-orders.ts with createOrder() function
+- createOrder() POSTs to WooCommerce REST API /wp-json/wc/v3/orders
+- Order includes: billing/shipping address, line items with grind/weight meta, payment method 'mollie', _mollie_payment_id meta
+- Order status set to 'processing' (paid)
+- Idempotency: in-memory Set tracks processed payment IDs, prevents duplicate orders
+- On WooCommerce order creation failure: removes from processed set, returns 500 so Mollie retries
+- Always returns 200 OK for non-paid statuses and successfully processed payments (Mollie requirement)
+- typecheck ✅ build ✅
+
+### MOL-008: WooCommerce order aanmaak helper ✅
+- Already implemented as part of MOL-007 (webhook needed createOrder)
+- lib/woocommerce-orders.ts was already complete with all AC met
+- No code changes needed — just marked as passes: true
+- typecheck ✅ build ✅
+
+### MOL-009: Verzendkosten berekening ✅
+- Created lib/shipping.ts with SHIPPING_COST (€4.95), FREE_SHIPPING_THRESHOLD (€35), calculateShipping(), amountUntilFreeShipping()
+- Updated CheckoutForm cart summary: shows actual shipping cost or "Gratis!" badge, "Nog €X voor gratis verzending" message, total includes shipping
+- Updated API route (app/api/checkout/route.ts): adds shipping to Mollie payment total server-side
+- Added freeShipping and freeShippingRemaining i18n keys in all 4 languages (NL, EN, FR, ES)
+- typecheck ✅ build ✅
+
+### MOL-010: Cart → Checkout navigatie ✅
+- Changed checkout button from non-functional `<button>` to router.push('/checkout') with closeCart()
+- Button styled as primary (solid gold bg) instead of outline for prominence
+- Added active:scale-95 press feedback
+- Added shipping cost display in cart footer: shows actual cost or "Gratis!" badge
+- Added "Nog €X voor gratis verzending" message when below threshold
+- Added "Gratis verzending vanaf €X" confirmation when threshold reached
+- Total now includes shipping cost (was showing subtotal only)
+- Replaced old shippingNote key with shippingLabel, freeShipping, freeShippingRemaining, freeShippingFrom in all 4 languages
+- Imported calculateShipping, amountUntilFreeShipping, FREE_SHIPPING_THRESHOLD from lib/shipping.ts
+- Used useRouter from @/i18n/routing for locale-aware navigation
+- typecheck ✅ build ✅
+
+### MOL-011: Environment variables documentatie en validatie ✅
+- Created .env.example with all 5 environment variables documented (MOLLIE_API_KEY, WOOCOMMERCE_URL, WOOCOMMERCE_CONSUMER_KEY, WOOCOMMERCE_CONSUMER_SECRET, NEXT_PUBLIC_BASE_URL)
+- Created lib/env.ts with validateEnv() function that checks all required server-side env vars at startup
+- Logs clear error messages with hints for each missing variable
+- Wired validation into Next.js instrumentation.ts (register() hook) for automatic startup checking
+- Updated README.md: added Environment Variables table, Mollie Setup section (account creation, API keys, checkout flow, going live), updated project structure
+- NEXT_PUBLIC_BASE_URL marked as optional (defaults to localhost:3000)
+- typecheck ✅ build ✅

@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/routing';
 import { useCart } from '@/components/CartProvider';
 import { isCoffee } from '@/types/product';
+import { calculateShipping, amountUntilFreeShipping } from '@/lib/shipping';
 
 type CheckoutValues = {
   firstName: string;
@@ -503,11 +504,22 @@ export default function CheckoutForm() {
             </div>
             <div className="flex items-center justify-between text-sm text-cream/70">
               <span>{t('summary.shipping')}</span>
-              <span className="text-cream/50">{t('summary.shippingNote')}</span>
+              {calculateShipping(subtotal) === 0 ? (
+                <span className="font-medium text-green-400">{t('summary.freeShipping')}</span>
+              ) : (
+                <span className="text-cream">{priceFormatter.format(calculateShipping(subtotal))}</span>
+              )}
             </div>
+            {amountUntilFreeShipping(subtotal) > 0 && (
+              <p className="text-xs text-cream/50">
+                {t('summary.freeShippingRemaining', {
+                  amount: priceFormatter.format(amountUntilFreeShipping(subtotal)),
+                })}
+              </p>
+            )}
             <div className="flex items-center justify-between border-t border-cream/10 pt-3 text-base font-semibold text-gold">
               <span>{t('summary.total')}</span>
-              <span>{priceFormatter.format(subtotal)}</span>
+              <span>{priceFormatter.format(subtotal + calculateShipping(subtotal))}</span>
             </div>
           </div>
         </div>

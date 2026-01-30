@@ -580,7 +580,10 @@
     "quantityDecrease": "Diminuer la quantité",
     "subtotalLabel": "Sous-total",
     "totalLabel": "Total",
-    "shippingNote": "Livraison et taxes calculées au paiement.",
+    "shippingLabel": "Livraison",
+    "freeShipping": "Gratuit !",
+    "freeShippingRemaining": "Plus que {amount} pour la livraison gratuite",
+    "freeShippingFrom": "Livraison gratuite à partir de {amount}",
     "checkout": "Passer au paiement",
     "emptyFooter": "Ajoutez une sélection pour commencer."
   },
@@ -988,6 +991,8 @@
       "subtotal": "Sous-total",
       "shipping": "Livraison",
       "shippingNote": "Calculé au paiement",
+      "freeShipping": "Gratuit !",
+      "freeShippingRemaining": "Encore {amount} pour la livraison gratuite",
       "total": "Total"
     },
     "return": {

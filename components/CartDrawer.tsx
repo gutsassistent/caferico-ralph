@@ -2,17 +2,23 @@
 
 import { useEffect, useMemo } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { Link } from '@/i18n/routing';
+import { Link, useRouter } from '@/i18n/routing';
 import { useCart } from '@/components/CartProvider';
 import { isCoffee } from '@/types/product';
+import { calculateShipping, amountUntilFreeShipping, FREE_SHIPPING_THRESHOLD } from '@/lib/shipping';
 
 export default function CartDrawer() {
   const t = useTranslations('Cart');
   const productT = useTranslations('Product');
   const shopT = useTranslations('Shop');
   const locale = useLocale();
+  const router = useRouter();
   const { items, totalItems, subtotal, isOpen, closeCart, updateItemQuantity, removeItem } =
     useCart();
+
+  const shipping = calculateShipping(subtotal);
+  const remaining = amountUntilFreeShipping(subtotal);
+  const total = subtotal + shipping;
 
   const priceFormatter = useMemo(
     () =>
@@ -197,14 +203,37 @@ export default function CartDrawer() {
                 <span>{t('subtotalLabel')}</span>
                 <span className="text-cream">{priceFormatter.format(subtotal)}</span>
               </div>
+              <div className="flex items-center justify-between text-sm text-cream/70">
+                <span>{t('shippingLabel')}</span>
+                {shipping === 0 ? (
+                  <span className="rounded-full bg-gold/10 px-2 py-0.5 text-xs font-medium text-gold">
+                    {t('freeShipping')}
+                  </span>
+                ) : (
+                  <span className="text-cream">{priceFormatter.format(shipping)}</span>
+                )}
+              </div>
+              {remaining > 0 && (
+                <p className="text-xs text-cream/60">
+                  {t('freeShippingRemaining', { amount: priceFormatter.format(remaining) })}
+                </p>
+              )}
+              {shipping === 0 && (
+                <p className="text-xs text-gold/70">
+                  {t('freeShippingFrom', { amount: priceFormatter.format(FREE_SHIPPING_THRESHOLD) })}
+                </p>
+              )}
               <div className="flex items-center justify-between text-base font-semibold text-gold">
                 <span>{t('totalLabel')}</span>
-                <span>{priceFormatter.format(subtotal)}</span>
+                <span>{priceFormatter.format(total)}</span>
               </div>
-              <p className="text-xs text-cream/60">{t('shippingNote')}</p>
               <button
                 type="button"
-                className="w-full rounded-full border border-gold/70 px-5 py-3 text-xs uppercase tracking-[0.3em] text-gold transition hover:bg-gold hover:text-noir"
+                onClick={() => {
+                  closeCart();
+                  router.push('/checkout');
+                }}
+                className="w-full rounded-full bg-gold px-5 py-3 text-xs uppercase tracking-[0.3em] text-noir transition hover:bg-gold/90 active:scale-95"
               >
                 {t('checkout')}
               </button>

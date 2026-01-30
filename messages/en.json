@@ -580,7 +580,10 @@
     "quantityDecrease": "Decrease quantity",
     "subtotalLabel": "Subtotal",
     "totalLabel": "Total",
-    "shippingNote": "Shipping and taxes calculated at checkout.",
+    "shippingLabel": "Shipping",
+    "freeShipping": "Free!",
+    "freeShippingRemaining": "Only {amount} more for free shipping",
+    "freeShippingFrom": "Free shipping from {amount}",
     "checkout": "Checkout",
     "emptyFooter": "Add something special to get started."
   },
@@ -988,6 +991,8 @@
       "subtotal": "Subtotal",
       "shipping": "Shipping",
       "shippingNote": "Calculated at payment",
+      "freeShipping": "Free!",
+      "freeShippingRemaining": "{amount} more for free shipping",
       "total": "Total"
     },
     "return": {
