@@ -554,3 +554,11 @@ Remaining: 42
 - Afgeronde hoeken (rounded-lg) met subtiele schaduw (shadow-lg)
 - Translation keys toegevoegd: logoAlt in alle 4 talen
 - typecheck ✅ build ✅
+
+### MOL-001: Mollie Node.js SDK installatie en configuratie ✅
+- Installed @mollie/api-client (added 13 packages)
+- Created lib/mollie.ts: exports configured Mollie client using createMollieClient()
+- Reads MOLLIE_API_KEY from process.env
+- Throws descriptive error if key is missing (with link to Mollie dashboard)
+- Pattern follows existing lib/woocommerce.ts style
+- typecheck ✅ build ✅
