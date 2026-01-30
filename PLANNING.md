@@ -77,16 +77,19 @@
 - [ ] Koppeling met WooCommerce Customer API
 - [ ] Wachtwoord vergeten flow
 
-### 2E: Deployment (Vercel)
+### 2E: Deployment (Coolify op Hetzner)
 **Doel:** Site live op caferico.be
 
-- [ ] Vercel project aanmaken
-- [ ] Environment variabelen configureren
-- [ ] DNS caferico.be wijzigen (A/CNAME naar Vercel)
-- [ ] SSL certificaat (automatisch via Vercel)
+- [ ] PostgreSQL database aanmaken in Coolify
+- [ ] Next.js applicatie aanmaken in Coolify (GitHub repo koppelen)
+- [ ] Environment variabelen configureren (DATABASE_URL, MOLLIE_API_KEY, WC keys, AUTH_SECRET, etc.)
+- [ ] DNS caferico.be wijzigen (A-record naar Hetzner IP)
+- [ ] SSL certificaat (automatisch via Coolify/Let's Encrypt)
 - [ ] caferico.nl, caferico.eu, direct-trade.one redirects
 - [ ] one.com hosting behouden voor solidairmethonduras.be + WooCommerce API
+- [ ] Auto-deploy bij push naar main (GitHub webhook)
 
+**Infra:** Hetzner CAX11 (ARM, 4GB RAM, Helsinki) — draait al Coolify + n8n
 **Let op:** WooCommerce blijft draaien op one.com als headless backend (alleen API, geen front-end).
 
 ---
@@ -123,14 +126,21 @@
 ## Architectuur overzicht
 
 ```
-┌─────────────────┐     ┌──────────────────┐
-│   Vercel         │     │   one.com         │
-│   (Next.js app) │────▶│   (WooCommerce)   │
-│   caferico.be    │ API │   headless backend│
-└────────┬────────┘     └──────────────────┘
-         │
-         │ Mollie API
-         ▼
+┌──────────────────────────────────┐     ┌──────────────────┐
+│   Hetzner CAX11 (Coolify)        │     │   one.com         │
+│   ┌────────────────────────┐     │     │   (WooCommerce)   │
+│   │ Next.js app            │─────┼────▶│   headless backend│
+│   │ caferico.be            │     │     └──────────────────┘
+│   └────────────────────────┘     │
+│   ┌────────────────────────┐     │
+│   │ PostgreSQL (auth)      │     │
+│   └────────────────────────┘     │
+│   ┌────────────────────────┐     │
+│   │ n8n (automation)       │     │
+│   └────────────────────────┘     │
+└──────────────┬───────────────────┘
+               │ Mollie API
+               ▼
 ┌─────────────────┐
 │   Mollie         │
 │   Checkout +     │
@@ -148,11 +158,11 @@
 |------|--------|-------------|
 | one.com Enthusiast | €253/jaar | €253/jaar (behouden voor WC API + solidairmethonduras) |
 | Domeinen | €66/jaar | €66/jaar |
-| Vercel | - | €0 (free tier) |
+| Hetzner CAX11 (Coolify) | - | €3.98/maand (gedeeld met n8n) |
 | Mollie | al actief | 1.8% + €0.25/transactie (Bancontact: €0.39) |
 | **Totaal vast** | **€319/jaar** | **€319/jaar** |
 
-Geen extra vaste kosten. Alleen Stripe transactiekosten bij daadwerkelijke verkopen.
+Hetzner server is gedeeld met n8n. Alleen Mollie transactiekosten bij daadwerkelijke verkopen.
 
 ---
 
