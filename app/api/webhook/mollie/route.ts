@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import mollieClient from '@/lib/mollie';
+import getMollieClient from '@/lib/mollie';
 import { createOrder } from '@/lib/woocommerce-orders';
 
 // Track processed payments to prevent duplicate orders
@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Always verify payment status via Mollie API (never trust webhook body)
-    const payment = await mollieClient.payments.get(paymentId);
+    const payment = await getMollieClient().payments.get(paymentId);
 
     if (payment.status !== 'paid') {
       // Not paid — nothing to do, but acknowledge the webhook

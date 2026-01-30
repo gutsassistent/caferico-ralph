@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import mollieClient from '@/lib/mollie';
+import getMollieClient from '@/lib/mollie';
 import { getProducts } from '@/lib/woocommerce';
 import type { WooCommerceProduct } from '@/types/woocommerce';
 import mockProducts from '@/data/mock-products.json';
@@ -145,7 +145,7 @@ export async function POST(request: NextRequest) {
     // Create Mollie payment
     const webhookUrl = baseUrl.includes('localhost') ? undefined : `${baseUrl}/api/webhook/mollie`;
 
-    const payment = await mollieClient.payments.create({
+    const payment = await getMollieClient().payments.create({
       amount: {
         currency: 'EUR',
         value: total.toFixed(2),

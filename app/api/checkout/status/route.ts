@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import mollieClient from '@/lib/mollie';
+import getMollieClient from '@/lib/mollie';
 
 export async function GET(request: NextRequest) {
   try {
@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const payment = await mollieClient.payments.get(id);
+    const payment = await getMollieClient().payments.get(id);
 
     console.log('[Mollie status]', { id, rawStatus: payment.status });
 
