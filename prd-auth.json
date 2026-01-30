@@ -1,0 +1,177 @@
+{
+  "projectName": "caferico-auth",
+  "branchName": "ralph/auth",
+  "description": "Fase 2D: Authenticatie voor Caférico. Magic link login (via Resend) + Google OAuth. Klantdata via WooCommerce Customers API. Auth.js v5. Account pagina met profiel en bestellingsgeschiedenis.",
+  "userStories": [
+    {
+      "id": "AUTH-001",
+      "title": "Auth.js v5 installatie en basisconfiguratie",
+      "description": "Installeer next-auth@beta (Auth.js v5) en configureer de basis: auth config, session provider, middleware. Gebruik een simpele in-memory adapter voor nu (geen database nodig).",
+      "acceptanceCriteria": [
+        "next-auth@beta is geïnstalleerd",
+        "lib/auth.ts bevat Auth.js configuratie met session strategy 'jwt'",
+        "app/api/auth/[...nextauth]/route.ts handler is aangemaakt",
+        "AUTH_SECRET environment variable gedocumenteerd in .env.example",
+        "SessionProvider wraps de app in layout.tsx",
+        "Middleware in middleware.ts voor beschermde routes (voorlopig alleen /account)",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 1,
+      "passes": false
+    },
+    {
+      "id": "AUTH-002",
+      "title": "Google OAuth provider",
+      "description": "Configureer Google OAuth als login provider. Klant kan inloggen met Google account.",
+      "acceptanceCriteria": [
+        "Google provider geconfigureerd in Auth.js config",
+        "GOOGLE_CLIENT_ID en GOOGLE_CLIENT_SECRET in .env.example",
+        "Na succesvolle Google login: JWT session met email en naam",
+        "Bij eerste login: WooCommerce customer opzoeken of aanmaken via email",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 2,
+      "passes": false
+    },
+    {
+      "id": "AUTH-003",
+      "title": "Magic link provider (Resend)",
+      "description": "Configureer Resend als email provider voor magic links. Klant vult email in, ontvangt magic link, klikt en is ingelogd.",
+      "acceptanceCriteria": [
+        "Resend provider geconfigureerd in Auth.js config",
+        "resend package geïnstalleerd",
+        "RESEND_API_KEY in .env.example",
+        "AUTH_EMAIL_FROM in .env.example (bv. noreply@caferico.be)",
+        "Magic link email heeft Caférico branding (custom template met logo, warme kleuren)",
+        "Na klik op magic link: JWT session met email",
+        "Bij eerste login: WooCommerce customer opzoeken of aanmaken via email",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 3,
+      "passes": false
+    },
+    {
+      "id": "AUTH-004",
+      "title": "WooCommerce customer koppeling",
+      "description": "Maak lib/woocommerce-customers.ts met functies om klanten op te zoeken en aan te maken via WooCommerce REST API. Wordt aangeroepen bij elke login (Google of magic link).",
+      "acceptanceCriteria": [
+        "getCustomerByEmail(email) — zoekt klant op via WC API",
+        "createCustomer({ email, firstName, lastName }) — maakt nieuwe klant aan",
+        "getOrCreateCustomer(email, name?) — combo functie voor login flow",
+        "WooCommerce customer ID wordt opgeslagen in JWT session token",
+        "Error handling voor WC API fouten",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 4,
+      "passes": false
+    },
+    {
+      "id": "AUTH-005",
+      "title": "Login pagina",
+      "description": "Maak een login pagina (app/[locale]/(pages)/login/page.tsx) met twee opties: magic link (email input) en Google OAuth button. Premium design passend bij de site.",
+      "acceptanceCriteria": [
+        "Login pagina op /[locale]/login",
+        "Email input met 'Stuur magic link' button",
+        "Google OAuth button met Google logo",
+        "Na magic link verzending: bevestigingsscherm ('Check je inbox')",
+        "Loading states op beide buttons",
+        "Error handling (ongeldige email, API errors)",
+        "Redirect naar /account na succesvolle login",
+        "Redirect parameter support (?callbackUrl=/checkout)",
+        "Alle teksten via next-intl",
+        "Design passend bij site (dark theme, gold accents)",
+        "Responsive",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 5,
+      "passes": false
+    },
+    {
+      "id": "AUTH-006",
+      "title": "Header auth state",
+      "description": "Update de header om de auth state te tonen. Account icoon linkt naar login (uitgelogd) of account pagina (ingelogd). Optioneel: toon gebruikersnaam of avatar.",
+      "acceptanceCriteria": [
+        "Account icoon in header linkt naar /login als niet ingelogd",
+        "Account icoon linkt naar /account als ingelogd",
+        "Optioneel: toon Google avatar of eerste letter van naam als badge",
+        "Uitlog optie beschikbaar (dropdown of op account pagina)",
+        "Geen layout shift bij laden van auth state",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 6,
+      "passes": false
+    },
+    {
+      "id": "AUTH-007",
+      "title": "Account pagina — profiel",
+      "description": "Maak een account pagina (app/[locale]/(pages)/account/page.tsx) die klantgegevens toont. Beschermd via middleware (redirect naar login als niet ingelogd).",
+      "acceptanceCriteria": [
+        "Account pagina op /[locale]/account",
+        "Beschermd: redirect naar /login als niet ingelogd",
+        "Toont klantgegevens uit WooCommerce: naam, email, adres",
+        "Uitlog button",
+        "Navigatie tabs/links voor: Profiel, Bestellingen (placeholder voor nu)",
+        "Design consistent met site",
+        "Alle teksten via next-intl",
+        "Responsive",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 7,
+      "passes": false
+    },
+    {
+      "id": "AUTH-008",
+      "title": "Account pagina — bestellingsgeschiedenis",
+      "description": "Voeg bestellingsgeschiedenis toe aan de account pagina. Haal orders op via WooCommerce REST API op basis van klant email.",
+      "acceptanceCriteria": [
+        "Bestellingen tab/sectie op account pagina",
+        "Haalt orders op via WC REST API (GET /orders?customer=<id> of ?search=<email>)",
+        "Toont per bestelling: ordernummer, datum, status, totaalbedrag, aantal items",
+        "Klikbaar voor detail (optioneel: inline expand of detail pagina)",
+        "Lege state als er geen bestellingen zijn",
+        "Loading state tijdens ophalen",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 8,
+      "passes": false
+    },
+    {
+      "id": "AUTH-009",
+      "title": "Checkout koppeling met auth",
+      "description": "Als een klant is ingelogd bij het afrekenen, pre-fill het checkout formulier met hun WooCommerce klantgegevens (naam, email, adres).",
+      "acceptanceCriteria": [
+        "Checkout formulier detecteert of klant is ingelogd",
+        "Ingelogd: pre-fill naam, email, adres uit WooCommerce klantdata",
+        "Niet ingelogd: leeg formulier (huidige werking behouden)",
+        "Optioneel: 'Log in voor sneller afrekenen' link boven formulier",
+        "Na checkout: order wordt gekoppeld aan WooCommerce customer ID",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 9,
+      "passes": false
+    },
+    {
+      "id": "AUTH-010",
+      "title": "Environment variables en documentatie",
+      "description": "Documenteer alle auth-gerelateerde environment variables. Update README met auth setup instructies.",
+      "acceptanceCriteria": [
+        ".env.example bijgewerkt met AUTH_SECRET, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, RESEND_API_KEY, AUTH_EMAIL_FROM",
+        "README.md sectie over auth setup (Google OAuth console setup, Resend setup)",
+        "lib/env.ts bijgewerkt met validatie voor nieuwe variabelen",
+        "npm run typecheck slaagt",
+        "npm run build slaagt"
+      ],
+      "priority": 10,
+      "passes": false
+    }
+  ]
+}

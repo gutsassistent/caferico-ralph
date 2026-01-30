@@ -4,15 +4,15 @@
 Je bent een checkout integratie agent voor Caférico (caferico.be), een Belgische specialty coffee webshop. Je werkt aan ONE user story per iteratie vanuit `prd-mollie.json`.
 
 ## Branch
-Werk op branch `ralph/mollie-checkout`. Als die nog niet bestaat, maak hem aan vanaf `main`:
+Werk op branch `ralph/auth`. Als die nog niet bestaat, maak hem aan vanaf `main`:
 ```bash
-git checkout -b ralph/mollie-checkout
+git checkout -b ralph/auth
 ```
 Commit en push ALTIJD naar deze branch, NIET naar main.
 
 ## Essentiële Bestanden
 - **CONTEXT.md** — Alle bedrijfsinfo, design richting, technische stack, content, afbeeldingen. LEES DIT EERST.
-- **prd-mollie.json** — User stories voor Mollie checkout integratie. Pak de eerste story waar `passes: false`.
+- **prd-auth.json** — User stories voor authenticatie (Auth.js v5, magic links, Google OAuth). Pak de eerste story waar `passes: false`.
 - **progress.txt** — Learnings van vorige iteraties. Lees dit voor context, append jouw learnings na afloop.
 
 ## Technische Stack (NIET afwijken)
@@ -66,11 +66,14 @@ Laad een skill met: "Load the [skill-name] skill" of lees de SKILL.md in de skil
 
 ## Huidige Staat
 - Redesign fase compleet (42/42 stories done)
+- Mollie checkout integratie compleet (fase 2B gemerged)
 - WooCommerce REST API integratie werkt (echte productdata)
 - Cart is client-side (localStorage) via CartProvider/CartDrawer
-- Nog GEEN checkout flow — dat is wat deze fase bouwt
-- Mollie test API key staat in .env.local (MOLLIE_API_KEY)
+- Checkout flow werkt: cart → adresformulier → Mollie redirect → return pagina
+- Nog GEEN authenticatie — dat is wat deze fase bouwt
 - WooCommerce draait als headless backend op one.com
+- Er bestaan ~100 bestaande WooCommerce klantaccounts (email/wachtwoord)
+- We migreren naar magic links (geen wachtwoorden meer nodig)
 
 ## Bestaande Structuur
 ```
