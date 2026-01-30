@@ -10,6 +10,7 @@ export type CartItem = {
   grind: GrindOption | null;
   weight: WeightOption | null;
   quantity: number;
+  image?: string;
 };
 
 export type CartItemInput = Omit<CartItem, 'quantity'> & { quantity?: number };

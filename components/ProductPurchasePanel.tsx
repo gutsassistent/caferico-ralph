@@ -49,6 +49,7 @@ type ProductPurchasePanelProps = {
     price: number;
     type: string;
     collection: string;
+    image?: string;
     groupedChildren: GroupedChild[];
   };
 };
@@ -144,7 +145,8 @@ export default function ProductPurchasePanel({ product }: ProductPurchasePanelPr
             collection: product.collection,
             grind: null,
             weight: null,
-            quantity: qty
+            quantity: qty,
+            image: product.image,
           });
         }
       }
@@ -157,7 +159,8 @@ export default function ProductPurchasePanel({ product }: ProductPurchasePanelPr
         collection: product.collection,
         grind,
         weight,
-        quantity
+        quantity,
+        image: product.image,
       });
     } else {
       addItem({
@@ -168,7 +171,8 @@ export default function ProductPurchasePanel({ product }: ProductPurchasePanelPr
         collection: product.collection,
         grind: isCoffeeProduct ? grind : null,
         weight: isCoffeeProduct ? weight : null,
-        quantity
+        quantity,
+        image: product.image,
       });
     }
     showToast(t('purchase.addedToCart'), 'success');

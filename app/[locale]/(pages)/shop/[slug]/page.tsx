@@ -224,6 +224,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                   price: product.price,
                   type: product.type,
                   collection: product.collection,
+                  image: product.images[0]?.src,
                   groupedChildren: product.grouped_children
                 }}
               />

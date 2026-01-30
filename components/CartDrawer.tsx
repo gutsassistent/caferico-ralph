@@ -4,6 +4,7 @@ import { useEffect, useMemo } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { Link, useRouter } from '@/i18n/routing';
 import { useCart } from '@/components/CartProvider';
+import Image from 'next/image';
 import { isCoffee } from '@/types/product';
 import { calculateShipping, amountUntilFreeShipping, FREE_SHIPPING_THRESHOLD } from '@/lib/shipping';
 
@@ -113,9 +114,21 @@ export default function CartDrawer() {
                 className="border-b border-cream/10 pb-6 last:border-b-0 last:pb-0"
               >
                 <div className="flex gap-4">
-                  <div className="relative h-24 w-20 overflow-hidden rounded-2xl border border-cream/10 bg-gradient-to-br from-espresso via-surface-mid to-noir">
-                    <div className="absolute inset-0 bg-coffee-grain opacity-40" />
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,165,116,0.25),_transparent_60%)]" />
+                  <div className="relative h-24 w-20 flex-shrink-0 overflow-hidden rounded-2xl border border-cream/10 bg-gradient-to-br from-espresso via-surface-mid to-noir">
+                    {item.image ? (
+                      <Image
+                        src={item.image}
+                        alt={item.name}
+                        fill
+                        className="object-cover"
+                        sizes="80px"
+                      />
+                    ) : (
+                      <>
+                        <div className="absolute inset-0 bg-coffee-grain opacity-40" />
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,165,116,0.25),_transparent_60%)]" />
+                      </>
+                    )}
                   </div>
                   <div className="flex-1 space-y-3">
                     <div className="flex items-start justify-between gap-3">
