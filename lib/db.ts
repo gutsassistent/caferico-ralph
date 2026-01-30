@@ -19,10 +19,3 @@ export function getDb(): PostgresJsDatabase<typeof schema> {
   _db = drizzle(client, { schema });
   return _db;
 }
-
-// For backward compatibility
-export const db = new Proxy({} as PostgresJsDatabase<typeof schema>, {
-  get(_, prop) {
-    return (getDb() as unknown as Record<string | symbol, unknown>)[prop];
-  },
-});
