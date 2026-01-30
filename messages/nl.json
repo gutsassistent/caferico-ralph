@@ -989,6 +989,21 @@
       "shipping": "Verzending",
       "shippingNote": "Berekend bij betaling",
       "total": "Totaal"
+    },
+    "return": {
+      "eyebrow": "Bestelling",
+      "title": "Betalingsstatus",
+      "loading": "Betalingsstatus ophalen...",
+      "paidTitle": "Bedankt voor je bestelling!",
+      "paidDescription": "Je betaling is ontvangen. We gaan meteen aan de slag met het branden en verpakken van je koffie.",
+      "orderNumber": "Bestelnummer",
+      "pendingTitle": "Betaling in afwachting",
+      "pendingDescription": "Je betaling wordt nog verwerkt. Je ontvangt een bevestiging per e-mail zodra de betaling is afgerond.",
+      "failedTitle": "Betaling mislukt",
+      "failedDescription": "Je betaling kon niet worden verwerkt. Probeer het opnieuw of kies een andere betaalmethode.",
+      "ctaHome": "Naar Home",
+      "ctaShop": "Verder winkelen",
+      "ctaRetry": "Opnieuw proberen"
     }
   },
   "Seo": {
@@ -1036,6 +1051,10 @@
     "checkout": {
       "title": "Afrekenen",
       "description": "Rond je bestelling af bij Café RICO. Veilig betalen via Mollie."
+    },
+    "checkoutReturn": {
+      "title": "Betalingsstatus",
+      "description": "Bekijk de status van je betaling bij Café RICO."
     }
   }
 }

@@ -989,6 +989,21 @@
       "shipping": "Shipping",
       "shippingNote": "Calculated at payment",
       "total": "Total"
+    },
+    "return": {
+      "eyebrow": "Order",
+      "title": "Payment Status",
+      "loading": "Checking payment status...",
+      "paidTitle": "Thank you for your order!",
+      "paidDescription": "Your payment has been received. We'll start roasting and packing your coffee right away.",
+      "orderNumber": "Order number",
+      "pendingTitle": "Payment pending",
+      "pendingDescription": "Your payment is still being processed. You'll receive a confirmation email once the payment is complete.",
+      "failedTitle": "Payment failed",
+      "failedDescription": "Your payment could not be processed. Please try again or choose a different payment method.",
+      "ctaHome": "Go to Home",
+      "ctaShop": "Continue shopping",
+      "ctaRetry": "Try again"
     }
   },
   "Seo": {
@@ -1036,6 +1051,10 @@
     "checkout": {
       "title": "Checkout",
       "description": "Complete your order at Café RICO. Secure payment via Mollie."
+    },
+    "checkoutReturn": {
+      "title": "Payment Status",
+      "description": "Check the status of your payment at Café RICO."
     }
   }
 }

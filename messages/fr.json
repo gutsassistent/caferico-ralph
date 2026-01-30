@@ -989,6 +989,21 @@
       "shipping": "Livraison",
       "shippingNote": "Calculé au paiement",
       "total": "Total"
+    },
+    "return": {
+      "eyebrow": "Commande",
+      "title": "Statut du paiement",
+      "loading": "Vérification du statut de paiement...",
+      "paidTitle": "Merci pour votre commande !",
+      "paidDescription": "Votre paiement a été reçu. Nous commençons immédiatement à torréfier et emballer votre café.",
+      "orderNumber": "Numéro de commande",
+      "pendingTitle": "Paiement en attente",
+      "pendingDescription": "Votre paiement est en cours de traitement. Vous recevrez un e-mail de confirmation dès que le paiement sera finalisé.",
+      "failedTitle": "Paiement échoué",
+      "failedDescription": "Votre paiement n'a pas pu être traité. Veuillez réessayer ou choisir un autre mode de paiement.",
+      "ctaHome": "Retour à l'accueil",
+      "ctaShop": "Continuer les achats",
+      "ctaRetry": "Réessayer"
     }
   },
   "Seo": {
@@ -1036,6 +1051,10 @@
     "checkout": {
       "title": "Paiement",
       "description": "Finalisez votre commande chez Café RICO. Paiement sécurisé via Mollie."
+    },
+    "checkoutReturn": {
+      "title": "Statut du paiement",
+      "description": "Consultez le statut de votre paiement chez Café RICO."
     }
   }
 }

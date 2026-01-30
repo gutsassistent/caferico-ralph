@@ -604,3 +604,21 @@ Remaining: 42
 - Added form.submitting and form.errorGeneric i18n keys in all 4 languages (NL, EN, FR, ES)
 - Submit button gets disabled:cursor-not-allowed disabled:opacity-60 during loading
 - typecheck ✅ build ✅
+
+### MOL-005: Return pagina — betaling bevestiging ✅
+- Created return page at app/[locale]/(pages)/checkout/return/page.tsx (server component)
+- Created CheckoutReturn client component with status-based UI (paid/pending/failed/canceled/expired/error)
+- Reads payment ID from URL query param (?id=tr_xxx)
+- Fetches status from GET /api/checkout/status?id=tr_xxx
+- Created API route app/api/checkout/status/route.ts: validates payment ID format (tr_xxx), fetches from Mollie API, maps statuses
+- Paid state: green checkmark, thank you message, order number display, cart cleared automatically, CTAs to home + shop
+- Pending state: yellow clock icon, message about processing, CTA to home
+- Failed/canceled/expired state: red X icon, error message, CTAs to retry (checkout) + home
+- Loading state: gold spinner while fetching status
+- Added clearCart() method to CartProvider (was missing), cart cleared on paid status only (once via cleared flag)
+- Hero section with parallax orbs, matching checkout page pattern
+- SEO metadata via generatePageMetadata with checkoutReturn page key
+- Breadcrumb structured data (Home → Checkout → Payment Status)
+- Added Checkout.return.* i18n keys in all 4 languages (NL, EN, FR, ES): 13 keys each
+- Added Seo.checkoutReturn i18n keys in all 4 languages
+- typecheck ✅ build ✅

@@ -15,6 +15,7 @@ type CartContextValue = {
   addItem: (item: CartItemInput) => void;
   removeItem: (item: Pick<CartItem, 'id' | 'grind' | 'weight'>) => void;
   updateItemQuantity: (item: Pick<CartItem, 'id' | 'grind' | 'weight'>, quantity: number) => void;
+  clearCart: () => void;
 };
 
 const CART_STORAGE_KEY = 'caferico.cart';
@@ -151,6 +152,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setItems((current) => current.filter((existing) => getItemKey(existing) !== getItemKey(item)));
   }, []);
 
+  const clearCart = useCallback(() => {
+    setItems([]);
+  }, []);
+
   const updateItemQuantity = useCallback(
     (item: Pick<CartItem, 'id' | 'grind' | 'weight'>, quantity: number) => {
       setItems((current) => {
@@ -179,7 +184,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
       toggleCart,
       addItem,
       removeItem,
-      updateItemQuantity
+      updateItemQuantity,
+      clearCart
     }),
     [
       items,
@@ -191,7 +197,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
       toggleCart,
       addItem,
       removeItem,
-      updateItemQuantity
+      updateItemQuantity,
+      clearCart
     ]
   );
 
