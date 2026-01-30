@@ -6,12 +6,16 @@
     {
       "id": "AUTH-001",
       "title": "Auth.js v5 installatie en basisconfiguratie",
-      "description": "Installeer next-auth@beta (Auth.js v5) en configureer de basis: auth config, session provider, middleware. Gebruik een simpele in-memory adapter voor nu (geen database nodig).",
+      "description": "Installeer next-auth@beta (Auth.js v5) met Drizzle adapter en PostgreSQL. Configureer de basis: auth config, database schema, session provider, middleware.",
       "acceptanceCriteria": [
         "next-auth@beta is geïnstalleerd",
-        "lib/auth.ts bevat Auth.js configuratie met session strategy 'jwt'",
+        "drizzle-orm, @auth/drizzle-adapter, pg (of postgres) driver geïnstalleerd",
+        "lib/db.ts: database connectie via DATABASE_URL environment variable",
+        "lib/schema.ts: Auth.js database schema (users, accounts, sessions, verification_tokens) via Drizzle",
+        "drizzle.config.ts aangemaakt voor migraties",
+        "lib/auth.ts bevat Auth.js configuratie met Drizzle adapter en session strategy 'jwt'",
         "app/api/auth/[...nextauth]/route.ts handler is aangemaakt",
-        "AUTH_SECRET environment variable gedocumenteerd in .env.example",
+        "AUTH_SECRET en DATABASE_URL environment variables gedocumenteerd in .env.example",
         "SessionProvider wraps de app in layout.tsx",
         "Middleware in middleware.ts voor beschermde routes (voorlopig alleen /account)",
         "npm run typecheck slaagt",
@@ -164,8 +168,8 @@
       "title": "Environment variables en documentatie",
       "description": "Documenteer alle auth-gerelateerde environment variables. Update README met auth setup instructies.",
       "acceptanceCriteria": [
-        ".env.example bijgewerkt met AUTH_SECRET, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, RESEND_API_KEY, AUTH_EMAIL_FROM",
-        "README.md sectie over auth setup (Google OAuth console setup, Resend setup)",
+        ".env.example bijgewerkt met AUTH_SECRET, DATABASE_URL, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, RESEND_API_KEY, AUTH_EMAIL_FROM",
+        "README.md sectie over auth setup (PostgreSQL via Coolify, Google OAuth console setup, Resend setup)",
         "lib/env.ts bijgewerkt met validatie voor nieuwe variabelen",
         "npm run typecheck slaagt",
         "npm run build slaagt"
