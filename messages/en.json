@@ -947,6 +947,48 @@
       "button": "Contact us"
     }
   },
+  "Checkout": {
+    "hero": {
+      "eyebrow": "Checkout",
+      "title": "Checkout",
+      "description": "Fill in your details to complete your order."
+    },
+    "form": {
+      "eyebrow": "Shipping details",
+      "title": "Your details",
+      "description": "Fill in the fields below to proceed to payment.",
+      "submit": "Proceed to payment"
+    },
+    "fields": {
+      "firstName": { "label": "First name", "placeholder": "John" },
+      "lastName": { "label": "Last name", "placeholder": "Smith" },
+      "email": { "label": "Email address", "placeholder": "john@example.com" },
+      "street": { "label": "Street + number", "placeholder": "Main Street 12" },
+      "postalCode": { "label": "Postal code", "placeholder": "1000" },
+      "city": { "label": "City", "placeholder": "Brussels" },
+      "country": { "label": "Country" },
+      "phone": { "label": "Phone", "optional": "optional", "placeholder": "+32 470 00 00 00" }
+    },
+    "validation": {
+      "firstNameRequired": "Please enter your first name.",
+      "lastNameRequired": "Please enter your last name.",
+      "emailRequired": "Please enter your email address.",
+      "emailInvalid": "Please enter a valid email address.",
+      "streetRequired": "Please enter your street and house number.",
+      "postalCodeRequired": "Please enter your postal code.",
+      "postalCodeInvalid": "Invalid postal code for this country.",
+      "cityRequired": "Please enter your city."
+    },
+    "summary": {
+      "eyebrow": "Order summary",
+      "title": "Your order",
+      "quantity": "Quantity",
+      "subtotal": "Subtotal",
+      "shipping": "Shipping",
+      "shippingNote": "Calculated at payment",
+      "total": "Total"
+    }
+  },
   "Seo": {
     "keywords": "organic coffee, specialty coffee, Honduras, fair trade, coffee subscription, Café RICO, coffee beans, ground coffee",
     "home": {
@@ -988,6 +1030,10 @@
     "locations": {
       "title": "Locations",
       "description": "Find Café RICO at selected shops across Belgium. From Antwerp to Ghent, from farm markets to organic stores."
+    },
+    "checkout": {
+      "title": "Checkout",
+      "description": "Complete your order at Café RICO. Secure payment via Mollie."
     }
   }
 }

@@ -947,6 +947,48 @@
       "button": "Nous contacter"
     }
   },
+  "Checkout": {
+    "hero": {
+      "eyebrow": "Paiement",
+      "title": "Passer au paiement",
+      "description": "Remplissez vos coordonnées pour finaliser votre commande."
+    },
+    "form": {
+      "eyebrow": "Coordonnées de livraison",
+      "title": "Vos coordonnées",
+      "description": "Remplissez les champs ci-dessous pour procéder au paiement.",
+      "submit": "Procéder au paiement"
+    },
+    "fields": {
+      "firstName": { "label": "Prénom", "placeholder": "Jean" },
+      "lastName": { "label": "Nom", "placeholder": "Dupont" },
+      "email": { "label": "Adresse e-mail", "placeholder": "jean@exemple.be" },
+      "street": { "label": "Rue + numéro", "placeholder": "Rue de l'Église 12" },
+      "postalCode": { "label": "Code postal", "placeholder": "1000" },
+      "city": { "label": "Ville", "placeholder": "Bruxelles" },
+      "country": { "label": "Pays" },
+      "phone": { "label": "Téléphone", "optional": "facultatif", "placeholder": "+32 470 00 00 00" }
+    },
+    "validation": {
+      "firstNameRequired": "Veuillez entrer votre prénom.",
+      "lastNameRequired": "Veuillez entrer votre nom.",
+      "emailRequired": "Veuillez entrer votre adresse e-mail.",
+      "emailInvalid": "Veuillez entrer une adresse e-mail valide.",
+      "streetRequired": "Veuillez entrer votre rue et numéro.",
+      "postalCodeRequired": "Veuillez entrer votre code postal.",
+      "postalCodeInvalid": "Code postal invalide pour ce pays.",
+      "cityRequired": "Veuillez entrer votre ville."
+    },
+    "summary": {
+      "eyebrow": "Résumé de commande",
+      "title": "Votre commande",
+      "quantity": "Quantité",
+      "subtotal": "Sous-total",
+      "shipping": "Livraison",
+      "shippingNote": "Calculé au paiement",
+      "total": "Total"
+    }
+  },
   "Seo": {
     "keywords": "café biologique, specialty coffee, Honduras, commerce équitable, abonnement café, Café RICO, grains de café, café moulu",
     "home": {
@@ -988,6 +1030,10 @@
     "locations": {
       "title": "Points de Vente",
       "description": "Trouvez Café RICO dans des boutiques sélectionnées en Belgique. D'Anvers à Gand, des marchés fermiers aux magasins bio."
+    },
+    "checkout": {
+      "title": "Paiement",
+      "description": "Finalisez votre commande chez Café RICO. Paiement sécurisé via Mollie."
     }
   }
 }

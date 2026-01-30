@@ -947,6 +947,48 @@
       "button": "Contáctanos"
     }
   },
+  "Checkout": {
+    "hero": {
+      "eyebrow": "Pago",
+      "title": "Finalizar compra",
+      "description": "Completa tus datos para finalizar tu pedido."
+    },
+    "form": {
+      "eyebrow": "Datos de envío",
+      "title": "Tus datos",
+      "description": "Completa los campos a continuación para proceder al pago.",
+      "submit": "Proceder al pago"
+    },
+    "fields": {
+      "firstName": { "label": "Nombre", "placeholder": "Juan" },
+      "lastName": { "label": "Apellido", "placeholder": "García" },
+      "email": { "label": "Correo electrónico", "placeholder": "juan@ejemplo.com" },
+      "street": { "label": "Calle + número", "placeholder": "Calle Mayor 12" },
+      "postalCode": { "label": "Código postal", "placeholder": "1000" },
+      "city": { "label": "Ciudad", "placeholder": "Bruselas" },
+      "country": { "label": "País" },
+      "phone": { "label": "Teléfono", "optional": "opcional", "placeholder": "+32 470 00 00 00" }
+    },
+    "validation": {
+      "firstNameRequired": "Introduce tu nombre.",
+      "lastNameRequired": "Introduce tu apellido.",
+      "emailRequired": "Introduce tu correo electrónico.",
+      "emailInvalid": "Introduce un correo electrónico válido.",
+      "streetRequired": "Introduce tu calle y número.",
+      "postalCodeRequired": "Introduce tu código postal.",
+      "postalCodeInvalid": "Código postal inválido para este país.",
+      "cityRequired": "Introduce tu ciudad."
+    },
+    "summary": {
+      "eyebrow": "Resumen del pedido",
+      "title": "Tu pedido",
+      "quantity": "Cantidad",
+      "subtotal": "Subtotal",
+      "shipping": "Envío",
+      "shippingNote": "Calculado en el pago",
+      "total": "Total"
+    }
+  },
   "Seo": {
     "keywords": "café orgánico, specialty coffee, Honduras, comercio justo, suscripción café, Café RICO, granos de café, café molido",
     "home": {
@@ -988,6 +1030,10 @@
     "locations": {
       "title": "Puntos de Venta",
       "description": "Encuentra Café RICO en tiendas seleccionadas en Bélgica. De Amberes a Gante, de mercados agrícolas a tiendas ecológicas."
+    },
+    "checkout": {
+      "title": "Pago",
+      "description": "Completa tu pedido en Café RICO. Pago seguro a través de Mollie."
     }
   }
 }

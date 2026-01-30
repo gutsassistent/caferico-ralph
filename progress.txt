@@ -562,3 +562,21 @@ Remaining: 42
 - Throws descriptive error if key is missing (with link to Mollie dashboard)
 - Pattern follows existing lib/woocommerce.ts style
 - typecheck ✅ build ✅
+
+### MOL-002: Checkout pagina — adresgegevens formulier ✅
+- Created checkout page at app/[locale]/(pages)/checkout/page.tsx (server component)
+- Created CheckoutForm client component with full address form
+- Form fields: firstName, lastName, email, street, postalCode, city, country (dropdown, default BE), phone (optional)
+- Client-side validation: required fields, email format (regex), postcode format per country (BE/NL/LU/DE patterns)
+- Country dropdown supports BE, NL, LU, DE with native labels
+- Cart summary panel: sticky on desktop (lg:sticky lg:top-28), shows items with grind/weight details, subtotal, shipping note, total
+- Layout: 2-col on desktop (form left, summary right), single col on mobile
+- Redirect to homepage if cart is empty (useEffect with router.replace)
+- Hero section with parallax orbs, matching existing page patterns (contact, faq)
+- Breadcrumb structured data (JSON-LD)
+- SEO metadata via generatePageMetadata
+- Added Checkout.* i18n keys in all 4 languages (NL, EN, FR, ES)
+- Added Seo.checkout i18n keys in all 4 languages
+- Form submit currently logs to console (MOL-004 will wire to /api/checkout)
+- Follows ContactForm patterns: inputBase/inputError/inputDefault styling, aria attributes, error messages
+- typecheck ✅ build ✅
