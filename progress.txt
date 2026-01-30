@@ -580,3 +580,16 @@ Remaining: 42
 - Form submit currently logs to console (MOL-004 will wire to /api/checkout)
 - Follows ContactForm patterns: inputBase/inputError/inputDefault styling, aria attributes, error messages
 - typecheck ✅ build ✅
+
+### MOL-003: API route — Mollie payment aanmaken ✅
+- Created app/api/checkout/route.ts with POST handler
+- Accepts JSON body: { items: CheckoutItem[], customer: CheckoutCustomer, locale?: string }
+- Server-side price verification: fetches prices from WooCommerce API, falls back to mock-products.json
+- Total calculated server-side using verified prices (never trusts client-side amount)
+- Creates Mollie payment with: amount (EUR), description, redirectUrl (/{locale}/checkout/return?id={id}), webhookUrl (/api/webhook/mollie), metadata (items + customer JSON)
+- Returns { checkoutUrl, paymentId } on success
+- Input validation: required customer fields, email format, non-empty items array, quantity >= 1
+- Error handling: 400 for validation errors, 500 for Mollie/server errors with descriptive messages
+- Base URL from NEXT_PUBLIC_BASE_URL env var (fallback localhost:3000)
+- Handles both WooCommerce string prices and mock data number prices
+- typecheck ✅ build ✅

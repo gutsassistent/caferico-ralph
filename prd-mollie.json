@@ -51,7 +51,7 @@
         "npm run build slaagt"
       ],
       "priority": 3,
-      "passes": false
+      "passes": true
     },
     {
       "id": "MOL-004",
