@@ -36,6 +36,31 @@ const SERVER_ENV_VARS: EnvVar[] = [
     required: false,
     hint: 'Public URL for Mollie redirects/webhooks. Defaults to http://localhost:3000',
   },
+  {
+    name: 'AUTH_SECRET',
+    required: true,
+    hint: 'Generate with: npx auth secret',
+  },
+  {
+    name: 'GOOGLE_CLIENT_ID',
+    required: false,
+    hint: 'Google OAuth client ID from https://console.cloud.google.com/apis/credentials',
+  },
+  {
+    name: 'GOOGLE_CLIENT_SECRET',
+    required: false,
+    hint: 'Google OAuth client secret from https://console.cloud.google.com/apis/credentials',
+  },
+  {
+    name: 'RESEND_API_KEY',
+    required: false,
+    hint: 'Resend API key for magic link emails from https://resend.com/api-keys',
+  },
+  {
+    name: 'AUTH_EMAIL_FROM',
+    required: false,
+    hint: 'Sender address for magic link emails (e.g. Café RICO <noreply@caferico.be>)',
+  },
 ];
 
 export function validateEnv(): void {

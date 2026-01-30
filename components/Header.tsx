@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import { Link, usePathname, useRouter } from '@/i18n/routing';
 import { useSearchParams } from 'next/navigation';
+import { useSession, signOut } from 'next-auth/react';
 import { useCart } from '@/components/CartProvider';
 import { locales } from '@/lib/i18n';
 import { navItems } from '@/lib/navigation';
@@ -16,9 +17,11 @@ export default function Header() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { totalItems, openCart } = useCart();
+  const { data: session, status: authStatus } = useSession();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
+  const [accountOpen, setAccountOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [cartBounce, setCartBounce] = useState(false);
   const prevTotalRef = useRef(totalItems);
@@ -70,6 +73,14 @@ export default function Header() {
     document.addEventListener('click', handleClick);
     return () => document.removeEventListener('click', handleClick);
   }, [langOpen]);
+
+  // Close account dropdown on outside click
+  useEffect(() => {
+    if (!accountOpen) return;
+    const handleClick = () => setAccountOpen(false);
+    document.addEventListener('click', handleClick);
+    return () => document.removeEventListener('click', handleClick);
+  }, [accountOpen]);
 
   const navLinks = useMemo(
     () =>
@@ -234,23 +245,90 @@ export default function Header() {
               </button>
 
               {/* Account button */}
-              <button
-                type="button"
-                className="hidden h-11 w-11 items-center justify-center rounded-full border border-cream/20 text-cream/80 transition-all duration-300 hover:border-gold/50 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 sm:inline-flex"
-                aria-label={t('actions.account')}
-              >
-                <svg
-                  aria-hidden="true"
-                  viewBox="0 0 24 24"
-                  className="h-5 w-5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
+              {authStatus === 'loading' ? (
+                <div className="hidden h-11 w-11 items-center justify-center rounded-full border border-cream/20 sm:inline-flex">
+                  <div className="h-5 w-5 animate-pulse rounded-full bg-cream/20" />
+                </div>
+              ) : session ? (
+                <div className="relative hidden sm:block">
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setAccountOpen((v) => !v);
+                    }}
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-cream/20 transition-all duration-300 hover:border-gold/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60"
+                    aria-label={t('actions.account')}
+                    aria-expanded={accountOpen}
+                  >
+                    {session.user?.image ? (
+                      <Image
+                        src={session.user.image}
+                        alt=""
+                        width={32}
+                        height={32}
+                        className="h-8 w-8 rounded-full"
+                      />
+                    ) : (
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gold/20 text-sm font-semibold text-gold">
+                        {(session.user?.name?.[0] || session.user?.email?.[0] || 'U').toUpperCase()}
+                      </span>
+                    )}
+                  </button>
+
+                  {/* Account dropdown */}
+                  <div
+                    className={`absolute right-0 top-full mt-2 min-w-[180px] overflow-hidden rounded-xl border border-cream/10 bg-noir/95 shadow-[0_8px_30px_rgba(0,0,0,0.4)] backdrop-blur-md transition-all duration-200 ${
+                      accountOpen
+                        ? 'pointer-events-auto translate-y-0 opacity-100'
+                        : 'pointer-events-none -translate-y-2 opacity-0'
+                    }`}
+                  >
+                    <Link
+                      href="/account"
+                      className="flex w-full items-center gap-2 px-4 py-2.5 text-left text-sm text-cream/70 transition-colors duration-200 hover:bg-cream/5 hover:text-cream focus:outline-none focus-visible:bg-cream/5"
+                      onClick={() => setAccountOpen(false)}
+                    >
+                      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                        <path d="M20 20a8 8 0 1 0-16 0" strokeLinecap="round" strokeLinejoin="round" />
+                        <circle cx="12" cy="8" r="3" />
+                      </svg>
+                      {t('actions.myAccount')}
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setAccountOpen(false);
+                        signOut({ callbackUrl: '/' });
+                      }}
+                      className="flex w-full items-center gap-2 border-t border-cream/10 px-4 py-2.5 text-left text-sm text-cream/70 transition-colors duration-200 hover:bg-cream/5 hover:text-cream focus:outline-none focus-visible:bg-cream/5"
+                    >
+                      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                        <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      {t('actions.logout')}
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  href="/login"
+                  className="hidden h-11 w-11 items-center justify-center rounded-full border border-cream/20 text-cream/80 transition-all duration-300 hover:border-gold/50 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 sm:inline-flex"
+                  aria-label={t('actions.login')}
                 >
-                  <path d="M20 20a8 8 0 1 0-16 0" strokeLinecap="round" strokeLinejoin="round" />
-                  <circle cx="12" cy="8" r="3" />
-                </svg>
-              </button>
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    className="h-5 w-5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  >
+                    <path d="M20 20a8 8 0 1 0-16 0" strokeLinecap="round" strokeLinejoin="round" />
+                    <circle cx="12" cy="8" r="3" />
+                  </svg>
+                </Link>
+              )}
 
               {/* Mobile hamburger */}
               <button
@@ -348,6 +426,51 @@ export default function Header() {
               </Link>
             ))}
           </nav>
+
+          {/* Account (mobile) */}
+          <div className="border-t border-cream/10 px-6 py-4">
+            {session ? (
+              <div className="flex flex-col gap-1">
+                <Link
+                  href="/account"
+                  className="flex items-center gap-3 rounded-lg px-4 py-3 text-base text-cream/70 transition-colors duration-200 hover:bg-cream/5 hover:text-cream"
+                >
+                  {session.user?.image ? (
+                    <Image src={session.user.image} alt="" width={28} height={28} className="h-7 w-7 rounded-full" />
+                  ) : (
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gold/20 text-xs font-semibold text-gold">
+                      {(session.user?.name?.[0] || session.user?.email?.[0] || 'U').toUpperCase()}
+                    </span>
+                  )}
+                  {t('actions.myAccount')}
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileOpen(false);
+                    signOut({ callbackUrl: '/' });
+                  }}
+                  className="flex items-center gap-3 rounded-lg px-4 py-3 text-base text-cream/70 transition-colors duration-200 hover:bg-cream/5 hover:text-cream"
+                >
+                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  {t('actions.logout')}
+                </button>
+              </div>
+            ) : (
+              <Link
+                href="/login"
+                className="flex items-center gap-3 rounded-lg px-4 py-3 text-base text-cream/70 transition-colors duration-200 hover:bg-cream/5 hover:text-cream"
+              >
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M20 20a8 8 0 1 0-16 0" strokeLinecap="round" strokeLinejoin="round" />
+                  <circle cx="12" cy="8" r="3" />
+                </svg>
+                {t('actions.login')}
+              </Link>
+            )}
+          </div>
 
           {/* Language switcher (mobile) */}
           <div className="border-t border-cream/10 px-6 py-6">

@@ -520,7 +520,10 @@
       "cart": "Panier",
       "account": "Compte",
       "menu": "Menu",
-      "closeMenu": "Fermer le menu"
+      "closeMenu": "Fermer le menu",
+      "login": "Se connecter",
+      "logout": "Se déconnecter",
+      "myAccount": "Mon compte"
     },
     "footer": {
       "tagline": "Café de spécialité belge, torréfié avec intention.",
@@ -962,7 +965,8 @@
       "description": "Remplissez les champs ci-dessous pour procéder au paiement.",
       "submit": "Procéder au paiement",
       "submitting": "Traitement en cours...",
-      "errorGeneric": "Une erreur est survenue. Veuillez réessayer."
+      "errorGeneric": "Une erreur est survenue. Veuillez réessayer.",
+      "loginPrompt": "Connectez-vous pour un paiement plus rapide"
     },
     "fields": {
       "firstName": { "label": "Prénom", "placeholder": "Jean" },
@@ -1009,6 +1013,53 @@
       "ctaHome": "Retour à l'accueil",
       "ctaShop": "Continuer les achats",
       "ctaRetry": "Réessayer"
+    }
+  },
+  "Account": {
+    "eyebrow": "Mon compte",
+    "title": "Compte",
+    "tabs": {
+      "profile": "Profil",
+      "orders": "Commandes"
+    },
+    "billingAddress": "Adresse de facturation",
+    "shippingAddress": "Adresse de livraison",
+    "noAddress": "Aucune adresse enregistrée.",
+    "logout": "Se déconnecter",
+    "orders": {
+      "empty": "Vous n'avez pas encore passé de commande.",
+      "items": "Articles",
+      "total": "Total",
+      "status": {
+        "processing": "En traitement",
+        "completed": "Terminée",
+        "on-hold": "En attente",
+        "pending": "En cours",
+        "cancelled": "Annulée",
+        "refunded": "Remboursée",
+        "failed": "Échouée"
+      }
+    }
+  },
+  "Login": {
+    "eyebrow": "Compte",
+    "title": "Se connecter",
+    "subtitle": "Connectez-vous avec votre adresse e-mail ou votre compte Google.",
+    "form": {
+      "emailLabel": "Adresse e-mail",
+      "emailPlaceholder": "votre@email.be",
+      "emailRequired": "Veuillez entrer une adresse e-mail.",
+      "emailInvalid": "Adresse e-mail invalide.",
+      "magicLinkButton": "Envoyer le lien magique",
+      "sending": "Envoi en cours...",
+      "googleButton": "Se connecter avec Google",
+      "divider": "ou",
+      "errorGeneric": "Une erreur est survenue. Veuillez réessayer."
+    },
+    "magicSent": {
+      "title": "Vérifiez votre boîte mail",
+      "description": "Nous avons envoyé un lien de connexion à votre adresse e-mail. Cliquez sur le lien pour vous connecter.",
+      "hint": "Pas d'e-mail reçu ? Vérifiez vos spams ou réessayez."
     }
   },
   "Seo": {
@@ -1060,6 +1111,14 @@
     "checkoutReturn": {
       "title": "Statut du paiement",
       "description": "Consultez le statut de votre paiement chez Café RICO."
+    },
+    "login": {
+      "title": "Se connecter",
+      "description": "Connectez-vous à Café RICO avec votre e-mail ou compte Google."
+    },
+    "account": {
+      "title": "Mon Compte",
+      "description": "Consultez votre profil, adresses et commandes chez Café RICO."
     }
   }
 }

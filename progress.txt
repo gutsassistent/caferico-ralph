@@ -680,3 +680,134 @@ Remaining: 42
 - Updated README.md: added Environment Variables table, Mollie Setup section (account creation, API keys, checkout flow, going live), updated project structure
 - NEXT_PUBLIC_BASE_URL marked as optional (defaults to localhost:3000)
 - typecheck ✅ build ✅
+
+### AUTH-001: Auth.js v5 installatie en basisconfiguratie ✅
+- Installed next-auth@beta (Auth.js v5)
+- Created lib/auth.ts with JWT session strategy, empty providers array (to be filled by AUTH-002/003), custom signIn page pointing to /login
+- Created app/api/auth/[...nextauth]/route.ts exporting GET/POST handlers
+- Created components/AuthSessionProvider.tsx ('use client' wrapper around SessionProvider)
+- Wrapped app layout with AuthSessionProvider (outermost wrapper around NextIntlClientProvider)
+- Updated middleware.ts: combined auth() wrapper with next-intl middleware, protects /account routes (redirects to /login with callbackUrl)
+- Added AUTH_SECRET to .env.example with generation hint (npx auth secret)
+- typecheck ✅ build ✅
+
+### AUTH-002: Google OAuth provider ✅
+- Added Google provider to lib/auth.ts with clientId/clientSecret from env vars
+- JWT callback: on signIn trigger, calls getOrCreateCustomer() to look up or create WooCommerce customer by email
+- WooCommerce customer ID stored in JWT token as wcCustomerId, passed to session
+- Created lib/woocommerce-customers.ts with getCustomerByEmail(), createCustomer(), getOrCreateCustomer() helpers
+- Uses WooCommerce REST API (same auth pattern as existing woocommerce.ts)
+- Added GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to .env.example
+- Error handling: WooCommerce customer lookup failure doesn't block login (logged, not thrown)
+- Session type extended via `any` cast for wcCustomerId (proper next-auth module augmentation deferred to AUTH-004)
+- typecheck ✅ build ✅
+
+### AUTH-003: Magic link provider (Resend) ✅
+- See AUTH-003 entry above for details
+
+### AUTH-004: WooCommerce customer koppeling ✅
+- lib/woocommerce-customers.ts was already implemented in AUTH-002 iteration (getCustomerByEmail, createCustomer, getOrCreateCustomer)
+- JWT callback in lib/auth.ts already stores wcCustomerId in token and passes to session
+- Added proper next-auth module augmentation in types/next-auth.d.ts (extends Session with wcCustomerId, extends JWT with wcCustomerId)
+- Removed `(session as any)` cast in favor of typed `session.wcCustomerId`
+- Error handling: wcCustomerFetch throws on non-ok response; jwt callback wraps in try/catch so login isn't blocked by WC failures
+- typecheck ✅ build ✅
+- Added Resend provider from next-auth/providers/resend to Auth.js config
+- Custom sendVerificationRequest using Resend HTTP API via fetch (NOT the resend npm package — avoids node:stream webpack bundling issue)
+- Branded magic link email template: dark espresso background (#1a0f0a), warm brown card (#2c2419), gold CTA button (#C9A962), Café RICO heading in Playfair Display
+- Both HTML and plain text versions of the email
+- Email subject: "Inloggen bij Café RICO"
+- Link valid for 24 hours (Auth.js default maxAge)
+- WooCommerce customer lookup/creation happens on magic link sign-in via existing jwt callback (same as Google OAuth)
+- Added RESEND_API_KEY and AUTH_EMAIL_FROM to .env.example
+- No resend npm package needed — the Auth.js Resend provider + custom fetch-based sendVerificationRequest avoids the mailparser/node:stream webpack issue
+- typecheck ✅ build ✅
+
+### AUTH-005: Login pagina ✅
+- Created login page at app/[locale]/(pages)/login/page.tsx (server component)
+- Created LoginForm client component with two login methods: magic link (email) and Google OAuth
+- Magic link flow: email input with validation → signIn('resend', { email, redirect: false }) → success screen ("Check je inbox")
+- Google OAuth: signIn('google', { callbackUrl }) → redirect to Google
+- Reads callbackUrl from URL search params (default: /account) for post-login redirect
+- Error handling: API errors shown in rose-colored alert, email validation (required + format)
+- Loading states: spinner + text on both magic link and Google buttons, buttons disabled during loading
+- "Check your inbox" confirmation screen with email icon, title, description, and spam hint
+- Design: dark theme card (bg-surface-darker, rounded-3xl), gold primary button, divider between methods, Google logo SVG
+- Hero section with parallax orbs matching contact/faq/checkout page pattern
+- SEO metadata via generatePageMetadata with login page key
+- Breadcrumb structured data (Home → Inloggen)
+- Added Login.* i18n keys in all 4 languages (NL, EN, FR, ES): 13 keys each
+- Added Seo.login i18n keys in all 4 languages
+- Responsive: centered card layout (max-w-md)
+- typecheck ✅ build ✅
+
+### AUTH-006: Header auth state ✅
+- Added useSession + signOut from next-auth/react to Header component
+- Logged out: person icon links to /login (was non-functional button)
+- Loading: skeleton placeholder (animate-pulse circle) prevents layout shift
+- Logged in: shows Google avatar (Image component) or initial letter badge (gold/20 bg)
+- Account dropdown on click: "My Account" link + "Log out" button, same styling as language dropdown
+- Close-on-outside-click pattern reused from language dropdown
+- Mobile menu: added account section above language switcher with avatar + account link + logout button
+- Added lh3.googleusercontent.com to next.config.mjs remotePatterns for Google avatars
+- Added i18n keys: actions.login, actions.logout, actions.myAccount in all 4 languages (NL, EN, FR, ES)
+- typecheck ✅ build ✅
+
+### AUTH-007: Account pagina — profiel ✅
+- Created account page at app/[locale]/(pages)/account/page.tsx (server component)
+- Created AccountProfile client component with session-aware UI
+- User header: Google avatar or initial badge, name, email, logout button
+- Tab navigation: Profiel and Bestellingen tabs with gold active indicator
+- Profile tab: billing address and shipping address cards from WooCommerce customer data
+- Empty address state with placeholder text
+- Orders tab: placeholder message (AUTH-008 will implement)
+- Created GET /api/account endpoint: fetches WC customer by session email, falls back to session data
+- Loading state: skeleton placeholders for avatar, name, and address cards
+- Middleware already protects /account (redirect to /login if not authenticated)
+- Hero section with parallax orbs matching login/checkout page pattern
+- SEO metadata via generatePageMetadata with account page key
+- Breadcrumb structured data (Home → Account)
+- Added Account.* i18n keys in all 4 languages (NL, EN, FR, ES): 9 keys each
+- Added Seo.account i18n keys in all 4 languages
+- Responsive: max-w-3xl content area, grid cols for address cards
+- typecheck ✅ build ✅
+
+### AUTH-008: Account pagina — bestellingsgeschiedenis ✅
+- Created GET /api/account/orders endpoint: fetches orders from WooCommerce REST API using session email (search param)
+- Returns mapped order data: id, number, status, date, total, currency, itemCount, items (name/quantity/total)
+- Orders fetched lazily: only when user clicks "Bestellingen" tab (not on initial page load)
+- Expandable order cards: click to reveal line items with quantities and prices
+- Only one order expanded at a time (accordion pattern)
+- Status badges with color coding: gold (processing), green (completed), amber (on-hold/pending), rose (cancelled/failed), neutral (refunded)
+- Date formatted via toLocaleDateString('nl-BE') for Belgian date format
+- Loading state: 3 skeleton placeholders while fetching
+- Empty state: message when no orders found
+- Mobile responsive: date hidden on mobile (shown in expanded view), price always visible
+- Replaced ordersPlaceholder i18n key with orders.empty, orders.items, orders.total, orders.status.* in all 4 languages
+- 7 order statuses translated: processing, completed, on-hold, pending, cancelled, refunded, failed
+- typecheck ✅ build ✅
+
+### AUTH-009: Checkout koppeling met auth ✅
+- Added useSession() to CheckoutForm to detect logged-in state
+- Pre-fill form: fetches /api/account on mount when authenticated, maps WooCommerce billing address to form fields
+- "Log in voor sneller afrekenen" link shown above form when not authenticated (gold/20 border, gold text link)
+- Link redirects to /login?callbackUrl=/{locale}/checkout for seamless return after login
+- wcCustomerId passed from session → checkout API → Mollie payment metadata → webhook → WooCommerce order (customer_id field)
+- Updated CheckoutBody type in API route to accept optional wcCustomerId
+- Updated CreateOrderPayload in woocommerce-orders.ts with optional wcCustomerId
+- WooCommerce order now includes customer_id when available, linking order to authenticated customer
+- Mollie webhook extracts wcCustomerId from payment metadata and passes to createOrder()
+- Added form.loginPrompt i18n key in all 4 languages (NL, EN, FR, ES)
+- Pre-fill uses setPrefilled flag to prevent re-fetching on re-renders
+- Silently fails on API errors — user can always fill in manually
+- typecheck ✅ build ✅
+
+### AUTH-010: Environment variables en documentatie ✅
+- Added 5 auth env vars to lib/env.ts validation: AUTH_SECRET (required), GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, RESEND_API_KEY, AUTH_EMAIL_FROM (all optional)
+- .env.example already had all auth variables documented from previous iterations
+- Updated README.md: added Auth.js v5 to stack list, added 5 auth env vars to table
+- Added "Auth Setup" section to README with subsections: Auth.js, Google OAuth (console setup steps), Resend (domain verification steps), Auth Flow (6-step overview)
+- Updated project structure in README to include login, account pages and auth, account API routes
+- Google/Resend marked as optional in env validation (site works without them, just fewer login options)
+- AUTH_SECRET marked as required (Auth.js won't work without it)
+- typecheck ✅ build ✅

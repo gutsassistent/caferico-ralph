@@ -43,6 +43,7 @@ export async function POST(request: NextRequest) {
       items?: string;
       customer?: string;
       locale?: string;
+      wcCustomerId?: string;
     } | null;
 
     if (!metadata?.items || !metadata?.customer) {
@@ -60,6 +61,7 @@ export async function POST(request: NextRequest) {
         items,
         molliePaymentId: paymentId,
         total: payment.amount.value,
+        wcCustomerId: metadata.wcCustomerId ? Number(metadata.wcCustomerId) : undefined,
       });
 
       console.log(`WooCommerce order created: #${order.number} for payment ${paymentId}`);

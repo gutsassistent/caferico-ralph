@@ -30,6 +30,7 @@ type CheckoutBody = {
   items: CheckoutItem[];
   customer: CheckoutCustomer;
   locale?: string;
+  wcCustomerId?: number;
 };
 
 function getBaseUrl(): string {
@@ -116,7 +117,7 @@ function calculateTotal(items: CheckoutItem[], priceMap: Map<string, number>): n
 export async function POST(request: NextRequest) {
   try {
     const body = (await request.json()) as CheckoutBody;
-    const { items, customer, locale = 'nl' } = body;
+    const { items, customer, locale = 'nl', wcCustomerId } = body;
 
     // Validate input
     const customerError = validateCustomer(customer);
@@ -157,6 +158,7 @@ export async function POST(request: NextRequest) {
         items: JSON.stringify(items),
         customer: JSON.stringify(customer),
         locale,
+        ...(wcCustomerId && { wcCustomerId: String(wcCustomerId) }),
       },
     });
 

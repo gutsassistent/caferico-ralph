@@ -18,7 +18,7 @@
         "npm run build slaagt"
       ],
       "priority": 1,
-      "passes": false
+      "passes": true
     },
     {
       "id": "AUTH-002",
@@ -33,7 +33,7 @@
         "npm run build slaagt"
       ],
       "priority": 2,
-      "passes": false
+      "passes": true
     },
     {
       "id": "AUTH-003",
@@ -51,7 +51,7 @@
         "npm run build slaagt"
       ],
       "priority": 3,
-      "passes": false
+      "passes": true
     },
     {
       "id": "AUTH-004",
@@ -67,7 +67,7 @@
         "npm run build slaagt"
       ],
       "priority": 4,
-      "passes": false
+      "passes": true
     },
     {
       "id": "AUTH-005",
@@ -89,7 +89,7 @@
         "npm run build slaagt"
       ],
       "priority": 5,
-      "passes": false
+      "passes": true
     },
     {
       "id": "AUTH-006",
@@ -105,7 +105,7 @@
         "npm run build slaagt"
       ],
       "priority": 6,
-      "passes": false
+      "passes": true
     },
     {
       "id": "AUTH-007",
@@ -124,7 +124,7 @@
         "npm run build slaagt"
       ],
       "priority": 7,
-      "passes": false
+      "passes": true
     },
     {
       "id": "AUTH-008",
@@ -141,7 +141,7 @@
         "npm run build slaagt"
       ],
       "priority": 8,
-      "passes": false
+      "passes": true
     },
     {
       "id": "AUTH-009",
@@ -157,7 +157,7 @@
         "npm run build slaagt"
       ],
       "priority": 9,
-      "passes": false
+      "passes": true
     },
     {
       "id": "AUTH-010",
@@ -171,7 +171,7 @@
         "npm run build slaagt"
       ],
       "priority": 10,
-      "passes": false
+      "passes": true
     }
   ]
 }

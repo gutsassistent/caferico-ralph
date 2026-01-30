@@ -520,7 +520,10 @@
       "cart": "Carrito",
       "account": "Cuenta",
       "menu": "Menú",
-      "closeMenu": "Cerrar menú"
+      "closeMenu": "Cerrar menú",
+      "login": "Iniciar sesión",
+      "logout": "Cerrar sesión",
+      "myAccount": "Mi cuenta"
     },
     "footer": {
       "tagline": "Café de especialidad belga, tostado con intención.",
@@ -962,7 +965,8 @@
       "description": "Completa los campos a continuación para proceder al pago.",
       "submit": "Proceder al pago",
       "submitting": "Procesando...",
-      "errorGeneric": "Algo salió mal. Inténtalo de nuevo."
+      "errorGeneric": "Algo salió mal. Inténtalo de nuevo.",
+      "loginPrompt": "Inicia sesión para un pago más rápido"
     },
     "fields": {
       "firstName": { "label": "Nombre", "placeholder": "Juan" },
@@ -1009,6 +1013,53 @@
       "ctaHome": "Ir al inicio",
       "ctaShop": "Seguir comprando",
       "ctaRetry": "Intentar de nuevo"
+    }
+  },
+  "Account": {
+    "eyebrow": "Mi cuenta",
+    "title": "Cuenta",
+    "tabs": {
+      "profile": "Perfil",
+      "orders": "Pedidos"
+    },
+    "billingAddress": "Dirección de facturación",
+    "shippingAddress": "Dirección de envío",
+    "noAddress": "Aún no hay dirección guardada.",
+    "logout": "Cerrar sesión",
+    "orders": {
+      "empty": "Aún no has realizado ningún pedido.",
+      "items": "Artículos",
+      "total": "Total",
+      "status": {
+        "processing": "En proceso",
+        "completed": "Completado",
+        "on-hold": "En espera",
+        "pending": "Pendiente",
+        "cancelled": "Cancelado",
+        "refunded": "Reembolsado",
+        "failed": "Fallido"
+      }
+    }
+  },
+  "Login": {
+    "eyebrow": "Cuenta",
+    "title": "Iniciar sesión",
+    "subtitle": "Inicia sesión con tu correo electrónico o cuenta de Google.",
+    "form": {
+      "emailLabel": "Correo electrónico",
+      "emailPlaceholder": "tu@email.com",
+      "emailRequired": "Introduce un correo electrónico.",
+      "emailInvalid": "Correo electrónico no válido.",
+      "magicLinkButton": "Enviar enlace mágico",
+      "sending": "Enviando...",
+      "googleButton": "Iniciar sesión con Google",
+      "divider": "o",
+      "errorGeneric": "Algo salió mal. Inténtalo de nuevo."
+    },
+    "magicSent": {
+      "title": "Revisa tu bandeja de entrada",
+      "description": "Hemos enviado un enlace de inicio de sesión a tu correo electrónico. Haz clic en el enlace para iniciar sesión.",
+      "hint": "¿No recibiste el correo? Revisa tu spam o inténtalo de nuevo."
     }
   },
   "Seo": {
@@ -1060,6 +1111,14 @@
     "checkoutReturn": {
       "title": "Estado del pago",
       "description": "Consulta el estado de tu pago en Café RICO."
+    },
+    "login": {
+      "title": "Iniciar sesión",
+      "description": "Inicia sesión en Café RICO con tu correo o cuenta de Google."
+    },
+    "account": {
+      "title": "Mi Cuenta",
+      "description": "Consulta tu perfil, direcciones y pedidos en Café RICO."
     }
   }
 }
