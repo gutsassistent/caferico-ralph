@@ -23,7 +23,10 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const t = await getTranslations('Blog');
 
-  const dateFormatter = new Intl.DateTimeFormat('nl-NL', {
+  const localeMap: Record<string, string> = { nl: 'nl-NL', en: 'en-US', fr: 'fr-FR', es: 'es-ES' };
+  const intlLocale = localeMap[locale] ?? 'nl-NL';
+
+  const dateFormatter = new Intl.DateTimeFormat(intlLocale, {
     year: 'numeric',
     month: 'long',
     day: 'numeric'

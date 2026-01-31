@@ -1,6 +1,4 @@
-const BASE_URL = process.env.WOOCOMMERCE_URL;
-const CONSUMER_KEY = process.env.WOOCOMMERCE_CONSUMER_KEY;
-const CONSUMER_SECRET = process.env.WOOCOMMERCE_CONSUMER_SECRET;
+import { wcFetch } from './wc-client';
 
 interface WooCustomer {
   id: number;
@@ -27,31 +25,10 @@ interface WooCustomer {
   };
 }
 
-async function wcCustomerFetch<T>(endpoint: string, options?: RequestInit): Promise<T> {
-  if (!BASE_URL || !CONSUMER_KEY || !CONSUMER_SECRET) {
-    throw new Error('WooCommerce environment variables not configured');
-  }
-
-  const url = new URL(`/wp-json/wc/v3/${endpoint}`, BASE_URL);
-  url.searchParams.set('consumer_key', CONSUMER_KEY);
-  url.searchParams.set('consumer_secret', CONSUMER_SECRET);
-
-  const res = await fetch(url.toString(), {
-    cache: 'no-store',
-    ...options,
-  });
-
-  if (!res.ok) {
-    throw new Error(`WooCommerce API error: ${res.status} ${res.statusText}`);
-  }
-
-  return res.json() as Promise<T>;
-}
-
 export async function getCustomerByEmail(email: string): Promise<WooCustomer | null> {
-  const customers = await wcCustomerFetch<WooCustomer[]>(
-    `customers?email=${encodeURIComponent(email)}`
-  );
+  const customers = await wcFetch<WooCustomer[]>('customers', {
+    email: email,
+  });
   return customers[0] ?? null;
 }
 
@@ -64,7 +41,7 @@ export async function createCustomer({
   firstName?: string;
   lastName?: string;
 }): Promise<WooCustomer> {
-  return wcCustomerFetch<WooCustomer>('customers', {
+  return wcFetch<WooCustomer>('customers', {}, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({

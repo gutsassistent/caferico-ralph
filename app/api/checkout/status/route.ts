@@ -36,8 +36,6 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('Payment status error:', error);
 
-    const message =
-      error instanceof Error ? error.message : 'Failed to fetch payment status';
-    return NextResponse.json({ error: message }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to fetch payment status' }, { status: 500 });
   }
 }
