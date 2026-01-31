@@ -103,7 +103,7 @@ export function mapWooProduct(wc: WooCommerceProduct): Product {
   };
 }
 
-function resolveCollection(slug: string): string {
+export function resolveCollection(slug: string): string {
   const map: Record<string, string> = {
     koffiebonen: 'coffee',
     bonen: 'coffee',
