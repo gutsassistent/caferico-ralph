@@ -1,3 +1,5 @@
+import { wcFetch } from './wc-client';
+
 type OrderLineItem = {
   product_id?: number;
   name: string;
@@ -49,15 +51,17 @@ type WooCommerceOrderResponse = {
   total: string;
 };
 
-const BASE_URL = process.env.WOOCOMMERCE_URL;
-const CONSUMER_KEY = process.env.WOOCOMMERCE_CONSUMER_KEY;
-const CONSUMER_SECRET = process.env.WOOCOMMERCE_CONSUMER_SECRET;
+type WooCommerceOrder = {
+  id: number;
+  number: string;
+  status: string;
+  date_created: string;
+  total: string;
+  currency: string;
+  line_items: { name: string; quantity: number; total: string }[];
+};
 
 export async function createOrder(payload: CreateOrderPayload): Promise<WooCommerceOrderResponse> {
-  if (!BASE_URL || !CONSUMER_KEY || !CONSUMER_SECRET) {
-    throw new Error('WooCommerce environment variables not configured');
-  }
-
   const { customer, items, molliePaymentId, total, wcCustomerId } = payload;
 
   const billing: OrderAddress = {
@@ -100,21 +104,18 @@ export async function createOrder(payload: CreateOrderPayload): Promise<WooComme
     ],
   };
 
-  const url = new URL('/wp-json/wc/v3/orders', BASE_URL);
-  url.searchParams.set('consumer_key', CONSUMER_KEY);
-  url.searchParams.set('consumer_secret', CONSUMER_SECRET);
-
-  const res = await fetch(url.toString(), {
+  return wcFetch<WooCommerceOrderResponse>('orders', {}, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(orderData),
-    cache: 'no-store',
   });
+}
 
-  if (!res.ok) {
-    const errorBody = await res.text();
-    throw new Error(`WooCommerce order creation failed: ${res.status} ${errorBody}`);
-  }
-
-  return res.json() as Promise<WooCommerceOrderResponse>;
+export async function getOrdersByEmail(email: string): Promise<WooCommerceOrder[]> {
+  return wcFetch<WooCommerceOrder[]>('orders', {
+    search: email,
+    per_page: '20',
+    orderby: 'date',
+    order: 'desc',
+  });
 }
