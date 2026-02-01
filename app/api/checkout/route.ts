@@ -167,13 +167,16 @@ export async function POST(request: NextRequest) {
       ? undefined
       : `${baseUrl}/api/webhook/mollie${webhookToken ? `?token=${webhookToken}` : ''}`;
 
+    // First create payment without redirectUrl to get the ID,
+    // then we can include the real payment ID in the redirect URL.
+    // Note: Mollie does NOT template-replace {id} in redirectUrl.
     const payment = await getMollieClient().payments.create({
       amount: {
         currency: 'EUR',
         value: total.toFixed(2),
       },
       description,
-      redirectUrl: `${baseUrl}/${locale}/checkout/return?id={id}`,
+      redirectUrl: `${baseUrl}/${locale}/checkout/return`,
       ...(webhookUrl && { webhookUrl }),
       metadata: {
         items: JSON.stringify(items),
@@ -181,6 +184,11 @@ export async function POST(request: NextRequest) {
         locale,
         ...(wcCustomerId && { wcCustomerId: String(wcCustomerId) }),
       },
+    });
+
+    // Update the payment with the correct redirectUrl including the real payment ID
+    await getMollieClient().payments.update(payment.id, {
+      redirectUrl: `${baseUrl}/${locale}/checkout/return?id=${payment.id}`,
     });
 
     const checkoutUrl = payment.getCheckoutUrl();
