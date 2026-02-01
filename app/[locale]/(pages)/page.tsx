@@ -361,6 +361,8 @@ export default async function HomePage({ params }: HomePageProps) {
                   loadingText={t('newsletter.loading')}
                   successText={t('newsletter.success')}
                   errorText={t('newsletter.error')}
+                  duplicateText={t('newsletter.duplicate')}
+                  rateLimitedText={t('newsletter.rateLimited')}
                 />
               </div>
               <p className="mt-4 text-xs text-cream/60">

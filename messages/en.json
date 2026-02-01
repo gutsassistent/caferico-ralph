@@ -96,6 +96,8 @@
       "loading": "Sending...",
       "success": "Thank you! Check your inbox for your discount code.",
       "error": "Something went wrong. Please try again.",
+      "duplicate": "You're already subscribed! Check your inbox.",
+      "rateLimited": "Too many attempts. Please try again later.",
       "privacy": "We respect your privacy. Unsubscribe anytime."
     },
     "collections": {

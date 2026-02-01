@@ -8,6 +8,8 @@ type Props = {
   loadingText: string;
   successText: string;
   errorText: string;
+  duplicateText: string;
+  rateLimitedText: string;
 };
 
 export default function NewsletterForm({
@@ -16,32 +18,58 @@ export default function NewsletterForm({
   loadingText,
   successText,
   errorText,
+  duplicateText,
+  rateLimitedText,
 }: Props) {
   const [email, setEmail] = useState('');
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'duplicate' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!email || status === 'loading') return;
 
     setStatus('loading');
+    setErrorMessage('');
 
-    // Mock: simulate API call
-    // eslint-disable-next-line no-console
-    console.log('Newsletter signup:', email);
-    await new Promise((r) => setTimeout(r, 1200));
+    try {
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
 
-    setStatus('success');
-    setEmail('');
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok) {
+        if (res.status === 429) {
+          setErrorMessage(rateLimitedText);
+        } else {
+          setErrorMessage(errorText);
+        }
+        setStatus('error');
+        return;
+      }
+
+      if (data?.duplicate) {
+        setStatus('duplicate');
+      } else {
+        setStatus('success');
+      }
+      setEmail('');
+    } catch {
+      setErrorMessage(errorText);
+      setStatus('error');
+    }
   }
 
-  if (status === 'success') {
+  if (status === 'success' || status === 'duplicate') {
     return (
       <div className="flex items-center gap-3 rounded-full border border-gold/30 bg-gold/10 px-6 py-4">
         <svg className="h-5 w-5 shrink-0 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
-        <p className="text-sm text-cream">{successText}</p>
+        <p className="text-sm text-cream">{status === 'duplicate' ? duplicateText : successText}</p>
       </div>
     );
   }
@@ -77,7 +105,7 @@ export default function NewsletterForm({
       </button>
       {status === 'error' && (
         <p className="text-xs text-red-400 sm:absolute sm:bottom-0 sm:translate-y-full sm:pt-2">
-          {errorText}
+          {errorMessage}
         </p>
       )}
     </form>

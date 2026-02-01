@@ -96,6 +96,8 @@
       "loading": "Envoi...",
       "success": "Merci ! Vérifiez votre boîte mail pour votre code de réduction.",
       "error": "Une erreur s'est produite. Veuillez réessayer.",
+      "duplicate": "Vous êtes déjà inscrit ! Vérifiez votre boîte mail.",
+      "rateLimited": "Trop de tentatives. Veuillez réessayer plus tard.",
       "privacy": "Nous respectons votre vie privée. Désabonnement possible à tout moment."
     },
     "collections": {

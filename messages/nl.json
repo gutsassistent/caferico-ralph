@@ -96,6 +96,8 @@
       "loading": "Bezig...",
       "success": "Bedankt! Check je inbox voor je kortingscode.",
       "error": "Er ging iets mis. Probeer het opnieuw.",
+      "duplicate": "Je bent al ingeschreven! Check je inbox.",
+      "rateLimited": "Te veel pogingen. Probeer het later opnieuw.",
       "privacy": "We respecteren je privacy. Uitschrijven kan altijd."
     },
     "collections": {
