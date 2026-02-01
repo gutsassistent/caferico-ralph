@@ -96,6 +96,7 @@
       "loading": "Enviando...",
       "success": "¡Gracias! Revisa tu bandeja de entrada para tu código de descuento.",
       "error": "Algo salió mal. Inténtalo de nuevo.",
+      "errorRateLimit": "Demasiados intentos. Inténtalo más tarde.",
       "privacy": "Respetamos tu privacidad. Puedes darte de baja en cualquier momento."
     },
     "collections": {

@@ -8,6 +8,7 @@ type Props = {
   loadingText: string;
   successText: string;
   errorText: string;
+  errorRateLimitText?: string;
 };
 
 export default function NewsletterForm({
@@ -16,23 +17,44 @@ export default function NewsletterForm({
   loadingText,
   successText,
   errorText,
+  errorRateLimitText,
 }: Props) {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!email || status === 'loading') return;
 
     setStatus('loading');
+    setErrorMessage('');
 
-    // Mock: simulate API call
-    // eslint-disable-next-line no-console
-    console.log('Newsletter signup:', email);
-    await new Promise((r) => setTimeout(r, 1200));
+    try {
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
 
-    setStatus('success');
-    setEmail('');
+      if (res.ok) {
+        setStatus('success');
+        setEmail('');
+        return;
+      }
+
+      const data = await res.json().catch(() => ({}));
+
+      if (data.error === 'rate_limit') {
+        setErrorMessage(errorRateLimitText ?? errorText);
+      } else {
+        setErrorMessage(errorText);
+      }
+      setStatus('error');
+    } catch {
+      setErrorMessage(errorText);
+      setStatus('error');
+    }
   }
 
   if (status === 'success') {
@@ -77,7 +99,7 @@ export default function NewsletterForm({
       </button>
       {status === 'error' && (
         <p className="text-xs text-red-400 sm:absolute sm:bottom-0 sm:translate-y-full sm:pt-2">
-          {errorText}
+          {errorMessage}
         </p>
       )}
     </form>
