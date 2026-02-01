@@ -16,15 +16,15 @@ Dependencies: Step 1–3 (Phase A, completed by another agent).
 
 - [x] 13. Cart drawer: light visuals — parchment drawer surface + ink text; keep overlay dark (`components/CartDrawer.tsx`) — DONE (iteration 1)
 - [x] 14. Cart drawer: ensure image visibility — add deterministic fallback (never blank) when `item.image` missing (`components/CartDrawer.tsx`) — DONE (iteration 2)
-- [ ] 15. Header: new cart icon SVG — replace current icon; verify badge contrast on dark header (`components/Header.tsx`)
+- [x] 15. Header: new cart icon SVG — replace current icon; verify badge contrast on dark header (`components/Header.tsx`) — DONE (iteration 3)
 
 ---
 
 ## Current
 
-- Working on: Step 15
-- Iteration: 2
-- Last action: Added coffee-bean SVG icon to CartDrawer image fallback so missing images show a visible placeholder (dark gradient + grain texture + bean icon)
+- Working on: All steps complete
+- Iteration: 3
+- Last action: Replaced cart icon SVG in Header with premium shopping bag (rounded body + handles + coffee bean ellipse); badge remains gold on dark bg with strong contrast
 - Last result: typecheck + build pass
 
 ## Architecture Decisions
