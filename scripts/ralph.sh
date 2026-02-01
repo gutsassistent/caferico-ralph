@@ -14,7 +14,7 @@ set -e
 
 # --- Config ---
 TOOL="claude"
-MODEL=""
+MODEL="opus"
 MAX_ITERATIONS=50
 START_STEP=""
 DRY_RUN=false
