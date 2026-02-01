@@ -1147,14 +1147,6 @@
     "account": {
       "title": "My Account",
       "description": "View your profile, addresses and orders at Café RICO."
-    },
-    "privacy": {
-      "title": "Privacy Policy",
-      "description": "How we handle your data."
-    },
-    "terms": {
-      "title": "Terms & Conditions",
-      "description": "Our terms of sale."
     }
   },
   "Privacy": {

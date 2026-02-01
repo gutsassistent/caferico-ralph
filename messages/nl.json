@@ -1147,14 +1147,6 @@
     "account": {
       "title": "Mijn Account",
       "description": "Bekijk je profiel, adressen en bestellingen bij Café RICO."
-    },
-    "privacy": {
-      "title": "Privacybeleid",
-      "description": "Hoe wij omgaan met uw gegevens."
-    },
-    "terms": {
-      "title": "Algemene Voorwaarden",
-      "description": "Onze verkoopvoorwaarden."
     }
   },
   "Privacy": {
