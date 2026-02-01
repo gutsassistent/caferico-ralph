@@ -9,12 +9,12 @@
 
 ## Plan
 1. [x] Add `app/api/contact/route.ts` to send contact submissions via Resend (new `CONTACT_EMAIL_TO` env var + validation). Depends on: none. Test: POST with sample payload → 200 and email received in test inbox. — DONE (iteration 1)
-2. [ ] Wire `components/ContactForm.tsx` to POST to `/api/contact`, showing success/error states. Depends on: 1. Test: submit form UI → success message. — NOT STARTED
+2. [x] Wire `components/ContactForm.tsx` to POST to `/api/contact`, showing success/error states. Depends on: 1. Test: submit form UI → success message. — DONE (iteration 2)
 
 ## Current
-- Working on: Step 1 complete
-- Iteration: 1
-- Last action: Created app/api/contact/route.ts with Resend integration, validation, rate limiting
+- Working on: All steps complete
+- Iteration: 2
+- Last action: Wired ContactForm to POST /api/contact with error handling, added errorMessage i18n key to all 4 locales
 - Last result: typecheck + build pass
 
 ## Architecture Decisions

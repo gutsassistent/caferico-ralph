@@ -328,6 +328,7 @@
       "submitting": "Envoi en cours...",
       "successTitle": "Message reçu",
       "successMessage": "Merci pour votre message. Nous répondons sous un jour ouvré.",
+      "errorMessage": "Une erreur est survenue. Veuillez réessayer plus tard.",
       "validation": {
         "nameRequired": "Merci d’indiquer votre nom.",
         "emailRequired": "Merci d’indiquer votre adresse email.",

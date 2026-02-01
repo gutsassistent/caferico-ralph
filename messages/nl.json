@@ -328,6 +328,7 @@
       "submitting": "Verzenden...",
       "successTitle": "Bericht ontvangen",
       "successMessage": "Dankjewel voor je bericht. We reageren binnen één werkdag.",
+      "errorMessage": "Er ging iets mis bij het versturen. Probeer het later opnieuw.",
       "validation": {
         "nameRequired": "Vul je naam in.",
         "emailRequired": "Vul je e-mailadres in.",
