@@ -969,14 +969,38 @@
       "loginPrompt": "Inicia sesión para un pago más rápido"
     },
     "fields": {
-      "firstName": { "label": "Nombre", "placeholder": "Juan" },
-      "lastName": { "label": "Apellido", "placeholder": "García" },
-      "email": { "label": "Correo electrónico", "placeholder": "juan@ejemplo.com" },
-      "street": { "label": "Calle + número", "placeholder": "Calle Mayor 12" },
-      "postalCode": { "label": "Código postal", "placeholder": "1000" },
-      "city": { "label": "Ciudad", "placeholder": "Bruselas" },
-      "country": { "label": "País" },
-      "phone": { "label": "Teléfono", "optional": "opcional", "placeholder": "+32 470 00 00 00" }
+      "firstName": {
+        "label": "Nombre",
+        "placeholder": "Juan"
+      },
+      "lastName": {
+        "label": "Apellido",
+        "placeholder": "García"
+      },
+      "email": {
+        "label": "Correo electrónico",
+        "placeholder": "juan@ejemplo.com"
+      },
+      "street": {
+        "label": "Calle + número",
+        "placeholder": "Calle Mayor 12"
+      },
+      "postalCode": {
+        "label": "Código postal",
+        "placeholder": "1000"
+      },
+      "city": {
+        "label": "Ciudad",
+        "placeholder": "Bruselas"
+      },
+      "country": {
+        "label": "País"
+      },
+      "phone": {
+        "label": "Teléfono",
+        "optional": "opcional",
+        "placeholder": "+32 470 00 00 00"
+      }
     },
     "validation": {
       "firstNameRequired": "Introduce tu nombre.",
@@ -1120,5 +1144,15 @@
       "title": "Mi Cuenta",
       "description": "Consulta tu perfil, direcciones y pedidos en Café RICO."
     }
+  },
+  "Privacy": {
+    "title": "Política de Privacidad",
+    "description": "Cómo manejamos sus datos.",
+    "content": "La política de privacidad de Caférico se actualizará pronto. Para preguntas, contáctenos a través del formulario de contacto."
+  },
+  "Terms": {
+    "title": "Términos y Condiciones",
+    "description": "Nuestras condiciones de venta.",
+    "content": "Los términos y condiciones de Caférico se actualizarán pronto. Para preguntas, contáctenos a través del formulario de contacto."
   }
 }

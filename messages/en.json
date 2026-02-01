@@ -969,14 +969,38 @@
       "loginPrompt": "Log in for faster checkout"
     },
     "fields": {
-      "firstName": { "label": "First name", "placeholder": "John" },
-      "lastName": { "label": "Last name", "placeholder": "Smith" },
-      "email": { "label": "Email address", "placeholder": "john@example.com" },
-      "street": { "label": "Street + number", "placeholder": "Main Street 12" },
-      "postalCode": { "label": "Postal code", "placeholder": "1000" },
-      "city": { "label": "City", "placeholder": "Brussels" },
-      "country": { "label": "Country" },
-      "phone": { "label": "Phone", "optional": "optional", "placeholder": "+32 470 00 00 00" }
+      "firstName": {
+        "label": "First name",
+        "placeholder": "John"
+      },
+      "lastName": {
+        "label": "Last name",
+        "placeholder": "Smith"
+      },
+      "email": {
+        "label": "Email address",
+        "placeholder": "john@example.com"
+      },
+      "street": {
+        "label": "Street + number",
+        "placeholder": "Main Street 12"
+      },
+      "postalCode": {
+        "label": "Postal code",
+        "placeholder": "1000"
+      },
+      "city": {
+        "label": "City",
+        "placeholder": "Brussels"
+      },
+      "country": {
+        "label": "Country"
+      },
+      "phone": {
+        "label": "Phone",
+        "optional": "optional",
+        "placeholder": "+32 470 00 00 00"
+      }
     },
     "validation": {
       "firstNameRequired": "Please enter your first name.",
@@ -1120,5 +1144,15 @@
       "title": "My Account",
       "description": "View your profile, addresses and orders at Café RICO."
     }
+  },
+  "Privacy": {
+    "title": "Privacy Policy",
+    "description": "How we handle your data.",
+    "content": "The Caférico privacy policy will be updated soon. For questions, please contact us via the contact form."
+  },
+  "Terms": {
+    "title": "Terms & Conditions",
+    "description": "Our terms of sale.",
+    "content": "The Caférico terms and conditions will be updated soon. For questions, please contact us via the contact form."
   }
 }
