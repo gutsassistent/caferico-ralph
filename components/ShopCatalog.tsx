@@ -8,6 +8,25 @@ import Reveal from '@/components/Reveal';
 import type { Product } from '@/types/product';
 import { resolveCollection } from '@/types/product';
 
+/** Get all lowercased attribute options for a product, searching by attribute name */
+function getProductAttr(product: Product, attrName: string): string[] {
+  const attr = product.attributes?.find(
+    (a) => a.name.toLowerCase() === attrName.toLowerCase()
+  );
+  return attr?.options.map((o) => o.toLowerCase()) ?? [];
+}
+
+/** Check if a product matches any value in a filter set, searching across multiple attribute names */
+function matchesFilter(product: Product, attrNames: string[], filterValues: Set<string>): boolean {
+  for (const name of attrNames) {
+    const options = getProductAttr(product, name);
+    for (const val of filterValues) {
+      if (options.some((o) => o.includes(val.toLowerCase()))) return true;
+    }
+  }
+  return false;
+}
+
 type SortOption = 'price-asc' | 'price-desc' | 'name-asc';
 
 type CollectionFilter = string;
@@ -117,7 +136,7 @@ export default function ShopCatalog({ products, categories }: ShopCatalogProps) 
   const [isLoading] = useState(false);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
-  /* Visual-only filter state (not yet wired to product filtering) */
+  /* Filter state for type, format, and form */
   const [selectedTypes, setSelectedTypes] = useState<Set<string>>(new Set());
   const [selectedFormats, setSelectedFormats] = useState<Set<string>>(new Set());
   const [selectedForms, setSelectedForms] = useState<Set<string>>(new Set());
@@ -153,6 +172,16 @@ export default function ShopCatalog({ products, categories }: ShopCatalogProps) 
       });
     }
 
+    if (selectedTypes.size > 0) {
+      result = result.filter((p) => matchesFilter(p, ['type', 'soort', 'profiel'], selectedTypes));
+    }
+    if (selectedFormats.size > 0) {
+      result = result.filter((p) => matchesFilter(p, ['weight', 'gewicht', 'formaat', 'format'], selectedFormats));
+    }
+    if (selectedForms.size > 0) {
+      result = result.filter((p) => matchesFilter(p, ['form', 'vorm', 'grind', 'maalgraad'], selectedForms));
+    }
+
     const sorted = [...result].sort((a, b) => {
       switch (sort) {
         case 'price-asc':
@@ -167,7 +196,7 @@ export default function ShopCatalog({ products, categories }: ShopCatalogProps) 
     });
 
     return sorted;
-  }, [products, collection, locale, normalizedQuery, sort]);
+  }, [products, collection, locale, normalizedQuery, sort, selectedTypes, selectedFormats, selectedForms]);
 
   const availableCollections = useMemo(() => {
     const collectionSet = new Set(products.map((p) => p.collection));
