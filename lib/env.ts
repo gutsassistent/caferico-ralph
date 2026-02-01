@@ -32,6 +32,11 @@ const SERVER_ENV_VARS: EnvVar[] = [
     hint: 'Generate in WooCommerce → Settings → Advanced → REST API',
   },
   {
+    name: 'MOLLIE_WEBHOOK_TOKEN',
+    required: true,
+    hint: 'Shared secret for webhook URL verification. Generate with: openssl rand -hex 32',
+  },
+  {
     name: 'NEXT_PUBLIC_BASE_URL',
     required: false,
     hint: 'Public URL for Mollie redirects/webhooks. Defaults to http://localhost:3000',
