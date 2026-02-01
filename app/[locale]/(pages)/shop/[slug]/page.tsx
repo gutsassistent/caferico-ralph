@@ -104,7 +104,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
     }
   }
 
-  const priceFormatter = new Intl.NumberFormat('nl-NL', {
+  const localeMap: Record<string, string> = { nl: 'nl-NL', en: 'en-US', fr: 'fr-FR', es: 'es-ES' };
+  const intlLocale = localeMap[locale] ?? 'nl-NL';
+
+  const priceFormatter = new Intl.NumberFormat(intlLocale, {
     style: 'currency',
     currency: 'EUR'
   });

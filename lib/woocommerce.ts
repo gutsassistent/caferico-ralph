@@ -1,8 +1,5 @@
 import type { WooCommerceProduct, WooCommerceCategory } from '@/types/woocommerce';
-
-const BASE_URL = process.env.WOOCOMMERCE_URL;
-const CONSUMER_KEY = process.env.WOOCOMMERCE_CONSUMER_KEY;
-const CONSUMER_SECRET = process.env.WOOCOMMERCE_CONSUMER_SECRET;
+import { wcFetch } from './wc-client';
 
 // Only request the fields we actually use
 const PRODUCT_FIELDS = [
@@ -50,43 +47,6 @@ function getCached<T>(key: string): T | undefined {
 
 function setCache(key: string, data: unknown) {
   memCache.set(key, { data, ts: Date.now() });
-}
-
-async function wcFetch<T>(endpoint: string, params: Record<string, string> = {}): Promise<T> {
-  if (!BASE_URL || !CONSUMER_KEY || !CONSUMER_SECRET) {
-    throw new Error('WooCommerce environment variables not configured');
-  }
-
-  const url = new URL(`/wp-json/wc/v3/${endpoint}`, BASE_URL);
-  url.searchParams.set('consumer_key', CONSUMER_KEY);
-  url.searchParams.set('consumer_secret', CONSUMER_SECRET);
-
-  for (const [key, value] of Object.entries(params)) {
-    url.searchParams.set(key, value);
-  }
-
-  let lastError: Error | null = null;
-
-  for (let attempt = 0; attempt < 4; attempt++) {
-    if (attempt > 0) {
-      await new Promise((r) => setTimeout(r, 1000 * Math.pow(2, attempt)));
-    }
-
-    const res = await fetch(url.toString(), { cache: 'no-store' });
-
-    if (res.status === 429) {
-      lastError = new Error('WooCommerce API error: 429 Too Many Requests');
-      continue;
-    }
-
-    if (!res.ok) {
-      throw new Error(`WooCommerce API error: ${res.status} ${res.statusText}`);
-    }
-
-    return res.json() as Promise<T>;
-  }
-
-  throw lastError!;
 }
 
 async function fetchAllProducts(

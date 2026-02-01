@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import Reveal from '@/components/Reveal';
 import type { Product } from '@/types/product';
+import { resolveCollection } from '@/types/product';
 
 type SortOption = 'price-asc' | 'price-desc' | 'name-asc';
 
@@ -463,15 +464,4 @@ export default function ShopCatalog({ products, categories }: ShopCatalogProps) 
   );
 }
 
-function resolveCollection(slug: string): string {
-  const map: Record<string, string> = {
-    koffiebonen: 'beans',
-    bonen: 'beans',
-    beans: 'beans',
-    gemalen: 'ground',
-    ground: 'ground',
-    accessoires: 'accessories',
-    accessories: 'accessories',
-  };
-  return map[slug] ?? slug;
-}
+
