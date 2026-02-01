@@ -144,7 +144,10 @@ export async function POST(request: NextRequest) {
     const description = `Café RICO — ${items.length} ${items.length === 1 ? 'product' : 'producten'}`;
 
     // Create Mollie payment
-    const webhookUrl = baseUrl.includes('localhost') ? undefined : `${baseUrl}/api/webhook/mollie`;
+    const webhookToken = process.env.MOLLIE_WEBHOOK_TOKEN;
+    const webhookUrl = baseUrl.includes('localhost')
+      ? undefined
+      : `${baseUrl}/api/webhook/mollie${webhookToken ? `?token=${webhookToken}` : ''}`;
 
     const payment = await getMollieClient().payments.create({
       amount: {

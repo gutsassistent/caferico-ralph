@@ -5,6 +5,17 @@ import { getMolliePayment, insertMolliePayment } from '@/lib/mollie-idempotency'
 
 export async function POST(request: NextRequest) {
   try {
+    // Verify webhook token (shared secret appended as ?token=... to webhookUrl)
+    const webhookToken = process.env.MOLLIE_WEBHOOK_TOKEN;
+    if (webhookToken) {
+      const url = new URL(request.url);
+      const token = url.searchParams.get('token');
+      if (token !== webhookToken) {
+        // Return 200 so Mollie doesn't retry, but do nothing
+        return new NextResponse('OK', { status: 200 });
+      }
+    }
+
     // Mollie sends webhook as application/x-www-form-urlencoded with id=tr_xxx
     const formData = await request.formData();
     const paymentId = formData.get('id');
