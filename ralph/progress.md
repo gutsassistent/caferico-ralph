@@ -14,7 +14,7 @@
 2. [x] Verify Product type has type/weight/form fields; add or map from WooCommerce attributes if missing — DONE (iteration 2)
 
 ### Feature 2: Contact form → Resend
-3. [ ] Create `app/api/contact/route.ts` with Resend email sending + server-side validation — NOT STARTED
+3. [x] Create `app/api/contact/route.ts` with Resend email sending + server-side validation — DONE (iteration 3)
 4. [ ] Wire ContactForm.tsx to POST to `/api/contact` with success/error feedback — NOT STARTED
 
 ### Feature 3: Newsletter form → Resend
@@ -22,10 +22,10 @@
 6. [ ] Wire NewsletterForm.tsx to POST to `/api/newsletter` with success/error/duplicate feedback — NOT STARTED
 
 ## Current
-- Working on: Step 3
-- Iteration: 2
-- Last action: Verified Product type already has `attributes: WooCommerceAttribute[]` from WooCommerce, passed through unchanged by mapWooProduct(). No top-level type/weight/form fields needed — ShopCatalog filters correctly use attributes array with bilingual name lookups.
-- Last result: Success — no changes needed, Product type and mapping already correct. Typecheck and build pass.
+- Working on: Step 4
+- Iteration: 3
+- Last action: Created app/api/contact/route.ts with Resend email sending, server-side validation (required fields + email format), and in-memory rate limiting (3 req/IP/hour). Installed resend package. Lazy-initialized Resend client to avoid build-time errors without API key.
+- Last result: Success — typecheck and build pass.
 
 ## Architecture Decisions
 - Database: WooCommerce (headless, one.com)

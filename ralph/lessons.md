@@ -12,3 +12,4 @@
 - Container component was removed — use manual `max-w-7xl` instead
 - Language switcher is custom dropdown, not native `<select>`
 - Cart uses localStorage via CartProvider/CartDrawer — don't introduce server-side cart state
+- DO NOT instantiate Resend at module level — it throws without RESEND_API_KEY at build time. Use a lazy getter function instead (discovered iteration 3)
