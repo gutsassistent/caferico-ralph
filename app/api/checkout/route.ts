@@ -115,6 +115,15 @@ function calculateTotal(items: CheckoutItem[], priceMap: Map<string, number>): n
 }
 
 export async function POST(request: NextRequest) {
+  // CSRF Origin check
+  const origin = request.headers.get('origin');
+  const baseUrl = getBaseUrl();
+  const expectedHost = new URL(baseUrl).host;
+
+  if (!origin || new URL(origin).host !== expectedHost) {
+    return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+  }
+
   try {
     const body = (await request.json()) as CheckoutBody;
     const { items, customer, locale = 'nl', wcCustomerId } = body;

@@ -12,13 +12,13 @@
 2. [x] Add a tiny idempotency helper (get/insert by paymentId) and wire `app/api/webhook/mollie/route.ts` to use it (remove the in‑memory Set). Depends on: 1. Test: hit webhook twice with same id → second call is a no‑op but still 200. — DONE (iteration 2)
 3. [x] Add `MOLLIE_WEBHOOK_TOKEN` to `.env.example` + `lib/env.ts` validation. Depends on: none. Test: `npm run typecheck`. — DONE (iteration 3)
 4. [x] Append `?token=...` to Mollie `webhookUrl` in `app/api/checkout/route.ts` and verify the token in `app/api/webhook/mollie/route.ts`. Depends on: 3. Test: webhook returns 200 with correct token, 401/200‑ignored with missing token (pick one behavior and assert it). — DONE (iteration 4)
-5. Add CSRF Origin check to `POST /api/checkout` (reject when Origin host ≠ `NEXT_PUBLIC_BASE_URL`). Depends on: none. Test: curl without Origin → 403, browser request → 200.
+5. [x] Add CSRF Origin check to `POST /api/checkout` (reject when Origin host ≠ `NEXT_PUBLIC_BASE_URL`). Depends on: none. Test: curl without Origin → 403, browser request → 200. — DONE (iteration 5)
 6. Add rate limiting on `/api/checkout` (simple in‑memory token bucket per IP using `X-Forwarded-For` when present; document restart limitation). Depends on: none. Test: 6 rapid calls → last is 429.
 
 ## Current
-- Working on: Step 5 (CSRF Origin check on /api/checkout)
-- Iteration: 4
-- Last action: Appended ?token=MOLLIE_WEBHOOK_TOKEN to webhookUrl in checkout route; added token verification in webhook route (returns 200 no-op on mismatch)
+- Working on: Step 6 (rate limiting on /api/checkout)
+- Iteration: 5
+- Last action: Added CSRF Origin check at top of POST /api/checkout — rejects requests where Origin header host doesn't match NEXT_PUBLIC_BASE_URL
 - Last result: typecheck + build pass
 
 ## Architecture Decisions
