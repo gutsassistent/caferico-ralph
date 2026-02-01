@@ -91,23 +91,24 @@ This is a solid subscription implementation plan that's in the **wrong slot on t
 ---
 
 ## Plan
-1. Define the next phase in `ralph/spec.md` (set “What’s Next”, Acceptance Criteria, Out of Scope). Include explicit decisions for subscription scope: require login or guest, which coffee/roast options are supported, whether recurring payments must create WooCommerce orders, and whether self‑service cancel/pause is in-scope. Depends on: none. Test: n/a (doc-only).
-2. Add typed subscription catalog (`types/subscription.ts`, `data/subscriptions.ts`) containing plan IDs, tier labels, interval, price, and product slug(s) or IDs to fulfill. Keep it minimal but complete for Mollie + WooCommerce mapping. Depends on: 1. Test: `npm run typecheck`.
-3. Add minimal i18n keys required for the subscription checkout/return flow (CTA, form labels, validation errors, status messages) across `messages/*.json`, keeping the set small enough for one iteration. Depends on: 1. Test: `npm run typecheck`.
-4. Extend `lib/schema.ts` with tables to persist Mollie customer/subscription mappings (userId, mollieCustomerId, mollieSubscriptionId, planId, status, createdAt/updatedAt). Document any migration steps in `README.md` if needed. Depends on: 1. Test: `npm run typecheck`.
-5. Add a small data-access helper (`lib/subscription-store.ts`) with functions to upsert Mollie customer IDs and subscription records for a user, plus a getter for active subscription by userId. Depends on: 4. Test: `npm run typecheck`.
-6. Add Mollie helper `getOrCreateMollieCustomer` in `lib/mollie-subscriptions.ts` that checks the store first, then calls Mollie Customers API, and persists the mapping. Depends on: 5. Test: `npm run typecheck`.
-7. Add Mollie helper `createSubscriptionFirstPayment` in `lib/mollie-subscriptions.ts` that builds a “first” payment using plan catalog data, includes metadata (planId, groupId, customer address, userId, wcCustomerId), and returns checkoutUrl. Depends on: 2, 6. Test: manual dev call with test key (expect checkout URL).
-8. Create API route `POST /api/subscriptions/start` to validate input (plan/group, address fields), require auth session, call `createSubscriptionFirstPayment`, and return checkoutUrl. Depends on: 7. Test: curl or UI submit (expect 401 when logged out, 200 with checkoutUrl when logged in).
-9. Add a new page `app/[locale]/(pages)/subscriptions/checkout/page.tsx` that reads plan/group from query params, loads plan details from the catalog, and renders a placeholder checkout form + summary. Depends on: 2, 8. Test: navigate to `/subscriptions/checkout?plan=starter&group=beans`.
-10. Create `components/SubscriptionCheckoutForm.tsx` with name + email fields, minimal validation, and submit handler that calls `/api/subscriptions/start`. Keep it lightweight for the first iteration. Depends on: 8, 9. Test: submit valid/invalid email and verify client validation + API error display.
-11. Extend `SubscriptionCheckoutForm` with address fields (street, postal code, city, country, phone), validation rules (reuse patterns from `CheckoutForm`), and prefill from `/api/account` when authenticated. Depends on: 10. Test: prefill when logged in; validation errors when fields are missing.
-12. Update `components/SubscriptionTierCard.tsx` to link into the new checkout flow (deep link with plan/group), and if unauthenticated, route to `/login?callbackUrl=...` preserving plan selection. Depends on: 9. Test: click plan buttons logged in/out.
-13. Add `GET /api/subscriptions/status` (modeled after checkout status) to fetch Mollie payment status by id and normalize to `paid | pending | failed | canceled | expired`. Depends on: 7. Test: `curl /api/subscriptions/status?id=tr_xxx` with invalid/valid IDs.
-14. Add `app/[locale]/(pages)/subscriptions/return/page.tsx` and a small return component to show subscription setup status using the status API, with CTA back to account/subscriptions on success. Depends on: 13. Test: visit return page with a mock id and verify status UI.
-15. Add webhook `POST /api/webhook/mollie-subscription` that verifies Mollie payment status, creates a Mollie subscription for paid “first” payments, and persists subscription IDs/status in the store. Depends on: 5, 7. Test: call webhook with a paid payment id in test mode and verify DB updates/logs.
-16. Add WooCommerce order creation for subscription payments: helper to map plan → WC product IDs and create orders; update webhook to create an order for the first payment (and recurring payments when `payment.subscriptionId` is present). Depends on: 2, 15. Test: simulate paid payment webhook and verify WC order creation.
-17. Add account UI + API to surface subscription status (and optionally cancel) in the account page. Keep scope minimal (read-only status if cancel is out-of-scope). Depends on: 15. Test: view account while having a subscription record.
+1. Update `ralph/spec.md` to set “What’s Next” to P0 launch blockers, with explicit Acceptance Criteria and Out of Scope (subscriptions moved to P2). Depends on: none. Test: n/a (doc-only).
+2. Apply the `ralph/fix-api-metadata` change set (sanitize HTML/XSS hardening) into mainline. Depends on: none. Test: `npm run typecheck`.
+3. Add a persistent webhook idempotency table in `lib/schema.ts` (e.g. `mollie_payments` with UNIQUE `paymentId`). Depends on: none. Test: `npm run typecheck`.
+4. Add a tiny idempotency helper (get/insert by paymentId) and wire `app/api/webhook/mollie/route.ts` to use it (remove the in‑memory Set). Depends on: 3. Test: hit webhook twice with same id → second call is a no‑op but still 200.
+5. Add `MOLLIE_WEBHOOK_TOKEN` to `.env.example` + `lib/env.ts` validation. Depends on: none. Test: `npm run typecheck`.
+6. Append `?token=...` to Mollie `webhookUrl` in `app/api/checkout/route.ts` and verify the token in `app/api/webhook/mollie/route.ts`. Depends on: 5. Test: webhook returns 200 with correct token, 401/200‑ignored with missing token (pick one behavior and assert it).
+7. Add CSRF Origin check to `POST /api/checkout` (reject when Origin host ≠ `NEXT_PUBLIC_BASE_URL`). Depends on: none. Test: curl without Origin → 403, browser request → 200.
+8. Add rate limiting on `/api/checkout` (simple in‑memory token bucket per IP). Depends on: none. Test: 6 rapid calls → last is 429.
+9. Add `app/api/contact/route.ts` to send contact submissions via Resend (new `CONTACT_EMAIL_TO` env var + validation). Depends on: none. Test: POST with sample payload → 200 and email received in test inbox.
+10. Wire `components/ContactForm.tsx` to POST to `/api/contact`, showing success/error states. Depends on: 9. Test: submit form UI → success message.
+11. Add `app/api/newsletter/route.ts` to send newsletter signups via Resend (new `NEWSLETTER_EMAIL_TO` env var + validation). Depends on: none. Test: POST with email → 200 and email received.
+12. Wire `components/NewsletterForm.tsx` to POST to `/api/newsletter`, showing success/error states. Depends on: 11. Test: submit form UI → success message.
+13. Make shop filters actually filter results in `components/ShopCatalog.tsx` (map type/format/form filters to product data). Depends on: none. Test: apply filters → product count changes as expected.
+14. Add a minimal `CookieConsent` component with localStorage state and wire it into `app/[locale]/layout.tsx`. Depends on: none. Test: banner shows once, dismiss persists on reload.
+15. Create `app/[locale]/(pages)/privacy/page.tsx` and `app/[locale]/(pages)/terms/page.tsx` with minimal copy + i18n keys in all locales (placeholders allowed until final text). Depends on: none. Test: routes render in all locales.
+16. Replace placeholder copy on Privacy/Cookie + Terms pages with final legal text from Jonathan. Depends on: 15, content from Jonathan. Test: text matches approved copy.
+17. Env/config tasks in Coolify: set `NEXT_PUBLIC_BASE_URL`, add `MOLLIE_WEBHOOK_TOKEN`, add `CONTACT_EMAIL_TO` + `NEWSLETTER_EMAIL_TO`, configure Google OAuth redirect URI, and run `drizzle push` as post‑deploy. Depends on: 5, 9, 11. Test: Mollie webhook calls succeed in production; auth redirect works.
+18. UI polish for launch (contrast + product photo backgrounds), once legal/security blockers are done. Depends on: 1–17. Test: visual QA at 375px/768px/1024px.
 
 ## Current
 - Working on: Awaiting next phase definition
