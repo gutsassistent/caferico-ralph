@@ -4,6 +4,7 @@ import {
   text,
   primaryKey,
   integer,
+  boolean,
 } from 'drizzle-orm/pg-core';
 import type { AdapterAccountType } from 'next-auth/adapters';
 
@@ -54,3 +55,11 @@ export const verificationTokens = pgTable(
     }),
   ]
 );
+
+export const molliePayments = pgTable('mollie_payment', {
+  paymentId: text('payment_id').primaryKey(),
+  status: text('status').notNull(),
+  processed: boolean('processed').notNull().default(false),
+  createdAt: timestamp('created_at', { mode: 'date' }).notNull().defaultNow(),
+  updatedAt: timestamp('updated_at', { mode: 'date' }).notNull().defaultNow(),
+});
