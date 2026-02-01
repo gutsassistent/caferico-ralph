@@ -127,6 +127,15 @@ export default function CartDrawer() {
                       <>
                         <div className="absolute inset-0 bg-coffee-grain opacity-40" />
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,165,116,0.25),_transparent_60%)]" />
+                        <svg
+                          aria-hidden="true"
+                          viewBox="0 0 24 24"
+                          className="absolute inset-0 m-auto h-8 w-8 text-gold/40"
+                          fill="currentColor"
+                        >
+                          <ellipse cx="12" cy="12" rx="7" ry="9" />
+                          <path d="M12 3C12 3 9 8 9 12C9 16 12 21 12 21" fill="none" stroke="rgba(0,0,0,0.3)" strokeWidth="1.2" />
+                        </svg>
                       </>
                     )}
                   </div>
