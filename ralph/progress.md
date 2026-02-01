@@ -9,12 +9,14 @@
 
 ## Plan
 1. [x] Map WooCommerce attributes to filter categories (type/format/form) in `types/product.ts` or a helper, then make filters actually filter results in `components/ShopCatalog.tsx`. Depends on: none. Test: apply filters → product count changes as expected. — DONE (iteration 1)
+2. [ ] Contact form → Resend: Create API route `app/api/contact/route.ts`, wire ContactForm to POST to it, add server-side validation and rate limiting. Test: form submits, email sent via Resend, success/error feedback shown. — NOT STARTED
+3. [ ] Newsletter form → Resend: Create API route `app/api/newsletter/route.ts`, wire newsletter form to POST, use Resend Contacts/Audiences API, handle duplicates. Test: form submits, contact saved, duplicate handled gracefully. — NOT STARTED
 
 ## Current
-- Working on: Step 1 complete
-- Iteration: 1
-- Last action: Wired type/format/form filters to filteredProducts useMemo in ShopCatalog.tsx
-- Last result: Typecheck and build pass. Filters now use product.attributes to match against selectedTypes (mild/intens/espresso/decaf), selectedFormats (250g/500g), and selectedForms (beans/ground) with AND logic. Added helper functions getProductAttr and matchesFilter that search WooCommerce attributes by multiple possible attribute names (NL/EN).
+- Working on: Step 2 — Contact form → Resend
+- Iteration: 2
+- Last action: Updated plan with steps 2 and 3
+- Last result: Plan updated
 
 ## Architecture Decisions
 - Database: WooCommerce (headless, one.com)
