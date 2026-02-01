@@ -1,87 +1,138 @@
-# Caférico Redesign — Agent Instructions
+# Caférico — Agent Instructions (Ralph v2)
 
-## Jouw Rol
-Je bent een checkout integratie agent voor Caférico (caferico.be), een Belgische specialty coffee webshop. Je werkt aan ONE user story per iteratie vanuit `prd-mollie.json`.
+## Core Loop
 
-## Branch
-Werk op branch `ralph/auth`. Als die nog niet bestaat, maak hem aan vanaf `main`:
-```bash
-git checkout -b ralph/auth
+You are a worker agent in an iterative build system. Every task follows this cycle:
+
+1. **Read state** — Read `ralph/progress.md` and `ralph/lessons.md` before doing anything
+2. **Do ONE thing** — Complete exactly one step from the plan. Not two. Not "one and a half."
+3. **Verify** — Run `npm run typecheck` and `npm run build`. Confirm nothing is broken.
+4. **Save state** — Update `ralph/progress.md` with what you did and the result
+5. **Commit** — `git commit -m "ralph: step N - [description]"`
+
+## State Files
+
+### ralph/progress.md
+Source of truth for plan and current state. Format:
+```markdown
+# Progress
+## Plan
+1. [x] Step description — DONE (iteration N)
+2. [ ] Step description — IN PROGRESS
+3. [ ] Step description — NOT STARTED
+
+## Current
+- Working on: Step 2
+- Iteration: 7
+- Last action: [what you did]
+- Last result: [outcome]
+
+## Architecture Decisions
+- [Decision]: [Choice] (reason, decided step N)
 ```
-Commit en push ALTIJD naar deze branch, NIET naar main.
 
-## Essentiële Bestanden
-- **CONTEXT.md** — Alle bedrijfsinfo, design richting, technische stack, content, afbeeldingen. LEES DIT EERST.
-- **prd-auth.json** — User stories voor authenticatie (Auth.js v5, magic links, Google OAuth). Pak de eerste story waar `passes: false`.
-- **progress.txt** — Learnings van vorige iteraties. Lees dit voor context, append jouw learnings na afloop.
+### ralph/lessons.md
+Read FIRST every iteration. After every failure or surprising discovery, add a lesson.
+Format: `- DO/DO NOT [action] — [reason] (discovered iteration N)`
 
-## Technische Stack (NIET afwijken)
+### ralph/failures.log
+Format: `iteration:N|action:description|error:message|hash:short`
+If same hash appears 3 times → STOP. Write `STUCK: [description]` in progress.md.
+
+## Project Context
+
+**Caférico** (caferico.be) — Belgische specialty coffee webshop.
+
+### Essentiële Bestanden
+- **CONTEXT.md** — Bedrijfsinfo, design richting, technische stack, content, afbeeldingen. LEES DIT EERST.
+- **ralph/spec.md** — Wat we nu bouwen + acceptance criteria
+- **ralph/progress.md** — Plan + state (source of truth)
+
+### Technische Stack (NIET afwijken)
 - **Framework:** Next.js 15 (App Router, TypeScript)
 - **Styling:** Tailwind CSS only (geen CSS modules, geen inline styles)
-- **i18n:** next-intl (NL default, EN, FR, ES) — ALLE teksten via next-intl, NIET hardcoden
+- **i18n:** next-intl (NL default, EN, FR, ES) — ALLE teksten via next-intl
 - **Backend:** WooCommerce REST API (headless, draait op one.com)
 - **Checkout:** Mollie (hosted checkout, redirect) — NIET Stripe
-- **Subscriptions:** Mollie Recurring API — NIET Stripe
 - **Auth:** NextAuth.js
 - **Deployment:** Vercel
 - **Fonts:** Playfair Display (headings) + Inter (body)
 
-## Design Richting
+### Design Richting
 - Elegant, warm, premium, awe-inspiring
 - Deep browns, cream, gold accents, dark backgrounds
 - Mobile-first responsive (375px → 768px → 1024px → 1440px)
 - Generous whitespace, 8px grid spacing system
 - Zie CONTEXT.md sectie 2 voor volledige design brief
 
-## Workflow Per Iteratie
-1. Lees `progress.txt` voor context van vorige iteraties
-2. Lees `prd.json` en pak de eerste story met `passes: false`
-3. Implementeer ALLEEN die ene story
-4. Verifieer:
-   - `npm run typecheck` slaagt
-   - `npm run build` slaagt
-   - Visueel correct (mobile + desktop)
-   - Bestaande functionaliteit niet gebroken (cart, taalswitch, navigatie)
-5. Commit met beschrijvende message
-6. Update `prd.json`: zet de story op `"passes": true`
-7. Append learnings aan `progress.txt`
-
-## Regels
-- **Eén story per iteratie.** Niet meer.
-- **Breek niets.** Cart, routing, i18n, bestaande pagina's moeten blijven werken.
-- **Alle teksten via next-intl.** Voeg vertalingen toe aan messages/nl.json, en.json, fr.json, es.json.
-- **Gebruik echte afbeeldingen** waar beschikbaar (zie CONTEXT.md sectie 5 voor URLs).
-- **Tailwind only.** Geen styled-components, geen CSS modules, geen inline styles.
-- **Geen nieuwe dependencies** tenzij de story het expliciet vereist.
-- **Mobile-first.** Elke component eerst voor 375px, dan opschalen.
-
-## Skills (GEBRUIK DEZE)
-Je hebt skills geïnstalleerd die je ACTIEF moet inzetten:
-- **ui-ux-pro-max** — design patterns, kleurtheorie, typography, accessibility. Laad bij elke visuele story.
-- **next-best-practices** — Next.js optimalisaties. Laad bij performance en architectuur stories.
-- **agent-browser** — visueel verifiëren in de browser. Gebruik om je wijzigingen te checken.
-- **frontend-design** — bold, memorable design keuzes. Laad bij elke design story.
-
-Laad een skill met: "Load the [skill-name] skill" of lees de SKILL.md in de skills/ directory.
-
-## Huidige Staat
-- Redesign fase compleet (42/42 stories done)
-- Mollie checkout integratie compleet (fase 2B gemerged)
-- WooCommerce REST API integratie werkt (echte productdata)
+### Huidige Staat
+- Redesign fase compleet (42/42 stories)
+- Mollie checkout integratie compleet
+- WooCommerce REST API integratie werkt
 - Cart is client-side (localStorage) via CartProvider/CartDrawer
-- Checkout flow werkt: cart → adresformulier → Mollie redirect → return pagina
-- Nog GEEN authenticatie — dat is wat deze fase bouwt
-- WooCommerce draait als headless backend op one.com
-- Er bestaan ~100 bestaande WooCommerce klantaccounts (email/wachtwoord)
-- We migreren naar magic links (geen wachtwoorden meer nodig)
+- Checkout flow: cart → adresformulier → Mollie redirect → return pagina
+- Auth fase: NextAuth.js met magic links + Google OAuth (in progress)
+- ~100 bestaande WooCommerce klantaccounts
 
-## Bestaande Structuur
+### Bestaande Structuur
 ```
-app/[locale]/(pages)/          — pagina's
-components/                     — gedeelde componenten
-data/                          — mock data (JSON)
-messages/                      — i18n vertalingen (nl, en, fr, es)
-lib/                           — utilities
-types/                         — TypeScript types
-tailwind.config.ts             — design tokens
+app/[locale]/(pages)/    — pagina's
+components/              — gedeelde componenten
+data/                    — mock data (JSON)
+messages/                — i18n vertalingen (nl, en, fr, es)
+lib/                     — utilities
+types/                   — TypeScript types
+tailwind.config.ts       — design tokens
 ```
+
+## Per-Iteration Rules
+
+### Before you start:
+- [ ] Read `ralph/progress.md`
+- [ ] Read `ralph/lessons.md`
+- [ ] Check `ralph/failures.log`
+- [ ] Identify the ONE next step
+
+### While working:
+- Touch as few files as possible
+- If the plan needs changing → update plan FIRST, commit, THEN proceed
+- If unsure about architecture → mark step BLOCKED with reason
+- No "cleanup" or "refactor" unless that IS the current step
+- No scope creep — new issues become new plan steps
+
+### After completing:
+- [ ] `npm run typecheck` passes
+- [ ] `npm run build` passes
+- [ ] Bestaande functionaliteit niet gebroken (cart, taalswitch, navigatie)
+- [ ] Update `ralph/progress.md`
+- [ ] If failed: update `ralph/failures.log` and `ralph/lessons.md`
+- [ ] `git add -A && git commit -m "ralph: step N - [description]"`
+
+## Replanning
+
+Trigger replan when:
+- 3 consecutive steps fail
+- Approach is fundamentally wrong
+- A dependency assumption proved false
+
+Process:
+1. Write `## Replan (iteration N) — Reason: [why]` in progress.md
+2. Review completed steps — what's salvageable?
+3. Write new plan
+4. Commit: `git commit -m "ralph: replan - [reason]"`
+
+## Project Rules
+- **Alle teksten via next-intl.** Vertalingen in messages/nl.json, en.json, fr.json, es.json.
+- **Tailwind only.** Geen styled-components, CSS modules, inline styles.
+- **Geen nieuwe dependencies** tenzij de stap het expliciet vereist.
+- **Mobile-first.** Elk component eerst voor 375px, dan opschalen.
+- **Breek niets.** Cart, routing, i18n, bestaande pagina's moeten werken.
+
+## Anti-Patterns (DO NOT)
+- ❌ Meerdere stappen in één iteratie
+- ❌ State files overslaan ("ik weet nog wat ik deed")
+- ❌ Plan wijzigen zonder apart te committen
+- ❌ "Start fresh" of "laat me alles opnieuw doen"
+- ❌ Bestanden aanraken die niet bij de huidige stap horen
+- ❌ Test failures negeren en doorgaan
+- ❌ lessons.md verwijderen of overschrijven
