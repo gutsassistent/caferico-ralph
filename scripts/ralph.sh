@@ -4,7 +4,7 @@
 # Usage: ./scripts/ralph.sh [options]
 #
 # Options:
-#   --tool claude|codex|amp    Agent CLI to use (default: claude)
+#   --tool claude|codex|amp|opencode    Agent CLI to use (default: claude)
 #   --model <model>            Model override (e.g. claude-sonnet-4-5)
 #   --max <N>                  Max iterations (default: 50)
 #   --step <N>                 Start from specific step number
@@ -23,6 +23,28 @@ PROGRESS_FILE="$RALPH_DIR/progress.md"
 LESSONS_FILE="$RALPH_DIR/lessons.md"
 FAILURES_FILE="$RALPH_DIR/failures.log"
 
+# --- Opencode model normalization ---
+# Opencode expects models in provider/model format.
+normalize_opencode_model() {
+  local input="$1"
+
+  # Default for this repo's Ralph loop.
+  if [ -z "$input" ]; then
+    echo "opencode/kimi-k2.5-free"
+    return 0
+  fi
+
+  # Accept a few common display-name variants.
+  case "$input" in
+    "Kimi K2.5 Free OpenCode Zen"|"Kimi K2.5 Free"|"Kimi K2.5")
+      echo "opencode/kimi-k2.5-free"
+      return 0
+      ;;
+  esac
+
+  echo "$input"
+}
+
 # --- Parse args ---
 while [[ $# -gt 0 ]]; do
   case $1 in
@@ -38,6 +60,11 @@ while [[ $# -gt 0 ]]; do
     *)         echo "Unknown option: $1"; exit 1 ;;
   esac
 done
+
+# --- Tool-specific defaults / normalization ---
+if [ "$TOOL" = "opencode" ]; then
+  MODEL="$(normalize_opencode_model "$MODEL")"
+fi
 
 # --- Validate ---
 if [ ! -f "$PROGRESS_FILE" ]; then
@@ -107,6 +134,11 @@ run_agent() {
       ;;
     amp)
       echo "$prompt" | amp --dangerously-allow-all 2>&1
+      ;;
+    opencode)
+      # Opencode needs the model in provider/model format (e.g. opencode/kimi-k2.5-free)
+      # and runs best with the permissive build agent for repo automation.
+      opencode run --format default --agent build -m "$MODEL" "$prompt" 2>&1
       ;;
     *)
       echo "Error: Unknown tool '$TOOL'"
