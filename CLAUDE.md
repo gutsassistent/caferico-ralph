@@ -128,11 +128,22 @@ Process:
 - **Mobile-first.** Elk component eerst voor 375px, dan opschalen.
 - **Breek niets.** Cart, routing, i18n, bestaande pagina's moeten werken.
 
+## Scope Discipline
+
+Je `ralph/progress.md` bevat ALLEEN de stappen die aan jou zijn toegewezen. Dat is jouw scope. Niets anders.
+
+- Werk ALLEEN aan stappen in jouw progress.md
+- Als je code ziet die "gefixt moet worden" maar het is niet jouw stap → negeer het
+- Als je denkt dat er een stap mist → voeg toe aan JOUW plan, doe niet het werk van een andere agent
+- Andere agents werken mogelijk parallel aan andere stappen. Raak hun scope NIET aan.
+
 ## Anti-Patterns (DO NOT)
 - ❌ Meerdere stappen in één iteratie
+- ❌ Werken aan stappen die niet in jouw progress.md staan (scope creep)
 - ❌ State files overslaan ("ik weet nog wat ik deed")
 - ❌ Plan wijzigen zonder apart te committen
 - ❌ "Start fresh" of "laat me alles opnieuw doen"
 - ❌ Bestanden aanraken die niet bij de huidige stap horen
 - ❌ Test failures negeren en doorgaan
 - ❌ lessons.md verwijderen of overschrijven
+- ❌ "Terwijl ik hier toch ben..." — NEE. Eén stap. Jouw stap. Dat is het.

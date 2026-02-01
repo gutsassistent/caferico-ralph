@@ -10,6 +10,7 @@ import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import PageTransition from '@/components/PageTransition';
 import ScrollToTop from '@/components/ScrollToTop';
+import CookieConsent from '@/components/CookieConsent';
 import NavigationProgress from '@/components/NavigationProgress';
 import { ToastProvider } from '@/components/Toast';
 import AuthSessionProvider from '@/components/AuthSessionProvider';
@@ -84,6 +85,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
               </div>
               <CartDrawer />
               <ScrollToTop />
+              <CookieConsent />
             </CartProvider>
           </ToastProvider>
         </NextIntlClientProvider>

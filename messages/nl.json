@@ -969,14 +969,38 @@
       "loginPrompt": "Log in voor sneller afrekenen"
     },
     "fields": {
-      "firstName": { "label": "Voornaam", "placeholder": "Jan" },
-      "lastName": { "label": "Achternaam", "placeholder": "Peeters" },
-      "email": { "label": "E-mailadres", "placeholder": "jan@voorbeeld.be" },
-      "street": { "label": "Straat + huisnummer", "placeholder": "Kerkstraat 12" },
-      "postalCode": { "label": "Postcode", "placeholder": "9000" },
-      "city": { "label": "Stad", "placeholder": "Gent" },
-      "country": { "label": "Land" },
-      "phone": { "label": "Telefoon", "optional": "optioneel", "placeholder": "0470 00 00 00" }
+      "firstName": {
+        "label": "Voornaam",
+        "placeholder": "Jan"
+      },
+      "lastName": {
+        "label": "Achternaam",
+        "placeholder": "Peeters"
+      },
+      "email": {
+        "label": "E-mailadres",
+        "placeholder": "jan@voorbeeld.be"
+      },
+      "street": {
+        "label": "Straat + huisnummer",
+        "placeholder": "Kerkstraat 12"
+      },
+      "postalCode": {
+        "label": "Postcode",
+        "placeholder": "9000"
+      },
+      "city": {
+        "label": "Stad",
+        "placeholder": "Gent"
+      },
+      "country": {
+        "label": "Land"
+      },
+      "phone": {
+        "label": "Telefoon",
+        "optional": "optioneel",
+        "placeholder": "0470 00 00 00"
+      }
     },
     "validation": {
       "firstNameRequired": "Vul je voornaam in.",
@@ -1120,5 +1144,20 @@
       "title": "Mijn Account",
       "description": "Bekijk je profiel, adressen en bestellingen bij Café RICO."
     }
+  },
+  "Privacy": {
+    "title": "Privacybeleid",
+    "description": "Hoe wij omgaan met uw gegevens.",
+    "content": "Het privacybeleid van Caférico wordt binnenkort aangevuld. Voor vragen kunt u contact met ons opnemen via het contactformulier."
+  },
+  "Terms": {
+    "title": "Algemene Voorwaarden",
+    "description": "Onze verkoopvoorwaarden.",
+    "content": "De algemene voorwaarden van Caférico worden binnenkort aangevuld. Voor vragen kunt u contact met ons opnemen via het contactformulier."
+  },
+  "CookieConsent": {
+    "message": "Wij gebruiken cookies om uw ervaring te verbeteren.",
+    "privacyLink": "Privacybeleid",
+    "accept": "Accepteren"
   }
 }

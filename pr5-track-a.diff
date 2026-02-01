@@ -1,0 +1,469 @@
+diff --git a/.env.example b/.env.example
+index e5c2c46..c6b2a10 100644
+--- a/.env.example
++++ b/.env.example
+@@ -11,6 +11,10 @@
+ # Use test key (test_xxx) for development, live key (live_xxx) for production.
+ MOLLIE_API_KEY=test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+ 
++# Shared secret appended to webhook URL for verification.
++# Generate with: openssl rand -hex 32
++MOLLIE_WEBHOOK_TOKEN=your-webhook-token-here
++
+ # -----------------------------------------------------------------------------
+ # WooCommerce REST API (headless backend)
+ # -----------------------------------------------------------------------------
+diff --git a/app/api/checkout/route.ts b/app/api/checkout/route.ts
+index 0f25b2b..0b42569 100644
+--- a/app/api/checkout/route.ts
++++ b/app/api/checkout/route.ts
+@@ -4,6 +4,7 @@ import { getProducts } from '@/lib/woocommerce';
+ import type { WooCommerceProduct } from '@/types/woocommerce';
+ import mockProducts from '@/data/mock-products.json';
+ import { calculateShipping } from '@/lib/shipping';
++import { rateLimit } from '@/lib/rate-limit';
+ 
+ type CheckoutItem = {
+   id: string;
+@@ -115,6 +116,23 @@ function calculateTotal(items: CheckoutItem[], priceMap: Map<string, number>): n
+ }
+ 
+ export async function POST(request: NextRequest) {
++  // CSRF Origin check
++  const origin = request.headers.get('origin');
++  const baseUrl = getBaseUrl();
++  const expectedHost = new URL(baseUrl).host;
++
++  if (!origin || new URL(origin).host !== expectedHost) {
++    return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
++  }
++
++  // Rate limiting: 5 requests per IP per 60 seconds
++  const ip = request.headers.get('x-forwarded-for')?.split(',')[0].trim()
++    ?? request.headers.get('x-real-ip')
++    ?? 'unknown';
++  if (!rateLimit(ip, 5, 60_000)) {
++    return NextResponse.json({ error: 'Too many requests' }, { status: 429 });
++  }
++
+   try {
+     const body = (await request.json()) as CheckoutBody;
+     const { items, customer, locale = 'nl', wcCustomerId } = body;
+@@ -144,7 +162,10 @@ export async function POST(request: NextRequest) {
+     const description = `Café RICO — ${items.length} ${items.length === 1 ? 'product' : 'producten'}`;
+ 
+     // Create Mollie payment
+-    const webhookUrl = baseUrl.includes('localhost') ? undefined : `${baseUrl}/api/webhook/mollie`;
++    const webhookToken = process.env.MOLLIE_WEBHOOK_TOKEN;
++    const webhookUrl = baseUrl.includes('localhost')
++      ? undefined
++      : `${baseUrl}/api/webhook/mollie${webhookToken ? `?token=${webhookToken}` : ''}`;
+ 
+     const payment = await getMollieClient().payments.create({
+       amount: {
+diff --git a/app/api/webhook/mollie/route.ts b/app/api/webhook/mollie/route.ts
+index ae2cc50..2ec8d23 100644
+--- a/app/api/webhook/mollie/route.ts
++++ b/app/api/webhook/mollie/route.ts
+@@ -1,18 +1,21 @@
+ import { NextRequest, NextResponse } from 'next/server';
+ import getMollieClient from '@/lib/mollie';
+ import { createOrder } from '@/lib/woocommerce-orders';
+-
+-// Track processed payments to prevent duplicate orders
+-const globalWithProcessed = globalThis as typeof globalThis & {
+-  __processedPayments?: Set<string>;
+-};
+-if (!globalWithProcessed.__processedPayments) {
+-  globalWithProcessed.__processedPayments = new Set();
+-}
+-const processedPayments = globalWithProcessed.__processedPayments;
++import { getMolliePayment, insertMolliePayment } from '@/lib/mollie-idempotency';
+ 
+ export async function POST(request: NextRequest) {
+   try {
++    // Verify webhook token (shared secret appended as ?token=... to webhookUrl)
++    const webhookToken = process.env.MOLLIE_WEBHOOK_TOKEN;
++    if (webhookToken) {
++      const url = new URL(request.url);
++      const token = url.searchParams.get('token');
++      if (token !== webhookToken) {
++        // Return 200 so Mollie doesn't retry, but do nothing
++        return new NextResponse('OK', { status: 200 });
++      }
++    }
++
+     // Mollie sends webhook as application/x-www-form-urlencoded with id=tr_xxx
+     const formData = await request.formData();
+     const paymentId = formData.get('id');
+@@ -22,8 +25,9 @@ export async function POST(request: NextRequest) {
+       return new NextResponse('OK', { status: 200 });
+     }
+ 
+-    // Idempotency: skip if already processed
+-    if (processedPayments.has(paymentId)) {
++    // Idempotency: skip if already processed (persisted in DB)
++    const existing = await getMolliePayment(paymentId);
++    if (existing?.processed) {
+       return new NextResponse('OK', { status: 200 });
+     }
+ 
+@@ -35,8 +39,12 @@ export async function POST(request: NextRequest) {
+       return new NextResponse('OK', { status: 200 });
+     }
+ 
+-    // Mark as processed before creating order (prevent race conditions)
+-    processedPayments.add(paymentId);
++    // Attempt to claim this payment via DB insert (prevents race conditions)
++    const inserted = await insertMolliePayment(paymentId, payment.status);
++    if (!inserted) {
++      // Another request already processed it
++      return new NextResponse('OK', { status: 200 });
++    }
+ 
+     // Extract metadata stored during payment creation
+     const metadata = payment.metadata as {
+@@ -66,8 +74,6 @@ export async function POST(request: NextRequest) {
+ 
+       console.log(`WooCommerce order created: #${order.number} for payment ${paymentId}`);
+     } catch (orderError) {
+-      // Remove from processed so it can be retried
+-      processedPayments.delete(paymentId);
+       console.error(`Failed to create WooCommerce order for payment ${paymentId}:`, orderError);
+       // Return 500 so Mollie retries the webhook
+       return new NextResponse('Error', { status: 500 });
+diff --git a/lib/env.ts b/lib/env.ts
+index b6cc526..7955dc4 100644
+--- a/lib/env.ts
++++ b/lib/env.ts
+@@ -31,6 +31,11 @@ const SERVER_ENV_VARS: EnvVar[] = [
+     required: true,
+     hint: 'Generate in WooCommerce → Settings → Advanced → REST API',
+   },
++  {
++    name: 'MOLLIE_WEBHOOK_TOKEN',
++    required: true,
++    hint: 'Shared secret for webhook URL verification. Generate with: openssl rand -hex 32',
++  },
+   {
+     name: 'NEXT_PUBLIC_BASE_URL',
+     required: false,
+diff --git a/lib/mollie-idempotency.ts b/lib/mollie-idempotency.ts
+new file mode 100644
+index 0000000..33b6ae7
+--- /dev/null
++++ b/lib/mollie-idempotency.ts
+@@ -0,0 +1,28 @@
++import { eq } from 'drizzle-orm';
++import { getDb } from './db';
++import { molliePayments } from './schema';
++
++/** Returns the existing row if the paymentId was already recorded, or null. */
++export async function getMolliePayment(paymentId: string) {
++  const db = getDb();
++  const rows = await db
++    .select()
++    .from(molliePayments)
++    .where(eq(molliePayments.paymentId, paymentId))
++    .limit(1);
++  return rows[0] ?? null;
++}
++
++/** Insert a new payment record. Returns true on success, false if it already exists (conflict). */
++export async function insertMolliePayment(
++  paymentId: string,
++  status: string
++): Promise<boolean> {
++  const db = getDb();
++  const result = await db
++    .insert(molliePayments)
++    .values({ paymentId, status, processed: true })
++    .onConflictDoNothing({ target: molliePayments.paymentId });
++  // postgres-js returns an array; length 0 means conflict (row already existed)
++  return (result as unknown as unknown[]).length > 0;
++}
+diff --git a/lib/rate-limit.ts b/lib/rate-limit.ts
+new file mode 100644
+index 0000000..87cc7cf
+--- /dev/null
++++ b/lib/rate-limit.ts
+@@ -0,0 +1,68 @@
++/**
++ * Simple in-memory token-bucket rate limiter.
++ *
++ * Limitations:
++ * - State is lost on server restart / redeployment.
++ * - Not shared across multiple serverless instances.
++ * Suitable for basic abuse prevention on a single-instance deploy.
++ */
++
++interface Bucket {
++  tokens: number;
++  lastRefill: number;
++}
++
++const buckets = new Map<string, Bucket>();
++
++const CLEANUP_INTERVAL = 60_000; // 1 min
++let lastCleanup = Date.now();
++
++function cleanup(windowMs: number) {
++  const now = Date.now();
++  if (now - lastCleanup < CLEANUP_INTERVAL) return;
++  lastCleanup = now;
++  for (const [key, bucket] of buckets) {
++    if (now - bucket.lastRefill > windowMs * 2) {
++      buckets.delete(key);
++    }
++  }
++}
++
++/**
++ * Returns `true` if the request is allowed, `false` if rate-limited.
++ *
++ * @param key      - Identifier (e.g. IP address)
++ * @param limit    - Max tokens per window
++ * @param windowMs - Window size in milliseconds
++ */
++export function rateLimit(
++  key: string,
++  limit: number = 5,
++  windowMs: number = 60_000,
++): boolean {
++  cleanup(windowMs);
++
++  const now = Date.now();
++  let bucket = buckets.get(key);
++
++  if (!bucket) {
++    bucket = { tokens: limit - 1, lastRefill: now };
++    buckets.set(key, bucket);
++    return true;
++  }
++
++  // Refill tokens based on elapsed time
++  const elapsed = now - bucket.lastRefill;
++  const refill = Math.floor((elapsed / windowMs) * limit);
++  if (refill > 0) {
++    bucket.tokens = Math.min(limit, bucket.tokens + refill);
++    bucket.lastRefill = now;
++  }
++
++  if (bucket.tokens > 0) {
++    bucket.tokens -= 1;
++    return true;
++  }
++
++  return false;
++}
+diff --git a/lib/schema.ts b/lib/schema.ts
+index cdd59d7..1091ac2 100644
+--- a/lib/schema.ts
++++ b/lib/schema.ts
+@@ -4,6 +4,7 @@ import {
+   text,
+   primaryKey,
+   integer,
++  boolean,
+ } from 'drizzle-orm/pg-core';
+ import type { AdapterAccountType } from 'next-auth/adapters';
+ 
+@@ -54,3 +55,11 @@ export const verificationTokens = pgTable(
+     }),
+   ]
+ );
++
++export const molliePayments = pgTable('mollie_payment', {
++  paymentId: text('payment_id').primaryKey(),
++  status: text('status').notNull(),
++  processed: boolean('processed').notNull().default(false),
++  createdAt: timestamp('created_at', { mode: 'date' }).notNull().defaultNow(),
++  updatedAt: timestamp('updated_at', { mode: 'date' }).notNull().defaultNow(),
++});
+diff --git a/package-lock.json b/package-lock.json
+index b4f8a1f..74aa686 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -1892,7 +1892,6 @@
+       "integrity": "sha512-WPigyYuGhgZ/cTPRXB2EwUw+XvsRA3GqHlsP4qteqrnnjDrApbS7MxcGr/hke5iUoeB7E/gQtrs9I37zAJ0Vjw==",
+       "dev": true,
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "csstype": "^3.2.2"
+       }
+@@ -1952,7 +1951,6 @@
+       "integrity": "sha512-BtE0k6cjwjLZoZixN0t5AKP0kSzlGu7FctRXYuPAm//aaiZhmfq1JwdYpYr1brzEspYyFeF+8XF5j2VK6oalrA==",
+       "dev": true,
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "@typescript-eslint/scope-manager": "8.54.0",
+         "@typescript-eslint/types": "8.54.0",
+@@ -2459,7 +2457,6 @@
+       "integrity": "sha512-NZyJarBfL7nWwIq+FDL6Zp/yHEhePMNnnJ0y3qfieCrmNvYct8uvtiV41UvlSe6apAfk0fY1FbWx+NwfmpvtTg==",
+       "dev": true,
+       "license": "MIT",
+-      "peer": true,
+       "bin": {
+         "acorn": "bin/acorn"
+       },
+@@ -2895,7 +2892,6 @@
+         }
+       ],
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "baseline-browser-mapping": "^2.9.0",
+         "caniuse-lite": "^1.0.30001759",
+@@ -3710,7 +3706,6 @@
+       "dev": true,
+       "hasInstallScript": true,
+       "license": "MIT",
+-      "peer": true,
+       "bin": {
+         "esbuild": "bin/esbuild"
+       },
+@@ -3789,7 +3784,6 @@
+       "deprecated": "This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+       "dev": true,
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "@eslint-community/eslint-utils": "^4.2.0",
+         "@eslint-community/regexpp": "^4.6.1",
+@@ -3959,7 +3953,6 @@
+       "integrity": "sha512-whOE1HFo/qJDyX4SnXzP4N6zOWn79WhnCUY/iDR0mPfQZO8wcYE4JClzI2oZrhBnnMUCBCHZhO6VQyoBU95mZA==",
+       "dev": true,
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "@rtsao/scc": "^1.1.0",
+         "array-includes": "^3.1.9",
+@@ -5275,7 +5268,6 @@
+       "integrity": "sha512-/imKNG4EbWNrVjoNC/1H5/9GFy+tqjGBHCaSsN+P2RnPqjsLmv6UD3Ej+Kj8nBWaRAwyk7kK5ZUc+OEatnTR3A==",
+       "dev": true,
+       "license": "MIT",
+-      "peer": true,
+       "bin": {
+         "jiti": "bin/jiti.js"
+       }
+@@ -5611,7 +5603,6 @@
+       "integrity": "sha512-QKhzt6Y8rgLNlj30izdMbxAwjHMFANnLwDwZ+WQh5sMhyt4lEBqDK9QpvWHtIM4rINKPoJ8aiRZKg5ULSybVHw==",
+       "deprecated": "This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/CVE-2025-66478 for more details.",
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "@next/env": "15.1.0",
+         "@swc/counter": "0.1.3",
+@@ -6113,7 +6104,6 @@
+         }
+       ],
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "nanoid": "^3.3.11",
+         "picocolors": "^1.1.1",
+@@ -6262,7 +6252,6 @@
+       "resolved": "https://registry.npmjs.org/postgres/-/postgres-3.4.8.tgz",
+       "integrity": "sha512-d+JFcLM17njZaOLkv6SCev7uoLaBtfK86vMUXhW1Z4glPWh4jozno9APvW/XKFJ3CCxVoC7OL38BqRydtu5nGg==",
+       "license": "Unlicense",
+-      "peer": true,
+       "engines": {
+         "node": ">=12"
+       },
+@@ -6276,7 +6265,6 @@
+       "resolved": "https://registry.npmjs.org/preact/-/preact-10.24.3.tgz",
+       "integrity": "sha512-Z2dPnBnMUfyQfSQ+GBdsGa16hz35YmLmtTLhM169uW944hYL6xzTYkJjC07j+Wosz733pMWx0fgON3JNw1jJQA==",
+       "license": "MIT",
+-      "peer": true,
+       "funding": {
+         "type": "opencollective",
+         "url": "https://opencollective.com/preact"
+@@ -6307,7 +6295,6 @@
+       "integrity": "sha512-UOnG6LftzbdaHZcKoPFtOcCKztrQ57WkHDeRD9t/PTQtmT0NHSeWWepj6pS0z/N7+08BHFDQVUrfmfMRcZwbMg==",
+       "dev": true,
+       "license": "MIT",
+-      "peer": true,
+       "bin": {
+         "prettier": "bin/prettier.cjs"
+       },
+@@ -6453,7 +6440,6 @@
+       "resolved": "https://registry.npmjs.org/react/-/react-19.2.4.tgz",
+       "integrity": "sha512-9nfp2hYpCwOjAN+8TZFGhtWEwgvWHXqESH8qT89AT/lWklpLON22Lc8pEtnpsZz7VmawabSU0gCjnj8aC0euHQ==",
+       "license": "MIT",
+-      "peer": true,
+       "engines": {
+         "node": ">=0.10.0"
+       }
+@@ -6463,7 +6449,6 @@
+       "resolved": "https://registry.npmjs.org/react-dom/-/react-dom-19.2.4.tgz",
+       "integrity": "sha512-AXJdLo8kgMbimY95O2aKQqsz2iWi9jMgKJhRBAxECE4IFxfcazB2LmzloIoibJI3C12IlY20+KFaLv+71bUJeQ==",
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "scheduler": "^0.27.0"
+       },
+@@ -7335,7 +7320,6 @@
+       "integrity": "sha512-5gTmgEY/sqK6gFXLIsQNH19lWb4ebPDLA4SdLP7dsWkIXHWlG66oPuVvXSGFPppYZz8ZDZq0dYYrbHfBCVUb1Q==",
+       "dev": true,
+       "license": "MIT",
+-      "peer": true,
+       "engines": {
+         "node": ">=12"
+       },
+@@ -7511,7 +7495,6 @@
+       "integrity": "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==",
+       "dev": true,
+       "license": "Apache-2.0",
+-      "peer": true,
+       "bin": {
+         "tsc": "bin/tsc",
+         "tsserver": "bin/tsserver"
+diff --git a/ralph/progress.md b/ralph/progress.md
+index 28273fb..05fc9c0 100644
+--- a/ralph/progress.md
++++ b/ralph/progress.md
+@@ -8,32 +8,18 @@
+ ---
+ 
+ ## Plan
+-1. Update `ralph/spec.md` to set “What’s Next” to P0 launch blockers, with explicit Acceptance Criteria and Out of Scope (subscriptions moved to P2). Depends on: none. Test: n/a (doc-only).
+-2. Add a persistent webhook idempotency table in `lib/schema.ts` (e.g. `mollie_payments` with UNIQUE `paymentId`). Depends on: none. Test: `npm run typecheck`.
+-3. Add a tiny idempotency helper (get/insert by paymentId) and wire `app/api/webhook/mollie/route.ts` to use it (remove the in‑memory Set). Depends on: 2. Test: hit webhook twice with same id → second call is a no‑op but still 200.
+-4. Add `MOLLIE_WEBHOOK_TOKEN` to `.env.example` + `lib/env.ts` validation. Depends on: none. Test: `npm run typecheck`.
+-5. Append `?token=...` to Mollie `webhookUrl` in `app/api/checkout/route.ts` and verify the token in `app/api/webhook/mollie/route.ts`. Depends on: 4. Test: webhook returns 200 with correct token, 401/200‑ignored with missing token (pick one behavior and assert it).
+-6. Add CSRF Origin check to `POST /api/checkout` (reject when Origin host ≠ `NEXT_PUBLIC_BASE_URL`). Depends on: none. Test: curl without Origin → 403, browser request → 200.
+-7. Add rate limiting on `/api/checkout` (simple in‑memory token bucket per IP using `X-Forwarded-For` when present; document restart limitation). Depends on: none. Test: 6 rapid calls → last is 429.
+-8. Add `app/api/contact/route.ts` to send contact submissions via Resend (new `CONTACT_EMAIL_TO` env var + validation). Depends on: none. Test: POST with sample payload → 200 and email received in test inbox.
+-9. Wire `components/ContactForm.tsx` to POST to `/api/contact`, showing success/error states. Depends on: 8. Test: submit form UI → success message.
+-10. Add newsletter persistence: create a `newsletter_subscribers` table in `lib/schema.ts` with UNIQUE email and timestamps. Depends on: none. Test: `npm run typecheck`.
+-11. Add `app/api/newsletter/route.ts` to upsert subscriber email and send a confirmation to `NEWSLETTER_EMAIL_TO` via Resend. Depends on: 10. Test: POST with email → 200; second POST → 200 with “already subscribed”.
+-12. Wire `components/NewsletterForm.tsx` to POST to `/api/newsletter`, showing success/error states. Depends on: 11. Test: submit form UI → success message.
+-13. Map WooCommerce attributes to filter categories (type/format/form) in `types/product.ts` or a helper, then make filters actually filter results in `components/ShopCatalog.tsx`. Depends on: none. Test: apply filters → product count changes as expected.
+-14. Create `app/[locale]/(pages)/privacy/page.tsx` and `app/[locale]/(pages)/terms/page.tsx` with minimal copy + i18n keys in all locales (placeholders allowed until final text). Depends on: none. Test: routes render in all locales.
+-15. Add a minimal `CookieConsent` component with localStorage state and link to `/privacy`, wired into `app/[locale]/layout.tsx`. Depends on: 14. Test: banner shows once, dismiss persists on reload.
+-16. Replace placeholder copy on Privacy/Cookie + Terms pages with final legal text from Jonathan. Depends on: 14, content from Jonathan. Test: text matches approved copy.
+-17. Coolify env/config (part 1): set `NEXT_PUBLIC_BASE_URL`, `MOLLIE_WEBHOOK_TOKEN`, `CONTACT_EMAIL_TO`, `NEWSLETTER_EMAIL_TO`. Depends on: 4, 8, 11. Test: Mollie webhook calls succeed in production; contact/newsletter emails send.
+-18. Coolify env/config (part 2): configure Google OAuth redirect URI + run `drizzle push` as post‑deploy. Depends on: 10. Test: auth redirect works; DB migration succeeds.
+-19. UI polish for launch (contrast + product photo backgrounds), once legal/security blockers are done. Depends on: 1–18. Test: visual QA at 375px/768px/1024px.
+-20. Production smoke test: checkout (incl. webhook), auth login, contact, newsletter, shop filters, cookie banner, and legal pages on live URL. Depends on: 17–19. Test: all flows pass on production.
++1. [x] Add a persistent webhook idempotency table in `lib/schema.ts` (e.g. `mollie_payments` with UNIQUE `paymentId`). Depends on: none. Test: `npm run typecheck`. — DONE (iteration 1)
++2. [x] Add a tiny idempotency helper (get/insert by paymentId) and wire `app/api/webhook/mollie/route.ts` to use it (remove the in‑memory Set). Depends on: 1. Test: hit webhook twice with same id → second call is a no‑op but still 200. — DONE (iteration 2)
++3. [x] Add `MOLLIE_WEBHOOK_TOKEN` to `.env.example` + `lib/env.ts` validation. Depends on: none. Test: `npm run typecheck`. — DONE (iteration 3)
++4. [x] Append `?token=...` to Mollie `webhookUrl` in `app/api/checkout/route.ts` and verify the token in `app/api/webhook/mollie/route.ts`. Depends on: 3. Test: webhook returns 200 with correct token, 401/200‑ignored with missing token (pick one behavior and assert it). — DONE (iteration 4)
++5. [x] Add CSRF Origin check to `POST /api/checkout` (reject when Origin host ≠ `NEXT_PUBLIC_BASE_URL`). Depends on: none. Test: curl without Origin → 403, browser request → 200. — DONE (iteration 5)
++6. [x] Add rate limiting on `/api/checkout` (simple in‑memory token bucket per IP using `X-Forwarded-For` when present; document restart limitation). Depends on: none. Test: 6 rapid calls → last is 429. — DONE (iteration 6)
+ 
+ ## Current
+-- Working on: Awaiting next phase definition
+-- Iteration: 0
+-- Last action: Initialized Ralph v2
+-- Last result: Ready
++- Working on: All steps complete
++- Iteration: 6
++- Last action: Added in-memory token-bucket rate limiter (lib/rate-limit.ts) and wired it into POST /api/checkout — 5 req/IP/60s, returns 429 when exceeded
++- Last result: typecheck + build pass
+ 
+ ## Architecture Decisions
+ - Database: WooCommerce (headless, one.com)

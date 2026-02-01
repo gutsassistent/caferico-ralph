@@ -1,0 +1,1250 @@
+diff --git a/app/[locale]/(pages)/page.tsx b/app/[locale]/(pages)/page.tsx
+index 757b7a1..ae93cbd 100644
+--- a/app/[locale]/(pages)/page.tsx
++++ b/app/[locale]/(pages)/page.tsx
+@@ -361,6 +361,8 @@ export default async function HomePage({ params }: HomePageProps) {
+                   loadingText={t('newsletter.loading')}
+                   successText={t('newsletter.success')}
+                   errorText={t('newsletter.error')}
++                  duplicateText={t('newsletter.duplicate')}
++                  rateLimitedText={t('newsletter.rateLimited')}
+                 />
+               </div>
+               <p className="mt-4 text-xs text-cream/60">
+diff --git a/app/api/contact/route.ts b/app/api/contact/route.ts
+new file mode 100644
+index 0000000..3a47825
+--- /dev/null
++++ b/app/api/contact/route.ts
+@@ -0,0 +1,84 @@
++import { NextRequest } from 'next/server';
++import { Resend } from 'resend';
++
++function getResend() {
++  return new Resend(process.env.RESEND_API_KEY);
++}
++
++const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
++
++// Simple in-memory rate limiting: max 3 per IP per hour
++const rateMap = new Map<string, number[]>();
++
++function isRateLimited(ip: string): boolean {
++  const now = Date.now();
++  const hour = 60 * 60 * 1000;
++  const timestamps = (rateMap.get(ip) || []).filter((t) => now - t < hour);
++  rateMap.set(ip, timestamps);
++  if (timestamps.length >= 3) return true;
++  timestamps.push(now);
++  return false;
++}
++
++export async function POST(req: NextRequest) {
++  const ip =
++    req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
++
++  if (isRateLimited(ip)) {
++    return Response.json(
++      { ok: false, error: 'rate_limited' },
++      { status: 429 }
++    );
++  }
++
++  let body: Record<string, unknown>;
++  try {
++    body = await req.json();
++  } catch {
++    return Response.json({ ok: false, error: 'invalid_json' }, { status: 400 });
++  }
++
++  const { name, email, subject, message } = body as {
++    name: string;
++    email: string;
++    subject: string;
++    message: string;
++  };
++
++  // Server-side validation
++  if (
++    !name?.trim() ||
++    !email?.trim() ||
++    !subject?.trim() ||
++    !message?.trim()
++  ) {
++    return Response.json(
++      { ok: false, error: 'missing_fields' },
++      { status: 400 }
++    );
++  }
++
++  if (!emailPattern.test(email)) {
++    return Response.json(
++      { ok: false, error: 'invalid_email' },
++      { status: 400 }
++    );
++  }
++
++  try {
++    await getResend().emails.send({
++      from: 'Caférico <noreply@caferico.be>',
++      to: 'info@caferico.be',
++      replyTo: email,
++      subject: `Contact: ${subject}`,
++      text: `Van: ${name} (${email})\n\n${message}`,
++    });
++
++    return Response.json({ ok: true });
++  } catch {
++    return Response.json(
++      { ok: false, error: 'send_failed' },
++      { status: 500 }
++    );
++  }
++}
+diff --git a/app/api/newsletter/route.ts b/app/api/newsletter/route.ts
+new file mode 100644
+index 0000000..ab9ddaa
+--- /dev/null
++++ b/app/api/newsletter/route.ts
+@@ -0,0 +1,93 @@
++import { NextRequest } from 'next/server';
++import { Resend } from 'resend';
++
++function getResend() {
++  return new Resend(process.env.RESEND_API_KEY);
++}
++
++const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
++
++// Simple in-memory rate limiting: max 3 per IP per hour
++const rateMap = new Map<string, number[]>();
++
++function isRateLimited(ip: string): boolean {
++  const now = Date.now();
++  const hour = 60 * 60 * 1000;
++  const timestamps = (rateMap.get(ip) || []).filter((t) => now - t < hour);
++  rateMap.set(ip, timestamps);
++  if (timestamps.length >= 3) return true;
++  timestamps.push(now);
++  return false;
++}
++
++export async function POST(req: NextRequest) {
++  const ip =
++    req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
++
++  if (isRateLimited(ip)) {
++    return Response.json(
++      { ok: false, error: 'rate_limited' },
++      { status: 429 }
++    );
++  }
++
++  let body: Record<string, unknown>;
++  try {
++    body = await req.json();
++  } catch {
++    return Response.json({ ok: false, error: 'invalid_json' }, { status: 400 });
++  }
++
++  const { email } = body as { email: string };
++
++  if (!email?.trim()) {
++    return Response.json(
++      { ok: false, error: 'missing_email' },
++      { status: 400 }
++    );
++  }
++
++  if (!emailPattern.test(email)) {
++    return Response.json(
++      { ok: false, error: 'invalid_email' },
++      { status: 400 }
++    );
++  }
++
++  const audienceId = process.env.RESEND_AUDIENCE_ID;
++  if (!audienceId) {
++    return Response.json(
++      { ok: false, error: 'server_config' },
++      { status: 500 }
++    );
++  }
++
++  try {
++    const resend = getResend();
++    const { error } = await resend.contacts.create({
++      email,
++      audienceId,
++    });
++
++    if (error) {
++      // Resend returns an error when the contact already exists
++      if (
++        error.message?.toLowerCase().includes('already') ||
++        error.message?.toLowerCase().includes('exists')
++      ) {
++        return Response.json({ ok: true, duplicate: true });
++      }
++      return Response.json(
++        { ok: false, error: 'subscribe_failed' },
++        { status: 500 }
++      );
++    }
++
++    return Response.json({ ok: true });
++  } catch {
++    return Response.json(
++      { ok: false, error: 'subscribe_failed' },
++      { status: 500 }
++    );
++  }
++}
+diff --git a/components/ContactForm.tsx b/components/ContactForm.tsx
+index 9248e0f..76a8300 100644
+--- a/components/ContactForm.tsx
++++ b/components/ContactForm.tsx
+@@ -83,15 +83,35 @@ export default function ContactForm() {
+     }
+ 
+     setIsLoading(true);
+-    // Mock: simulate API call
+-    console.log('Contact form submitted:', values);
+-    await new Promise((resolve) => setTimeout(resolve, 1200));
+-    setIsLoading(false);
+-    setIsSuccess(true);
+-    showToast(t('form.successTitle'), 'success');
+-    setSubmitAttempted(false);
+-    setValues(initialValues);
+-    setErrors({});
++    try {
++      const res = await fetch('/api/contact', {
++        method: 'POST',
++        headers: { 'Content-Type': 'application/json' },
++        body: JSON.stringify(values),
++      });
++
++      if (!res.ok) {
++        const data = await res.json().catch(() => null);
++        if (res.status === 429) {
++          showToast(t('form.errorRateLimit'), 'error');
++        } else if (data?.error) {
++          showToast(data.error, 'error');
++        } else {
++          showToast(t('form.errorGeneric'), 'error');
++        }
++        return;
++      }
++
++      setIsSuccess(true);
++      showToast(t('form.successTitle'), 'success');
++      setSubmitAttempted(false);
++      setValues(initialValues);
++      setErrors({});
++    } catch {
++      showToast(t('form.errorGeneric'), 'error');
++    } finally {
++      setIsLoading(false);
++    }
+   };
+ 
+   const fieldError = (field: FieldName) =>
+diff --git a/components/NewsletterForm.tsx b/components/NewsletterForm.tsx
+index 1b6d9de..0d84a11 100644
+--- a/components/NewsletterForm.tsx
++++ b/components/NewsletterForm.tsx
+@@ -8,6 +8,8 @@ type Props = {
+   loadingText: string;
+   successText: string;
+   errorText: string;
++  duplicateText: string;
++  rateLimitedText: string;
+ };
+ 
+ export default function NewsletterForm({
+@@ -16,32 +18,58 @@ export default function NewsletterForm({
+   loadingText,
+   successText,
+   errorText,
++  duplicateText,
++  rateLimitedText,
+ }: Props) {
+   const [email, setEmail] = useState('');
+-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
++  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'duplicate' | 'error'>('idle');
++  const [errorMessage, setErrorMessage] = useState('');
+ 
+   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+     e.preventDefault();
+     if (!email || status === 'loading') return;
+ 
+     setStatus('loading');
++    setErrorMessage('');
+ 
+-    // Mock: simulate API call
+-    // eslint-disable-next-line no-console
+-    console.log('Newsletter signup:', email);
+-    await new Promise((r) => setTimeout(r, 1200));
++    try {
++      const res = await fetch('/api/newsletter', {
++        method: 'POST',
++        headers: { 'Content-Type': 'application/json' },
++        body: JSON.stringify({ email }),
++      });
+ 
+-    setStatus('success');
+-    setEmail('');
++      const data = await res.json().catch(() => null);
++
++      if (!res.ok) {
++        if (res.status === 429) {
++          setErrorMessage(rateLimitedText);
++        } else {
++          setErrorMessage(errorText);
++        }
++        setStatus('error');
++        return;
++      }
++
++      if (data?.duplicate) {
++        setStatus('duplicate');
++      } else {
++        setStatus('success');
++      }
++      setEmail('');
++    } catch {
++      setErrorMessage(errorText);
++      setStatus('error');
++    }
+   }
+ 
+-  if (status === 'success') {
++  if (status === 'success' || status === 'duplicate') {
+     return (
+       <div className="flex items-center gap-3 rounded-full border border-gold/30 bg-gold/10 px-6 py-4">
+         <svg className="h-5 w-5 shrink-0 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+           <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+         </svg>
+-        <p className="text-sm text-cream">{successText}</p>
++        <p className="text-sm text-cream">{status === 'duplicate' ? duplicateText : successText}</p>
+       </div>
+     );
+   }
+@@ -77,7 +105,7 @@ export default function NewsletterForm({
+       </button>
+       {status === 'error' && (
+         <p className="text-xs text-red-400 sm:absolute sm:bottom-0 sm:translate-y-full sm:pt-2">
+-          {errorText}
++          {errorMessage}
+         </p>
+       )}
+     </form>
+diff --git a/components/ShopCatalog.tsx b/components/ShopCatalog.tsx
+index 3d1eba6..2e9c67e 100644
+--- a/components/ShopCatalog.tsx
++++ b/components/ShopCatalog.tsx
+@@ -117,7 +117,7 @@ export default function ShopCatalog({ products, categories }: ShopCatalogProps)
+   const [isLoading] = useState(false);
+   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+ 
+-  /* Visual-only filter state (not yet wired to product filtering) */
++  /* Filter state */
+   const [selectedTypes, setSelectedTypes] = useState<Set<string>>(new Set());
+   const [selectedFormats, setSelectedFormats] = useState<Set<string>>(new Set());
+   const [selectedForms, setSelectedForms] = useState<Set<string>>(new Set());
+@@ -153,6 +153,33 @@ export default function ShopCatalog({ products, categories }: ShopCatalogProps)
+       });
+     }
+ 
++    if (selectedTypes.size > 0) {
++      result = result.filter((product) => {
++        const typeAttr = product.attributes.find(
++          (a) => a.name.toLowerCase() === 'type' || a.name.toLowerCase() === 'soort'
++        );
++        return typeAttr?.options.some((opt) => selectedTypes.has(opt.toLowerCase()));
++      });
++    }
++
++    if (selectedFormats.size > 0) {
++      result = result.filter((product) => {
++        const weightAttr = product.attributes.find(
++          (a) => a.name.toLowerCase() === 'weight' || a.name.toLowerCase() === 'gewicht'
++        );
++        return weightAttr?.options.some((opt) => selectedFormats.has(opt.toLowerCase()));
++      });
++    }
++
++    if (selectedForms.size > 0) {
++      result = result.filter((product) => {
++        const formAttr = product.attributes.find(
++          (a) => a.name.toLowerCase() === 'form' || a.name.toLowerCase() === 'vorm' || a.name.toLowerCase() === 'maalgraad'
++        );
++        return formAttr?.options.some((opt) => selectedForms.has(opt.toLowerCase()));
++      });
++    }
++
+     const sorted = [...result].sort((a, b) => {
+       switch (sort) {
+         case 'price-asc':
+@@ -167,7 +194,7 @@ export default function ShopCatalog({ products, categories }: ShopCatalogProps)
+     });
+ 
+     return sorted;
+-  }, [products, collection, locale, normalizedQuery, sort]);
++  }, [products, collection, locale, normalizedQuery, sort, selectedTypes, selectedFormats, selectedForms]);
+ 
+   const availableCollections = useMemo(() => {
+     const collectionSet = new Set(products.map((p) => p.collection));
+diff --git a/messages/en.json b/messages/en.json
+index 86759c8..bb3d2db 100644
+--- a/messages/en.json
++++ b/messages/en.json
+@@ -96,6 +96,8 @@
+       "loading": "Sending...",
+       "success": "Thank you! Check your inbox for your discount code.",
+       "error": "Something went wrong. Please try again.",
++      "duplicate": "You're already subscribed! Check your inbox.",
++      "rateLimited": "Too many attempts. Please try again later.",
+       "privacy": "We respect your privacy. Unsubscribe anytime."
+     },
+     "collections": {
+@@ -328,6 +330,8 @@
+       "submitting": "Sending...",
+       "successTitle": "Message received",
+       "successMessage": "Thank you for reaching out. We'll reply within one business day.",
++      "errorRateLimit": "Too many messages. Please try again later.",
++      "errorGeneric": "Something went wrong. Please try again later.",
+       "validation": {
+         "nameRequired": "Please enter your name.",
+         "emailRequired": "Please enter your email address.",
+diff --git a/messages/es.json b/messages/es.json
+index e0e6a2c..17d4ecb 100644
+--- a/messages/es.json
++++ b/messages/es.json
+@@ -96,6 +96,8 @@
+       "loading": "Enviando...",
+       "success": "¡Gracias! Revisa tu bandeja de entrada para tu código de descuento.",
+       "error": "Algo salió mal. Inténtalo de nuevo.",
++      "duplicate": "¡Ya estás suscrito! Revisa tu bandeja de entrada.",
++      "rateLimited": "Demasiados intentos. Inténtalo más tarde.",
+       "privacy": "Respetamos tu privacidad. Puedes darte de baja en cualquier momento."
+     },
+     "collections": {
+@@ -328,6 +330,8 @@
+       "submitting": "Enviando...",
+       "successTitle": "Mensaje recibido",
+       "successMessage": "Gracias por escribirnos. Responderemos en un día hábil.",
++      "errorRateLimit": "Demasiados mensajes. Inténtalo de nuevo más tarde.",
++      "errorGeneric": "Algo salió mal. Inténtalo de nuevo más tarde.",
+       "validation": {
+         "nameRequired": "Por favor, escribe tu nombre.",
+         "emailRequired": "Por favor, escribe tu correo electrónico.",
+diff --git a/messages/fr.json b/messages/fr.json
+index fb803ec..d4c503c 100644
+--- a/messages/fr.json
++++ b/messages/fr.json
+@@ -96,6 +96,8 @@
+       "loading": "Envoi...",
+       "success": "Merci ! Vérifiez votre boîte mail pour votre code de réduction.",
+       "error": "Une erreur s'est produite. Veuillez réessayer.",
++      "duplicate": "Vous êtes déjà inscrit ! Vérifiez votre boîte mail.",
++      "rateLimited": "Trop de tentatives. Veuillez réessayer plus tard.",
+       "privacy": "Nous respectons votre vie privée. Désabonnement possible à tout moment."
+     },
+     "collections": {
+@@ -328,6 +330,8 @@
+       "submitting": "Envoi en cours...",
+       "successTitle": "Message reçu",
+       "successMessage": "Merci pour votre message. Nous répondons sous un jour ouvré.",
++      "errorRateLimit": "Trop de messages. Veuillez réessayer plus tard.",
++      "errorGeneric": "Une erreur est survenue. Veuillez réessayer plus tard.",
+       "validation": {
+         "nameRequired": "Merci d’indiquer votre nom.",
+         "emailRequired": "Merci d’indiquer votre adresse email.",
+diff --git a/messages/nl.json b/messages/nl.json
+index bc229d0..b4ed383 100644
+--- a/messages/nl.json
++++ b/messages/nl.json
+@@ -96,6 +96,8 @@
+       "loading": "Bezig...",
+       "success": "Bedankt! Check je inbox voor je kortingscode.",
+       "error": "Er ging iets mis. Probeer het opnieuw.",
++      "duplicate": "Je bent al ingeschreven! Check je inbox.",
++      "rateLimited": "Te veel pogingen. Probeer het later opnieuw.",
+       "privacy": "We respecteren je privacy. Uitschrijven kan altijd."
+     },
+     "collections": {
+@@ -328,6 +330,8 @@
+       "submitting": "Verzenden...",
+       "successTitle": "Bericht ontvangen",
+       "successMessage": "Dankjewel voor je bericht. We reageren binnen één werkdag.",
++      "errorRateLimit": "Te veel berichten. Probeer het later opnieuw.",
++      "errorGeneric": "Er ging iets mis. Probeer het later opnieuw.",
+       "validation": {
+         "nameRequired": "Vul je naam in.",
+         "emailRequired": "Vul je e-mailadres in.",
+diff --git a/package-lock.json b/package-lock.json
+index b4f8a1f..768e87a 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -16,7 +16,8 @@
+         "next-intl": "^3.14.0",
+         "postgres": "^3.4.8",
+         "react": "^19.0.0",
+-        "react-dom": "^19.0.0"
++        "react-dom": "^19.0.0",
++        "resend": "^6.9.1"
+       },
+       "devDependencies": {
+         "@types/node": "^20.14.10",
+@@ -1834,6 +1835,25 @@
+       "dev": true,
+       "license": "MIT"
+     },
++    "node_modules/@selderee/plugin-htmlparser2": {
++      "version": "0.11.0",
++      "resolved": "https://registry.npmjs.org/@selderee/plugin-htmlparser2/-/plugin-htmlparser2-0.11.0.tgz",
++      "integrity": "sha512-P33hHGdldxGabLFjPPpaTxVolMrzrcegejx+0GxjrIb9Zv48D8yAIA/QTDR2dFl7Uz7urX8aX6+5bCZslr+gWQ==",
++      "license": "MIT",
++      "dependencies": {
++        "domhandler": "^5.0.3",
++        "selderee": "^0.11.0"
++      },
++      "funding": {
++        "url": "https://ko-fi.com/killymxi"
++      }
++    },
++    "node_modules/@stablelib/base64": {
++      "version": "1.0.1",
++      "resolved": "https://registry.npmjs.org/@stablelib/base64/-/base64-1.0.1.tgz",
++      "integrity": "sha512-1bnPQqSxSuc3Ii6MhBysoWCg58j97aUjuCSZrGSmDxNqtytIi0k8utUenAwTZN4V5mXXYGsVUI9zeBqy+jBOSQ==",
++      "license": "MIT"
++    },
+     "node_modules/@swc/counter": {
+       "version": "0.1.3",
+       "resolved": "https://registry.npmjs.org/@swc/counter/-/counter-0.1.3.tgz",
+@@ -1892,7 +1912,6 @@
+       "integrity": "sha512-WPigyYuGhgZ/cTPRXB2EwUw+XvsRA3GqHlsP4qteqrnnjDrApbS7MxcGr/hke5iUoeB7E/gQtrs9I37zAJ0Vjw==",
+       "dev": true,
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "csstype": "^3.2.2"
+       }
+@@ -1952,7 +1971,6 @@
+       "integrity": "sha512-BtE0k6cjwjLZoZixN0t5AKP0kSzlGu7FctRXYuPAm//aaiZhmfq1JwdYpYr1brzEspYyFeF+8XF5j2VK6oalrA==",
+       "dev": true,
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "@typescript-eslint/scope-manager": "8.54.0",
+         "@typescript-eslint/types": "8.54.0",
+@@ -2453,13 +2471,23 @@
+         "win32"
+       ]
+     },
++    "node_modules/@zone-eu/mailsplit": {
++      "version": "5.4.8",
++      "resolved": "https://registry.npmjs.org/@zone-eu/mailsplit/-/mailsplit-5.4.8.tgz",
++      "integrity": "sha512-eEyACj4JZ7sjzRvy26QhLgKEMWwQbsw1+QZnlLX+/gihcNH07lVPOcnwf5U6UAL7gkc//J3jVd76o/WS+taUiA==",
++      "license": "(MIT OR EUPL-1.1+)",
++      "dependencies": {
++        "libbase64": "1.3.0",
++        "libmime": "5.3.7",
++        "libqp": "2.1.1"
++      }
++    },
+     "node_modules/acorn": {
+       "version": "8.15.0",
+       "resolved": "https://registry.npmjs.org/acorn/-/acorn-8.15.0.tgz",
+       "integrity": "sha512-NZyJarBfL7nWwIq+FDL6Zp/yHEhePMNnnJ0y3qfieCrmNvYct8uvtiV41UvlSe6apAfk0fY1FbWx+NwfmpvtTg==",
+       "dev": true,
+       "license": "MIT",
+-      "peer": true,
+       "bin": {
+         "acorn": "bin/acorn"
+       },
+@@ -2895,7 +2923,6 @@
+         }
+       ],
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "baseline-browser-mapping": "^2.9.0",
+         "caniuse-lite": "^1.0.30001759",
+@@ -3279,6 +3306,15 @@
+       "dev": true,
+       "license": "MIT"
+     },
++    "node_modules/deepmerge": {
++      "version": "4.3.1",
++      "resolved": "https://registry.npmjs.org/deepmerge/-/deepmerge-4.3.1.tgz",
++      "integrity": "sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==",
++      "license": "MIT",
++      "engines": {
++        "node": ">=0.10.0"
++      }
++    },
+     "node_modules/define-data-property": {
+       "version": "1.1.4",
+       "resolved": "https://registry.npmjs.org/define-data-property/-/define-data-property-1.1.4.tgz",
+@@ -3361,6 +3397,61 @@
+         "node": ">=6.0.0"
+       }
+     },
++    "node_modules/dom-serializer": {
++      "version": "2.0.0",
++      "resolved": "https://registry.npmjs.org/dom-serializer/-/dom-serializer-2.0.0.tgz",
++      "integrity": "sha512-wIkAryiqt/nV5EQKqQpo3SToSOV9J0DnbJqwK7Wv/Trc92zIAYZ4FlMu+JPFW1DfGFt81ZTCGgDEabffXeLyJg==",
++      "license": "MIT",
++      "dependencies": {
++        "domelementtype": "^2.3.0",
++        "domhandler": "^5.0.2",
++        "entities": "^4.2.0"
++      },
++      "funding": {
++        "url": "https://github.com/cheeriojs/dom-serializer?sponsor=1"
++      }
++    },
++    "node_modules/domelementtype": {
++      "version": "2.3.0",
++      "resolved": "https://registry.npmjs.org/domelementtype/-/domelementtype-2.3.0.tgz",
++      "integrity": "sha512-OLETBj6w0OsagBwdXnPdN0cnMfF9opN69co+7ZrbfPGrdpPVNBUj02spi6B1N7wChLQiPn4CSH/zJvXw56gmHw==",
++      "funding": [
++        {
++          "type": "github",
++          "url": "https://github.com/sponsors/fb55"
++        }
++      ],
++      "license": "BSD-2-Clause"
++    },
++    "node_modules/domhandler": {
++      "version": "5.0.3",
++      "resolved": "https://registry.npmjs.org/domhandler/-/domhandler-5.0.3.tgz",
++      "integrity": "sha512-cgwlv/1iFQiFnU96XXgROh8xTeetsnJiDsTc7TYCLFd9+/WNkIqPTxiM/8pSd8VIrhXGTf1Ny1q1hquVqDJB5w==",
++      "license": "BSD-2-Clause",
++      "dependencies": {
++        "domelementtype": "^2.3.0"
++      },
++      "engines": {
++        "node": ">= 4"
++      },
++      "funding": {
++        "url": "https://github.com/fb55/domhandler?sponsor=1"
++      }
++    },
++    "node_modules/domutils": {
++      "version": "3.2.2",
++      "resolved": "https://registry.npmjs.org/domutils/-/domutils-3.2.2.tgz",
++      "integrity": "sha512-6kZKyUajlDuqlHKVX1w7gyslj9MPIXzIFiz/rGu35uC1wMi+kMhQwGhl4lt9unC9Vb9INnY9Z3/ZA3+FhASLaw==",
++      "license": "BSD-2-Clause",
++      "dependencies": {
++        "dom-serializer": "^2.0.0",
++        "domelementtype": "^2.3.0",
++        "domhandler": "^5.0.3"
++      },
++      "funding": {
++        "url": "https://github.com/fb55/domutils?sponsor=1"
++      }
++    },
+     "node_modules/drizzle-kit": {
+       "version": "0.31.8",
+       "resolved": "https://registry.npmjs.org/drizzle-kit/-/drizzle-kit-0.31.8.tgz",
+@@ -3530,6 +3621,27 @@
+       "dev": true,
+       "license": "MIT"
+     },
++    "node_modules/encoding-japanese": {
++      "version": "2.2.0",
++      "resolved": "https://registry.npmjs.org/encoding-japanese/-/encoding-japanese-2.2.0.tgz",
++      "integrity": "sha512-EuJWwlHPZ1LbADuKTClvHtwbaFn4rOD+dRAbWysqEOXRc2Uui0hJInNJrsdH0c+OhJA4nrCBdSkW4DD5YxAo6A==",
++      "license": "MIT",
++      "engines": {
++        "node": ">=8.10.0"
++      }
++    },
++    "node_modules/entities": {
++      "version": "4.5.0",
++      "resolved": "https://registry.npmjs.org/entities/-/entities-4.5.0.tgz",
++      "integrity": "sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==",
++      "license": "BSD-2-Clause",
++      "engines": {
++        "node": ">=0.12"
++      },
++      "funding": {
++        "url": "https://github.com/fb55/entities?sponsor=1"
++      }
++    },
+     "node_modules/es-abstract": {
+       "version": "1.24.1",
+       "resolved": "https://registry.npmjs.org/es-abstract/-/es-abstract-1.24.1.tgz",
+@@ -3710,7 +3822,6 @@
+       "dev": true,
+       "hasInstallScript": true,
+       "license": "MIT",
+-      "peer": true,
+       "bin": {
+         "esbuild": "bin/esbuild"
+       },
+@@ -3789,7 +3900,6 @@
+       "deprecated": "This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+       "dev": true,
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "@eslint-community/eslint-utils": "^4.2.0",
+         "@eslint-community/regexpp": "^4.6.1",
+@@ -3959,7 +4069,6 @@
+       "integrity": "sha512-whOE1HFo/qJDyX4SnXzP4N6zOWn79WhnCUY/iDR0mPfQZO8wcYE4JClzI2oZrhBnnMUCBCHZhO6VQyoBU95mZA==",
+       "dev": true,
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "@rtsao/scc": "^1.1.0",
+         "array-includes": "^3.1.9",
+@@ -4283,6 +4392,12 @@
+       "dev": true,
+       "license": "MIT"
+     },
++    "node_modules/fast-sha256": {
++      "version": "1.3.0",
++      "resolved": "https://registry.npmjs.org/fast-sha256/-/fast-sha256-1.3.0.tgz",
++      "integrity": "sha512-n11RGP/lrWEFI/bWdygLxhI+pVeo1ZYIVwvvPkW7azl/rOy+F3HYRZ2K5zeE9mmkhQppyv9sQFx0JM9UabnpPQ==",
++      "license": "Unlicense"
++    },
+     "node_modules/fastq": {
+       "version": "1.20.1",
+       "resolved": "https://registry.npmjs.org/fastq/-/fastq-1.20.1.tgz",
+@@ -4722,6 +4837,66 @@
+         "node": ">= 0.4"
+       }
+     },
++    "node_modules/he": {
++      "version": "1.2.0",
++      "resolved": "https://registry.npmjs.org/he/-/he-1.2.0.tgz",
++      "integrity": "sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==",
++      "license": "MIT",
++      "bin": {
++        "he": "bin/he"
++      }
++    },
++    "node_modules/html-to-text": {
++      "version": "9.0.5",
++      "resolved": "https://registry.npmjs.org/html-to-text/-/html-to-text-9.0.5.tgz",
++      "integrity": "sha512-qY60FjREgVZL03vJU6IfMV4GDjGBIoOyvuFdpBDIX9yTlDw0TjxVBQp+P8NvpdIXNJvfWBTNul7fsAQJq2FNpg==",
++      "license": "MIT",
++      "dependencies": {
++        "@selderee/plugin-htmlparser2": "^0.11.0",
++        "deepmerge": "^4.3.1",
++        "dom-serializer": "^2.0.0",
++        "htmlparser2": "^8.0.2",
++        "selderee": "^0.11.0"
++      },
++      "engines": {
++        "node": ">=14"
++      }
++    },
++    "node_modules/htmlparser2": {
++      "version": "8.0.2",
++      "resolved": "https://registry.npmjs.org/htmlparser2/-/htmlparser2-8.0.2.tgz",
++      "integrity": "sha512-GYdjWKDkbRLkZ5geuHs5NY1puJ+PXwP7+fHPRz06Eirsb9ugf6d8kkXav6ADhcODhFFPMIXyxkxSuMf3D6NCFA==",
++      "funding": [
++        "https://github.com/fb55/htmlparser2?sponsor=1",
++        {
++          "type": "github",
++          "url": "https://github.com/sponsors/fb55"
++        }
++      ],
++      "license": "MIT",
++      "dependencies": {
++        "domelementtype": "^2.3.0",
++        "domhandler": "^5.0.3",
++        "domutils": "^3.0.1",
++        "entities": "^4.4.0"
++      }
++    },
++    "node_modules/iconv-lite": {
++      "version": "0.7.0",
++      "resolved": "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.7.0.tgz",
++      "integrity": "sha512-cf6L2Ds3h57VVmkZe+Pn+5APsT7FpqJtEhhieDCvrE2MK5Qk9MyffgQyuxQTm6BChfeZNtcOLHp9IcWRVcIcBQ==",
++      "license": "MIT",
++      "dependencies": {
++        "safer-buffer": ">= 2.1.2 < 3.0.0"
++      },
++      "engines": {
++        "node": ">=0.10.0"
++      },
++      "funding": {
++        "type": "opencollective",
++        "url": "https://opencollective.com/express"
++      }
++    },
+     "node_modules/ignore": {
+       "version": "5.3.2",
+       "resolved": "https://registry.npmjs.org/ignore/-/ignore-5.3.2.tgz",
+@@ -5275,7 +5450,6 @@
+       "integrity": "sha512-/imKNG4EbWNrVjoNC/1H5/9GFy+tqjGBHCaSsN+P2RnPqjsLmv6UD3Ej+Kj8nBWaRAwyk7kK5ZUc+OEatnTR3A==",
+       "dev": true,
+       "license": "MIT",
+-      "peer": true,
+       "bin": {
+         "jiti": "bin/jiti.js"
+       }
+@@ -5389,6 +5563,15 @@
+         "node": ">=0.10"
+       }
+     },
++    "node_modules/leac": {
++      "version": "0.6.0",
++      "resolved": "https://registry.npmjs.org/leac/-/leac-0.6.0.tgz",
++      "integrity": "sha512-y+SqErxb8h7nE/fiEX07jsbuhrpO9lL8eca7/Y1nuWV2moNlXhyd59iDGcRf6moVyDMbmTNzL40SUyrFU/yDpg==",
++      "license": "MIT",
++      "funding": {
++        "url": "https://ko-fi.com/killymxi"
++      }
++    },
+     "node_modules/levn": {
+       "version": "0.4.1",
+       "resolved": "https://registry.npmjs.org/levn/-/levn-0.4.1.tgz",
+@@ -5403,6 +5586,42 @@
+         "node": ">= 0.8.0"
+       }
+     },
++    "node_modules/libbase64": {
++      "version": "1.3.0",
++      "resolved": "https://registry.npmjs.org/libbase64/-/libbase64-1.3.0.tgz",
++      "integrity": "sha512-GgOXd0Eo6phYgh0DJtjQ2tO8dc0IVINtZJeARPeiIJqge+HdsWSuaDTe8ztQ7j/cONByDZ3zeB325AHiv5O0dg==",
++      "license": "MIT"
++    },
++    "node_modules/libmime": {
++      "version": "5.3.7",
++      "resolved": "https://registry.npmjs.org/libmime/-/libmime-5.3.7.tgz",
++      "integrity": "sha512-FlDb3Wtha8P01kTL3P9M+ZDNDWPKPmKHWaU/cG/lg5pfuAwdflVpZE+wm9m7pKmC5ww6s+zTxBKS1p6yl3KpSw==",
++      "license": "MIT",
++      "dependencies": {
++        "encoding-japanese": "2.2.0",
++        "iconv-lite": "0.6.3",
++        "libbase64": "1.3.0",
++        "libqp": "2.1.1"
++      }
++    },
++    "node_modules/libmime/node_modules/iconv-lite": {
++      "version": "0.6.3",
++      "resolved": "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.6.3.tgz",
++      "integrity": "sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==",
++      "license": "MIT",
++      "dependencies": {
++        "safer-buffer": ">= 2.1.2 < 3.0.0"
++      },
++      "engines": {
++        "node": ">=0.10.0"
++      }
++    },
++    "node_modules/libqp": {
++      "version": "2.1.1",
++      "resolved": "https://registry.npmjs.org/libqp/-/libqp-2.1.1.tgz",
++      "integrity": "sha512-0Wd+GPz1O134cP62YU2GTOPNA7Qgl09XwCqM5zpBv87ERCXdfDtyKXvV7c9U22yWJh44QZqBocFnXN11K96qow==",
++      "license": "MIT"
++    },
+     "node_modules/lilconfig": {
+       "version": "3.1.3",
+       "resolved": "https://registry.npmjs.org/lilconfig/-/lilconfig-3.1.3.tgz",
+@@ -5423,6 +5642,15 @@
+       "dev": true,
+       "license": "MIT"
+     },
++    "node_modules/linkify-it": {
++      "version": "5.0.0",
++      "resolved": "https://registry.npmjs.org/linkify-it/-/linkify-it-5.0.0.tgz",
++      "integrity": "sha512-5aHCbzQRADcdP+ATqnDuhhJ/MRIqDkZX5pyjFHRRysS8vZ5AbqGEoFIb6pYHPZ+L/OC2Lc+xT8uHVVR5CAK/wQ==",
++      "license": "MIT",
++      "dependencies": {
++        "uc.micro": "^2.0.0"
++      }
++    },
+     "node_modules/locate-path": {
+       "version": "6.0.0",
+       "resolved": "https://registry.npmjs.org/locate-path/-/locate-path-6.0.0.tgz",
+@@ -5459,6 +5687,24 @@
+         "loose-envify": "cli.js"
+       }
+     },
++    "node_modules/mailparser": {
++      "version": "3.9.1",
++      "resolved": "https://registry.npmjs.org/mailparser/-/mailparser-3.9.1.tgz",
++      "integrity": "sha512-6vHZcco3fWsDMkf4Vz9iAfxvwrKNGbHx0dV1RKVphQ/zaNY34Buc7D37LSa09jeSeybWzYcTPjhiZFxzVRJedA==",
++      "license": "MIT",
++      "dependencies": {
++        "@zone-eu/mailsplit": "5.4.8",
++        "encoding-japanese": "2.2.0",
++        "he": "1.2.0",
++        "html-to-text": "9.0.5",
++        "iconv-lite": "0.7.0",
++        "libmime": "5.3.7",
++        "linkify-it": "5.0.0",
++        "nodemailer": "7.0.11",
++        "punycode.js": "2.3.1",
++        "tlds": "1.261.0"
++      }
++    },
+     "node_modules/math-intrinsics": {
+       "version": "1.1.0",
+       "resolved": "https://registry.npmjs.org/math-intrinsics/-/math-intrinsics-1.1.0.tgz",
+@@ -5611,7 +5857,6 @@
+       "integrity": "sha512-QKhzt6Y8rgLNlj30izdMbxAwjHMFANnLwDwZ+WQh5sMhyt4lEBqDK9QpvWHtIM4rINKPoJ8aiRZKg5ULSybVHw==",
+       "deprecated": "This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/CVE-2025-66478 for more details.",
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "@next/env": "15.1.0",
+         "@swc/counter": "0.1.3",
+@@ -5764,6 +6009,15 @@
+       "dev": true,
+       "license": "MIT"
+     },
++    "node_modules/nodemailer": {
++      "version": "7.0.11",
++      "resolved": "https://registry.npmjs.org/nodemailer/-/nodemailer-7.0.11.tgz",
++      "integrity": "sha512-gnXhNRE0FNhD7wPSCGhdNh46Hs6nm+uTyg+Kq0cZukNQiYdnCsoQjodNP9BQVG9XrcK/v6/MgpAPBUFyzh9pvw==",
++      "license": "MIT-0",
++      "engines": {
++        "node": ">=6.0.0"
++      }
++    },
+     "node_modules/normalize-path": {
+       "version": "3.0.0",
+       "resolved": "https://registry.npmjs.org/normalize-path/-/normalize-path-3.0.0.tgz",
+@@ -6007,6 +6261,19 @@
+         "node": ">=6"
+       }
+     },
++    "node_modules/parseley": {
++      "version": "0.12.1",
++      "resolved": "https://registry.npmjs.org/parseley/-/parseley-0.12.1.tgz",
++      "integrity": "sha512-e6qHKe3a9HWr0oMRVDTRhKce+bRO8VGQR3NyVwcjwrbhMmFCX9KszEV35+rn4AdilFAq9VPxP/Fe1wC9Qjd2lw==",
++      "license": "MIT",
++      "dependencies": {
++        "leac": "^0.6.0",
++        "peberminta": "^0.9.0"
++      },
++      "funding": {
++        "url": "https://ko-fi.com/killymxi"
++      }
++    },
+     "node_modules/path-exists": {
+       "version": "4.0.0",
+       "resolved": "https://registry.npmjs.org/path-exists/-/path-exists-4.0.0.tgz",
+@@ -6044,6 +6311,15 @@
+       "dev": true,
+       "license": "MIT"
+     },
++    "node_modules/peberminta": {
++      "version": "0.9.0",
++      "resolved": "https://registry.npmjs.org/peberminta/-/peberminta-0.9.0.tgz",
++      "integrity": "sha512-XIxfHpEuSJbITd1H3EeQwpcZbTLHc+VVr8ANI9t5sit565tsI4/xK3KWTUFE2e6QiangUkh3B0jihzmGnNrRsQ==",
++      "license": "MIT",
++      "funding": {
++        "url": "https://ko-fi.com/killymxi"
++      }
++    },
+     "node_modules/picocolors": {
+       "version": "1.1.1",
+       "resolved": "https://registry.npmjs.org/picocolors/-/picocolors-1.1.1.tgz",
+@@ -6113,7 +6389,6 @@
+         }
+       ],
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "nanoid": "^3.3.11",
+         "picocolors": "^1.1.1",
+@@ -6262,7 +6537,6 @@
+       "resolved": "https://registry.npmjs.org/postgres/-/postgres-3.4.8.tgz",
+       "integrity": "sha512-d+JFcLM17njZaOLkv6SCev7uoLaBtfK86vMUXhW1Z4glPWh4jozno9APvW/XKFJ3CCxVoC7OL38BqRydtu5nGg==",
+       "license": "Unlicense",
+-      "peer": true,
+       "engines": {
+         "node": ">=12"
+       },
+@@ -6276,7 +6550,6 @@
+       "resolved": "https://registry.npmjs.org/preact/-/preact-10.24.3.tgz",
+       "integrity": "sha512-Z2dPnBnMUfyQfSQ+GBdsGa16hz35YmLmtTLhM169uW944hYL6xzTYkJjC07j+Wosz733pMWx0fgON3JNw1jJQA==",
+       "license": "MIT",
+-      "peer": true,
+       "funding": {
+         "type": "opencollective",
+         "url": "https://opencollective.com/preact"
+@@ -6307,7 +6580,6 @@
+       "integrity": "sha512-UOnG6LftzbdaHZcKoPFtOcCKztrQ57WkHDeRD9t/PTQtmT0NHSeWWepj6pS0z/N7+08BHFDQVUrfmfMRcZwbMg==",
+       "dev": true,
+       "license": "MIT",
+-      "peer": true,
+       "bin": {
+         "prettier": "bin/prettier.cjs"
+       },
+@@ -6427,6 +6699,15 @@
+         "node": ">=6"
+       }
+     },
++    "node_modules/punycode.js": {
++      "version": "2.3.1",
++      "resolved": "https://registry.npmjs.org/punycode.js/-/punycode.js-2.3.1.tgz",
++      "integrity": "sha512-uxFIHU0YlHYhDQtV4R9J6a52SLx28BCjT+4ieh7IGbgwVJWO+km431c4yRlREUAsAmt/uMjQUyQHNEPf0M39CA==",
++      "license": "MIT",
++      "engines": {
++        "node": ">=6"
++      }
++    },
+     "node_modules/queue-microtask": {
+       "version": "1.2.3",
+       "resolved": "https://registry.npmjs.org/queue-microtask/-/queue-microtask-1.2.3.tgz",
+@@ -6453,7 +6734,6 @@
+       "resolved": "https://registry.npmjs.org/react/-/react-19.2.4.tgz",
+       "integrity": "sha512-9nfp2hYpCwOjAN+8TZFGhtWEwgvWHXqESH8qT89AT/lWklpLON22Lc8pEtnpsZz7VmawabSU0gCjnj8aC0euHQ==",
+       "license": "MIT",
+-      "peer": true,
+       "engines": {
+         "node": ">=0.10.0"
+       }
+@@ -6463,7 +6743,6 @@
+       "resolved": "https://registry.npmjs.org/react-dom/-/react-dom-19.2.4.tgz",
+       "integrity": "sha512-AXJdLo8kgMbimY95O2aKQqsz2iWi9jMgKJhRBAxECE4IFxfcazB2LmzloIoibJI3C12IlY20+KFaLv+71bUJeQ==",
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "scheduler": "^0.27.0"
+       },
+@@ -6545,6 +6824,27 @@
+         "url": "https://github.com/sponsors/ljharb"
+       }
+     },
++    "node_modules/resend": {
++      "version": "6.9.1",
++      "resolved": "https://registry.npmjs.org/resend/-/resend-6.9.1.tgz",
++      "integrity": "sha512-jFY3qPP2cith1npRXvS7PVdnhbR1CcuzHg65ty5Elv55GKiXhe+nItXuzzoOlKeYJez1iJAo2+8f6ae8sCj0iA==",
++      "license": "MIT",
++      "dependencies": {
++        "mailparser": "3.9.1",
++        "svix": "1.84.1"
++      },
++      "engines": {
++        "node": ">=20"
++      },
++      "peerDependencies": {
++        "@react-email/render": "*"
++      },
++      "peerDependenciesMeta": {
++        "@react-email/render": {
++          "optional": true
++        }
++      }
++    },
+     "node_modules/resolve": {
+       "version": "1.22.11",
+       "resolved": "https://registry.npmjs.org/resolve/-/resolve-1.22.11.tgz",
+@@ -6699,12 +6999,30 @@
+         "url": "https://github.com/sponsors/ljharb"
+       }
+     },
++    "node_modules/safer-buffer": {
++      "version": "2.1.2",
++      "resolved": "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz",
++      "integrity": "sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==",
++      "license": "MIT"
++    },
+     "node_modules/scheduler": {
+       "version": "0.27.0",
+       "resolved": "https://registry.npmjs.org/scheduler/-/scheduler-0.27.0.tgz",
+       "integrity": "sha512-eNv+WrVbKu1f3vbYJT/xtiF5syA5HPIMtf9IgY/nKg0sWqzAUEvqY/xm7OcZc/qafLx/iO9FgOmeSAp4v5ti/Q==",
+       "license": "MIT"
+     },
++    "node_modules/selderee": {
++      "version": "0.11.0",
++      "resolved": "https://registry.npmjs.org/selderee/-/selderee-0.11.0.tgz",
++      "integrity": "sha512-5TF+l7p4+OsnP8BCCvSyZiSPc4x4//p5uPwK8TCnVPJYRmU2aYKMpOXvw8zM5a5JvuuCGN1jmsMwuU2W02ukfA==",
++      "license": "MIT",
++      "dependencies": {
++        "parseley": "^0.12.0"
++      },
++      "funding": {
++        "url": "https://ko-fi.com/killymxi"
++      }
++    },
+     "node_modules/semver": {
+       "version": "7.7.3",
+       "resolved": "https://registry.npmjs.org/semver/-/semver-7.7.3.tgz",
+@@ -6953,6 +7271,16 @@
+       "dev": true,
+       "license": "MIT"
+     },
++    "node_modules/standardwebhooks": {
++      "version": "1.0.0",
++      "resolved": "https://registry.npmjs.org/standardwebhooks/-/standardwebhooks-1.0.0.tgz",
++      "integrity": "sha512-BbHGOQK9olHPMvQNHWul6MYlrRTAOKn03rOe4A8O3CLWhNf4YHBqq2HJKKC+sfqpxiBY52pNeesD6jIiLDz8jg==",
++      "license": "MIT",
++      "dependencies": {
++        "@stablelib/base64": "^1.0.0",
++        "fast-sha256": "^1.3.0"
++      }
++    },
+     "node_modules/stop-iteration-iterator": {
+       "version": "1.1.0",
+       "resolved": "https://registry.npmjs.org/stop-iteration-iterator/-/stop-iteration-iterator-1.1.0.tgz",
+@@ -7196,6 +7524,16 @@
+         "url": "https://github.com/sponsors/ljharb"
+       }
+     },
++    "node_modules/svix": {
++      "version": "1.84.1",
++      "resolved": "https://registry.npmjs.org/svix/-/svix-1.84.1.tgz",
++      "integrity": "sha512-K8DPPSZaW/XqXiz1kEyzSHYgmGLnhB43nQCMeKjWGCUpLIpAMMM8kx3rVVOSm6Bo6EHyK1RQLPT4R06skM/MlQ==",
++      "license": "MIT",
++      "dependencies": {
++        "standardwebhooks": "1.0.0",
++        "uuid": "^10.0.0"
++      }
++    },
+     "node_modules/tailwindcss": {
+       "version": "3.4.19",
+       "resolved": "https://registry.npmjs.org/tailwindcss/-/tailwindcss-3.4.19.tgz",
+@@ -7335,7 +7673,6 @@
+       "integrity": "sha512-5gTmgEY/sqK6gFXLIsQNH19lWb4ebPDLA4SdLP7dsWkIXHWlG66oPuVvXSGFPppYZz8ZDZq0dYYrbHfBCVUb1Q==",
+       "dev": true,
+       "license": "MIT",
+-      "peer": true,
+       "engines": {
+         "node": ">=12"
+       },
+@@ -7343,6 +7680,15 @@
+         "url": "https://github.com/sponsors/jonschlinkert"
+       }
+     },
++    "node_modules/tlds": {
++      "version": "1.261.0",
++      "resolved": "https://registry.npmjs.org/tlds/-/tlds-1.261.0.tgz",
++      "integrity": "sha512-QXqwfEl9ddlGBaRFXIvNKK6OhipSiLXuRuLJX5DErz0o0Q0rYxulWLdFryTkV5PkdZct5iMInwYEGe/eR++1AA==",
++      "license": "MIT",
++      "bin": {
++        "tlds": "bin.js"
++      }
++    },
+     "node_modules/to-regex-range": {
+       "version": "5.0.1",
+       "resolved": "https://registry.npmjs.org/to-regex-range/-/to-regex-range-5.0.1.tgz",
+@@ -7511,7 +7857,6 @@
+       "integrity": "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==",
+       "dev": true,
+       "license": "Apache-2.0",
+-      "peer": true,
+       "bin": {
+         "tsc": "bin/tsc",
+         "tsserver": "bin/tsserver"
+@@ -7520,6 +7865,12 @@
+         "node": ">=14.17"
+       }
+     },
++    "node_modules/uc.micro": {
++      "version": "2.1.0",
++      "resolved": "https://registry.npmjs.org/uc.micro/-/uc.micro-2.1.0.tgz",
++      "integrity": "sha512-ARDJmphmdvUk6Glw7y9DQ2bFkKBHwQHLi2lsaH6PPmz/Ka9sFOBsBluozhDltWmnv9u/cF6Rt87znRTPV+yp/A==",
++      "license": "MIT"
++    },
+     "node_modules/unbox-primitive": {
+       "version": "1.1.0",
+       "resolved": "https://registry.npmjs.org/unbox-primitive/-/unbox-primitive-1.1.0.tgz",
+@@ -7641,6 +7992,19 @@
+       "dev": true,
+       "license": "MIT"
+     },
++    "node_modules/uuid": {
++      "version": "10.0.0",
++      "resolved": "https://registry.npmjs.org/uuid/-/uuid-10.0.0.tgz",
++      "integrity": "sha512-8XkAphELsDnEGrDxUOHB3RGvXz6TeuYSGEZBOjtTtPm2lwhGBjLgOzLHB63IUWfBpNucQjND6d3AOudO+H3RWQ==",
++      "funding": [
++        "https://github.com/sponsors/broofa",
++        "https://github.com/sponsors/ctavan"
++      ],
++      "license": "MIT",
++      "bin": {
++        "uuid": "dist/bin/uuid"
++      }
++    },
+     "node_modules/webidl-conversions": {
+       "version": "3.0.1",
+       "resolved": "https://registry.npmjs.org/webidl-conversions/-/webidl-conversions-3.0.1.tgz",
+diff --git a/package.json b/package.json
+index 077d2de..3aa595c 100644
+--- a/package.json
++++ b/package.json
+@@ -18,7 +18,8 @@
+     "next-intl": "^3.14.0",
+     "postgres": "^3.4.8",
+     "react": "^19.0.0",
+-    "react-dom": "^19.0.0"
++    "react-dom": "^19.0.0",
++    "resend": "^6.9.1"
+   },
+   "devDependencies": {
+     "@types/node": "^20.14.10",
+diff --git a/ralph/lessons.md b/ralph/lessons.md
+index e1cce21..e0d2a38 100644
+--- a/ralph/lessons.md
++++ b/ralph/lessons.md
+@@ -12,3 +12,4 @@
+ - Container component was removed — use manual `max-w-7xl` instead
+ - Language switcher is custom dropdown, not native `<select>`
+ - Cart uses localStorage via CartProvider/CartDrawer — don't introduce server-side cart state
++- DO NOT instantiate Resend at module level — it throws without RESEND_API_KEY at build time. Use a lazy getter function instead (discovered iteration 3)
+diff --git a/ralph/progress.md b/ralph/progress.md
+index 28273fb..d5a7239 100644
+--- a/ralph/progress.md
++++ b/ralph/progress.md
+@@ -8,32 +8,24 @@
+ ---
+ 
+ ## Plan
+-1. Update `ralph/spec.md` to set “What’s Next” to P0 launch blockers, with explicit Acceptance Criteria and Out of Scope (subscriptions moved to P2). Depends on: none. Test: n/a (doc-only).
+-2. Add a persistent webhook idempotency table in `lib/schema.ts` (e.g. `mollie_payments` with UNIQUE `paymentId`). Depends on: none. Test: `npm run typecheck`.
+-3. Add a tiny idempotency helper (get/insert by paymentId) and wire `app/api/webhook/mollie/route.ts` to use it (remove the in‑memory Set). Depends on: 2. Test: hit webhook twice with same id → second call is a no‑op but still 200.
+-4. Add `MOLLIE_WEBHOOK_TOKEN` to `.env.example` + `lib/env.ts` validation. Depends on: none. Test: `npm run typecheck`.
+-5. Append `?token=...` to Mollie `webhookUrl` in `app/api/checkout/route.ts` and verify the token in `app/api/webhook/mollie/route.ts`. Depends on: 4. Test: webhook returns 200 with correct token, 401/200‑ignored with missing token (pick one behavior and assert it).
+-6. Add CSRF Origin check to `POST /api/checkout` (reject when Origin host ≠ `NEXT_PUBLIC_BASE_URL`). Depends on: none. Test: curl without Origin → 403, browser request → 200.
+-7. Add rate limiting on `/api/checkout` (simple in‑memory token bucket per IP using `X-Forwarded-For` when present; document restart limitation). Depends on: none. Test: 6 rapid calls → last is 429.
+-8. Add `app/api/contact/route.ts` to send contact submissions via Resend (new `CONTACT_EMAIL_TO` env var + validation). Depends on: none. Test: POST with sample payload → 200 and email received in test inbox.
+-9. Wire `components/ContactForm.tsx` to POST to `/api/contact`, showing success/error states. Depends on: 8. Test: submit form UI → success message.
+-10. Add newsletter persistence: create a `newsletter_subscribers` table in `lib/schema.ts` with UNIQUE email and timestamps. Depends on: none. Test: `npm run typecheck`.
+-11. Add `app/api/newsletter/route.ts` to upsert subscriber email and send a confirmation to `NEWSLETTER_EMAIL_TO` via Resend. Depends on: 10. Test: POST with email → 200; second POST → 200 with “already subscribed”.
+-12. Wire `components/NewsletterForm.tsx` to POST to `/api/newsletter`, showing success/error states. Depends on: 11. Test: submit form UI → success message.
+-13. Map WooCommerce attributes to filter categories (type/format/form) in `types/product.ts` or a helper, then make filters actually filter results in `components/ShopCatalog.tsx`. Depends on: none. Test: apply filters → product count changes as expected.
+-14. Create `app/[locale]/(pages)/privacy/page.tsx` and `app/[locale]/(pages)/terms/page.tsx` with minimal copy + i18n keys in all locales (placeholders allowed until final text). Depends on: none. Test: routes render in all locales.
+-15. Add a minimal `CookieConsent` component with localStorage state and link to `/privacy`, wired into `app/[locale]/layout.tsx`. Depends on: 14. Test: banner shows once, dismiss persists on reload.
+-16. Replace placeholder copy on Privacy/Cookie + Terms pages with final legal text from Jonathan. Depends on: 14, content from Jonathan. Test: text matches approved copy.
+-17. Coolify env/config (part 1): set `NEXT_PUBLIC_BASE_URL`, `MOLLIE_WEBHOOK_TOKEN`, `CONTACT_EMAIL_TO`, `NEWSLETTER_EMAIL_TO`. Depends on: 4, 8, 11. Test: Mollie webhook calls succeed in production; contact/newsletter emails send.
+-18. Coolify env/config (part 2): configure Google OAuth redirect URI + run `drizzle push` as post‑deploy. Depends on: 10. Test: auth redirect works; DB migration succeeds.
+-19. UI polish for launch (contrast + product photo backgrounds), once legal/security blockers are done. Depends on: 1–18. Test: visual QA at 375px/768px/1024px.
+-20. Production smoke test: checkout (incl. webhook), auth login, contact, newsletter, shop filters, cookie banner, and legal pages on live URL. Depends on: 17–19. Test: all flows pass on production.
++
++### Feature 1: Shop filters aansluiten
++1. [x] Wire selectedTypes, selectedFormats, selectedForms into filteredProducts useMemo in ShopCatalog.tsx — DONE (iteration 1)
++2. [x] Verify Product type has type/weight/form fields; add or map from WooCommerce attributes if missing — DONE (iteration 2)
++
++### Feature 2: Contact form → Resend
++3. [x] Create `app/api/contact/route.ts` with Resend email sending + server-side validation — DONE (iteration 3)
++4. [x] Wire ContactForm.tsx to POST to `/api/contact` with success/error feedback — DONE (iteration 4)
++
++### Feature 3: Newsletter form → Resend
++5. [x] Create `app/api/newsletter/route.ts` using Resend Contacts/Audiences API — DONE (iteration 5)
++6. [x] Wire NewsletterForm.tsx to POST to `/api/newsletter` with success/error/duplicate feedback — DONE (iteration 6)
+ 
+ ## Current
+-- Working on: Awaiting next phase definition
+-- Iteration: 0
+-- Last action: Initialized Ralph v2
+-- Last result: Ready
++- Working on: All steps complete
++- Iteration: 6
++- Last action: Wired NewsletterForm.tsx to POST /api/newsletter with success/duplicate/error/rate-limit feedback. Added duplicateText + rateLimitedText props, i18n keys in all 4 locales.
++- Last result: Success — typecheck and build pass.
+ 
+ ## Architecture Decisions
+ - Database: WooCommerce (headless, one.com)
