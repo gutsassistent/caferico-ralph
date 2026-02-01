@@ -21,15 +21,15 @@ Dependencies: none. All split-mode steps depend on these tokens/utilities.
 
 - [x] 1. Add light-body tokens to Tailwind — add `parchment: '#F7F0E7'`, `ink: '#2C1810'`, `inkMuted: '#5A3E33'` to `tailwind.config.ts` (single-file change) — DONE (iteration 1)
 - [x] 2. Add matching CSS vars + update `color-scheme` — add `--color-parchment`/`--color-ink`/`--color-ink-muted` and set `:root { color-scheme: light dark; }` in `app/globals.css` — DONE (iteration 2)
-- [ ] 3. Add global split-mode + packaging utilities — in `app/globals.css` add `@layer components` utilities: `.section-light`, `.section-dark`, `.pill-roastery` (packaging cue base)
+- [x] 3. Add global split-mode + packaging utilities — in `app/globals.css` add `@layer components` utilities: `.section-light`, `.section-dark`, `.pill-roastery` (packaging cue base) — DONE (iteration 3)
 
 ---
 
 ## Current
 
-- Working on: Step 3
-- Iteration: 2
-- Last action: Added --color-parchment/--color-ink/--color-ink-muted CSS vars and updated color-scheme to "light dark" in globals.css
+- Working on: All Phase A steps complete
+- Iteration: 3
+- Last action: Added @layer components with .section-light, .section-dark, .pill-roastery utilities in globals.css
 - Last result: typecheck + build pass
 
 ## Architecture Decisions

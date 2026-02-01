@@ -109,3 +109,18 @@ html {
 .animate-toast-in {
   animation: toast-in 0.3s ease-out forwards;
 }
+
+/* Split-mode section utilities + packaging cue */
+@layer components {
+  .section-light {
+    @apply bg-parchment text-ink;
+  }
+
+  .section-dark {
+    @apply bg-noir text-cream;
+  }
+
+  .pill-roastery {
+    @apply inline-flex items-center rounded-full border border-gold-muted/40 bg-gold-muted/10 px-3 py-1 text-xs font-medium tracking-wide text-gold-muted;
+  }
+}
