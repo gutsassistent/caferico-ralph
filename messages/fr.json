@@ -1147,6 +1147,14 @@
     "account": {
       "title": "Mon Compte",
       "description": "Consultez votre profil, adresses et commandes chez Café RICO."
+    },
+    "privacy": {
+      "title": "Politique de confidentialité",
+      "description": "Comment nous traitons vos données."
+    },
+    "terms": {
+      "title": "Conditions générales",
+      "description": "Nos conditions de vente."
     }
   },
   "Privacy": {

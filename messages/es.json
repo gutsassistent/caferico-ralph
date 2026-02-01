@@ -1147,6 +1147,14 @@
     "account": {
       "title": "Mi Cuenta",
       "description": "Consulta tu perfil, direcciones y pedidos en Café RICO."
+    },
+    "privacy": {
+      "title": "Política de Privacidad",
+      "description": "Cómo manejamos sus datos."
+    },
+    "terms": {
+      "title": "Términos y Condiciones",
+      "description": "Nuestras condiciones de venta."
     }
   },
   "Privacy": {
