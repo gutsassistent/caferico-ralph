@@ -11,7 +11,7 @@
 
 ### Feature 1: Shop filters aansluiten
 1. [x] Wire selectedTypes, selectedFormats, selectedForms into filteredProducts useMemo in ShopCatalog.tsx — DONE (iteration 1)
-2. [ ] Verify Product type has type/weight/form fields; add or map from WooCommerce attributes if missing — NOT STARTED
+2. [x] Verify Product type has type/weight/form fields; add or map from WooCommerce attributes if missing — DONE (iteration 2)
 
 ### Feature 2: Contact form → Resend
 3. [ ] Create `app/api/contact/route.ts` with Resend email sending + server-side validation — NOT STARTED
@@ -22,10 +22,10 @@
 6. [ ] Wire NewsletterForm.tsx to POST to `/api/newsletter` with success/error/duplicate feedback — NOT STARTED
 
 ## Current
-- Working on: Step 2
-- Iteration: 1
-- Last action: Wired selectedTypes/selectedFormats/selectedForms into filteredProducts useMemo, matching against product.attributes
-- Last result: Success — filters now apply AND-logic using WooCommerce attribute lookups (type/soort, weight/gewicht, form/vorm/maalgraad)
+- Working on: Step 3
+- Iteration: 2
+- Last action: Verified Product type already has `attributes: WooCommerceAttribute[]` from WooCommerce, passed through unchanged by mapWooProduct(). No top-level type/weight/form fields needed — ShopCatalog filters correctly use attributes array with bilingual name lookups.
+- Last result: Success — no changes needed, Product type and mapping already correct. Typecheck and build pass.
 
 ## Architecture Decisions
 - Database: WooCommerce (headless, one.com)
