@@ -5,6 +5,91 @@
 - [x] Mollie checkout integratie — DONE
 - [x] Code quality audit — DONE
 
+## Senior Review — 2026-02-01
+
+### ⛔ Wrong priority: This plan builds Subscriptions (P2) while P0 blockers are open
+
+The AUDIT-2026-01-31.md defines subscriptions as P2 (post-launch). Meanwhile these P0 items block launch:
+- Webhook idempotency (in-memory Set, lost on restart)
+- Rate limiting on /api/checkout
+- Webhook secret token
+- CSRF check on checkout POST
+- Contact form backend (console.log)
+- Shop filters (pure UI, filter nothing)
+- Newsletter form backend (console.log)
+
+**Recommendation:** Either explicitly promote subscriptions to the current phase (and update the audit), or tackle P0 first. Building P2 while P0 is open means launch keeps sliding.
+
+### ⚠️ Step 1 is overloaded
+
+Step 1 asks the agent to "define the next phase in spec.md" AND make decisions about subscription scope (login required? guest? cancel/pause? WC order creation?). These are product decisions that need Jonathan's input, not agent decisions. The agent will either guess wrong or block.
+
+**Fix:** Split into: (a) Jonathan decides scope, (b) agent writes spec.md.
+
+### ⚠️ Steps 2-3 can't be verified meaningfully
+
+Steps 2 (type definitions) and 3 (i18n keys) both say "Test: npm run typecheck". Typecheck confirms syntax, not correctness. The real risk is defining subscription catalog fields that don't match Mollie's API shape or WooCommerce product structure.
+
+**Fix:** Step 2 should include a brief sanity check against Mollie Subscriptions API docs (interval format, amount shape, metadata limits).
+
+### ⚠️ Step 4: schema migration without rollback plan
+
+Adding Drizzle tables is fine, but there's no mention of how to handle migration on the live Coolify deployment. Currently `drizzle push` runs as post-deployment command. If the schema is wrong, there's no rollback.
+
+**Fix:** Add explicit step: "test migration on a fresh DB before pushing to production schema."
+
+### ⚠️ Steps 6-7: Mollie customer creation assumes auth is solid
+
+`getOrCreateMollieCustomer` depends on having a reliable userId. But the audit notes Google OAuth redirect URI isn't configured yet, and auth on checkout/status is P1. If auth is flaky, subscription customer mapping breaks silently.
+
+**Fix:** Add prerequisite: "Verify auth flow works end-to-end (magic link + Google OAuth) before building subscription customer mapping."
+
+### ⚠️ Step 8 + 10-11: Two separate checkout forms
+
+The existing checkout already has an address form (`CheckoutForm`). Now step 10-11 builds a second `SubscriptionCheckoutForm` with overlapping fields. This creates:
+- Duplicate validation logic
+- Duplicate address handling
+- Divergent UX between one-time and subscription checkout
+
+**Fix:** Extract shared address fields into a reusable component first, then compose both checkout flows from it.
+
+### ⚠️ Step 15: Webhook without idempotency
+
+The plan adds a NEW webhook endpoint (`/api/webhook/mollie-subscription`) while the EXISTING webhook (`/api/webhook/mollie`) still uses an in-memory Set for idempotency (P0 bug). Now there are two webhook endpoints, both without persistent idempotency.
+
+**Fix:** Solve webhook idempotency ONCE (Drizzle table with UNIQUE on paymentId) before adding more webhook endpoints. Then both use the same mechanism.
+
+### ⚠️ Step 16: WooCommerce order creation is underspecified
+
+"Helper to map plan → WC product IDs and create orders" — but the WC product structure for subscriptions isn't defined. Are there WC products for each tier? Do they exist already? Who creates them? What about stock management?
+
+**Fix:** Add prerequisite step: "Verify/create WC subscription products and document their IDs."
+
+### ⚠️ Missing: No error handling strategy
+
+17 steps, zero mention of what happens when Mollie API calls fail, when the DB is unreachable, when webhook delivery is delayed, or when a "first" payment expires before the subscription is created. Mollie's async nature means every step after 7 can fail silently.
+
+**Fix:** Add a step between 7 and 8: "Define error states and their UI/recovery paths."
+
+### ⚠️ Parallel execution risk
+
+Steps 2 and 3 are marked as independent (both depend on 1 only), but they both modify the same conceptual domain (subscription data shape). If two agents run these in parallel, they may make conflicting assumptions about field names, tier structure, or i18n key naming.
+
+**Fix:** Make 3 depend on 2 (i18n keys should mirror the type definitions).
+
+### ✅ What's good
+
+- Clear dependency chain per step
+- Each step is testable (even if the test could be stronger)
+- Separation of Mollie helpers from API routes is clean
+- Account UI is correctly scoped as last step (read-only first)
+
+### Summary
+
+This is a solid subscription implementation plan that's in the **wrong slot on the roadmap**. The dependency chain is mostly correct but underestimates the prerequisite work (auth stability, webhook idempotency, shared form components). Recommend: either pivot this to a P0 plan, or park it and tackle launch blockers first.
+
+---
+
 ## Plan
 1. Define the next phase in `ralph/spec.md` (set “What’s Next”, Acceptance Criteria, Out of Scope). Include explicit decisions for subscription scope: require login or guest, which coffee/roast options are supported, whether recurring payments must create WooCommerce orders, and whether self‑service cancel/pause is in-scope. Depends on: none. Test: n/a (doc-only).
 2. Add typed subscription catalog (`types/subscription.ts`, `data/subscriptions.ts`) containing plan IDs, tier labels, interval, price, and product slug(s) or IDs to fulfill. Keep it minimal but complete for Mollie + WooCommerce mapping. Depends on: 1. Test: `npm run typecheck`.
