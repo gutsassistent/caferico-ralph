@@ -86,7 +86,7 @@ export default async function HomePage({ params }: HomePageProps) {
       </HeroParallax>
 
       <Reveal>
-        <section className="py-16 sm:py-24">
+        <section className="section-light py-16 sm:py-24">
           <Container className="space-y-10">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-xl space-y-3">
@@ -94,11 +94,11 @@ export default async function HomePage({ params }: HomePageProps) {
                   {t('featured.eyebrow')}
                 </p>
                 <h2 className="font-serif text-3xl sm:text-4xl">{t('featured.title')}</h2>
-                <p className="text-sm text-cream/70 sm:text-base">{t('featured.description')}</p>
+                <p className="text-sm text-ink/70 sm:text-base">{t('featured.description')}</p>
               </div>
               <Link
                 href="/shop"
-                className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-gold transition hover:text-cream"
+                className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-gold transition hover:text-ink"
               >
                 {t('featured.cta')}
                 <span aria-hidden="true">&rarr;</span>
@@ -110,7 +110,7 @@ export default async function HomePage({ params }: HomePageProps) {
                 <Reveal key={product.id} delay={index * 120} className="h-full">
                   <Link
                     href={`/shop/${product.slug}`}
-                    className="group flex h-full flex-col rounded-2xl border border-cream/10 bg-surface-darker p-4 transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_30px_60px_rgba(0,0,0,0.4)]"
+                    className="group flex h-full flex-col rounded-2xl border border-ink/10 bg-white/60 p-4 transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_30px_60px_rgba(0,0,0,0.1)]"
                   >
                     <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-gradient-to-br from-espresso via-surface-mid to-noir">
                       {product.images?.[0]?.src ? (
@@ -137,13 +137,13 @@ export default async function HomePage({ params }: HomePageProps) {
                       </div>
                     </div>
                     <div className="mt-4 flex-1">
-                      <h3 className="font-serif text-lg text-cream">{product.name}</h3>
-                      <p className="mt-2 text-sm text-cream/60">
+                      <h3 className="font-serif text-lg text-ink">{product.name}</h3>
+                      <p className="mt-2 text-sm text-ink/60">
                         {product.notes || t('featured.detail')}
                       </p>
                     </div>
                     <div className="mt-4 flex items-center justify-between text-sm">
-                      <span className="text-cream/60">{t('featured.priceLabel')}</span>
+                      <span className="text-ink/60">{t('featured.priceLabel')}</span>
                       <span className="text-gold">{priceFormatter.format(product.price)}</span>
                     </div>
                   </Link>
