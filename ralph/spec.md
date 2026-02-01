@@ -1,151 +1,39 @@
 # Spec — Caférico
 
-## What we're building
-Caférico (caferico.be) — Belgische specialty coffee webshop. Next.js 15 headless frontend met WooCommerce backend.
-
-## Current State
-- Redesign compleet
-- Mollie checkout integratie compleet
-- WooCommerce REST API integratie werkt
-- Cart client-side (localStorage) via CartProvider/CartDrawer
-- Checkout flow: cart → adresformulier → Mollie redirect → return pagina
-
-## What's Next
-<!-- Define the next feature/phase here before starting agents -->
-
-Oké, hier is precies wat er gedaan moet worden:
-
-1. Shop filters aansluiten
-
-Het probleem zit in components/ShopCatalog.tsx. Er zijn drie filter-states die niks doen:
-
-• selectedTypes (mild, intens, espresso, decaf)
-• selectedFormats (250g, 500g)
-• selectedForms (beans, ground)
-Ze worden wel bijgehouden in state maar nooit meegenomen in filteredProducts. De useMemo op regel ~140 filtert alleen op collection en query.
-
-Fix: In de filteredProducts useMemo, na de collection en query filters, toevoegen:
-
-if (selectedTypes.size > 0) {
-  result = result.filter(p => selectedTypes.has(p.type)); // check welk veld op Product dit is
-}
-if (selectedFormats.size > 0) {
-  result = result.filter(p => selectedFormats.has(p.weight));
-}
-if (selectedForms.size > 0) {
-  result = result.filter(p => selectedForms.has(p.form));
-}
-
-En selectedTypes, selectedFormats, selectedForms toevoegen aan de dependency array van de useMemo.
-
-Check wel even het Product type (types/product.ts) — de veldnamen moeten matchen. Mogelijk zijn type, weight, form er nog niet en moeten die uit WooCommerce attributes gehaald worden.
-
-
-2. Contact form → Resend
-
-In components/ContactForm.tsx op regel ~95 staat:
-
-console.log('Contact form submitted:', values);
-await new Promise((resolve) => setTimeout(resolve, 1200));
-
-Wat nodig is:
-
-1. API route aanmaken: app/api/contact/route.ts
-2. Daarin Resend SDK gebruiken (zelfde package als magic links) om een email te sturen naar het Caferico contactadres
-3. ContactForm aanpassen om naar /api/contact te POSTen in plaats van console.log
-De API route is ~20 regels:
-
-import { Resend } from 'resend';
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-export async function POST(req: Request) {
-  const { name, email, subject, message } = await req.json();
-  // validatie
-  await resend.emails.send({
-    from: 'Caferico <noreply@caferico.be>',  // of verified domain
-    to: 'info@caferico.be',  // of whatever het contactadres is
-    replyTo: email,
-    subject: `Contact: ${subject}`,
-    text: `Van: ${name} (${email})\n\n${message}`
-  });
-  return Response.json({ ok: true });
-}
-
-
+## What we're building (concrete)
+UI/UX polish fase voor Caférico (split‑mode), gebaseerd op fjoez.txt + Image #1/#2:
+1. **Split‑mode visual system** — dark hero/nav (`#1A0F0A`) + light body (`#F7F0E7`) met bestaande luxe sfeer.
+2. **Design tokens bijwerken** — behoud Playfair/Inter, gold/roast accents, meer contrast in light sections.
+3. **Homepage curation** — max 3–4 producten, compact en clean.
+4. **Shop filters** — filtering werkt + sticky filter panel + betere layout/spacing.
+5. **Product gallery** — single‑image producten tonen geen extra/lege canvas; multi‑image wel.
+6. **Cart visuals** — cart drawer lichter, productafbeeldingen altijd zichtbaar, nieuw cart icon.
+7. **Contrast & vibrance** — UI voelt niet “te donker”; light sections domineren content.
+8. **Account adres bewerken** — form editable i.p.v. read‑only.
+9. **Static media** — alle niet‑product beelden uit `/public` (productimages blijven WC).
+10. **Verkooppunten** — Google Maps embed op locaties.
+11. **Algemene voorwaarden + cookie consent** — audit/fix waar nodig.
+12. **Packaging cue** — roastery label/pill styling geïnspireerd op Image #1.
 
 ## Acceptance Criteria
-<!-- When is the next feature DONE? -->
-1. Shop filters aansluiten
-
-Acceptance criteria:
-
-• Type filter (mild/intens/espresso/decaf) filtert producten correct
-• Formaat filter (250g/500g) filtert op gewicht
-• Vorm filter (bonen/gemalen) filtert op maalgraad
-• Filters combineren met AND-logica (type + formaat + vorm + collectie + zoekterm)
-• Resultaatteller update live bij elke filterwijziging
-• Reset knop zet alles terug
-
-
-2. Contact form → Resend
-
-Acceptance criteria:
-
-• Formulier POST naar /api/contact
-• Email komt aan bij Caferico contactadres via Resend
-• Reply-to is het emailadres van de bezoeker
-• Bezoeker ziet success/error feedback
-• Server-side validatie (naam, email, onderwerp, bericht verplicht)
-• Rate limiting: max 3 submits per IP per uur
-
-
-3. Newsletter form -> Resend
-
-Acceptance criteria:
-
-• Formulier POST naar /api/newsletter
-• Email opgeslagen via Resend Contacts API (of Audiences)
-• Dubbele inschrijving wordt afgevangen (geen error, wel melding "al ingeschreven")
-• Success/error feedback in de UI
-
-
+- Split‑mode actief: hero/nav donker, content‑body licht (parchment) op alle hoofdpagina’s.
+- Body tekst donker en leesbaar op light‑background; contrast ≥ 4.5:1.
+- Homepage toont maximaal 4 producten.
+- Shop filters werken met AND‑logica + sticky panel blijft zichtbaar bij scroll.
+- Product cards: geen lege canvas bij single image; multi‑image blijft als carousel.
+- Cart drawer: productafbeeldingen zichtbaar + nieuwe cart icon toegepast.
+- Niet‑product beelden komen uit `/public` (geen WC‑afhankelijkheid).
+- Account adres is bewerkbaar en opslaan werkt.
+- Google Maps zichtbaar op verkooppunten pagina.
+- Terms + cookie consent gecontroleerd en aangepast waar nodig.
+- Alle tekst via next‑intl, geen hardcoded labels.
 
 ## Out of Scope
-<!-- What we're NOT building in this run -->
-
-
-1. Shop filters aansluiten
-
-Niet bouwen:
-
-• Geen URL query params voor filters (geen deelbare filter-URLs)
-• Geen prijsrange slider
-• Geen filter op herkomst/origin
-• Geen "aantal resultaten per filter optie" counters
-• Geen server-side filtering — blijft client-side op de al opgehaalde producten
-
-
-2. Contact form → Resend
-
-Niet bouwen:
-
-• Geen bevestigingsmail naar de bezoeker
-• Geen HTML email template — plain text volstaat
-• Geen spam filtering (honeypot, captcha)
-• Geen bijlage-upload
-• Geen admin dashboard voor berichten
-
-
-3. Newsletter form -> Resend
-
-Niet bouwen:
-
-• Geen double opt-in flow
-• Geen uitschrijf-mechanisme (komt later met echte campagnes)
-• Geen welkomstmail
-• Geen integratie met externe marketing tools
-• Geen admin overzicht van subscribers
-
+- Geen volledige rebrand of nieuw font‑paar (Playfair/Inter blijft).
+- Geen prijsrange slider of extra filtercategorieën.
+- Geen nieuwe backend features of data‑migraties.
+- Geen URL query‑params voor filters.
+- Geen nieuwe marketing flows (double opt‑in, spam protection, admin dashboards).
 
 ## Technical Constraints
 - Next.js 15 (App Router, TypeScript)
