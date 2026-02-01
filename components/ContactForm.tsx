@@ -83,15 +83,35 @@ export default function ContactForm() {
     }
 
     setIsLoading(true);
-    // Mock: simulate API call
-    console.log('Contact form submitted:', values);
-    await new Promise((resolve) => setTimeout(resolve, 1200));
-    setIsLoading(false);
-    setIsSuccess(true);
-    showToast(t('form.successTitle'), 'success');
-    setSubmitAttempted(false);
-    setValues(initialValues);
-    setErrors({});
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        if (res.status === 429) {
+          showToast(t('form.errorRateLimit'), 'error');
+        } else if (data?.error) {
+          showToast(data.error, 'error');
+        } else {
+          showToast(t('form.errorGeneric'), 'error');
+        }
+        return;
+      }
+
+      setIsSuccess(true);
+      showToast(t('form.successTitle'), 'success');
+      setSubmitAttempted(false);
+      setValues(initialValues);
+      setErrors({});
+    } catch {
+      showToast(t('form.errorGeneric'), 'error');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const fieldError = (field: FieldName) =>

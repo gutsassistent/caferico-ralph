@@ -328,6 +328,8 @@
       "submitting": "Envoi en cours...",
       "successTitle": "Message reçu",
       "successMessage": "Merci pour votre message. Nous répondons sous un jour ouvré.",
+      "errorRateLimit": "Trop de messages. Veuillez réessayer plus tard.",
+      "errorGeneric": "Une erreur est survenue. Veuillez réessayer plus tard.",
       "validation": {
         "nameRequired": "Merci d’indiquer votre nom.",
         "emailRequired": "Merci d’indiquer votre adresse email.",

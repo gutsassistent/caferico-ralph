@@ -328,6 +328,8 @@
       "submitting": "Sending...",
       "successTitle": "Message received",
       "successMessage": "Thank you for reaching out. We'll reply within one business day.",
+      "errorRateLimit": "Too many messages. Please try again later.",
+      "errorGeneric": "Something went wrong. Please try again later.",
       "validation": {
         "nameRequired": "Please enter your name.",
         "emailRequired": "Please enter your email address.",

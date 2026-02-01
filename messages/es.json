@@ -328,6 +328,8 @@
       "submitting": "Enviando...",
       "successTitle": "Mensaje recibido",
       "successMessage": "Gracias por escribirnos. Responderemos en un día hábil.",
+      "errorRateLimit": "Demasiados mensajes. Inténtalo de nuevo más tarde.",
+      "errorGeneric": "Algo salió mal. Inténtalo de nuevo más tarde.",
       "validation": {
         "nameRequired": "Por favor, escribe tu nombre.",
         "emailRequired": "Por favor, escribe tu correo electrónico.",

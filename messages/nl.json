@@ -328,6 +328,8 @@
       "submitting": "Verzenden...",
       "successTitle": "Bericht ontvangen",
       "successMessage": "Dankjewel voor je bericht. We reageren binnen één werkdag.",
+      "errorRateLimit": "Te veel berichten. Probeer het later opnieuw.",
+      "errorGeneric": "Er ging iets mis. Probeer het later opnieuw.",
       "validation": {
         "nameRequired": "Vul je naam in.",
         "emailRequired": "Vul je e-mailadres in.",

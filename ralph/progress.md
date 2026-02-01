@@ -15,16 +15,16 @@
 
 ### Feature 2: Contact form → Resend
 3. [x] Create `app/api/contact/route.ts` with Resend email sending + server-side validation — DONE (iteration 3)
-4. [ ] Wire ContactForm.tsx to POST to `/api/contact` with success/error feedback — NOT STARTED
+4. [x] Wire ContactForm.tsx to POST to `/api/contact` with success/error feedback — DONE (iteration 4)
 
 ### Feature 3: Newsletter form → Resend
 5. [ ] Create `app/api/newsletter/route.ts` using Resend Contacts/Audiences API — NOT STARTED
 6. [ ] Wire NewsletterForm.tsx to POST to `/api/newsletter` with success/error/duplicate feedback — NOT STARTED
 
 ## Current
-- Working on: Step 4
-- Iteration: 3
-- Last action: Created app/api/contact/route.ts with Resend email sending, server-side validation (required fields + email format), and in-memory rate limiting (3 req/IP/hour). Installed resend package. Lazy-initialized Resend client to avoid build-time errors without API key.
+- Working on: Step 5
+- Iteration: 4
+- Last action: Wired ContactForm.tsx to POST to /api/contact with real fetch. Added error translation keys (errorRateLimit, errorGeneric) to all 4 language files. Removed mock setTimeout.
 - Last result: Success — typecheck and build pass.
 
 ## Architecture Decisions
