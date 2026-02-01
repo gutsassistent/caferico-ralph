@@ -18,17 +18,17 @@ Target file: `app/[locale]/(pages)/page.tsx`
 
 - [x] 4. Home: convert Featured Products section to light — DONE (iteration 1)
 - [x] 5. Home: convert Our Story section to light — DONE (iteration 2)
-- [ ] 6. Home: convert Values section to light — update card surfaces/text for light
+- [x] 6. Home: convert Values section to light — DONE (iteration 3)
 - [ ] 7. Home curation verification — confirm homepage renders max 4 products (already `per_page: '4'`), adjust only if regression
 
 ---
 
 ## Current
 
-- Working on: Step 6
-- Iteration: 2
-- Last action: Converted Our Story section to section-light with ink text colors
-- Last result: typecheck + build pass; section uses parchment bg, ink/70 description text, hover:text-ink on CTA
+- Working on: Step 7
+- Iteration: 3
+- Last action: Converted Values section to section-light with ink text colors and white/60 card backgrounds
+- Last result: typecheck + build pass; cards use bg-white/60, border-ink/10, ink text, ink/70 descriptions
 
 ## Architecture Decisions
 
