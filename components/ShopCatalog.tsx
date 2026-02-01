@@ -117,7 +117,7 @@ export default function ShopCatalog({ products, categories }: ShopCatalogProps) 
   const [isLoading] = useState(false);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
-  /* Visual-only filter state (not yet wired to product filtering) */
+  /* Filter state */
   const [selectedTypes, setSelectedTypes] = useState<Set<string>>(new Set());
   const [selectedFormats, setSelectedFormats] = useState<Set<string>>(new Set());
   const [selectedForms, setSelectedForms] = useState<Set<string>>(new Set());
@@ -153,6 +153,33 @@ export default function ShopCatalog({ products, categories }: ShopCatalogProps) 
       });
     }
 
+    if (selectedTypes.size > 0) {
+      result = result.filter((product) => {
+        const typeAttr = product.attributes.find(
+          (a) => a.name.toLowerCase() === 'type' || a.name.toLowerCase() === 'soort'
+        );
+        return typeAttr?.options.some((opt) => selectedTypes.has(opt.toLowerCase()));
+      });
+    }
+
+    if (selectedFormats.size > 0) {
+      result = result.filter((product) => {
+        const weightAttr = product.attributes.find(
+          (a) => a.name.toLowerCase() === 'weight' || a.name.toLowerCase() === 'gewicht'
+        );
+        return weightAttr?.options.some((opt) => selectedFormats.has(opt.toLowerCase()));
+      });
+    }
+
+    if (selectedForms.size > 0) {
+      result = result.filter((product) => {
+        const formAttr = product.attributes.find(
+          (a) => a.name.toLowerCase() === 'form' || a.name.toLowerCase() === 'vorm' || a.name.toLowerCase() === 'maalgraad'
+        );
+        return formAttr?.options.some((opt) => selectedForms.has(opt.toLowerCase()));
+      });
+    }
+
     const sorted = [...result].sort((a, b) => {
       switch (sort) {
         case 'price-asc':
@@ -167,7 +194,7 @@ export default function ShopCatalog({ products, categories }: ShopCatalogProps) 
     });
 
     return sorted;
-  }, [products, collection, locale, normalizedQuery, sort]);
+  }, [products, collection, locale, normalizedQuery, sort, selectedTypes, selectedFormats, selectedForms]);
 
   const availableCollections = useMemo(() => {
     const collectionSet = new Set(products.map((p) => p.collection));

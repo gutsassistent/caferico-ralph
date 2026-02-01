@@ -10,7 +10,7 @@
 ## Plan
 
 ### Feature 1: Shop filters aansluiten
-1. [ ] Wire selectedTypes, selectedFormats, selectedForms into filteredProducts useMemo in ShopCatalog.tsx — NOT STARTED
+1. [x] Wire selectedTypes, selectedFormats, selectedForms into filteredProducts useMemo in ShopCatalog.tsx — DONE (iteration 1)
 2. [ ] Verify Product type has type/weight/form fields; add or map from WooCommerce attributes if missing — NOT STARTED
 
 ### Feature 2: Contact form → Resend
@@ -22,10 +22,10 @@
 6. [ ] Wire NewsletterForm.tsx to POST to `/api/newsletter` with success/error/duplicate feedback — NOT STARTED
 
 ## Current
-- Working on: Step 1 — replan
+- Working on: Step 2
 - Iteration: 1
-- Last action: Replan — aligned plan with spec.md (shop filters → contact → newsletter)
-- Last result: Plan updated
+- Last action: Wired selectedTypes/selectedFormats/selectedForms into filteredProducts useMemo, matching against product.attributes
+- Last result: Success — filters now apply AND-logic using WooCommerce attribute lookups (type/soort, weight/gewicht, form/vorm/maalgraad)
 
 ## Architecture Decisions
 - Database: WooCommerce (headless, one.com)
