@@ -4,6 +4,7 @@ import { getProducts } from '@/lib/woocommerce';
 import type { WooCommerceProduct } from '@/types/woocommerce';
 import mockProducts from '@/data/mock-products.json';
 import { calculateShipping } from '@/lib/shipping';
+import { rateLimit } from '@/lib/rate-limit';
 
 type CheckoutItem = {
   id: string;
@@ -122,6 +123,14 @@ export async function POST(request: NextRequest) {
 
   if (!origin || new URL(origin).host !== expectedHost) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+  }
+
+  // Rate limiting: 5 requests per IP per 60 seconds
+  const ip = request.headers.get('x-forwarded-for')?.split(',')[0].trim()
+    ?? request.headers.get('x-real-ip')
+    ?? 'unknown';
+  if (!rateLimit(ip, 5, 60_000)) {
+    return NextResponse.json({ error: 'Too many requests' }, { status: 429 });
   }
 
   try {
