@@ -1,15 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import getMollieClient from '@/lib/mollie';
 import { createOrder } from '@/lib/woocommerce-orders';
-
-// Track processed payments to prevent duplicate orders
-const globalWithProcessed = globalThis as typeof globalThis & {
-  __processedPayments?: Set<string>;
-};
-if (!globalWithProcessed.__processedPayments) {
-  globalWithProcessed.__processedPayments = new Set();
-}
-const processedPayments = globalWithProcessed.__processedPayments;
+import { getMolliePayment, insertMolliePayment } from '@/lib/mollie-idempotency';
 
 export async function POST(request: NextRequest) {
   try {
@@ -22,8 +14,9 @@ export async function POST(request: NextRequest) {
       return new NextResponse('OK', { status: 200 });
     }
 
-    // Idempotency: skip if already processed
-    if (processedPayments.has(paymentId)) {
+    // Idempotency: skip if already processed (persisted in DB)
+    const existing = await getMolliePayment(paymentId);
+    if (existing?.processed) {
       return new NextResponse('OK', { status: 200 });
     }
 
@@ -35,8 +28,12 @@ export async function POST(request: NextRequest) {
       return new NextResponse('OK', { status: 200 });
     }
 
-    // Mark as processed before creating order (prevent race conditions)
-    processedPayments.add(paymentId);
+    // Attempt to claim this payment via DB insert (prevents race conditions)
+    const inserted = await insertMolliePayment(paymentId, payment.status);
+    if (!inserted) {
+      // Another request already processed it
+      return new NextResponse('OK', { status: 200 });
+    }
 
     // Extract metadata stored during payment creation
     const metadata = payment.metadata as {
@@ -66,8 +63,6 @@ export async function POST(request: NextRequest) {
 
       console.log(`WooCommerce order created: #${order.number} for payment ${paymentId}`);
     } catch (orderError) {
-      // Remove from processed so it can be retried
-      processedPayments.delete(paymentId);
       console.error(`Failed to create WooCommerce order for payment ${paymentId}:`, orderError);
       // Return 500 so Mollie retries the webhook
       return new NextResponse('Error', { status: 500 });
