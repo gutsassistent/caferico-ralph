@@ -18,13 +18,13 @@
 4. [x] Wire ContactForm.tsx to POST to `/api/contact` with success/error feedback — DONE (iteration 4)
 
 ### Feature 3: Newsletter form → Resend
-5. [ ] Create `app/api/newsletter/route.ts` using Resend Contacts/Audiences API — NOT STARTED
+5. [x] Create `app/api/newsletter/route.ts` using Resend Contacts/Audiences API — DONE (iteration 5)
 6. [ ] Wire NewsletterForm.tsx to POST to `/api/newsletter` with success/error/duplicate feedback — NOT STARTED
 
 ## Current
-- Working on: Step 5
-- Iteration: 4
-- Last action: Wired ContactForm.tsx to POST to /api/contact with real fetch. Added error translation keys (errorRateLimit, errorGeneric) to all 4 language files. Removed mock setTimeout.
+- Working on: Step 6
+- Iteration: 5
+- Last action: Created app/api/newsletter/route.ts with Resend Contacts API, email validation, rate limiting, and duplicate detection.
 - Last result: Success — typecheck and build pass.
 
 ## Architecture Decisions
