@@ -19,12 +19,12 @@
 
 ### Feature 3: Newsletter form → Resend
 5. [x] Create `app/api/newsletter/route.ts` using Resend Contacts/Audiences API — DONE (iteration 5)
-6. [ ] Wire NewsletterForm.tsx to POST to `/api/newsletter` with success/error/duplicate feedback — NOT STARTED
+6. [x] Wire NewsletterForm.tsx to POST to `/api/newsletter` with success/error/duplicate feedback — DONE (iteration 6)
 
 ## Current
-- Working on: Step 6
-- Iteration: 5
-- Last action: Created app/api/newsletter/route.ts with Resend Contacts API, email validation, rate limiting, and duplicate detection.
+- Working on: All steps complete
+- Iteration: 6
+- Last action: Wired NewsletterForm.tsx to POST /api/newsletter with success/duplicate/error/rate-limit feedback. Added duplicateText + rateLimitedText props, i18n keys in all 4 locales.
 - Last result: Success — typecheck and build pass.
 
 ## Architecture Decisions
