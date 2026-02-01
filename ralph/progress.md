@@ -1,12 +1,12 @@
 # Progress
 
-## Completed Phases
+## Completed Phases (reference only, not part of current plan)
 
-- [x] Redesign (42/42 stories) — DONE
-- [x] Mollie checkout integratie — DONE
-- [x] Code quality audit — DONE
-- [x] Webhook/checkout security (Track A) — DONE
-- [x] Privacy/terms pages + cookie consent (Track E) — DONE
+✅ Redesign (42/42 stories)
+✅ Mollie checkout integratie
+✅ Code quality audit
+✅ Webhook/checkout security (Track A)
+✅ Privacy/terms pages + cookie consent (Track E)
 
 ---
 
