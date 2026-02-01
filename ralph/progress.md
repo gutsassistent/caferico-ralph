@@ -15,15 +15,15 @@
 Dependencies: Step 1–3 (Phase A, completed by another agent).
 
 - [x] 8. Shop: make post-hero content light — intro + catalog wrapper becomes `.section-light` (`app/[locale]/(pages)/shop/page.tsx`) — DONE (iteration 1)
-- [ ] 9. ShopCatalog: restyle for light background — sidebar, inputs, cards, chips; keep logic/sticky/results count as-is (`components/ShopCatalog.tsx`)
+- [x] 9. ShopCatalog: restyle for light background — sidebar, inputs, cards, chips; keep logic/sticky/results count as-is (`components/ShopCatalog.tsx`) — DONE (iteration 2)
 
 ---
 
 ## Current
 
-- Working on: Step 9
-- Iteration: 1
-- Last action: Added section-light to post-hero section, updated text colors (cream/70→inkMuted, cream/10→ink/10) for light background
+- Working on: All steps complete
+- Iteration: 2
+- Last action: Restyled ShopCatalog for light background — swapped cream/dark tokens to ink/inkMuted/white for sidebar, cards, inputs, skeleton, empty state; kept mobile drawer dark; kept gold accents and all logic unchanged
 - Last result: typecheck + build pass
 
 ## Architecture Decisions
