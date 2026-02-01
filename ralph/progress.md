@@ -17,15 +17,15 @@ Dependencies: Phase A (steps 1–3) completed.
 
 - [x] 10. Product page: make main content light — gallery + purchase + tabs on parchment; fix any `prose-invert` conflicts (`app/[locale]/(pages)/shop/[slug]/page.tsx`) — DONE (iteration 1)
 - [x] 11. ProductTabs: add light variant styles — remove `prose-invert` for light sections and ensure readable typography (`components/ProductTabs.tsx`) — DONE (iteration 2)
-- [ ] 12. Product gallery: single-image behavior — hide thumbnails + prev/next + dots when `images.length <= 1` (`components/ProductImageGallery.tsx`)
+- [x] 12. Product gallery: single-image behavior — hide thumbnails + prev/next + dots when `images.length <= 1` (`components/ProductImageGallery.tsx`) — DONE (iteration 3)
 
 ---
 
 ## Current
 
-- Working on: Step 12
-- Iteration: 2
-- Last action: Converted ProductTabs from dark theme (prose-invert, text-cream/*, bg-surface-darkest) to light theme (text-ink/inkMuted, bg-ink/[0.03], border-ink/10)
+- Working on: ALL DONE
+- Iteration: 3
+- Last action: Removed placeholder thumbnail boxes for single-image products; nav arrows, dots, thumbnails, and lightbox nav already guarded by images.length > 1
 - Last result: typecheck + build pass
 
 ## Architecture Decisions
