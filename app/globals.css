@@ -3,10 +3,13 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
+  color-scheme: light dark;
 
   /* Design Tokens — Caférico */
   /* Colors */
+  --color-parchment: #F7F0E7;
+  --color-ink: #2C1810;
+  --color-ink-muted: #5A3E33;
   --color-primary: #C9A962;
   --color-primary-light: #D4B87A;
   --color-primary-dark: #B89A52;
