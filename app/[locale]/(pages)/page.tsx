@@ -220,7 +220,7 @@ export default async function HomePage({ params }: HomePageProps) {
       </Reveal>
 
       <Reveal>
-        <section className="py-16 sm:py-24">
+        <section className="section-light py-16 sm:py-24">
           <Container>
             <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
               <div className="order-2 lg:order-1 space-y-6">
@@ -230,12 +230,12 @@ export default async function HomePage({ params }: HomePageProps) {
                 <h2 className="font-serif text-3xl leading-tight sm:text-4xl md:text-5xl">
                   {t('ourStory.title')}
                 </h2>
-                <p className="text-sm leading-relaxed text-cream/70 sm:text-base">
+                <p className="text-sm leading-relaxed text-ink/70 sm:text-base">
                   {t('ourStory.description')}
                 </p>
                 <Link
                   href="/about"
-                  className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-gold transition hover:text-cream"
+                  className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-gold transition hover:text-ink"
                 >
                   {t('ourStory.cta')}
                   <span aria-hidden="true">&rarr;</span>
