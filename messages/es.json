@@ -1154,5 +1154,10 @@
     "title": "Términos y Condiciones",
     "description": "Nuestras condiciones de venta.",
     "content": "Los términos y condiciones de Caférico se actualizarán pronto. Para preguntas, contáctenos a través del formulario de contacto."
+  },
+  "CookieConsent": {
+    "message": "Utilizamos cookies para mejorar su experiencia.",
+    "privacyLink": "Política de privacidad",
+    "accept": "Aceptar"
   }
 }

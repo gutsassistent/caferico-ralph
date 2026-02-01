@@ -1154,5 +1154,10 @@
     "title": "Algemene Voorwaarden",
     "description": "Onze verkoopvoorwaarden.",
     "content": "De algemene voorwaarden van Caférico worden binnenkort aangevuld. Voor vragen kunt u contact met ons opnemen via het contactformulier."
+  },
+  "CookieConsent": {
+    "message": "Wij gebruiken cookies om uw ervaring te verbeteren.",
+    "privacyLink": "Privacybeleid",
+    "accept": "Accepteren"
   }
 }

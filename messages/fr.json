@@ -1154,5 +1154,10 @@
     "title": "Conditions Générales",
     "description": "Nos conditions de vente.",
     "content": "Les conditions générales de Caférico seront mises à jour prochainement. Pour toute question, veuillez nous contacter via le formulaire de contact."
+  },
+  "CookieConsent": {
+    "message": "Nous utilisons des cookies pour améliorer votre expérience.",
+    "privacyLink": "Politique de confidentialité",
+    "accept": "Accepter"
   }
 }

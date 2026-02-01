@@ -1154,5 +1154,10 @@
     "title": "Terms & Conditions",
     "description": "Our terms of sale.",
     "content": "The Caférico terms and conditions will be updated soon. For questions, please contact us via the contact form."
+  },
+  "CookieConsent": {
+    "message": "We use cookies to improve your experience.",
+    "privacyLink": "Privacy Policy",
+    "accept": "Accept"
   }
 }

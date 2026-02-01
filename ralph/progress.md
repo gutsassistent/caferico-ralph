@@ -9,13 +9,13 @@
 
 ## Plan
 1. [x] Create `app/[locale]/(pages)/privacy/page.tsx` and `app/[locale]/(pages)/terms/page.tsx` with minimal copy + i18n keys in all locales (placeholders allowed until final text). Depends on: none. Test: routes render in all locales. — DONE (iteration 1)
-2. [ ] Add a minimal `CookieConsent` component with localStorage state and link to `/privacy`, wired into `app/[locale]/layout.tsx`. Depends on: 1. Test: banner shows once, dismiss persists on reload.
+2. [x] Add a minimal `CookieConsent` component with localStorage state and link to `/privacy`, wired into `app/[locale]/layout.tsx`. Depends on: 1. Test: banner shows once, dismiss persists on reload. — DONE (iteration 2)
 
 ## Current
-- Working on: Step 1 completed
-- Iteration: 1
-- Last action: Created privacy and terms pages with i18n keys in all 4 locales
-- Last result: typecheck passes, build passes, routes render in nl/en/fr/es
+- Working on: Step 2 completed
+- Iteration: 2
+- Last action: Created CookieConsent component with localStorage dismiss, privacy link, i18n keys in all 4 locales, wired into layout
+- Last result: typecheck passes, build passes
 
 ## Architecture Decisions
 - Database: WooCommerce (headless, one.com)
