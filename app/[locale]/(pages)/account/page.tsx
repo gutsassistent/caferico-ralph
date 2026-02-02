@@ -53,7 +53,7 @@ export default async function AccountPage({ params }: { params: Promise<{ locale
         </Container>
       </section>
 
-      <section className="py-16 sm:py-24">
+      <section className="section-light py-16 sm:py-24">
         <Container className="max-w-3xl">
           <AccountProfile />
         </Container>

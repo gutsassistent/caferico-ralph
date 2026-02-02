@@ -65,4 +65,15 @@ export async function getOrCreateCustomer(
   return createCustomer({ email, firstName, lastName });
 }
 
+export async function updateCustomer(
+  customerId: number,
+  patch: Partial<Pick<WooCustomer, 'billing' | 'shipping' | 'first_name' | 'last_name'>>
+): Promise<WooCustomer> {
+  return wcFetch<WooCustomer>(`customers/${customerId}`, {}, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(patch),
+  });
+}
+
 export type { WooCustomer };

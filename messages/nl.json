@@ -1053,6 +1053,22 @@
     "billingAddress": "Factuuradres",
     "shippingAddress": "Verzendadres",
     "noAddress": "Nog geen adres opgeslagen.",
+    "edit": "Bewerken",
+    "save": "Opslaan",
+    "cancel": "Annuleren",
+    "saving": "Opslaan...",
+    "saveSuccess": "Adres succesvol bijgewerkt.",
+    "saveError": "Kon adres niet opslaan. Probeer het opnieuw.",
+    "fields": {
+      "firstName": "Voornaam",
+      "lastName": "Achternaam",
+      "address": "Adres",
+      "city": "Stad",
+      "postcode": "Postcode",
+      "country": "Land",
+      "phone": "Telefoon",
+      "email": "E-mail"
+    },
     "logout": "Uitloggen",
     "orders": {
       "empty": "Je hebt nog geen bestellingen geplaatst.",
