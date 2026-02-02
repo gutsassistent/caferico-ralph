@@ -29,15 +29,15 @@
 - [x] 28. Add address update route — `PUT app/api/account/address/route.ts` updates billing/shipping for current user — DONE (iteration 1)
 - [x] 29. Account i18n: add address edit strings — edit/save/cancel + field labels + success/error in all locales (`messages/nl.json`, `messages/en.json`, `messages/fr.json`, `messages/es.json`) — DONE (iteration 1)
 - [x] 30. AccountProfile: editable address UI — add edit/save/cancel flows and call the new API (`components/AccountProfile.tsx`) — DONE (iteration 1)
-- [ ] 31. Account page: convert profile section wrapper to light (`app/[locale]/(pages)/account/page.tsx`)
+- [x] 31. Account page: convert profile section wrapper to light (`app/[locale]/(pages)/account/page.tsx`) — DONE (iteration 2)
 
 ---
 
 ## Current
 
-- Working on: Step 31 (account page light conversion)
+- Working on: All steps 27-31 complete
 - Iteration: 2
-- Last action: Added edit/save/cancel address forms to AccountProfile with inline editing for billing and shipping
+- Last action: Added section-light class to account profile section wrapper
 - Last result: Typecheck + build pass
 
 ## Architecture Decisions
