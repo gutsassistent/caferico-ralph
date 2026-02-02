@@ -51,7 +51,7 @@ Dependencies: none.
 Dependencies: none.
 
 - [x] 37. CookieConsent: add reject option — persist state as `accepted`/`rejected` (`components/CookieConsent.tsx` + i18n) — DONE (iteration 1)
-- [ ] 38. Privacy + Terms: switch to light-body layout — `.section-light` with ink text and readable spacing (`app/[locale]/(pages)/privacy/page.tsx`, `app/[locale]/(pages)/terms/page.tsx`)
+- [x] 38. Privacy + Terms: switch to light-body layout — `.section-light` with ink text and readable spacing (`app/[locale]/(pages)/privacy/page.tsx`, `app/[locale]/(pages)/terms/page.tsx`) — DONE (iteration 2)
 
 ### Phase H: Contrast & Final Polish (LAST; solo)
 
@@ -67,9 +67,9 @@ Dependencies: All split-mode conversion steps.
 
 ## Current
 
-- Working on: Step 37 complete
-- Iteration: 5
-- Last action: Added reject button to CookieConsent with accepted/rejected persistence + i18n reject labels in all 4 locales
+- Working on: Steps 37-38 complete
+- Iteration: 6
+- Last action: Switched Privacy + Terms pages to section-light layout with ink text colors
 - Last result: Success — typecheck + build pass
 
 ## Architecture Decisions
