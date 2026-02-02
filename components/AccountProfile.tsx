@@ -71,6 +71,12 @@ export default function AccountProfile() {
   const [ordersLoading, setOrdersLoading] = useState(false);
   const [ordersLoaded, setOrdersLoaded] = useState(false);
   const [expandedOrder, setExpandedOrder] = useState<number | null>(null);
+  const [editingBilling, setEditingBilling] = useState(false);
+  const [editingShipping, setEditingShipping] = useState(false);
+  const [billingForm, setBillingForm] = useState<CustomerData['billing'] | null>(null);
+  const [shippingForm, setShippingForm] = useState<CustomerData['shipping'] | null>(null);
+  const [saving, setSaving] = useState(false);
+  const [saveMessage, setSaveMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
   useEffect(() => {
     async function fetchCustomer() {
@@ -112,6 +118,44 @@ export default function AccountProfile() {
   const handleLogout = async () => {
     await signOut({ redirect: false });
     router.push('/');
+  };
+
+  const handleSaveAddress = async (type: 'billing' | 'shipping') => {
+    setSaving(true);
+    setSaveMessage(null);
+    try {
+      const body = type === 'billing' ? { billing: billingForm } : { shipping: shippingForm };
+      const res = await fetch('/api/account/address', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setCustomer(data.customer);
+        if (type === 'billing') setEditingBilling(false);
+        else setEditingShipping(false);
+        setSaveMessage({ type: 'success', text: t('saveSuccess') });
+      } else {
+        setSaveMessage({ type: 'error', text: t('saveError') });
+      }
+    } catch {
+      setSaveMessage({ type: 'error', text: t('saveError') });
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const startEditBilling = () => {
+    setBillingForm(customer?.billing ?? { first_name: '', last_name: '', email: '', address_1: '', city: '', postcode: '', country: '', phone: '' });
+    setEditingBilling(true);
+    setSaveMessage(null);
+  };
+
+  const startEditShipping = () => {
+    setShippingForm(customer?.shipping ?? { first_name: '', last_name: '', address_1: '', city: '', postcode: '', country: '' });
+    setEditingShipping(true);
+    setSaveMessage(null);
   };
 
   const displayName =
@@ -198,15 +242,132 @@ export default function AccountProfile() {
         ))}
       </div>
 
+      {/* Save message */}
+      {saveMessage && (
+        <div
+          className={`rounded-xl px-4 py-3 text-sm ${
+            saveMessage.type === 'success'
+              ? 'bg-emerald-500/10 text-emerald-400'
+              : 'bg-rose-500/10 text-rose-400'
+          }`}
+        >
+          {saveMessage.text}
+        </div>
+      )}
+
       {/* Tab content */}
       {activeTab === 'profile' && (
         <div className="grid gap-4 sm:gap-6 lg:grid-cols-2">
           {/* Billing address */}
           <div className="rounded-2xl border border-cream/10 bg-surface-darker p-6">
-            <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-gold/70">
-              {t('billingAddress')}
-            </h3>
-            {hasBillingAddress ? (
+            <div className="mb-4 flex items-center justify-between">
+              <h3 className="text-xs font-semibold uppercase tracking-[0.3em] text-gold/70">
+                {t('billingAddress')}
+              </h3>
+              {!editingBilling && (
+                <button
+                  onClick={startEditBilling}
+                  className="text-xs font-medium text-gold/70 transition hover:text-gold"
+                >
+                  {t('edit')}
+                </button>
+              )}
+            </div>
+            {editingBilling && billingForm ? (
+              <div className="space-y-3">
+                <div className="grid grid-cols-2 gap-3">
+                  <label className="block">
+                    <span className="mb-1 block text-xs text-cream/50">{t('fields.firstName')}</span>
+                    <input
+                      type="text"
+                      value={billingForm.first_name}
+                      onChange={(e) => setBillingForm({ ...billingForm, first_name: e.target.value })}
+                      className="w-full rounded-lg border border-cream/10 bg-noir px-3 py-2 text-sm text-cream placeholder:text-cream/30 focus:border-gold/50 focus:outline-none"
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="mb-1 block text-xs text-cream/50">{t('fields.lastName')}</span>
+                    <input
+                      type="text"
+                      value={billingForm.last_name}
+                      onChange={(e) => setBillingForm({ ...billingForm, last_name: e.target.value })}
+                      className="w-full rounded-lg border border-cream/10 bg-noir px-3 py-2 text-sm text-cream placeholder:text-cream/30 focus:border-gold/50 focus:outline-none"
+                    />
+                  </label>
+                </div>
+                <label className="block">
+                  <span className="mb-1 block text-xs text-cream/50">{t('fields.email')}</span>
+                  <input
+                    type="email"
+                    value={billingForm.email}
+                    onChange={(e) => setBillingForm({ ...billingForm, email: e.target.value })}
+                    className="w-full rounded-lg border border-cream/10 bg-noir px-3 py-2 text-sm text-cream placeholder:text-cream/30 focus:border-gold/50 focus:outline-none"
+                  />
+                </label>
+                <label className="block">
+                  <span className="mb-1 block text-xs text-cream/50">{t('fields.address')}</span>
+                  <input
+                    type="text"
+                    value={billingForm.address_1}
+                    onChange={(e) => setBillingForm({ ...billingForm, address_1: e.target.value })}
+                    className="w-full rounded-lg border border-cream/10 bg-noir px-3 py-2 text-sm text-cream placeholder:text-cream/30 focus:border-gold/50 focus:outline-none"
+                  />
+                </label>
+                <div className="grid grid-cols-2 gap-3">
+                  <label className="block">
+                    <span className="mb-1 block text-xs text-cream/50">{t('fields.postcode')}</span>
+                    <input
+                      type="text"
+                      value={billingForm.postcode}
+                      onChange={(e) => setBillingForm({ ...billingForm, postcode: e.target.value })}
+                      className="w-full rounded-lg border border-cream/10 bg-noir px-3 py-2 text-sm text-cream placeholder:text-cream/30 focus:border-gold/50 focus:outline-none"
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="mb-1 block text-xs text-cream/50">{t('fields.city')}</span>
+                    <input
+                      type="text"
+                      value={billingForm.city}
+                      onChange={(e) => setBillingForm({ ...billingForm, city: e.target.value })}
+                      className="w-full rounded-lg border border-cream/10 bg-noir px-3 py-2 text-sm text-cream placeholder:text-cream/30 focus:border-gold/50 focus:outline-none"
+                    />
+                  </label>
+                </div>
+                <label className="block">
+                  <span className="mb-1 block text-xs text-cream/50">{t('fields.country')}</span>
+                  <input
+                    type="text"
+                    value={billingForm.country}
+                    onChange={(e) => setBillingForm({ ...billingForm, country: e.target.value })}
+                    className="w-full rounded-lg border border-cream/10 bg-noir px-3 py-2 text-sm text-cream placeholder:text-cream/30 focus:border-gold/50 focus:outline-none"
+                  />
+                </label>
+                <label className="block">
+                  <span className="mb-1 block text-xs text-cream/50">{t('fields.phone')}</span>
+                  <input
+                    type="tel"
+                    value={billingForm.phone}
+                    onChange={(e) => setBillingForm({ ...billingForm, phone: e.target.value })}
+                    className="w-full rounded-lg border border-cream/10 bg-noir px-3 py-2 text-sm text-cream placeholder:text-cream/30 focus:border-gold/50 focus:outline-none"
+                  />
+                </label>
+                <div className="flex gap-3 pt-1">
+                  <button
+                    onClick={() => handleSaveAddress('billing')}
+                    disabled={saving}
+                    className="rounded-full bg-gold px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-noir transition hover:bg-gold/90 disabled:opacity-50"
+                  >
+                    {saving ? t('saving') : t('save')}
+                  </button>
+                  <button
+                    onClick={() => setEditingBilling(false)}
+                    className="rounded-full border border-cream/20 px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-cream/70 transition hover:border-cream/40 hover:text-cream"
+                  >
+                    {t('cancel')}
+                  </button>
+                </div>
+              </div>
+            ) : hasBillingAddress ? (
               <div className="space-y-1 text-sm text-cream/80">
                 <p>{billing.first_name} {billing.last_name}</p>
                 <p>{billing.address_1}</p>
@@ -221,10 +382,96 @@ export default function AccountProfile() {
 
           {/* Shipping address */}
           <div className="rounded-2xl border border-cream/10 bg-surface-darker p-6">
-            <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-gold/70">
-              {t('shippingAddress')}
-            </h3>
-            {hasShippingAddress ? (
+            <div className="mb-4 flex items-center justify-between">
+              <h3 className="text-xs font-semibold uppercase tracking-[0.3em] text-gold/70">
+                {t('shippingAddress')}
+              </h3>
+              {!editingShipping && (
+                <button
+                  onClick={startEditShipping}
+                  className="text-xs font-medium text-gold/70 transition hover:text-gold"
+                >
+                  {t('edit')}
+                </button>
+              )}
+            </div>
+            {editingShipping && shippingForm ? (
+              <div className="space-y-3">
+                <div className="grid grid-cols-2 gap-3">
+                  <label className="block">
+                    <span className="mb-1 block text-xs text-cream/50">{t('fields.firstName')}</span>
+                    <input
+                      type="text"
+                      value={shippingForm.first_name}
+                      onChange={(e) => setShippingForm({ ...shippingForm, first_name: e.target.value })}
+                      className="w-full rounded-lg border border-cream/10 bg-noir px-3 py-2 text-sm text-cream placeholder:text-cream/30 focus:border-gold/50 focus:outline-none"
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="mb-1 block text-xs text-cream/50">{t('fields.lastName')}</span>
+                    <input
+                      type="text"
+                      value={shippingForm.last_name}
+                      onChange={(e) => setShippingForm({ ...shippingForm, last_name: e.target.value })}
+                      className="w-full rounded-lg border border-cream/10 bg-noir px-3 py-2 text-sm text-cream placeholder:text-cream/30 focus:border-gold/50 focus:outline-none"
+                    />
+                  </label>
+                </div>
+                <label className="block">
+                  <span className="mb-1 block text-xs text-cream/50">{t('fields.address')}</span>
+                  <input
+                    type="text"
+                    value={shippingForm.address_1}
+                    onChange={(e) => setShippingForm({ ...shippingForm, address_1: e.target.value })}
+                    className="w-full rounded-lg border border-cream/10 bg-noir px-3 py-2 text-sm text-cream placeholder:text-cream/30 focus:border-gold/50 focus:outline-none"
+                  />
+                </label>
+                <div className="grid grid-cols-2 gap-3">
+                  <label className="block">
+                    <span className="mb-1 block text-xs text-cream/50">{t('fields.postcode')}</span>
+                    <input
+                      type="text"
+                      value={shippingForm.postcode}
+                      onChange={(e) => setShippingForm({ ...shippingForm, postcode: e.target.value })}
+                      className="w-full rounded-lg border border-cream/10 bg-noir px-3 py-2 text-sm text-cream placeholder:text-cream/30 focus:border-gold/50 focus:outline-none"
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="mb-1 block text-xs text-cream/50">{t('fields.city')}</span>
+                    <input
+                      type="text"
+                      value={shippingForm.city}
+                      onChange={(e) => setShippingForm({ ...shippingForm, city: e.target.value })}
+                      className="w-full rounded-lg border border-cream/10 bg-noir px-3 py-2 text-sm text-cream placeholder:text-cream/30 focus:border-gold/50 focus:outline-none"
+                    />
+                  </label>
+                </div>
+                <label className="block">
+                  <span className="mb-1 block text-xs text-cream/50">{t('fields.country')}</span>
+                  <input
+                    type="text"
+                    value={shippingForm.country}
+                    onChange={(e) => setShippingForm({ ...shippingForm, country: e.target.value })}
+                    className="w-full rounded-lg border border-cream/10 bg-noir px-3 py-2 text-sm text-cream placeholder:text-cream/30 focus:border-gold/50 focus:outline-none"
+                  />
+                </label>
+                <div className="flex gap-3 pt-1">
+                  <button
+                    onClick={() => handleSaveAddress('shipping')}
+                    disabled={saving}
+                    className="rounded-full bg-gold px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-noir transition hover:bg-gold/90 disabled:opacity-50"
+                  >
+                    {saving ? t('saving') : t('save')}
+                  </button>
+                  <button
+                    onClick={() => setEditingShipping(false)}
+                    className="rounded-full border border-cream/20 px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-cream/70 transition hover:border-cream/40 hover:text-cream"
+                  >
+                    {t('cancel')}
+                  </button>
+                </div>
+              </div>
+            ) : hasShippingAddress ? (
               <div className="space-y-1 text-sm text-cream/80">
                 <p>{shipping.first_name} {shipping.last_name}</p>
                 <p>{shipping.address_1}</p>
