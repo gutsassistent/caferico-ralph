@@ -1053,6 +1053,22 @@
     "billingAddress": "Adresse de facturation",
     "shippingAddress": "Adresse de livraison",
     "noAddress": "Aucune adresse enregistrée.",
+    "edit": "Modifier",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "saving": "Enregistrement...",
+    "saveSuccess": "Adresse mise à jour avec succès.",
+    "saveError": "Impossible d'enregistrer l'adresse. Veuillez réessayer.",
+    "fields": {
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "address": "Adresse",
+      "city": "Ville",
+      "postcode": "Code postal",
+      "country": "Pays",
+      "phone": "Téléphone",
+      "email": "E-mail"
+    },
     "logout": "Se déconnecter",
     "orders": {
       "empty": "Vous n'avez pas encore passé de commande.",

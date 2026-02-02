@@ -1053,6 +1053,22 @@
     "billingAddress": "Billing Address",
     "shippingAddress": "Shipping Address",
     "noAddress": "No address saved yet.",
+    "edit": "Edit",
+    "save": "Save",
+    "cancel": "Cancel",
+    "saving": "Saving...",
+    "saveSuccess": "Address updated successfully.",
+    "saveError": "Could not save address. Please try again.",
+    "fields": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "address": "Address",
+      "city": "City",
+      "postcode": "Postcode",
+      "country": "Country",
+      "phone": "Phone",
+      "email": "Email"
+    },
     "logout": "Sign out",
     "orders": {
       "empty": "You haven't placed any orders yet.",

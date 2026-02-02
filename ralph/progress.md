@@ -27,7 +27,7 @@
 
 - [x] 27. Add Woo customer update helper — implement `updateCustomer(customerId, patch)` in `lib/woocommerce-customers.ts` — DONE (iteration 1)
 - [x] 28. Add address update route — `PUT app/api/account/address/route.ts` updates billing/shipping for current user — DONE (iteration 1)
-- [ ] 29. Account i18n: add address edit strings — edit/save/cancel + field labels + success/error in all locales (`messages/nl.json`, `messages/en.json`, `messages/fr.json`, `messages/es.json`)
+- [x] 29. Account i18n: add address edit strings — edit/save/cancel + field labels + success/error in all locales (`messages/nl.json`, `messages/en.json`, `messages/fr.json`, `messages/es.json`) — DONE (iteration 1)
 - [ ] 30. AccountProfile: editable address UI — add edit/save/cancel flows and call the new API (`components/AccountProfile.tsx`)
 - [ ] 31. Account page: convert profile section wrapper to light (`app/[locale]/(pages)/account/page.tsx`)
 
@@ -35,10 +35,10 @@
 
 ## Current
 
-- Working on: Step 29 (account i18n strings)
+- Working on: Step 30 (editable address UI)
 - Iteration: 1
-- Last action: Created PUT /api/account/address route
-- Last result: Typecheck passes; build fails due to missing .env.local (pre-existing env issue)
+- Last action: Added address edit i18n strings to all 4 locales
+- Last result: Typecheck passes
 
 ## Architecture Decisions
 

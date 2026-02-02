@@ -1053,6 +1053,22 @@
     "billingAddress": "Dirección de facturación",
     "shippingAddress": "Dirección de envío",
     "noAddress": "Aún no hay dirección guardada.",
+    "edit": "Editar",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "saving": "Guardando...",
+    "saveSuccess": "Dirección actualizada correctamente.",
+    "saveError": "No se pudo guardar la dirección. Inténtalo de nuevo.",
+    "fields": {
+      "firstName": "Nombre",
+      "lastName": "Apellido",
+      "address": "Dirección",
+      "city": "Ciudad",
+      "postcode": "Código postal",
+      "country": "País",
+      "phone": "Teléfono",
+      "email": "Correo electrónico"
+    },
     "logout": "Cerrar sesión",
     "orders": {
       "empty": "Aún no has realizado ningún pedido.",
