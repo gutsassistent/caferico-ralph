@@ -62,20 +62,20 @@ export default function CartDrawer() {
         role="dialog"
         aria-modal="true"
         aria-label={t('title')}
-        className={`absolute right-0 top-0 flex h-full w-full max-w-md flex-col border-l border-cream/10 bg-surface-darkest shadow-[0_30px_80px_rgba(0,0,0,0.55)] transition-transform duration-300 ${
+        className={`absolute right-0 top-0 flex h-full w-full max-w-md flex-col border-l border-ink/10 bg-parchment shadow-[0_30px_80px_rgba(0,0,0,0.55)] transition-transform duration-300 ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <div className="flex items-start justify-between border-b border-cream/10 px-6 py-5">
+        <div className="flex items-start justify-between border-b border-ink/10 px-6 py-5">
           <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-gold/70">{t('eyebrow')}</p>
-            <h2 className="mt-2 font-serif text-2xl text-cream">{t('title')}</h2>
-            <p className="mt-1 text-xs text-cream/50">{t('itemsCount', { count: totalItems })}</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-gold-dark">{t('eyebrow')}</p>
+            <h2 className="mt-2 font-serif text-2xl text-ink">{t('title')}</h2>
+            <p className="mt-1 text-xs text-inkMuted">{t('itemsCount', { count: totalItems })}</p>
           </div>
           <button
             type="button"
             onClick={closeCart}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-cream/15 text-cream/70 transition hover:border-gold/60 hover:text-gold"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-ink/15 text-ink/70 transition hover:border-gold/60 hover:text-gold-dark"
           >
             <span className="sr-only">{t('close')}</span>
             <svg
@@ -94,15 +94,15 @@ export default function CartDrawer() {
 
         <div className="flex-1 space-y-6 overflow-y-auto px-6 py-6">
           {!hasItems ? (
-            <div className="rounded-3xl border border-cream/10 bg-surface-darker p-6 text-center shadow-[0_25px_60px_rgba(0,0,0,0.35)]">
-              <div className="mx-auto mb-5 h-16 w-16 rounded-full border border-gold/40 bg-noir/70 text-gold" />
-              <p className="text-xs uppercase tracking-[0.3em] text-gold/70">{t('emptyEyebrow')}</p>
-              <h3 className="mt-2 font-serif text-xl text-cream">{t('emptyTitle')}</h3>
-              <p className="mt-3 text-sm text-cream/60">{t('emptyDescription')}</p>
+            <div className="rounded-3xl border border-ink/10 bg-white/60 p-6 text-center shadow-sm">
+              <div className="mx-auto mb-5 h-16 w-16 rounded-full border border-gold/40 bg-gold/10 text-gold-dark" />
+              <p className="text-xs uppercase tracking-[0.3em] text-gold-dark">{t('emptyEyebrow')}</p>
+              <h3 className="mt-2 font-serif text-xl text-ink">{t('emptyTitle')}</h3>
+              <p className="mt-3 text-sm text-inkMuted">{t('emptyDescription')}</p>
               <Link
                 href="/shop"
                 onClick={closeCart}
-                className="mt-6 inline-flex items-center justify-center rounded-full border border-gold/60 px-5 py-3 text-xs uppercase tracking-[0.3em] text-gold transition hover:bg-gold hover:text-noir"
+                className="mt-6 inline-flex items-center justify-center rounded-full border border-gold-dark px-5 py-3 text-xs uppercase tracking-[0.3em] text-gold-dark transition hover:bg-gold hover:text-noir"
               >
                 {t('emptyCta')}
               </Link>
@@ -111,10 +111,10 @@ export default function CartDrawer() {
             items.map((item) => (
               <div
                 key={`${item.id}-${item.grind}-${item.weight}`}
-                className="border-b border-cream/10 pb-6 last:border-b-0 last:pb-0"
+                className="border-b border-ink/10 pb-6 last:border-b-0 last:pb-0"
               >
                 <div className="flex gap-4">
-                  <div className="relative h-24 w-20 flex-shrink-0 overflow-hidden rounded-2xl border border-cream/10 bg-gradient-to-br from-espresso via-surface-mid to-noir">
+                  <div className="relative h-24 w-20 flex-shrink-0 overflow-hidden rounded-2xl border border-ink/10 bg-gradient-to-br from-espresso via-surface-mid to-noir">
                     {item.image ? (
                       <Image
                         src={item.image}
@@ -127,19 +127,28 @@ export default function CartDrawer() {
                       <>
                         <div className="absolute inset-0 bg-coffee-grain opacity-40" />
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,165,116,0.25),_transparent_60%)]" />
+                        <svg
+                          aria-hidden="true"
+                          viewBox="0 0 24 24"
+                          className="absolute inset-0 m-auto h-8 w-8 text-gold/40"
+                          fill="currentColor"
+                        >
+                          <ellipse cx="12" cy="12" rx="7" ry="9" />
+                          <path d="M12 3C12 3 9 8 9 12C9 16 12 21 12 21" fill="none" stroke="rgba(0,0,0,0.3)" strokeWidth="1.2" />
+                        </svg>
                       </>
                     )}
                   </div>
                   <div className="flex-1 space-y-3">
                     <div className="flex items-start justify-between gap-3">
                       <div>
-                        <p className="text-xs uppercase tracking-[0.3em] text-gold/70">
+                        <p className="text-xs uppercase tracking-[0.3em] text-gold-dark">
                           {shopT(`collections.${item.collection}`)}
                         </p>
                         <Link
                           href={`/shop/${item.slug}`}
                           onClick={closeCart}
-                          className="mt-1 block font-serif text-lg text-cream transition hover:text-gold"
+                          className="mt-1 block font-serif text-lg text-ink transition hover:text-gold-dark"
                         >
                           {item.name}
                         </Link>
@@ -149,13 +158,13 @@ export default function CartDrawer() {
                         onClick={() =>
                           removeItem({ id: item.id, grind: item.grind, weight: item.weight })
                         }
-                        className="text-xs uppercase tracking-[0.3em] text-cream/60 transition hover:text-gold"
+                        className="text-xs uppercase tracking-[0.3em] text-inkMuted transition hover:text-gold-dark"
                       >
                         {t('remove')}
                       </button>
                     </div>
                     {isCoffee(item.collection) && item.grind && item.weight && (
-                      <div className="flex flex-wrap gap-3 text-xs text-cream/60">
+                      <div className="flex flex-wrap gap-3 text-xs text-inkMuted">
                         <span>
                           {productT('variants.grindLabel')}:{' '}
                           {productT(`variants.grind.${item.grind}`)}
@@ -167,7 +176,7 @@ export default function CartDrawer() {
                       </div>
                     )}
                     <div className="flex flex-wrap items-center justify-between gap-4">
-                      <div className="flex items-center rounded-full border border-cream/10 bg-noir/60">
+                      <div className="flex items-center rounded-full border border-ink/10 bg-white/60">
                         <button
                           type="button"
                           onClick={() =>
@@ -177,11 +186,11 @@ export default function CartDrawer() {
                             )
                           }
                           aria-label={t('quantityDecrease')}
-                          className="px-3 py-2 text-sm text-cream/70 transition hover:text-cream"
+                          className="px-3 py-2 text-sm text-inkMuted transition hover:text-ink"
                         >
                           −
                         </button>
-                        <span className="min-w-[2rem] text-center text-xs text-cream">
+                        <span className="min-w-[2rem] text-center text-xs text-ink">
                           {item.quantity}
                         </span>
                         <button
@@ -193,12 +202,12 @@ export default function CartDrawer() {
                             )
                           }
                           aria-label={t('quantityIncrease')}
-                          className="px-3 py-2 text-sm text-cream/70 transition hover:text-cream"
+                          className="px-3 py-2 text-sm text-inkMuted transition hover:text-ink"
                         >
                           +
                         </button>
                       </div>
-                      <span className="text-sm text-gold">
+                      <span className="text-sm font-medium text-gold-dark">
                         {priceFormatter.format(item.price * item.quantity)}
                       </span>
                     </div>
@@ -209,34 +218,34 @@ export default function CartDrawer() {
           )}
         </div>
 
-        <div className="border-t border-cream/10 px-6 py-5">
+        <div className="border-t border-ink/10 px-6 py-5">
           {hasItems ? (
             <div className="space-y-4">
-              <div className="flex items-center justify-between text-sm text-cream/70">
+              <div className="flex items-center justify-between text-sm text-inkMuted">
                 <span>{t('subtotalLabel')}</span>
-                <span className="text-cream">{priceFormatter.format(subtotal)}</span>
+                <span className="text-ink">{priceFormatter.format(subtotal)}</span>
               </div>
-              <div className="flex items-center justify-between text-sm text-cream/70">
+              <div className="flex items-center justify-between text-sm text-inkMuted">
                 <span>{t('shippingLabel')}</span>
                 {shipping === 0 ? (
-                  <span className="rounded-full bg-gold/10 px-2 py-0.5 text-xs font-medium text-gold">
+                  <span className="rounded-full bg-gold/10 px-2 py-0.5 text-xs font-medium text-gold-dark">
                     {t('freeShipping')}
                   </span>
                 ) : (
-                  <span className="text-cream">{priceFormatter.format(shipping)}</span>
+                  <span className="text-ink">{priceFormatter.format(shipping)}</span>
                 )}
               </div>
               {remaining > 0 && (
-                <p className="text-xs text-cream/60">
+                <p className="text-xs text-inkMuted">
                   {t('freeShippingRemaining', { amount: priceFormatter.format(remaining) })}
                 </p>
               )}
               {shipping === 0 && (
-                <p className="text-xs text-gold/70">
+                <p className="text-xs text-gold-dark/70">
                   {t('freeShippingFrom', { amount: priceFormatter.format(FREE_SHIPPING_THRESHOLD) })}
                 </p>
               )}
-              <div className="flex items-center justify-between text-base font-semibold text-gold">
+              <div className="flex items-center justify-between text-base font-semibold text-gold-dark">
                 <span>{t('totalLabel')}</span>
                 <span>{priceFormatter.format(total)}</span>
               </div>
@@ -252,7 +261,7 @@ export default function CartDrawer() {
               </button>
             </div>
           ) : (
-            <p className="text-center text-xs uppercase tracking-[0.3em] text-cream/60">
+            <p className="text-center text-xs uppercase tracking-[0.3em] text-inkMuted">
               {t('emptyFooter')}
             </p>
           )}

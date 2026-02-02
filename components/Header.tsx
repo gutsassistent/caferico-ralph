@@ -232,8 +232,9 @@ export default function Header() {
                   stroke="currentColor"
                   strokeWidth="1.5"
                 >
-                  <path d="M6 7h12l-1.2 12H7.2L6 7Z" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M9 7a3 3 0 0 1 6 0" strokeLinecap="round" />
+                  <path d="M4.5 9h15l-1.12 9.43a2 2 0 0 1-1.99 1.57H7.61a2 2 0 0 1-1.99-1.57L4.5 9Z" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M8 9V6a4 4 0 0 1 8 0v3" strokeLinecap="round" strokeLinejoin="round" />
+                  <ellipse cx="12" cy="14.5" rx="1.25" ry="1.75" stroke="currentColor" strokeWidth="1.25" />
                 </svg>
                 {mounted && totalItems > 0 && (
                   <span
