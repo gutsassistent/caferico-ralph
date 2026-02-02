@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import { locales, defaultLocale } from '@/lib/i18n';
 
 const SITE_URL = 'https://caferico.be';
-const OG_IMAGE = 'https://www.caferico.be/wp-content/uploads/2025/05/DSCF3617.jpg';
+const OG_IMAGE = `${SITE_URL}/images/DSCF3617.jpg`;
 
 type SeoOptions = {
   locale: string;

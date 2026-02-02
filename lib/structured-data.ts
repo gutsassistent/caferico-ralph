@@ -1,5 +1,5 @@
 const SITE_URL = 'https://caferico.be';
-const LOGO_URL = 'https://www.caferico.be/wp-content/uploads/2024/10/logo-caferico.png';
+const LOGO_URL = `${SITE_URL}/logo.png`;
 
 export function organizationSchema() {
   return {
@@ -32,7 +32,7 @@ export function localBusinessSchema() {
     name: 'Café RICO',
     url: SITE_URL,
     logo: LOGO_URL,
-    image: 'https://www.caferico.be/wp-content/uploads/2025/05/DSCF3617.jpg',
+    image: `${SITE_URL}/images/DSCF3617.jpg`,
     telephone: '+32474964090',
     email: 'info@caferico.be',
     address: {

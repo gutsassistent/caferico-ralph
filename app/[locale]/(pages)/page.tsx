@@ -46,7 +46,7 @@ export default async function HomePage({ params }: HomePageProps) {
         dangerouslySetInnerHTML={{ __html: jsonLd(homeBreadcrumb) }}
       />
       <HeroParallax
-        imageUrl="https://www.caferico.be/wp-content/uploads/2025/05/DSCF3617.jpg"
+        imageUrl="/images/DSCF3617.jpg"
         imageAlt="Honduras coffee landscape"
       >
         <Container className="py-24">
@@ -243,7 +243,7 @@ export default async function HomePage({ params }: HomePageProps) {
               </div>
               <div className="order-1 lg:order-2 relative h-72 overflow-hidden rounded-2xl sm:h-96 lg:h-[480px]">
                 <Image
-                  src="https://www.caferico.be/wp-content/uploads/2018/05/koffieboer-4-Copy-1000×536.jpg"
+                  src="/images/koffieboer-4.jpg"
                   alt="Koffieboer in Honduras"
                   fill
                   className="object-cover"
@@ -277,7 +277,7 @@ export default async function HomePage({ params }: HomePageProps) {
                     <div className="mt-6 flex items-center gap-3 border-t border-cream/10 pt-6">
                       {key === 'tom' && (
                         <Image
-                          src="https://www.caferico.be/wp-content/uploads/2018/05/Tom-Janssens.jpg"
+                          src="/images/Tom-Janssens.jpg"
                           alt={t(`testimonials.items.${key}.name`)}
                           width={40}
                           height={40}

@@ -35,9 +35,9 @@
 
 Dependencies: none, but best done after the relevant pages are stable to reduce merge conflicts.
 
-- [ ] 32. Add non-product assets to `/public/images` — move/copy from `scrape/` and/or download; ensure filenames are stable (file additions only)
-- [ ] 33. Swap page image sources to local `/images/...` — home hero, about images, subscriptions hero/card, blog hero images (`app/[locale]/(pages)/page.tsx`, `app/[locale]/(pages)/about/page.tsx`, `app/[locale]/(pages)/subscriptions/page.tsx`, `app/[locale]/(pages)/blog/[slug]/page.tsx`)
-- [ ] 34. Update SEO + schema images to local — change default OG image and structured-data logo/business image to `/logo.png` or `/images/...` (`lib/seo.ts`, `lib/structured-data.ts`)
+- [x] 32. Add non-product assets to `/public/images` — move/copy from `scrape/` and/or download; ensure filenames are stable (file additions only) — DONE (iteration 1)
+- [x] 33. Swap page image sources to local `/images/...` — home hero, about images, subscriptions hero/card, blog hero images (`app/[locale]/(pages)/page.tsx`, `app/[locale]/(pages)/about/page.tsx`, `app/[locale]/(pages)/subscriptions/page.tsx`, `app/[locale]/(pages)/blog/[slug]/page.tsx`) — DONE (iteration 2)
+- [x] 34. Update SEO + schema images to local — change default OG image and structured-data logo/business image to `/logo.png` or `/images/...` (`lib/seo.ts`, `lib/structured-data.ts`) — DONE (iteration 3)
 
 ### Phase F: Locations Map Embed
 
@@ -67,8 +67,10 @@ Dependencies: All split-mode conversion steps.
 
 ## Current
 
-- Working on: Phase E starting
-- Last result: Phase D complete (steps 22-31)
+- Working on: All steps 32-34 complete
+- Iteration: 3
+- Last action: Updated SEO OG_IMAGE to /images/DSCF3617.jpg, structured-data LOGO_URL to /logo.png, and localBusiness image to /images/DSCF3617.jpg
+- Last result: Success — typecheck + build pass
 
 ## Architecture Decisions
 

@@ -16,16 +16,11 @@ const POSTS = blogPosts as BlogPost[];
 
 /* Map blog slugs to hero images from CONTEXT.md */
 const HERO_IMAGES: Record<string, string> = {
-  'slow-roast':
-    'https://www.caferico.be/wp-content/uploads/2025/05/DSCF3617.jpg',
-  'origin-stories':
-    'https://www.caferico.be/wp-content/uploads/2025/05/DSCF0031-scaled.jpg',
-  'brewing-rituals':
-    'https://www.caferico.be/wp-content/uploads/2025/05/20180110_111420-scaled.jpg',
-  'belgian-coffee-culture':
-    'https://www.caferico.be/wp-content/uploads/2018/05/marcala-landschap.png',
-  'water-quality':
-    'https://www.caferico.be/wp-content/uploads/2018/05/droogtunnel-klein.png',
+  'slow-roast': '/images/DSCF3617.jpg',
+  'origin-stories': '/images/DSCF0031-scaled.jpg',
+  'brewing-rituals': '/images/20180110_111420-scaled.jpg',
+  'belgian-coffee-culture': '/images/marcala-landschap.png',
+  'water-quality': '/images/droogtunnel-klein.png',
 };
 
 export function generateStaticParams() {
