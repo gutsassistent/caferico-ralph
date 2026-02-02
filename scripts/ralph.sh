@@ -264,8 +264,11 @@ count_progress() {
         }
       }
       {
-        if (match($0, /-[[:space:]]*\[[ x]\][[:space:]]*([0-9]+)\./, m)) {
-          step = m[1] + 0;
+        if (match($0, /- *\[[ x]\] *[0-9]+\./)) {
+          tmp = $0;
+          sub(/.*\[[ x]\] */, "", tmp);
+          sub(/\..*/, "", tmp);
+          step = tmp + 0;
           ok = 1;
 
           if (start != "") {
