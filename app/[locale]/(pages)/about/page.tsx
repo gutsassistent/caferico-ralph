@@ -151,14 +151,14 @@ export default async function AboutPage({ params }: AboutPageProps) {
 
       {/* Intro section */}
       <Reveal>
-        <section className="py-16 sm:py-24">
+        <section className="section-light py-16 sm:py-24">
           <Container className="grid items-center gap-10 lg:grid-cols-2">
             <div className="space-y-5">
-              <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
+              <p className="text-xs uppercase tracking-[0.4em] text-gold-dark/70">
                 {t('intro.eyebrow')}
               </p>
-              <h2 className="font-serif text-3xl sm:text-4xl">{t('intro.title')}</h2>
-              <p className="text-sm leading-relaxed text-cream/70 sm:text-base">
+              <h2 className="font-serif text-3xl text-ink sm:text-4xl">{t('intro.title')}</h2>
+              <p className="text-sm leading-relaxed text-ink/70 sm:text-base">
                 {t('intro.description')}
               </p>
             </div>
@@ -408,7 +408,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
 
       {/* Honduras map & droogtunnel images */}
       <Reveal>
-        <section className="py-16 sm:py-24">
+        <section className="section-light py-16 sm:py-24">
           <Container>
             <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:gap-8">
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
