@@ -174,7 +174,7 @@ start_agent_loop() {
     return 0
   fi
 
-  log "Starting $name ($range) in $path"
+  log "Starting $name ($range) in $path" >&2
   bash -lc "$cmd" >"$log_file" 2>&1 &
   echo $!  # pid
 }
