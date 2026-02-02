@@ -19,9 +19,9 @@ export default function ProductTabs({ description, notes, origin, isCoffee }: Pr
 
   if (!isCoffee) {
     return (
-      <div className="rounded-2xl border border-cream/10 bg-surface-darkest/80 p-6 sm:p-8">
+      <div className="rounded-2xl border border-ink/10 bg-ink/[0.03] p-6 sm:p-8">
         <div
-          className="prose prose-sm prose-invert max-w-none text-cream/70"
+          className="prose prose-sm max-w-none text-inkMuted"
           dangerouslySetInnerHTML={{ __html: description }}
         />
       </div>
@@ -35,7 +35,7 @@ export default function ProductTabs({ description, notes, origin, isCoffee }: Pr
   return (
     <div className="space-y-6">
       {/* Tab bar */}
-      <div className="flex gap-1 overflow-x-auto rounded-xl border border-cream/10 bg-surface-darkest/80 p-1">
+      <div className="flex gap-1 overflow-x-auto rounded-xl border border-ink/10 bg-ink/[0.03] p-1">
         {tabs.map((tab) => (
           <button
             key={tab}
@@ -43,7 +43,7 @@ export default function ProductTabs({ description, notes, origin, isCoffee }: Pr
             className={`whitespace-nowrap rounded-lg px-4 py-2.5 text-xs uppercase tracking-[0.2em] transition-all duration-300 ${
               active === tab
                 ? 'bg-gold/20 text-gold shadow-sm'
-                : 'text-cream/50 hover:text-cream/80'
+                : 'text-inkMuted hover:text-ink'
             }`}
           >
             {t(`${tab}.title`)}
@@ -52,11 +52,11 @@ export default function ProductTabs({ description, notes, origin, isCoffee }: Pr
       </div>
 
       {/* Tab content */}
-      <div className="rounded-2xl border border-cream/10 bg-surface-darkest/80 p-6 sm:p-8">
+      <div className="rounded-2xl border border-ink/10 bg-ink/[0.03] p-6 sm:p-8">
         {active === 'description' && (
           <div className="space-y-4">
             <div
-              className="prose prose-sm prose-invert max-w-none text-cream/70 leading-relaxed"
+              className="prose prose-sm max-w-none text-inkMuted leading-relaxed"
               dangerouslySetInnerHTML={{ __html: description }}
             />
           </div>
@@ -64,7 +64,7 @@ export default function ProductTabs({ description, notes, origin, isCoffee }: Pr
 
         {active === 'tasting' && (
           <div className="space-y-6">
-            <p className="text-sm text-cream/60">{t('tasting.intro')}</p>
+            <p className="text-sm text-inkMuted">{t('tasting.intro')}</p>
             <div className="flex flex-wrap gap-2">
               {tastingNotes.map((note) => (
                 <span
@@ -77,7 +77,7 @@ export default function ProductTabs({ description, notes, origin, isCoffee }: Pr
             </div>
             <div className="grid gap-4 sm:grid-cols-3">
               <div className="space-y-1">
-                <p className="text-xs uppercase tracking-[0.3em] text-cream/60">
+                <p className="text-xs uppercase tracking-[0.3em] text-inkMuted">
                   {t('tasting.bodyLabel')}
                 </p>
                 <div className="flex gap-1">
@@ -85,14 +85,14 @@ export default function ProductTabs({ description, notes, origin, isCoffee }: Pr
                     <div
                       key={i}
                       className={`h-1.5 w-6 rounded-full ${
-                        i <= 3 ? 'bg-gold' : 'bg-cream/15'
+                        i <= 3 ? 'bg-gold' : 'bg-ink/10'
                       }`}
                     />
                   ))}
                 </div>
               </div>
               <div className="space-y-1">
-                <p className="text-xs uppercase tracking-[0.3em] text-cream/60">
+                <p className="text-xs uppercase tracking-[0.3em] text-inkMuted">
                   {t('tasting.acidityLabel')}
                 </p>
                 <div className="flex gap-1">
@@ -100,14 +100,14 @@ export default function ProductTabs({ description, notes, origin, isCoffee }: Pr
                     <div
                       key={i}
                       className={`h-1.5 w-6 rounded-full ${
-                        i <= 4 ? 'bg-gold' : 'bg-cream/15'
+                        i <= 4 ? 'bg-gold' : 'bg-ink/10'
                       }`}
                     />
                   ))}
                 </div>
               </div>
               <div className="space-y-1">
-                <p className="text-xs uppercase tracking-[0.3em] text-cream/60">
+                <p className="text-xs uppercase tracking-[0.3em] text-inkMuted">
                   {t('tasting.sweetnessLabel')}
                 </p>
                 <div className="flex gap-1">
@@ -115,7 +115,7 @@ export default function ProductTabs({ description, notes, origin, isCoffee }: Pr
                     <div
                       key={i}
                       className={`h-1.5 w-6 rounded-full ${
-                        i <= 3 ? 'bg-gold' : 'bg-cream/15'
+                        i <= 3 ? 'bg-gold' : 'bg-ink/10'
                       }`}
                     />
                   ))}
@@ -127,12 +127,12 @@ export default function ProductTabs({ description, notes, origin, isCoffee }: Pr
 
         {active === 'brewing' && (
           <div className="space-y-6">
-            <p className="text-sm text-cream/60">{t('brewing.intro')}</p>
+            <p className="text-sm text-inkMuted">{t('brewing.intro')}</p>
             <div className="grid gap-6 sm:grid-cols-3">
               {(['filter', 'espresso', 'frenchpress'] as const).map((method) => (
                 <div
                   key={method}
-                  className="rounded-xl border border-cream/10 bg-cream/[0.03] p-5 space-y-3"
+                  className="rounded-xl border border-ink/10 bg-ink/[0.04] p-5 space-y-3"
                 >
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gold/10">
                     {method === 'filter' && (
@@ -151,16 +151,16 @@ export default function ProductTabs({ description, notes, origin, isCoffee }: Pr
                       </svg>
                     )}
                   </div>
-                  <h4 className="text-sm font-medium text-cream">
+                  <h4 className="text-sm font-medium text-ink">
                     {t(`brewing.${method}.title`)}
                   </h4>
-                  <p className="text-xs text-cream/50 leading-relaxed">
+                  <p className="text-xs text-inkMuted leading-relaxed">
                     {t(`brewing.${method}.grind`)}
                   </p>
-                  <p className="text-xs text-cream/50 leading-relaxed">
+                  <p className="text-xs text-inkMuted leading-relaxed">
                     {t(`brewing.${method}.ratio`)}
                   </p>
-                  <p className="text-xs text-cream/50 leading-relaxed">
+                  <p className="text-xs text-inkMuted leading-relaxed">
                     {t(`brewing.${method}.temp`)}
                   </p>
                 </div>
@@ -171,7 +171,7 @@ export default function ProductTabs({ description, notes, origin, isCoffee }: Pr
 
         {active === 'origin' && (
           <div className="space-y-6">
-            <p className="text-sm text-cream/60">{t('origin.intro')}</p>
+            <p className="text-sm text-inkMuted">{t('origin.intro')}</p>
             <dl className="grid gap-4 sm:grid-cols-2">
               {[
                 { label: t('origin.regionLabel'), value: origin || 'Honduras, Marcala' },
@@ -181,22 +181,22 @@ export default function ProductTabs({ description, notes, origin, isCoffee }: Pr
                 { label: t('origin.varietiesLabel'), value: 'Catuaí, Bourbon, Típica, Pache, Paca' },
                 { label: t('origin.certLabel'), value: 'EU Bio (BE-BIO-02), Mayacert, Fair Trade' },
               ].map((item) => (
-                <div key={item.label} className="space-y-1 rounded-xl border border-cream/10 bg-cream/[0.03] p-4">
-                  <dt className="text-xs uppercase tracking-[0.3em] text-cream/60">
+                <div key={item.label} className="space-y-1 rounded-xl border border-ink/10 bg-ink/[0.04] p-4">
+                  <dt className="text-xs uppercase tracking-[0.3em] text-inkMuted">
                     {item.label}
                   </dt>
-                  <dd className="text-sm text-cream">{item.value}</dd>
+                  <dd className="text-sm text-ink">{item.value}</dd>
                 </div>
               ))}
             </dl>
             <div className="flex gap-4">
               <div className="rounded-lg border border-gold/20 bg-gold/10 px-4 py-2 text-center">
                 <p className="text-lg font-serif text-gold">84</p>
-                <p className="text-xs uppercase tracking-[0.2em] text-cream/60">SCAA</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-inkMuted">SCAA</p>
               </div>
               <div className="rounded-lg border border-gold/20 bg-gold/10 px-4 py-2 text-center">
                 <p className="text-lg font-serif text-gold">86</p>
-                <p className="text-xs uppercase tracking-[0.2em] text-cream/60">Marcala</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-inkMuted">Marcala</p>
               </div>
             </div>
           </div>

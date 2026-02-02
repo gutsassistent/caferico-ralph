@@ -210,20 +210,6 @@ export default function ProductImageGallery({
           </div>
         )}
 
-        {/* Single image — no thumbnails needed, show placeholders */}
-        {images.length <= 1 && (
-          <div className="flex gap-3">
-            {[0, 1, 2].map((i) => (
-              <div
-                key={`ph-${i}`}
-                className="relative aspect-square flex-1 overflow-hidden rounded-2xl border border-cream/10 bg-gradient-to-br from-surface-mid via-surface-darkest to-noir"
-              >
-                <div className="absolute inset-0 bg-coffee-grain opacity-40" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,165,116,0.2),_transparent_65%)]" />
-              </div>
-            ))}
-          </div>
-        )}
       </div>
 
       {/* Lightbox */}

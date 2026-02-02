@@ -160,7 +160,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         </Container>
       </section>
 
-      <section className="py-16 sm:py-24">
+      <section className="section-light py-16 sm:py-24">
         <Container className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
           <Reveal>
             <div className="space-y-6">
@@ -191,7 +191,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 <h1 className="font-serif text-4xl leading-tight sm:text-5xl">{product.name}</h1>
                 {product.short_description && (
                   <div
-                    className="text-sm text-cream/60"
+                    className="text-sm text-inkMuted"
                     dangerouslySetInnerHTML={{ __html: product.short_description }}
                   />
                 )}
@@ -211,11 +211,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
               </div>
               {product.description ? (
                 <div
-                  className="prose prose-sm prose-invert max-w-none text-cream/70"
+                  className="prose prose-sm max-w-none text-inkMuted"
                   dangerouslySetInnerHTML={{ __html: product.description }}
                 />
               ) : (
-                <p className="text-sm text-cream/70 sm:text-base">
+                <p className="text-sm text-inkMuted sm:text-base">
                   {t('description', { origin: product.origin, notes: product.notes })}
                 </p>
               )}
