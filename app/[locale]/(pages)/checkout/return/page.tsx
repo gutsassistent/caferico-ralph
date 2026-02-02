@@ -51,7 +51,7 @@ export default async function CheckoutReturnPage({ params }: { params: Promise<{
         </Container>
       </section>
 
-      <section className="py-16 sm:py-24">
+      <section className="section-light py-16 sm:py-24">
         <Container>
           <CheckoutReturn />
         </Container>

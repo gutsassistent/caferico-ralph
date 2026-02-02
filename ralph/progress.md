@@ -21,7 +21,7 @@
 - [ ] 23. FAQ: convert explorer section to light and update component styling (`app/[locale]/(pages)/faq/page.tsx`, `components/FaqExplorer.tsx`)
 - [ ] 24. Login: convert page + LoginForm to light styling (inputs currently assume dark) (`app/[locale]/(pages)/login/page.tsx`, `components/LoginForm.tsx`)
 - [x] 25. Checkout: convert page + CheckoutForm to light styling (inputs currently assume dark) (`app/[locale]/(pages)/checkout/page.tsx`, `components/CheckoutForm.tsx`) — DONE (iteration 1)
-- [ ] 26. Checkout return: convert return content section to light (`app/[locale]/(pages)/checkout/return/page.tsx`)
+- [x] 26. Checkout return: convert return content section to light (`app/[locale]/(pages)/checkout/return/page.tsx`, `components/CheckoutReturn.tsx`) — DONE (iteration 1)
 
 ### Account address editing (sequential, single agent)
 
@@ -35,9 +35,9 @@
 
 ## Current
 
-- Working on: Step 26
+- Working on: Steps 25-26 complete
 - Iteration: 1
-- Last action: Converted checkout page + CheckoutForm to light styling
+- Last action: Converted checkout return page + CheckoutReturn component to light styling
 - Last result: Build + typecheck pass
 
 ## Architecture Decisions
