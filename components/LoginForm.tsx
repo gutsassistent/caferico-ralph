@@ -65,28 +65,28 @@ export default function LoginForm() {
 
   if (magicLinkSent) {
     return (
-      <div className="rounded-3xl border border-cream/10 bg-surface-darker p-8 text-center shadow-[0_35px_80px_rgba(0,0,0,0.55)]">
+      <div className="rounded-3xl border border-ink/10 bg-white p-8 text-center shadow-lg">
         <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full border border-gold/30 bg-gold/10">
           <svg className="h-8 w-8 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
           </svg>
         </div>
-        <h2 className="text-2xl font-serif">{t('magicSent.title')}</h2>
-        <p className="mt-2 text-sm text-cream/70">{t('magicSent.description')}</p>
-        <p className="mt-4 text-xs text-cream/50">{t('magicSent.hint')}</p>
+        <h2 className="text-2xl font-serif text-ink">{t('magicSent.title')}</h2>
+        <p className="mt-2 text-sm text-ink/70">{t('magicSent.description')}</p>
+        <p className="mt-4 text-xs text-ink/50">{t('magicSent.hint')}</p>
       </div>
     );
   }
 
   const inputBase =
-    'w-full rounded-2xl border bg-noir/70 px-4 py-3 text-sm text-cream placeholder:text-cream/50 transition focus:border-gold/70 focus:outline-none';
+    'w-full rounded-2xl border bg-white px-4 py-3 text-sm text-ink placeholder:text-ink/40 transition focus:border-gold/70 focus:outline-none';
   const inputError = 'border-rose-400/70 focus:border-rose-300';
-  const inputDefault = 'border-cream/20';
+  const inputDefault = 'border-ink/20';
 
   return (
-    <div className="rounded-3xl border border-cream/10 bg-surface-darker p-8 shadow-[0_35px_80px_rgba(0,0,0,0.55)]">
+    <div className="rounded-3xl border border-ink/10 bg-white p-8 shadow-lg">
       {apiError && (
-        <div role="alert" className="mb-6 rounded-2xl border border-rose-400/30 bg-rose-500/10 p-4 text-sm text-rose-200">
+        <div role="alert" className="mb-6 rounded-2xl border border-rose-400/30 bg-rose-50 p-4 text-sm text-rose-700">
           {apiError}
         </div>
       )}
@@ -95,7 +95,7 @@ export default function LoginForm() {
         <div className="space-y-2">
           <label
             htmlFor="login-email"
-            className="text-xs uppercase tracking-[0.3em] text-cream/60"
+            className="text-xs uppercase tracking-[0.3em] text-ink/60"
           >
             {t('form.emailLabel')}
           </label>
@@ -115,7 +115,7 @@ export default function LoginForm() {
             aria-describedby={emailError ? 'login-email-error' : undefined}
           />
           {emailError && (
-            <p id="login-email-error" className="text-xs text-rose-200">
+            <p id="login-email-error" className="text-xs text-rose-600">
               {emailError}
             </p>
           )}
@@ -141,16 +141,16 @@ export default function LoginForm() {
       </form>
 
       <div className="my-6 flex items-center gap-4">
-        <div className="h-px flex-1 bg-cream/10" />
-        <span className="text-xs uppercase tracking-[0.3em] text-cream/40">{t('form.divider')}</span>
-        <div className="h-px flex-1 bg-cream/10" />
+        <div className="h-px flex-1 bg-ink/10" />
+        <span className="text-xs uppercase tracking-[0.3em] text-ink/40">{t('form.divider')}</span>
+        <div className="h-px flex-1 bg-ink/10" />
       </div>
 
       <button
         type="button"
         onClick={handleGoogle}
         disabled={isLoadingGoogle}
-        className="flex w-full items-center justify-center gap-3 rounded-full border border-cream/20 px-6 py-3 text-sm text-cream transition hover:border-cream/40 hover:bg-cream/5 active:scale-95 disabled:cursor-not-allowed disabled:opacity-60"
+        className="flex w-full items-center justify-center gap-3 rounded-full border border-ink/20 px-6 py-3 text-sm text-ink transition hover:border-ink/40 hover:bg-ink/5 active:scale-95 disabled:cursor-not-allowed disabled:opacity-60"
       >
         {isLoadingGoogle ? (
           <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
