@@ -7,7 +7,9 @@
 #   --tool claude|codex|amp|opencode    Agent CLI to use (default: claude)
 #   --model <model>            Model override (e.g. claude-sonnet-4-5)
 #   --max <N>                  Max iterations (default: 50)
-#   --step <N>                 Start from specific step number
+#   --step <N>                 Lower bound: ignore steps < N
+#   --range <A-B>               Restrict agent to a step range (inclusive)
+#   --steps <A,B,C>             Restrict agent to an explicit step list
 #   --dry-run                  Show what would run, don't execute
 
 set -e
@@ -17,6 +19,8 @@ TOOL="claude"
 MODEL=""
 MAX_ITERATIONS=50
 START_STEP=""
+SCOPE_RANGE=""
+SCOPE_STEPS=""
 DRY_RUN=false
 RALPH_DIR="ralph"
 PROGRESS_FILE="$RALPH_DIR/progress.md"
@@ -56,6 +60,10 @@ while [[ $# -gt 0 ]]; do
     --max=*)   MAX_ITERATIONS="${1#*=}"; shift ;;
     --step)    START_STEP="$2"; shift 2 ;;
     --step=*)  START_STEP="${1#*=}"; shift ;;
+    --range)   SCOPE_RANGE="$2"; shift 2 ;;
+    --range=*) SCOPE_RANGE="${1#*=}"; shift ;;
+    --steps)   SCOPE_STEPS="$2"; shift 2 ;;
+    --steps=*) SCOPE_STEPS="${1#*=}"; shift ;;
     --dry-run) DRY_RUN=true; shift ;;
     *)         echo "Unknown option: $1"; exit 1 ;;
   esac
@@ -64,6 +72,46 @@ done
 # --- Tool-specific defaults / normalization ---
 if [ "$TOOL" = "opencode" ]; then
   MODEL="$(normalize_opencode_model "$MODEL")"
+fi
+
+# --- Scope parsing / validation ---
+SCOPE_MODE=""
+SCOPE_MIN=""
+SCOPE_MAX=""
+SCOPE_DESC=""
+
+if [ -n "$SCOPE_RANGE" ] && [ -n "$SCOPE_STEPS" ]; then
+  echo "Error: Use only one of --range or --steps"
+  exit 1
+fi
+
+if [ -n "$SCOPE_RANGE" ]; then
+  if [[ ! "$SCOPE_RANGE" =~ ^[0-9]+-[0-9]+$ ]]; then
+    echo "Error: --range must be in A-B format (e.g. 16-17)"
+    exit 1
+  fi
+  SCOPE_MODE="range"
+  SCOPE_MIN="${SCOPE_RANGE%-*}"
+  SCOPE_MAX="${SCOPE_RANGE#*-}"
+  if [ "$SCOPE_MIN" -gt "$SCOPE_MAX" ]; then
+    echo "Error: --range min must be <= max"
+    exit 1
+  fi
+  SCOPE_DESC="steps $SCOPE_MIN-$SCOPE_MAX"
+fi
+
+if [ -n "$SCOPE_STEPS" ]; then
+  if [[ ! "$SCOPE_STEPS" =~ ^[0-9]+(,[0-9]+)*$ ]]; then
+    echo "Error: --steps must be a comma-separated list (e.g. 16,17)"
+    exit 1
+  fi
+  SCOPE_MODE="steps"
+  SCOPE_DESC="steps {$SCOPE_STEPS}"
+fi
+
+if [ -n "$START_STEP" ] && [[ ! "$START_STEP" =~ ^[0-9]+$ ]]; then
+  echo "Error: --step must be a number"
+  exit 1
 fi
 
 # --- Validate ---
@@ -82,12 +130,35 @@ build_prompt() {
   local iteration=$1
   cat << 'PROMPT'
 You are a worker agent in a Ralph v2 iterative build loop. This is a SINGLE iteration — do ONE step, then stop.
+PROMPT
+
+  if [ -n "$SCOPE_MODE" ]; then
+    cat << PROMPT
+
+## Scope for this run:
+- Allowed: $SCOPE_DESC
+- ONLY consider steps in this scope when choosing work.
+- Mark DONE / BLOCKED ONLY for steps in this scope.
+- Output <signal>COMPLETE</signal> when ALL steps in this scope are DONE (ignore other steps in progress.md).
+- Output <signal>BLOCKED</signal> when all remaining steps in this scope are BLOCKED.
+PROMPT
+  fi
+
+  if [ -n "$START_STEP" ]; then
+    cat << PROMPT
+
+## Lower bound:
+- Ignore any steps numbered < $START_STEP.
+PROMPT
+  fi
+
+  cat << 'PROMPT'
 
 ## Your task for this iteration:
 
 1. Read `ralph/lessons.md` — learn what to avoid
 2. Read `ralph/failures.log` — check for repeated failures (3x same hash = STOP)
-3. Read `ralph/progress.md` — find the first step with status NOT STARTED or IN PROGRESS
+3. Read `ralph/progress.md` — find the first NOT STARTED or IN PROGRESS step (within scope if provided)
 4. Execute ONLY that one step
 5. Verify: run the project's test/build commands
 6. Update `ralph/progress.md` with the result
@@ -100,7 +171,7 @@ You are a worker agent in a Ralph v2 iterative build loop. This is a SINGLE iter
 - ONLY work on steps listed in ralph/progress.md. If a step is not in your progress.md, it DOES NOT EXIST for you.
 - Do NOT implement, fix, or touch anything outside your assigned steps — even if you think it needs it.
 - If the same failure hash appears 3x in failures.log, write STUCK in progress.md and output: <signal>STUCK</signal>
-- If ALL steps in your progress.md are DONE, output: <signal>COMPLETE</signal>
+- If ALL steps in your progress.md are DONE (or ALL steps in your scope, if provided), output: <signal>COMPLETE</signal>
 - If a step is BLOCKED, skip to the next NOT STARTED step. If all remaining are BLOCKED, output: <signal>BLOCKED</signal>
 - Do NOT touch files unrelated to the current step
 - Do NOT refactor or clean up unless that IS the current step
@@ -168,12 +239,61 @@ check_stuck() {
 }
 
 # --- Progress check ---
+count_progress() {
+  # Outputs: "<done> <total>".
+  if [ -z "$SCOPE_MODE" ] && [ -z "$START_STEP" ]; then
+    local done total
+    done=$(grep -c '\[x\]' "$PROGRESS_FILE" 2>/dev/null || echo 0)
+    total=$(grep -cE '\[[ x]\]' "$PROGRESS_FILE" 2>/dev/null || echo 0)
+    echo "$done $total"
+    return 0
+  fi
+
+  awk \
+    -v mode="$SCOPE_MODE" \
+    -v min="$SCOPE_MIN" \
+    -v max="$SCOPE_MAX" \
+    -v list="$SCOPE_STEPS" \
+    -v start="$START_STEP" \
+    '
+      BEGIN {
+        done=0; total=0;
+        if (mode == "steps") {
+          n=split(list, a, /,/);
+          for (i=1; i<=n; i++) allowed[a[i]] = 1;
+        }
+      }
+      {
+        if (match($0, /-[[:space:]]*\[[ x]\][[:space:]]*([0-9]+)\./, m)) {
+          step = m[1] + 0;
+          ok = 1;
+
+          if (start != "") {
+            ok = ok && (step >= (start + 0));
+          }
+
+          if (mode == "range") {
+            ok = ok && (step >= (min + 0) && step <= (max + 0));
+          } else if (mode == "steps") {
+            ok = ok && (allowed[step] == 1);
+          }
+
+          if (ok) {
+            total++;
+            if ($0 ~ /\[x\]/) done++;
+          }
+        }
+      }
+      END { print done, total }
+    ' "$PROGRESS_FILE" 2>/dev/null || echo "0 0"
+}
+
 count_done() {
-  grep -c '\[x\]' "$PROGRESS_FILE" 2>/dev/null || echo 0
+  count_progress | awk '{print $1}'
 }
 
 count_total() {
-  grep -cE '\[[ x]\]' "$PROGRESS_FILE" 2>/dev/null || echo 0
+  count_progress | awk '{print $2}'
 }
 
 # --- Main loop ---

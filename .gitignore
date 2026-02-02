@@ -25,3 +25,6 @@ yarn-error.log*
 #Claude
 .claude/
 .env.local
+
+# Git worktrees created by scripts/parallel-ralph.sh
+.worktrees/
