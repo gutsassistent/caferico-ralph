@@ -86,7 +86,7 @@ export default async function ShopPage({ params }: { params: Promise<{ locale: s
       </section>
 
       <Reveal>
-        <section className="py-16 sm:py-24">
+        <section className="section-light py-16 sm:py-24">
           <Container className="space-y-10">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-xl space-y-3">
@@ -94,9 +94,9 @@ export default async function ShopPage({ params }: { params: Promise<{ locale: s
                   {t('intro.eyebrow')}
                 </p>
                 <h2 className="font-serif text-3xl sm:text-4xl">{t('intro.title')}</h2>
-                <p className="text-sm text-cream/70 sm:text-base">{t('intro.description')}</p>
+                <p className="text-sm text-inkMuted sm:text-base">{t('intro.description')}</p>
               </div>
-              <div className="rounded-full border border-cream/10 bg-noir/70 px-5 py-3 text-xs uppercase tracking-[0.3em] text-cream/60">
+              <div className="rounded-full border border-ink/10 bg-ink/5 px-5 py-3 text-xs uppercase tracking-[0.3em] text-inkMuted">
                 {t('intro.badge')}
               </div>
             </div>

@@ -38,18 +38,18 @@ type ShopCatalogProps = {
 
 function SkeletonCard() {
   return (
-    <div className="flex h-full flex-col rounded-3xl border border-cream/10 bg-surface-darker p-5">
-      <div className="relative aspect-[4/3] animate-pulse overflow-hidden rounded-2xl bg-espresso/50" />
+    <div className="flex h-full flex-col rounded-3xl border border-ink/10 bg-white/60 p-5">
+      <div className="relative aspect-[4/3] animate-pulse overflow-hidden rounded-2xl bg-ink/5" />
       <div className="mt-4 flex-1 space-y-3">
-        <div className="h-5 w-3/4 animate-pulse rounded bg-cream/10" />
-        <div className="h-4 w-full animate-pulse rounded bg-cream/5" />
-        <div className="h-3 w-1/2 animate-pulse rounded bg-cream/5" />
+        <div className="h-5 w-3/4 animate-pulse rounded bg-ink/10" />
+        <div className="h-4 w-full animate-pulse rounded bg-ink/5" />
+        <div className="h-3 w-1/2 animate-pulse rounded bg-ink/5" />
       </div>
       <div className="mt-4 flex items-center justify-between">
-        <div className="h-4 w-12 animate-pulse rounded bg-cream/10" />
+        <div className="h-4 w-12 animate-pulse rounded bg-ink/10" />
         <div className="h-4 w-16 animate-pulse rounded bg-gold/20" />
       </div>
-      <div className="mt-4 h-10 w-full animate-pulse rounded-full bg-cream/5" />
+      <div className="mt-4 h-10 w-full animate-pulse rounded-full bg-ink/5" />
     </div>
   );
 }
@@ -65,12 +65,12 @@ function FilterCheckbox({
   onChange: () => void;
 }) {
   return (
-    <label className="flex cursor-pointer items-center gap-3 py-2 text-sm text-cream/80 transition hover:text-cream">
+    <label className="flex cursor-pointer items-center gap-3 py-2 text-sm text-inkMuted transition hover:text-ink">
       <span
         className={`flex h-5 w-5 shrink-0 items-center justify-center rounded border transition-colors ${
           checked
             ? 'border-gold bg-gold text-noir'
-            : 'border-cream/20 bg-noir/60'
+            : 'border-ink/20 bg-white/60'
         }`}
       >
         {checked && (
@@ -97,11 +97,11 @@ function FilterSection({
 }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <div className="border-b border-cream/10 py-4 first:pt-0 last:border-0">
+    <div className="border-b border-ink/10 py-4 first:pt-0 last:border-0">
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="flex w-full items-center justify-between text-xs uppercase tracking-[0.3em] text-cream/60 transition hover:text-cream"
+        className="flex w-full items-center justify-between text-xs uppercase tracking-[0.3em] text-inkMuted transition hover:text-ink"
       >
         {title}
         <svg
@@ -224,13 +224,13 @@ export default function ShopCatalog({ products, categories }: ShopCatalogProps) 
       <div className="space-y-2 pb-4">
         <label
           htmlFor="shop-search"
-          className="text-xs uppercase tracking-[0.3em] text-cream/60"
+          className="text-xs uppercase tracking-[0.3em] text-inkMuted"
         >
           {t('filters.searchLabel')}
         </label>
         <div className="relative">
           <svg
-            className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-cream/40"
+            className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink/40"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -247,7 +247,7 @@ export default function ShopCatalog({ products, categories }: ShopCatalogProps) 
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder={t('filters.searchPlaceholder')}
-            className="w-full rounded-2xl border border-cream/10 bg-noir/80 py-3 pl-10 pr-4 text-sm text-cream placeholder:text-cream/50 focus:border-gold/60 focus:outline-none"
+            className="w-full rounded-2xl border border-ink/10 bg-white/80 py-3 pl-10 pr-4 text-sm text-ink placeholder:text-ink/40 focus:border-gold/60 focus:outline-none"
           />
         </div>
       </div>
@@ -335,7 +335,7 @@ export default function ShopCatalog({ products, categories }: ShopCatalogProps) 
         <button
           type="button"
           onClick={handleReset}
-          className="w-full rounded-full border border-cream/20 py-2.5 text-xs uppercase tracking-[0.3em] text-cream/60 transition hover:border-cream/40 hover:text-cream"
+          className="w-full rounded-full border border-ink/20 py-2.5 text-xs uppercase tracking-[0.3em] text-inkMuted transition hover:border-ink/40 hover:text-ink"
         >
           {t('sidebar.reset')}
         </button>
@@ -357,7 +357,7 @@ export default function ShopCatalog({ products, categories }: ShopCatalogProps) 
         <button
           type="button"
           onClick={() => setMobileFiltersOpen(true)}
-          className="flex items-center gap-2 rounded-full border border-cream/20 px-5 py-2.5 text-xs uppercase tracking-[0.3em] text-cream/70 transition hover:border-gold/50 hover:text-cream"
+          className="flex items-center gap-2 rounded-full border border-ink/20 px-5 py-2.5 text-xs uppercase tracking-[0.3em] text-inkMuted transition hover:border-gold/50 hover:text-ink"
         >
           <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <line x1="4" y1="6" x2="20" y2="6" />
@@ -371,7 +371,7 @@ export default function ShopCatalog({ products, categories }: ShopCatalogProps) 
             </span>
           )}
         </button>
-        <p className="text-sm text-cream/50">
+        <p className="text-sm text-inkMuted">
           {t('results.count', { count: filteredProducts.length })}
         </p>
       </div>
@@ -403,7 +403,7 @@ export default function ShopCatalog({ products, categories }: ShopCatalogProps) 
 
       {/* ── Desktop sidebar ────────────────────────────────────────── */}
       <aside className="hidden w-64 shrink-0 lg:block">
-        <div className="sticky top-28 rounded-3xl border border-cream/10 bg-surface-darkest/80 p-6 shadow-[0_30px_70px_rgba(0,0,0,0.35)]">
+        <div className="sticky top-28 rounded-3xl border border-ink/10 bg-white/60 p-6 shadow-[0_8px_30px_rgba(0,0,0,0.06)]">
           {filterContent}
         </div>
       </aside>
@@ -412,23 +412,23 @@ export default function ShopCatalog({ products, categories }: ShopCatalogProps) 
       <div className="flex-1 space-y-6">
         {/* Results bar (desktop) */}
         <div className="hidden items-center justify-between lg:flex">
-          <p className="text-sm text-cream/60">
+          <p className="text-sm text-inkMuted">
             {t('results.count', { count: filteredProducts.length })}
           </p>
-          <p className="text-xs uppercase tracking-[0.3em] text-gold/70">{t('results.subtitle')}</p>
+          <p className="text-xs uppercase tracking-[0.3em] text-gold-dark">{t('results.subtitle')}</p>
         </div>
 
         <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:gap-8 xl:grid-cols-3">
           {isLoading ? (
             Array.from({ length: 6 }).map((_, i) => <SkeletonCard key={i} />)
           ) : filteredProducts.length === 0 ? (
-            <div className="col-span-full rounded-3xl border border-cream/10 bg-surface-darkest/80 p-10 text-center">
-              <p className="font-serif text-lg text-cream">{t('empty.title')}</p>
-              <p className="mt-3 text-sm text-cream/60">{t('empty.description')}</p>
+            <div className="col-span-full rounded-3xl border border-ink/10 bg-white/60 p-10 text-center">
+              <p className="font-serif text-lg text-ink">{t('empty.title')}</p>
+              <p className="mt-3 text-sm text-inkMuted">{t('empty.description')}</p>
               <button
                 type="button"
                 onClick={handleReset}
-                className="mt-6 rounded-full border border-gold/60 px-6 py-3 text-xs uppercase tracking-[0.3em] text-gold transition hover:bg-gold hover:text-noir"
+                className="mt-6 rounded-full border border-gold/60 px-6 py-3 text-xs uppercase tracking-[0.3em] text-gold-dark transition hover:bg-gold hover:text-noir"
               >
                 {t('empty.cta')}
               </button>
@@ -438,9 +438,9 @@ export default function ShopCatalog({ products, categories }: ShopCatalogProps) 
               <Reveal key={product.id} delay={index * 70} className="h-full">
                 <Link
                   href={`/shop/${product.slug}`}
-                  className="group flex h-full flex-col rounded-3xl border border-cream/10 bg-surface-darker p-5 transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_30px_60px_rgba(0,0,0,0.4)]"
+                  className="group flex h-full flex-col rounded-3xl border border-ink/10 bg-white/60 p-5 transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)]"
                 >
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-espresso via-surface-mid to-noir">
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-parchment via-white to-parchment">
                     {product.images?.[0]?.src ? (
                       <Image
                         src={product.images[0].src}
@@ -460,27 +460,27 @@ export default function ShopCatalog({ products, categories }: ShopCatalogProps) 
                         {t('card.saleBadge')}
                       </div>
                     )}
-                    <div className="absolute bottom-3 left-3 rounded-full border border-cream/20 bg-noir/70 px-3 py-1 text-xs uppercase tracking-[0.3em] text-cream/70">
+                    <div className="absolute bottom-3 left-3 rounded-full border border-ink/10 bg-white/80 px-3 py-1 text-xs uppercase tracking-[0.3em] text-inkMuted">
                       {product.categories[0]?.name ?? product.collection}
                     </div>
                   </div>
                   <div className="mt-4 flex-1 space-y-2">
-                    <h3 className="font-serif text-lg text-cream">{product.name}</h3>
-                    <p className="text-sm text-cream/60">{product.notes}</p>
+                    <h3 className="font-serif text-lg text-ink">{product.name}</h3>
+                    <p className="text-sm text-inkMuted">{product.notes}</p>
                     {product.origin && (
-                      <p className="text-xs text-cream/60">
-                        <span className="uppercase tracking-[0.3em] text-cream/60">
+                      <p className="text-xs text-inkMuted">
+                        <span className="uppercase tracking-[0.3em] text-inkMuted">
                           {t('card.originLabel')}
                         </span>
-                        <span className="ml-2 text-cream/70">{product.origin}</span>
+                        <span className="ml-2 text-ink/70">{product.origin}</span>
                       </p>
                     )}
                   </div>
                   <div className="mt-4 flex items-center justify-between text-sm">
-                    <span className="text-cream/50">{t('card.priceLabel')}</span>
-                    <span className="text-gold">{priceFormatter.format(product.price)}</span>
+                    <span className="text-inkMuted">{t('card.priceLabel')}</span>
+                    <span className="text-gold-dark">{priceFormatter.format(product.price)}</span>
                   </div>
-                  <div className="mt-4 flex items-center justify-center rounded-full border border-gold/40 py-2.5 text-xs uppercase tracking-[0.2em] text-gold transition-colors duration-300 group-hover:bg-gold group-hover:text-noir">
+                  <div className="mt-4 flex items-center justify-center rounded-full border border-gold/40 py-2.5 text-xs uppercase tracking-[0.2em] text-gold-dark transition-colors duration-300 group-hover:bg-gold group-hover:text-noir">
                     {t('card.addToCart')}
                   </div>
                 </Link>
@@ -492,5 +492,3 @@ export default function ShopCatalog({ products, categories }: ShopCatalogProps) 
     </div>
   );
 }
-
-
