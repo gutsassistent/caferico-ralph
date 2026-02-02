@@ -1191,6 +1191,7 @@
   "CookieConsent": {
     "message": "We use cookies to improve your experience.",
     "privacyLink": "Privacy Policy",
-    "accept": "Accept"
+    "accept": "Accept",
+    "reject": "Reject"
   }
 }

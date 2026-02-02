@@ -24,11 +24,11 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }}
       />
-      <section className="py-20">
+      <section className="section-light py-16 sm:py-24">
         <Container>
-          <h1 className="mb-6 text-4xl font-serif sm:text-5xl">{t('title')}</h1>
-          <p className="text-sm text-cream/70 sm:text-base">{t('description')}</p>
-          <div className="mt-8 max-w-3xl space-y-4 text-sm leading-relaxed text-cream/80">
+          <h1 className="mb-6 text-4xl font-serif text-ink sm:text-5xl">{t('title')}</h1>
+          <p className="text-sm text-ink/70 sm:text-base">{t('description')}</p>
+          <div className="mt-8 max-w-3xl space-y-4 text-sm leading-relaxed text-ink/80">
             <p>{t('content')}</p>
           </div>
         </Container>

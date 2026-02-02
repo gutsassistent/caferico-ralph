@@ -17,7 +17,12 @@ export default function CookieConsent() {
   }, []);
 
   function accept() {
-    localStorage.setItem(STORAGE_KEY, '1');
+    localStorage.setItem(STORAGE_KEY, 'accepted');
+    setVisible(false);
+  }
+
+  function reject() {
+    localStorage.setItem(STORAGE_KEY, 'rejected');
     setVisible(false);
   }
 
@@ -32,12 +37,20 @@ export default function CookieConsent() {
             {t('privacyLink')}
           </Link>
         </p>
-        <button
-          onClick={accept}
-          className="shrink-0 rounded-lg bg-gold px-5 py-2 text-sm font-semibold text-noir transition-colors hover:bg-gold/90"
-        >
-          {t('accept')}
-        </button>
+        <div className="flex shrink-0 gap-2">
+          <button
+            onClick={reject}
+            className="rounded-lg border border-cream/20 px-5 py-2 text-sm font-semibold text-cream/80 transition-colors hover:border-cream/40 hover:text-cream"
+          >
+            {t('reject')}
+          </button>
+          <button
+            onClick={accept}
+            className="rounded-lg bg-gold px-5 py-2 text-sm font-semibold text-noir transition-colors hover:bg-gold/90"
+          >
+            {t('accept')}
+          </button>
+        </div>
       </div>
     </div>
   );

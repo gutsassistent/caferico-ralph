@@ -50,8 +50,8 @@ Dependencies: none.
 
 Dependencies: none.
 
-- [ ] 37. CookieConsent: add reject option — persist state as `accepted`/`rejected` (`components/CookieConsent.tsx` + i18n)
-- [ ] 38. Privacy + Terms: switch to light-body layout — `.section-light` with ink text and readable spacing (`app/[locale]/(pages)/privacy/page.tsx`, `app/[locale]/(pages)/terms/page.tsx`)
+- [x] 37. CookieConsent: add reject option — persist state as `accepted`/`rejected` (`components/CookieConsent.tsx` + i18n) — DONE (iteration 1)
+- [x] 38. Privacy + Terms: switch to light-body layout — `.section-light` with ink text and readable spacing (`app/[locale]/(pages)/privacy/page.tsx`, `app/[locale]/(pages)/terms/page.tsx`) — DONE (iteration 2)
 
 ### Phase H: Contrast & Final Polish (LAST; solo)
 
@@ -67,9 +67,9 @@ Dependencies: All split-mode conversion steps.
 
 ## Current
 
-- Working on: Steps 35-36 complete
-- Iteration: 4
-- Last action: Added map-related i18n labels (closeMap, viewOnMap, directions) in all 4 locales + wired aria-label to i18n
+- Working on: Steps 37-38 complete
+- Iteration: 6
+- Last action: Switched Privacy + Terms pages to section-light layout with ink text colors
 - Last result: Success — typecheck + build pass
 
 ## Architecture Decisions
