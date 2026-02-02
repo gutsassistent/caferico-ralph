@@ -951,6 +951,11 @@
         "description": "Magasin biologique axé sur la provenance et l'artisanat."
       }
     },
+    "map": {
+      "closeMap": "Fermer la carte",
+      "viewOnMap": "Voir sur la carte",
+      "directions": "Itinéraire"
+    },
     "cta": {
       "title": "Envie de vendre Café RICO ?",
       "description": "Intéressé par notre café dans votre boutique ou restaurant ? Contactez-nous.",

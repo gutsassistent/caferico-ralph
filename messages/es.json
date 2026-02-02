@@ -951,6 +951,11 @@
         "description": "Tienda ecológica enfocada en origen y artesanía."
       }
     },
+    "map": {
+      "closeMap": "Cerrar mapa",
+      "viewOnMap": "Ver en el mapa",
+      "directions": "Cómo llegar"
+    },
     "cta": {
       "title": "¿Quieres vender Café RICO?",
       "description": "¿Interesado en ofrecer nuestro café en tu tienda o restaurante? Contáctanos.",

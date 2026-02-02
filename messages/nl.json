@@ -951,6 +951,11 @@
         "description": "Biologische winkel met aandacht voor herkomst en ambacht."
       }
     },
+    "map": {
+      "closeMap": "Kaart sluiten",
+      "viewOnMap": "Bekijk op kaart",
+      "directions": "Routebeschrijving"
+    },
     "cta": {
       "title": "Wil je Café RICO verkopen?",
       "description": "Ben je geïnteresseerd om onze koffie aan te bieden in jouw winkel of horecazaak? Neem contact met ons op.",
