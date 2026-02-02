@@ -117,16 +117,16 @@ export default function ContactForm() {
     submitAttempted && errors[field] ? errors[field] : undefined;
 
   const inputBase =
-    'w-full rounded-2xl border bg-noir/70 px-4 py-3 text-sm text-cream placeholder:text-cream/50 transition focus:border-gold/70 focus:outline-none';
+    'w-full rounded-2xl border bg-white px-4 py-3 text-sm text-ink placeholder:text-ink/40 transition focus:border-gold/70 focus:outline-none';
   const inputError = 'border-rose-400/70 focus:border-rose-300';
-  const inputDefault = 'border-cream/20';
+  const inputDefault = 'border-ink/20';
 
   return (
-    <div className="rounded-3xl border border-cream/10 bg-surface-darker p-8 shadow-[0_35px_80px_rgba(0,0,0,0.55)]">
+    <div className="rounded-3xl border border-ink/10 bg-white p-8 shadow-[0_4px_24px_rgba(0,0,0,0.08)]">
       <div className="space-y-3">
         <p className="text-xs uppercase tracking-[0.4em] text-gold/70">{t('form.eyebrow')}</p>
-        <h2 className="font-serif text-3xl">{t('form.title')}</h2>
-        <p className="text-sm text-cream/70 sm:text-base">{t('form.description')}</p>
+        <h2 className="font-serif text-3xl text-ink">{t('form.title')}</h2>
+        <p className="text-sm text-ink/70 sm:text-base">{t('form.description')}</p>
       </div>
 
       <form onSubmit={handleSubmit} className="mt-8 space-y-6">
@@ -139,7 +139,7 @@ export default function ContactForm() {
             <p className="text-xs uppercase tracking-[0.3em] text-gold/80">
               {t('form.successTitle')}
             </p>
-            <p className="mt-2 text-sm text-cream/80">{t('form.successMessage')}</p>
+            <p className="mt-2 text-sm text-ink/70">{t('form.successMessage')}</p>
           </div>
         ) : null}
 
@@ -147,7 +147,7 @@ export default function ContactForm() {
           <div className="space-y-2">
             <label
               htmlFor="contact-name"
-              className="text-xs uppercase tracking-[0.3em] text-cream/60"
+              className="text-xs uppercase tracking-[0.3em] text-ink/60"
             >
               {t('form.fields.name.label')}
             </label>
@@ -165,7 +165,7 @@ export default function ContactForm() {
               aria-describedby={fieldError('name') ? 'contact-name-error' : undefined}
             />
             {fieldError('name') ? (
-              <p id="contact-name-error" className="text-xs text-rose-200">
+              <p id="contact-name-error" className="text-xs text-rose-600">
                 {fieldError('name')}
               </p>
             ) : null}
@@ -174,7 +174,7 @@ export default function ContactForm() {
           <div className="space-y-2">
             <label
               htmlFor="contact-email"
-              className="text-xs uppercase tracking-[0.3em] text-cream/60"
+              className="text-xs uppercase tracking-[0.3em] text-ink/60"
             >
               {t('form.fields.email.label')}
             </label>
@@ -192,7 +192,7 @@ export default function ContactForm() {
               aria-describedby={fieldError('email') ? 'contact-email-error' : undefined}
             />
             {fieldError('email') ? (
-              <p id="contact-email-error" className="text-xs text-rose-200">
+              <p id="contact-email-error" className="text-xs text-rose-600">
                 {fieldError('email')}
               </p>
             ) : null}
@@ -202,7 +202,7 @@ export default function ContactForm() {
         <div className="space-y-2">
           <label
             htmlFor="contact-subject"
-            className="text-xs uppercase tracking-[0.3em] text-cream/60"
+            className="text-xs uppercase tracking-[0.3em] text-ink/60"
           >
             {t('form.fields.subject.label')}
           </label>
@@ -219,7 +219,7 @@ export default function ContactForm() {
             aria-describedby={fieldError('subject') ? 'contact-subject-error' : undefined}
           />
           {fieldError('subject') ? (
-            <p id="contact-subject-error" className="text-xs text-rose-200">
+            <p id="contact-subject-error" className="text-xs text-rose-600">
               {fieldError('subject')}
             </p>
           ) : null}
@@ -228,7 +228,7 @@ export default function ContactForm() {
         <div className="space-y-2">
           <label
             htmlFor="contact-message"
-            className="text-xs uppercase tracking-[0.3em] text-cream/60"
+            className="text-xs uppercase tracking-[0.3em] text-ink/60"
           >
             {t('form.fields.message.label')}
           </label>
@@ -246,7 +246,7 @@ export default function ContactForm() {
             aria-describedby={fieldError('message') ? 'contact-message-error' : undefined}
           />
           {fieldError('message') ? (
-            <p id="contact-message-error" className="text-xs text-rose-200">
+            <p id="contact-message-error" className="text-xs text-rose-600">
               {fieldError('message')}
             </p>
           ) : null}
@@ -255,7 +255,7 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={isLoading}
-          className="flex w-full items-center justify-center gap-2 rounded-full border border-gold/60 px-6 py-3 text-xs uppercase tracking-[0.3em] text-gold transition hover:bg-gold hover:text-noir active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
+          className="flex w-full items-center justify-center gap-2 rounded-full border border-gold/60 bg-gold/10 px-6 py-3 text-xs uppercase tracking-[0.3em] text-gold transition hover:bg-gold hover:text-white active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isLoading ? (
             <>
