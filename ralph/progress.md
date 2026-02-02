@@ -61,15 +61,15 @@ Dependencies: All split-mode conversion steps.
 - [x] 40. Packaging cue roll-out (part 1) — apply `.pill-roastery` to Home trust badges + featured category pills (`app/[locale]/(pages)/page.tsx`) — DONE (iteration 2)
 - [x] 41. Packaging cue roll-out (part 2) — apply `.pill-roastery` to Blog tags (`app/[locale]/(pages)/blog/page.tsx`, `app/[locale]/(pages)/blog/[slug]/page.tsx`) — DONE (iteration 3)
 - [x] 42. Packaging cue roll-out (part 3) — apply `.pill-roastery` to Shop + Product category chips where appropriate (`components/ShopCatalog.tsx`, `app/[locale]/(pages)/shop/[slug]/page.tsx`) — DONE (iteration 4)
-- [ ] 43. Mobile pass (375px) — verify split-mode pages and cart drawer; patch layout issues only
+- [x] 43. Mobile pass (375px) — verify split-mode pages and cart drawer; patch layout issues only — DONE (iteration 5)
 
 ---
 
 ## Current
 
-- Working on: Step 42 complete
-- Iteration: 10
-- Last action: Applied .pill-roastery to Shop catalog product card category chip and Product detail related-products category chip
+- Working on: Step 43 complete
+- Iteration: 11
+- Last action: Mobile pass (375px) — tightened CartDrawer padding (px-6 → px-4 sm:px-6), about page card padding (p-8 → p-5 sm:p-8), contact detail card padding, locations card padding for better 375px layout
 - Last result: Success — typecheck + build pass
 
 ## Architecture Decisions

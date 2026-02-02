@@ -148,7 +148,7 @@ export default function LocationsGrid() {
           return (
             <Reveal key={key} delay={index * 80}>
               <article
-                className={`group flex h-full cursor-pointer flex-col rounded-2xl border p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-ink/5 ${
+                className={`group flex h-full cursor-pointer flex-col rounded-2xl border p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-ink/5 sm:p-6 ${
                   isSelected
                     ? 'border-gold/50 bg-gold/5 shadow-md shadow-gold/10'
                     : 'border-ink/10 bg-white/60 hover:border-gold/30'

@@ -106,7 +106,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
           </Reveal>
           <div className="space-y-6">
             <Reveal delay={120}>
-              <div className="rounded-3xl border border-ink/10 bg-white p-8 shadow-[0_4px_24px_rgba(0,0,0,0.08)]">
+              <div className="rounded-3xl border border-ink/10 bg-white p-5 shadow-[0_4px_24px_rgba(0,0,0,0.08)] sm:p-8">
                 <p className="text-xs uppercase tracking-[0.3em] text-gold/70">
                   {t('details.eyebrow')}
                 </p>
