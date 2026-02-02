@@ -31,12 +31,44 @@
 - [x] 30. AccountProfile: editable address UI — add edit/save/cancel flows and call the new API (`components/AccountProfile.tsx`) — DONE (iteration 1)
 - [x] 31. Account page: convert profile section wrapper to light (`app/[locale]/(pages)/account/page.tsx`) — DONE (iteration 2)
 
+### Phase E: Static Media + SEO Defaults
+
+Dependencies: none, but best done after the relevant pages are stable to reduce merge conflicts.
+
+- [ ] 32. Add non-product assets to `/public/images` — move/copy from `scrape/` and/or download; ensure filenames are stable (file additions only)
+- [ ] 33. Swap page image sources to local `/images/...` — home hero, about images, subscriptions hero/card, blog hero images (`app/[locale]/(pages)/page.tsx`, `app/[locale]/(pages)/about/page.tsx`, `app/[locale]/(pages)/subscriptions/page.tsx`, `app/[locale]/(pages)/blog/[slug]/page.tsx`)
+- [ ] 34. Update SEO + schema images to local — change default OG image and structured-data logo/business image to `/logo.png` or `/images/...` (`lib/seo.ts`, `lib/structured-data.ts`)
+
+### Phase F: Locations Map Embed
+
+Dependencies: none.
+
+- [ ] 35. Locations: add Google Maps embed panel — show a map for the selected location (not 10 iframes) (`components/LocationsGrid.tsx`)
+- [ ] 36. Locations i18n: add map-related labels — e.g. "Bekijk op kaart" / "Directions" in all locales (`messages/nl.json`, `messages/en.json`, `messages/fr.json`, `messages/es.json`)
+
+### Phase G: Cookie Consent + Legal Pages
+
+Dependencies: none.
+
+- [ ] 37. CookieConsent: add reject option — persist state as `accepted`/`rejected` (`components/CookieConsent.tsx` + i18n)
+- [ ] 38. Privacy + Terms: switch to light-body layout — `.section-light` with ink text and readable spacing (`app/[locale]/(pages)/privacy/page.tsx`, `app/[locale]/(pages)/terms/page.tsx`)
+
+### Phase H: Contrast & Final Polish (LAST; solo)
+
+Dependencies: All split-mode conversion steps.
+
+- [ ] 39. Contrast audit — ensure ink text on parchment meets >= 4.5:1; fix lingering `text-cream/*` in light sections
+- [ ] 40. Packaging cue roll-out (part 1) — apply `.pill-roastery` to Home trust badges + featured category pills (`app/[locale]/(pages)/page.tsx`)
+- [ ] 41. Packaging cue roll-out (part 2) — apply `.pill-roastery` to Blog tags (`app/[locale]/(pages)/blog/page.tsx`, `app/[locale]/(pages)/blog/[slug]/page.tsx`)
+- [ ] 42. Packaging cue roll-out (part 3) — apply `.pill-roastery` to Shop + Product category chips where appropriate (`components/ShopCatalog.tsx`, `app/[locale]/(pages)/shop/[slug]/page.tsx`)
+- [ ] 43. Mobile pass (375px) — verify split-mode pages and cart drawer; patch layout issues only
+
 ---
 
 ## Current
 
-- Working on: Phase D complete
-- Last result: All steps 22-31 done
+- Working on: Phase E starting
+- Last result: Phase D complete (steps 22-31)
 
 ## Architecture Decisions
 
