@@ -21,8 +21,8 @@
 Dependencies: Step 1–3.
 Goal: hero/nav can stay dark, but content bodies should default to light where appropriate.
 
-- [ ] 16. Blog listing: convert listing/grid section to light — cards/tags adjusted for ink text (`app/[locale]/(pages)/blog/page.tsx`)
-- [ ] 17. Blog detail: convert article body + related posts to light — adjust tag pills and borders (`app/[locale]/(pages)/blog/[slug]/page.tsx`)
+- [x] 16. Blog listing: convert listing/grid section to light — cards/tags adjusted for ink text (`app/[locale]/(pages)/blog/page.tsx`) — DONE (iteration 1)
+- [x] 17. Blog detail: convert article body + related posts to light — adjust tag pills and borders (`app/[locale]/(pages)/blog/[slug]/page.tsx`) — DONE (iteration 1)
 - [ ] 18. About: start split-mode conversion (part 1) — convert Intro section to light (`app/[locale]/(pages)/about/page.tsx`)
 - [ ] 19. About: continue split-mode conversion (part 2) — convert map/images section to light (`app/[locale]/(pages)/about/page.tsx`)
 - [ ] 20. Subscriptions: convert tiers + FAQ sections to light; keep hero dark (`app/[locale]/(pages)/subscriptions/page.tsx`)

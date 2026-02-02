@@ -68,7 +68,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
       </section>
 
       {/* Blog grid */}
-      <section className="py-16 sm:py-24">
+      <section className="section-light py-16 sm:py-24">
         <Container className="space-y-12">
           <Reveal>
             <div className="space-y-3">
@@ -76,7 +76,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
                 {t('listing.eyebrow')}
               </p>
               <h2 className="font-serif text-3xl sm:text-4xl">{t('listing.title')}</h2>
-              <p className="max-w-xl text-sm text-cream/70 sm:text-base">
+              <p className="max-w-xl text-sm text-inkMuted sm:text-base">
                 {t('listing.description')}
               </p>
             </div>
@@ -87,7 +87,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
               <Reveal key={post.id} delay={index * 80} className="h-full">
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="group flex h-full flex-col rounded-2xl border border-cream/10 bg-surface-darker transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_30px_60px_rgba(0,0,0,0.4)]"
+                  className="group flex h-full flex-col rounded-2xl border border-ink/10 bg-white/60 transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_30px_60px_rgba(0,0,0,0.1)]"
                 >
                   {/* Image placeholder */}
                   <div className="relative aspect-[16/10] overflow-hidden rounded-t-2xl bg-gradient-to-br from-espresso via-surface-mid to-noir">
@@ -107,16 +107,16 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
 
                   {/* Content */}
                   <div className="flex flex-1 flex-col p-5">
-                    <p className="text-xs uppercase tracking-[0.3em] text-cream/50">
+                    <p className="text-xs uppercase tracking-[0.3em] text-inkMuted">
                       {dateFormatter.format(new Date(post.date))}
-                      <span className="mx-2 text-cream/30">&middot;</span>
+                      <span className="mx-2 text-ink/30">&middot;</span>
                       {post.readTime} {t('listing.readTime')}
                     </p>
-                    <h3 className="mt-3 font-serif text-lg leading-snug text-cream transition-colors duration-300 group-hover:text-gold">
+                    <h3 className="mt-3 font-serif text-lg leading-snug text-ink transition-colors duration-300 group-hover:text-gold">
                       {post.title}
                     </h3>
-                    <p className="mt-2 flex-1 text-sm text-cream/60">{post.excerpt}</p>
-                    <span className="mt-4 inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-gold transition group-hover:text-cream">
+                    <p className="mt-2 flex-1 text-sm text-inkMuted">{post.excerpt}</p>
+                    <span className="mt-4 inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-gold transition group-hover:text-ink">
                       {t('listing.readMore')}
                       <span aria-hidden="true">&rarr;</span>
                     </span>
@@ -132,13 +132,13 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
               <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-gold/50 bg-gold/10 text-sm font-medium text-gold">
                 1
               </span>
-              <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-cream/10 text-sm text-cream/40 cursor-not-allowed">
+              <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-ink/10 text-sm text-ink/40 cursor-not-allowed">
                 2
               </span>
-              <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-cream/10 text-sm text-cream/40 cursor-not-allowed">
+              <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-ink/10 text-sm text-ink/40 cursor-not-allowed">
                 3
               </span>
-              <span className="ml-2 flex h-10 items-center justify-center rounded-lg border border-cream/10 px-4 text-sm text-cream/40 cursor-not-allowed">
+              <span className="ml-2 flex h-10 items-center justify-center rounded-lg border border-ink/10 px-4 text-sm text-ink/40 cursor-not-allowed">
                 {t('listing.nextPage')}
                 <span aria-hidden="true" className="ml-1">&rarr;</span>
               </span>
