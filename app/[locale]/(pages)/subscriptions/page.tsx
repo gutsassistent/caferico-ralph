@@ -147,14 +147,14 @@ export default async function SubscriptionsPage({ params }: SubscriptionsPagePro
       </section>
 
       <Reveal>
-        <section id="tiers" className="py-16 sm:py-24">
+        <section id="tiers" className="section-light py-16 sm:py-24">
           <Container className="space-y-16">
             <div className="max-w-2xl space-y-3">
               <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
                 {t('tiers.eyebrow')}
               </p>
               <h2 className="font-serif text-3xl sm:text-4xl">{t('tiers.title')}</h2>
-              <p className="text-sm text-cream/70 sm:text-base">{t('tiers.description')}</p>
+              <p className="text-sm text-ink/70 sm:text-base">{t('tiers.description')}</p>
             </div>
 
             {tierGroups.map((group) => (
@@ -167,7 +167,7 @@ export default async function SubscriptionsPage({ params }: SubscriptionsPagePro
                     <h3 className="font-serif text-2xl sm:text-3xl">
                       {t(`tiers.${group.id}.title`)}
                     </h3>
-                    <p className="text-sm text-cream/70 sm:text-base">
+                    <p className="text-sm text-ink/70 sm:text-base">
                       {t(`tiers.${group.id}.description`)}
                     </p>
                   </div>
@@ -269,7 +269,7 @@ export default async function SubscriptionsPage({ params }: SubscriptionsPagePro
       </Reveal>
 
       <Reveal>
-        <section id="faq" className="py-16 sm:py-24">
+        <section id="faq" className="section-light py-16 sm:py-24">
           <Container>
             <div className="grid gap-16 lg:grid-cols-[1fr_1.2fr] lg:items-start">
               {/* Left: header + benefits */}
@@ -277,7 +277,7 @@ export default async function SubscriptionsPage({ params }: SubscriptionsPagePro
                 <div className="space-y-3">
                   <p className="text-xs uppercase tracking-[0.4em] text-gold/70">{t('faq.eyebrow')}</p>
                   <h2 className="font-serif text-3xl sm:text-4xl">{t('faq.title')}</h2>
-                  <p className="text-sm text-cream/70 sm:text-base">{t('faq.description')}</p>
+                  <p className="text-sm text-ink/70 sm:text-base">{t('faq.description')}</p>
                 </div>
 
                 {/* Benefits */}
@@ -290,8 +290,8 @@ export default async function SubscriptionsPage({ params }: SubscriptionsPagePro
                           {benefitIcons[index]}
                         </div>
                         <div>
-                          <h3 className="font-serif text-base text-cream">{t(`benefits.items.${key}.title`)}</h3>
-                          <p className="mt-1 text-sm text-cream/60">{t(`benefits.items.${key}.description`)}</p>
+                          <h3 className="font-serif text-base text-ink">{t(`benefits.items.${key}.title`)}</h3>
+                          <p className="mt-1 text-sm text-ink/60">{t(`benefits.items.${key}.description`)}</p>
                         </div>
                       </div>
                     </Reveal>
