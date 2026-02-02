@@ -66,6 +66,7 @@ function getIcon(type: string) {
 export default function LocationsGrid() {
   const t = useTranslations('Locations');
   const [activeRegion, setActiveRegion] = useState<string>('all');
+  const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
 
   const filtered = activeRegion === 'all'
     ? locationKeys
@@ -100,6 +101,41 @@ export default function LocationsGrid() {
         ))}
       </div>
 
+      {/* Map panel */}
+      {selectedLocation && (
+        <Reveal>
+          <div className="mb-10 overflow-hidden rounded-2xl border border-ink/10 bg-white/60">
+            <div className="flex items-center justify-between px-6 pt-5 pb-4">
+              <div>
+                <h3 className="font-serif text-lg text-ink">
+                  {t(`locations.${selectedLocation}.name`)}
+                </h3>
+                <p className="text-sm text-inkMuted">
+                  {t(`locations.${selectedLocation}.address`)}
+                </p>
+              </div>
+              <button
+                onClick={() => setSelectedLocation(null)}
+                className="flex h-8 w-8 items-center justify-center rounded-full text-inkMuted transition-colors hover:bg-ink/5 hover:text-ink"
+                aria-label="Close map"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
+                  <path d="M18 6 6 18M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <iframe
+              title={t(`locations.${selectedLocation}.name`)}
+              src={`https://maps.google.com/maps?q=${encodeURIComponent(t(`locations.${selectedLocation}.address`))}&output=embed`}
+              className="h-64 w-full sm:h-80"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+          </div>
+        </Reveal>
+      )}
+
       {/* Grid */}
       <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8">
         {filtered.map((key, index) => {
@@ -107,10 +143,26 @@ export default function LocationsGrid() {
           const type = t(`locations.${key}.type`);
           const address = t(`locations.${key}.address`);
           const description = t(`locations.${key}.description`);
+          const isSelected = selectedLocation === key;
 
           return (
             <Reveal key={key} delay={index * 80}>
-              <article className="group flex h-full flex-col rounded-2xl border border-ink/10 bg-white/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-gold/30 hover:shadow-lg hover:shadow-ink/5">
+              <article
+                className={`group flex h-full cursor-pointer flex-col rounded-2xl border p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-ink/5 ${
+                  isSelected
+                    ? 'border-gold/50 bg-gold/5 shadow-md shadow-gold/10'
+                    : 'border-ink/10 bg-white/60 hover:border-gold/30'
+                }`}
+                onClick={() => setSelectedLocation(isSelected ? null : key)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setSelectedLocation(isSelected ? null : key);
+                  }
+                }}
+              >
                 {/* Icon + type */}
                 <div className="mb-4 flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gold/10 text-gold">

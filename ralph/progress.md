@@ -43,7 +43,7 @@ Dependencies: none, but best done after the relevant pages are stable to reduce 
 
 Dependencies: none.
 
-- [ ] 35. Locations: add Google Maps embed panel — show a map for the selected location (not 10 iframes) (`components/LocationsGrid.tsx`)
+- [x] 35. Locations: add Google Maps embed panel — show a map for the selected location (not 10 iframes) (`components/LocationsGrid.tsx`) — DONE (iteration 1)
 - [ ] 36. Locations i18n: add map-related labels — e.g. "Bekijk op kaart" / "Directions" in all locales (`messages/nl.json`, `messages/en.json`, `messages/fr.json`, `messages/es.json`)
 
 ### Phase G: Cookie Consent + Legal Pages
@@ -67,9 +67,9 @@ Dependencies: All split-mode conversion steps.
 
 ## Current
 
-- Working on: All steps 32-34 complete
-- Iteration: 3
-- Last action: Updated SEO OG_IMAGE to /images/DSCF3617.jpg, structured-data LOGO_URL to /logo.png, and localBusiness image to /images/DSCF3617.jpg
+- Working on: Step 36
+- Iteration: 4
+- Last action: Added Google Maps embed panel to LocationsGrid — clicking a location card shows an iframe map for that address; single map panel avoids multiple heavy embeds
 - Last result: Success — typecheck + build pass
 
 ## Architecture Decisions
