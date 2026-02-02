@@ -35,7 +35,7 @@
 
 Dependencies: none, but best done after the relevant pages are stable to reduce merge conflicts.
 
-- [ ] 32. Add non-product assets to `/public/images` — move/copy from `scrape/` and/or download; ensure filenames are stable (file additions only)
+- [x] 32. Add non-product assets to `/public/images` — move/copy from `scrape/` and/or download; ensure filenames are stable (file additions only) — DONE (iteration 1)
 - [ ] 33. Swap page image sources to local `/images/...` — home hero, about images, subscriptions hero/card, blog hero images (`app/[locale]/(pages)/page.tsx`, `app/[locale]/(pages)/about/page.tsx`, `app/[locale]/(pages)/subscriptions/page.tsx`, `app/[locale]/(pages)/blog/[slug]/page.tsx`)
 - [ ] 34. Update SEO + schema images to local — change default OG image and structured-data logo/business image to `/logo.png` or `/images/...` (`lib/seo.ts`, `lib/structured-data.ts`)
 
@@ -67,8 +67,10 @@ Dependencies: All split-mode conversion steps.
 
 ## Current
 
-- Working on: Phase E starting
-- Last result: Phase D complete (steps 22-31)
+- Working on: Step 33 (swap page image sources to local)
+- Iteration: 1
+- Last action: Added 9 non-product images to /public/images (from scrape/ + downloaded from WP)
+- Last result: Success — typecheck + build pass; logo-caferico.png was 404 on WP, will use existing /logo.png instead
 
 ## Architecture Decisions
 
