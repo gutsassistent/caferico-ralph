@@ -52,7 +52,7 @@ export default async function CheckoutPage({ params }: { params: Promise<{ local
         </Container>
       </section>
 
-      <section className="py-16 sm:py-24">
+      <section className="section-light py-16 sm:py-24">
         <Container>
           <Reveal>
             <CheckoutForm />

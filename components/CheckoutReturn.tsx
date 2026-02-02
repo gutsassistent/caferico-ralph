@@ -56,7 +56,7 @@ export default function CheckoutReturn() {
     return (
       <div className="flex flex-col items-center justify-center py-16 text-center">
         <svg
-          className="mb-6 h-12 w-12 animate-spin text-gold"
+          className="mb-6 h-12 w-12 animate-spin text-gold-dark"
           viewBox="0 0 24 24"
           fill="none"
         >
@@ -74,7 +74,7 @@ export default function CheckoutReturn() {
             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
           />
         </svg>
-        <p className="text-cream/70">{t('loading')}</p>
+        <p className="text-inkMuted">{t('loading')}</p>
       </div>
     );
   }
@@ -90,14 +90,14 @@ export default function CheckoutReturn() {
         </div>
 
         <div className="space-y-3">
-          <h2 className="font-serif text-3xl sm:text-4xl">{t('paidTitle')}</h2>
-          <p className="text-cream/70">{t('paidDescription')}</p>
+          <h2 className="font-serif text-3xl text-ink sm:text-4xl">{t('paidTitle')}</h2>
+          <p className="text-inkMuted">{t('paidDescription')}</p>
         </div>
 
         {orderId && (
-          <div className="rounded-xl border border-cream/10 bg-surface-darker p-4">
-            <p className="text-xs uppercase tracking-widest text-cream/60">{t('orderNumber')}</p>
-            <p className="mt-1 font-mono text-lg text-gold">{orderId}</p>
+          <div className="rounded-xl border border-ink/10 bg-white/50 p-4">
+            <p className="text-xs uppercase tracking-widest text-ink/60">{t('orderNumber')}</p>
+            <p className="mt-1 font-mono text-lg text-gold-dark">{orderId}</p>
           </div>
         )}
 
@@ -110,7 +110,7 @@ export default function CheckoutReturn() {
           </Link>
           <Link
             href="/shop"
-            className="inline-flex items-center gap-2 rounded-full border border-cream/20 px-8 py-3 text-sm font-semibold text-cream transition-colors hover:border-gold hover:text-gold active:scale-95"
+            className="inline-flex items-center gap-2 rounded-full border border-ink/20 px-8 py-3 text-sm font-semibold text-ink transition-colors hover:border-gold-dark hover:text-gold-dark active:scale-95"
           >
             {t('ctaShop')}
           </Link>
@@ -131,8 +131,8 @@ export default function CheckoutReturn() {
         </div>
 
         <div className="space-y-3">
-          <h2 className="font-serif text-3xl sm:text-4xl">{t('pendingTitle')}</h2>
-          <p className="text-cream/70">{t('pendingDescription')}</p>
+          <h2 className="font-serif text-3xl text-ink sm:text-4xl">{t('pendingTitle')}</h2>
+          <p className="text-inkMuted">{t('pendingDescription')}</p>
         </div>
 
         <Link
@@ -156,8 +156,8 @@ export default function CheckoutReturn() {
       </div>
 
       <div className="space-y-3">
-        <h2 className="font-serif text-3xl sm:text-4xl">{t('failedTitle')}</h2>
-        <p className="text-cream/70">{t('failedDescription')}</p>
+        <h2 className="font-serif text-3xl text-ink sm:text-4xl">{t('failedTitle')}</h2>
+        <p className="text-inkMuted">{t('failedDescription')}</p>
       </div>
 
       <div className="flex flex-col items-center gap-4 pt-4 sm:flex-row sm:justify-center">
@@ -169,7 +169,7 @@ export default function CheckoutReturn() {
         </Link>
         <Link
           href="/"
-          className="inline-flex items-center gap-2 rounded-full border border-cream/20 px-8 py-3 text-sm font-semibold text-cream transition-colors hover:border-gold hover:text-gold active:scale-95"
+          className="inline-flex items-center gap-2 rounded-full border border-ink/20 px-8 py-3 text-sm font-semibold text-ink transition-colors hover:border-gold-dark hover:text-gold-dark active:scale-95"
         >
           {t('ctaHome')}
         </Link>

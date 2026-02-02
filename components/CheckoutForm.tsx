@@ -207,9 +207,9 @@ export default function CheckoutForm() {
     submitAttempted && errors[field] ? errors[field] : undefined;
 
   const inputBase =
-    'w-full rounded-2xl border bg-noir/70 px-4 py-3 text-sm text-cream placeholder:text-cream/50 transition focus:border-gold/70 focus:outline-none';
-  const inputError = 'border-rose-400/70 focus:border-rose-300';
-  const inputDefault = 'border-cream/20';
+    'w-full rounded-2xl border bg-white/70 px-4 py-3 text-sm text-ink placeholder:text-ink/40 transition focus:border-gold-dark/70 focus:outline-none';
+  const inputError = 'border-rose-500/70 focus:border-rose-400';
+  const inputDefault = 'border-ink/15';
 
   if (items.length === 0) {
     return null;
@@ -218,22 +218,22 @@ export default function CheckoutForm() {
   return (
     <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
       {/* Form */}
-      <div className="rounded-3xl border border-cream/10 bg-surface-darker p-8 shadow-[0_35px_80px_rgba(0,0,0,0.55)]">
+      <div className="rounded-3xl border border-ink/10 bg-white/50 p-8 shadow-[0_8px_30px_rgba(44,24,16,0.08)]">
         <div className="space-y-3">
-          <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
+          <p className="text-xs uppercase tracking-[0.4em] text-gold-dark/70">
             {t('form.eyebrow')}
           </p>
-          <h2 className="font-serif text-3xl">{t('form.title')}</h2>
-          <p className="text-sm text-cream/70 sm:text-base">
+          <h2 className="font-serif text-3xl text-ink">{t('form.title')}</h2>
+          <p className="text-sm text-inkMuted sm:text-base">
             {t('form.description')}
           </p>
         </div>
 
         {authStatus !== 'authenticated' && (
-          <div className="mt-6 rounded-2xl border border-gold/20 bg-gold/5 px-4 py-3 text-sm text-cream/80">
+          <div className="mt-6 rounded-2xl border border-gold-dark/20 bg-gold/10 px-4 py-3 text-sm text-ink/80">
             <Link
               href={`/login?callbackUrl=/${locale}/checkout`}
-              className="font-medium text-gold underline decoration-gold/40 underline-offset-2 transition hover:decoration-gold"
+              className="font-medium text-gold-dark underline decoration-gold-dark/40 underline-offset-2 transition hover:decoration-gold-dark"
             >
               {t('form.loginPrompt')}
             </Link>
@@ -246,7 +246,7 @@ export default function CheckoutForm() {
             <div className="space-y-2">
               <label
                 htmlFor="checkout-firstName"
-                className="text-xs uppercase tracking-[0.3em] text-cream/60"
+                className="text-xs uppercase tracking-[0.3em] text-ink/60"
               >
                 {t('fields.firstName.label')}
               </label>
@@ -266,7 +266,7 @@ export default function CheckoutForm() {
                 }
               />
               {fieldError('firstName') ? (
-                <p id="checkout-firstName-error" className="text-xs text-rose-200">
+                <p id="checkout-firstName-error" className="text-xs text-rose-600">
                   {fieldError('firstName')}
                 </p>
               ) : null}
@@ -275,7 +275,7 @@ export default function CheckoutForm() {
             <div className="space-y-2">
               <label
                 htmlFor="checkout-lastName"
-                className="text-xs uppercase tracking-[0.3em] text-cream/60"
+                className="text-xs uppercase tracking-[0.3em] text-ink/60"
               >
                 {t('fields.lastName.label')}
               </label>
@@ -295,7 +295,7 @@ export default function CheckoutForm() {
                 }
               />
               {fieldError('lastName') ? (
-                <p id="checkout-lastName-error" className="text-xs text-rose-200">
+                <p id="checkout-lastName-error" className="text-xs text-rose-600">
                   {fieldError('lastName')}
                 </p>
               ) : null}
@@ -306,7 +306,7 @@ export default function CheckoutForm() {
           <div className="space-y-2">
             <label
               htmlFor="checkout-email"
-              className="text-xs uppercase tracking-[0.3em] text-cream/60"
+              className="text-xs uppercase tracking-[0.3em] text-ink/60"
             >
               {t('fields.email.label')}
             </label>
@@ -324,7 +324,7 @@ export default function CheckoutForm() {
               aria-describedby={fieldError('email') ? 'checkout-email-error' : undefined}
             />
             {fieldError('email') ? (
-              <p id="checkout-email-error" className="text-xs text-rose-200">
+              <p id="checkout-email-error" className="text-xs text-rose-600">
                 {fieldError('email')}
               </p>
             ) : null}
@@ -334,7 +334,7 @@ export default function CheckoutForm() {
           <div className="space-y-2">
             <label
               htmlFor="checkout-street"
-              className="text-xs uppercase tracking-[0.3em] text-cream/60"
+              className="text-xs uppercase tracking-[0.3em] text-ink/60"
             >
               {t('fields.street.label')}
             </label>
@@ -352,7 +352,7 @@ export default function CheckoutForm() {
               aria-describedby={fieldError('street') ? 'checkout-street-error' : undefined}
             />
             {fieldError('street') ? (
-              <p id="checkout-street-error" className="text-xs text-rose-200">
+              <p id="checkout-street-error" className="text-xs text-rose-600">
                 {fieldError('street')}
               </p>
             ) : null}
@@ -363,7 +363,7 @@ export default function CheckoutForm() {
             <div className="space-y-2">
               <label
                 htmlFor="checkout-postalCode"
-                className="text-xs uppercase tracking-[0.3em] text-cream/60"
+                className="text-xs uppercase tracking-[0.3em] text-ink/60"
               >
                 {t('fields.postalCode.label')}
               </label>
@@ -383,7 +383,7 @@ export default function CheckoutForm() {
                 }
               />
               {fieldError('postalCode') ? (
-                <p id="checkout-postalCode-error" className="text-xs text-rose-200">
+                <p id="checkout-postalCode-error" className="text-xs text-rose-600">
                   {fieldError('postalCode')}
                 </p>
               ) : null}
@@ -392,7 +392,7 @@ export default function CheckoutForm() {
             <div className="space-y-2">
               <label
                 htmlFor="checkout-city"
-                className="text-xs uppercase tracking-[0.3em] text-cream/60"
+                className="text-xs uppercase tracking-[0.3em] text-ink/60"
               >
                 {t('fields.city.label')}
               </label>
@@ -410,7 +410,7 @@ export default function CheckoutForm() {
                 aria-describedby={fieldError('city') ? 'checkout-city-error' : undefined}
               />
               {fieldError('city') ? (
-                <p id="checkout-city-error" className="text-xs text-rose-200">
+                <p id="checkout-city-error" className="text-xs text-rose-600">
                   {fieldError('city')}
                 </p>
               ) : null}
@@ -422,7 +422,7 @@ export default function CheckoutForm() {
             <div className="space-y-2">
               <label
                 htmlFor="checkout-country"
-                className="text-xs uppercase tracking-[0.3em] text-cream/60"
+                className="text-xs uppercase tracking-[0.3em] text-ink/60"
               >
                 {t('fields.country.label')}
               </label>
@@ -435,7 +435,7 @@ export default function CheckoutForm() {
                 className={`${inputBase} ${inputDefault} appearance-none`}
               >
                 {countries.map((c) => (
-                  <option key={c.code} value={c.code} className="bg-noir text-cream">
+                  <option key={c.code} value={c.code} className="bg-white text-ink">
                     {c.label}
                   </option>
                 ))}
@@ -445,10 +445,10 @@ export default function CheckoutForm() {
             <div className="space-y-2">
               <label
                 htmlFor="checkout-phone"
-                className="text-xs uppercase tracking-[0.3em] text-cream/60"
+                className="text-xs uppercase tracking-[0.3em] text-ink/60"
               >
                 {t('fields.phone.label')}{' '}
-                <span className="normal-case tracking-normal text-cream/40">
+                <span className="normal-case tracking-normal text-ink/40">
                   ({t('fields.phone.optional')})
                 </span>
               </label>
@@ -469,7 +469,7 @@ export default function CheckoutForm() {
           {submitError && (
             <div
               role="alert"
-              className="rounded-2xl border border-rose-400/30 bg-rose-400/10 px-4 py-3 text-sm text-rose-200"
+              className="rounded-2xl border border-rose-500/30 bg-rose-50 px-4 py-3 text-sm text-rose-700"
             >
               {submitError}
             </div>
@@ -513,58 +513,58 @@ export default function CheckoutForm() {
 
       {/* Cart Summary */}
       <div className="lg:sticky lg:top-28">
-        <div className="rounded-3xl border border-cream/10 bg-surface-darker p-8 shadow-[0_35px_80px_rgba(0,0,0,0.55)]">
-          <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
+        <div className="rounded-3xl border border-ink/10 bg-white/50 p-8 shadow-[0_8px_30px_rgba(44,24,16,0.08)]">
+          <p className="text-xs uppercase tracking-[0.4em] text-gold-dark/70">
             {t('summary.eyebrow')}
           </p>
-          <h2 className="mt-3 font-serif text-2xl">{t('summary.title')}</h2>
+          <h2 className="mt-3 font-serif text-2xl text-ink">{t('summary.title')}</h2>
 
           <div className="mt-6 space-y-5">
             {items.map((item) => (
               <div
                 key={`${item.id}-${item.grind}-${item.weight}`}
-                className="flex items-start justify-between gap-4 border-b border-cream/10 pb-5 last:border-b-0 last:pb-0"
+                className="flex items-start justify-between gap-4 border-b border-ink/10 pb-5 last:border-b-0 last:pb-0"
               >
                 <div className="space-y-1">
-                  <p className="text-sm font-medium text-cream">{item.name}</p>
+                  <p className="text-sm font-medium text-ink">{item.name}</p>
                   {isCoffee(item.collection) && item.grind && item.weight && (
-                    <p className="text-xs text-cream/50">
+                    <p className="text-xs text-inkMuted">
                       {productT(`variants.grind.${item.grind}`)} ·{' '}
                       {productT(`variants.weight.${item.weight}`)}
                     </p>
                   )}
-                  <p className="text-xs text-cream/50">
+                  <p className="text-xs text-inkMuted">
                     {t('summary.quantity')}: {item.quantity}
                   </p>
                 </div>
-                <p className="text-sm text-gold">
+                <p className="text-sm text-gold-dark">
                   {priceFormatter.format(item.price * item.quantity)}
                 </p>
               </div>
             ))}
           </div>
 
-          <div className="mt-6 space-y-3 border-t border-cream/10 pt-6">
-            <div className="flex items-center justify-between text-sm text-cream/70">
+          <div className="mt-6 space-y-3 border-t border-ink/10 pt-6">
+            <div className="flex items-center justify-between text-sm text-inkMuted">
               <span>{t('summary.subtotal')}</span>
-              <span className="text-cream">{priceFormatter.format(subtotal)}</span>
+              <span className="text-ink">{priceFormatter.format(subtotal)}</span>
             </div>
-            <div className="flex items-center justify-between text-sm text-cream/70">
+            <div className="flex items-center justify-between text-sm text-inkMuted">
               <span>{t('summary.shipping')}</span>
               {calculateShipping(subtotal) === 0 ? (
-                <span className="font-medium text-green-400">{t('summary.freeShipping')}</span>
+                <span className="font-medium text-green-700">{t('summary.freeShipping')}</span>
               ) : (
-                <span className="text-cream">{priceFormatter.format(calculateShipping(subtotal))}</span>
+                <span className="text-ink">{priceFormatter.format(calculateShipping(subtotal))}</span>
               )}
             </div>
             {amountUntilFreeShipping(subtotal) > 0 && (
-              <p className="text-xs text-cream/50">
+              <p className="text-xs text-inkMuted">
                 {t('summary.freeShippingRemaining', {
                   amount: priceFormatter.format(amountUntilFreeShipping(subtotal)),
                 })}
               </p>
             )}
-            <div className="flex items-center justify-between border-t border-cream/10 pt-3 text-base font-semibold text-gold">
+            <div className="flex items-center justify-between border-t border-ink/10 pt-3 text-base font-semibold text-gold-dark">
               <span>{t('summary.total')}</span>
               <span>{priceFormatter.format(subtotal + calculateShipping(subtotal))}</span>
             </div>
