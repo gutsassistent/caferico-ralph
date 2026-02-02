@@ -56,7 +56,7 @@ export default async function LocationsPage({ params }: { params: Promise<{ loca
       </section>
 
       {/* Locations grid */}
-      <section className="py-16 sm:py-24">
+      <section className="bg-parchment py-16 text-ink sm:py-24">
         <Container>
           <LocationsGrid />
         </Container>
