@@ -19,6 +19,9 @@ REUSE_WORKTREES=false
 DRAFT_PR=true
 ALLOW_DIRTY=false
 
+# PID carrier to avoid command-substitution subshell issues.
+AGENT_PID=""
+
 usage() {
   cat <<'EOF'
 Usage: ./scripts/parallel-ralph.sh [options]
@@ -169,14 +172,16 @@ start_agent_loop() {
   local cmd
   cmd="(cd \"$path\" && ./scripts/ralph.sh --tool \"$TOOL\" --model \"$MODEL\" --max \"$MAX_ITERATIONS\" --range \"$range\")"
 
+  AGENT_PID=""
+
   if $DRY_RUN; then
-    log "[DRY RUN] $cmd > \"$log_file\" 2>&1 &"
+    log "[DRY RUN] $cmd > \"$log_file\" 2>&1 &" >&2
     return 0
   fi
 
   log "Starting $name ($range) in $path" >&2
   bash -lc "$cmd" >"$log_file" 2>&1 &
-  echo $!  # pid
+  AGENT_PID=$!
 }
 
 push_and_pr() {
@@ -289,9 +294,9 @@ while [ ${#remaining[@]} -gt 0 ] && [ "$attempt" -le "$RETRIES" ]; do
     path=$(agent_path "$name")
     range=$(agent_range "$name")
 
-    pid=$(start_agent_loop "$name" "$branch" "$path" "$range") || true
+    start_agent_loop "$name" "$branch" "$path" "$range" || true
     if ! $DRY_RUN; then
-      PIDS["$name"]="$pid"
+      PIDS["$name"]="$AGENT_PID"
       # Stagger starts slightly to avoid thundering herd on tool auth/rate limits.
       sleep 1
     fi
