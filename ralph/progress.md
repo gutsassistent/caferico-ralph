@@ -50,7 +50,7 @@ Dependencies: none.
 
 Dependencies: none.
 
-- [ ] 37. CookieConsent: add reject option — persist state as `accepted`/`rejected` (`components/CookieConsent.tsx` + i18n)
+- [x] 37. CookieConsent: add reject option — persist state as `accepted`/`rejected` (`components/CookieConsent.tsx` + i18n) — DONE (iteration 1)
 - [ ] 38. Privacy + Terms: switch to light-body layout — `.section-light` with ink text and readable spacing (`app/[locale]/(pages)/privacy/page.tsx`, `app/[locale]/(pages)/terms/page.tsx`)
 
 ### Phase H: Contrast & Final Polish (LAST; solo)
@@ -67,9 +67,9 @@ Dependencies: All split-mode conversion steps.
 
 ## Current
 
-- Working on: Steps 35-36 complete
-- Iteration: 4
-- Last action: Added map-related i18n labels (closeMap, viewOnMap, directions) in all 4 locales + wired aria-label to i18n
+- Working on: Step 37 complete
+- Iteration: 5
+- Last action: Added reject button to CookieConsent with accepted/rejected persistence + i18n reject labels in all 4 locales
 - Last result: Success — typecheck + build pass
 
 ## Architecture Decisions
