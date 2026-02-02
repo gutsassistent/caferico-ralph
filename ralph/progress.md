@@ -43,8 +43,8 @@ Dependencies: none, but best done after the relevant pages are stable to reduce 
 
 Dependencies: none.
 
-- [ ] 35. Locations: add Google Maps embed panel — show a map for the selected location (not 10 iframes) (`components/LocationsGrid.tsx`)
-- [ ] 36. Locations i18n: add map-related labels — e.g. "Bekijk op kaart" / "Directions" in all locales (`messages/nl.json`, `messages/en.json`, `messages/fr.json`, `messages/es.json`)
+- [x] 35. Locations: add Google Maps embed panel — show a map for the selected location (not 10 iframes) (`components/LocationsGrid.tsx`) — DONE (iteration 1)
+- [x] 36. Locations i18n: add map-related labels — e.g. "Bekijk op kaart" / "Directions" in all locales (`messages/nl.json`, `messages/en.json`, `messages/fr.json`, `messages/es.json`) — DONE (iteration 4)
 
 ### Phase G: Cookie Consent + Legal Pages
 
@@ -67,9 +67,9 @@ Dependencies: All split-mode conversion steps.
 
 ## Current
 
-- Working on: All steps 32-34 complete
-- Iteration: 3
-- Last action: Updated SEO OG_IMAGE to /images/DSCF3617.jpg, structured-data LOGO_URL to /logo.png, and localBusiness image to /images/DSCF3617.jpg
+- Working on: Steps 35-36 complete
+- Iteration: 4
+- Last action: Added map-related i18n labels (closeMap, viewOnMap, directions) in all 4 locales + wired aria-label to i18n
 - Last result: Success — typecheck + build pass
 
 ## Architecture Decisions

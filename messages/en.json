@@ -951,6 +951,11 @@
         "description": "Organic shop focusing on provenance and craft."
       }
     },
+    "map": {
+      "closeMap": "Close map",
+      "viewOnMap": "View on map",
+      "directions": "Directions"
+    },
     "cta": {
       "title": "Want to sell Café RICO?",
       "description": "Interested in offering our coffee in your shop or restaurant? Get in touch.",
