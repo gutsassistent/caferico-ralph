@@ -10,29 +10,24 @@
 ✅ Phase A: Foundation (steps 1-3)
 ✅ Phase B: Split-Mode Core Commerce (steps 4-15)
 
----
-
-## Phase B Results
-
-- [x] 4. Home: convert Featured Products section to light — DONE
-- [x] 5. Home: convert Our Story section to light — DONE
-- [x] 6. Home: convert Values section to light — DONE
-- [x] 7. Home curation verification — DONE
-- [x] 8. Shop: make post-hero content light — DONE
-- [x] 9. ShopCatalog: restyle for light background — DONE
-- [x] 10. Product page: make main content light — DONE
-- [x] 11. ProductTabs: add light variant styles — DONE
-- [x] 12. Product gallery: single-image behavior — DONE
-- [x] 13. Cart drawer: light visuals — DONE
-- [x] 14. Cart drawer: ensure image visibility — DONE
-- [x] 15. Header: new cart icon SVG — DONE
 
 ---
 
 ## Current
 
-- Working on: Phase B complete, ready for Phase C
-- Last result: All 4 Phase B agents finished, typecheck + build pass
+
+### Phase C: Split-Mode Across Main Pages (Wave 2: parallel)
+
+Dependencies: Step 1–3.
+Goal: hero/nav can stay dark, but content bodies should default to light where appropriate.
+
+- [ ] 16. Blog listing: convert listing/grid section to light — cards/tags adjusted for ink text (`app/[locale]/(pages)/blog/page.tsx`)
+- [ ] 17. Blog detail: convert article body + related posts to light — adjust tag pills and borders (`app/[locale]/(pages)/blog/[slug]/page.tsx`)
+- [ ] 18. About: start split-mode conversion (part 1) — convert Intro section to light (`app/[locale]/(pages)/about/page.tsx`)
+- [ ] 19. About: continue split-mode conversion (part 2) — convert map/images section to light (`app/[locale]/(pages)/about/page.tsx`)
+- [ ] 20. Subscriptions: convert tiers + FAQ sections to light; keep hero dark (`app/[locale]/(pages)/subscriptions/page.tsx`)
+- [ ] 21. Locations: convert locations grid section to light; update card styling for ink text (`app/[locale]/(pages)/verkooppunten/page.tsx`, `components/LocationsGrid.tsx`)
+
 
 ## Architecture Decisions
 
