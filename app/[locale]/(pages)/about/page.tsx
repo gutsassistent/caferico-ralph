@@ -120,7 +120,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
       {/* Hero with Honduras background image */}
       <section className="relative isolate overflow-hidden">
         <Image
-          src="https://www.caferico.be/wp-content/uploads/2025/05/DSCF3617.jpg"
+          src="/images/DSCF3617.jpg"
           alt="Honduras koffieplantage sfeerbeeld"
           fill
           priority
@@ -164,7 +164,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
             </div>
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
               <Image
-                src="https://www.caferico.be/wp-content/uploads/2018/05/koffieboer-4-Copy-1000×536.jpg"
+                src="/images/koffieboer-4.jpg"
                 alt="Koffieboer in Honduras"
                 fill
                 className="object-cover"
@@ -227,7 +227,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
                       {key === 'tom' ? (
                         <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full">
                           <Image
-                            src="https://www.caferico.be/wp-content/uploads/2018/05/Tom-Janssens.jpg"
+                            src="/images/Tom-Janssens.jpg"
                             alt={t(`farmers.${key}.name`)}
                             fill
                             className="object-cover"
@@ -413,7 +413,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
             <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:gap-8">
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
                 <Image
-                  src="https://www.caferico.be/wp-content/uploads/2018/05/marcala-landschap.png"
+                  src="/images/marcala-landschap.png"
                   alt="Marcala landschap Honduras"
                   fill
                   className="object-cover"
@@ -422,7 +422,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
               </div>
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
                 <Image
-                  src="https://www.caferico.be/wp-content/uploads/2018/05/droogtunnel-klein.png"
+                  src="/images/droogtunnel-klein.png"
                   alt="Droogtunnel voor koffiebonen"
                   fill
                   className="object-cover"

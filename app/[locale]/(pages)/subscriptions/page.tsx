@@ -79,7 +79,7 @@ export default async function SubscriptionsPage({ params }: SubscriptionsPagePro
       />
       <section className="relative isolate overflow-hidden border-b border-cream/10">
         <Image
-          src="https://www.caferico.be/wp-content/uploads/2025/05/DSCF0031-scaled.jpg"
+          src="/images/DSCF0031-scaled.jpg"
           alt=""
           fill
           priority
