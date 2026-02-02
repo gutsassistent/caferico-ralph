@@ -74,7 +74,7 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: st
       </section>
 
       <Reveal>
-        <section className="py-16 sm:py-24">
+        <section className="section-light py-16 sm:py-24">
           <Container>
             <FaqExplorer />
           </Container>

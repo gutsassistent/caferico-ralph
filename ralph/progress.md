@@ -18,27 +18,25 @@
 ### Forms split-mode (parallel agents)
 
 - [x] 22. Contact: convert form section to light and update form inputs for ink text (`app/[locale]/(pages)/contact/page.tsx`, `components/ContactForm.tsx`) — DONE (iteration 1)
-- [ ] 23. FAQ: convert explorer section to light and update component styling (`app/[locale]/(pages)/faq/page.tsx`, `components/FaqExplorer.tsx`)
-- [ ] 24. Login: convert page + LoginForm to light styling (inputs currently assume dark) (`app/[locale]/(pages)/login/page.tsx`, `components/LoginForm.tsx`)
-- [ ] 25. Checkout: convert page + CheckoutForm to light styling (inputs currently assume dark) (`app/[locale]/(pages)/checkout/page.tsx`, `components/CheckoutForm.tsx`)
-- [ ] 26. Checkout return: convert return content section to light (`app/[locale]/(pages)/checkout/return/page.tsx`)
+- [x] 23. FAQ: convert explorer section to light and update component styling (`app/[locale]/(pages)/faq/page.tsx`, `components/FaqExplorer.tsx`) — DONE (iteration 1)
+- [x] 24. Login: convert page + LoginForm to light styling (inputs currently assume dark) (`app/[locale]/(pages)/login/page.tsx`, `components/LoginForm.tsx`) — DONE (iteration 1)
+- [x] 25. Checkout: convert page + CheckoutForm to light styling (inputs currently assume dark) (`app/[locale]/(pages)/checkout/page.tsx`, `components/CheckoutForm.tsx`) — DONE (iteration 1)
+- [x] 26. Checkout return: convert return content section to light (`app/[locale]/(pages)/checkout/return/page.tsx`, `components/CheckoutReturn.tsx`) — DONE (iteration 1)
 
 ### Account address editing (sequential, single agent)
 
-- [ ] 27. Add Woo customer update helper — implement `updateCustomer(customerId, patch)` in `lib/woocommerce-customers.ts`
-- [ ] 28. Add address update route — `PUT app/api/account/address/route.ts` updates billing/shipping for current user
-- [ ] 29. Account i18n: add address edit strings — edit/save/cancel + field labels + success/error in all locales (`messages/nl.json`, `messages/en.json`, `messages/fr.json`, `messages/es.json`)
-- [ ] 30. AccountProfile: editable address UI — add edit/save/cancel flows and call the new API (`components/AccountProfile.tsx`)
-- [ ] 31. Account page: convert profile section wrapper to light (`app/[locale]/(pages)/account/page.tsx`)
+- [x] 27. Add Woo customer update helper — implement `updateCustomer(customerId, patch)` in `lib/woocommerce-customers.ts` — DONE (iteration 1)
+- [x] 28. Add address update route — `PUT app/api/account/address/route.ts` updates billing/shipping for current user — DONE (iteration 1)
+- [x] 29. Account i18n: add address edit strings — edit/save/cancel + field labels + success/error in all locales (`messages/nl.json`, `messages/en.json`, `messages/fr.json`, `messages/es.json`) — DONE (iteration 1)
+- [x] 30. AccountProfile: editable address UI — add edit/save/cancel flows and call the new API (`components/AccountProfile.tsx`) — DONE (iteration 1)
+- [x] 31. Account page: convert profile section wrapper to light (`app/[locale]/(pages)/account/page.tsx`) — DONE (iteration 2)
 
 ---
 
 ## Current
 
-- Working on: Step 22 complete
-- Iteration: 1
-- Last action: Converted contact form section to light mode (section-light, ink text, white bg, lighter shadows)
-- Last result: typecheck + build pass
+- Working on: Phase D complete
+- Last result: All steps 22-31 done
 
 ## Architecture Decisions
 
