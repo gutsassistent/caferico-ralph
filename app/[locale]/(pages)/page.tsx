@@ -84,7 +84,7 @@ export default async function HomePage({ params }: HomePageProps) {
               {(['bio', 'fairTrade', 'customers'] as const).map((badge) => (
                 <span
                   key={badge}
-                  className="inline-flex items-center gap-2 rounded-full border border-cream/20 bg-noir/50 px-4 py-2 text-xs uppercase tracking-[0.2em] text-cream/80 backdrop-blur-sm"
+                  className="pill-roastery gap-2 uppercase tracking-[0.2em] backdrop-blur-sm"
                 >
                   <span className="h-1.5 w-1.5 rounded-full bg-gold" />
                   {t(`trustBadges.${badge}`)}
@@ -137,7 +137,7 @@ export default async function HomePage({ params }: HomePageProps) {
                           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,165,116,0.25),_transparent_60%)]" />
                         </>
                       )}
-                      <div className="absolute bottom-4 left-4 rounded-full border border-cream/20 bg-noir/70 px-3 py-1 text-xs uppercase tracking-[0.3em] text-cream/70">
+                      <div className="pill-roastery absolute bottom-4 left-4 uppercase tracking-[0.3em]">
                         {product.categories[0]?.name ?? product.collection}
                       </div>
                       <div className="absolute inset-0 flex items-center justify-center bg-noir/0 transition-colors duration-300 group-hover:bg-noir/40">
