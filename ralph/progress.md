@@ -60,16 +60,16 @@ Dependencies: All split-mode conversion steps.
 - [x] 39. Contrast audit — ensure ink text on parchment meets >= 4.5:1; fix lingering `text-cream/*` in light sections — DONE (iteration 7)
 - [x] 40. Packaging cue roll-out (part 1) — apply `.pill-roastery` to Home trust badges + featured category pills (`app/[locale]/(pages)/page.tsx`) — DONE (iteration 2)
 - [x] 41. Packaging cue roll-out (part 2) — apply `.pill-roastery` to Blog tags (`app/[locale]/(pages)/blog/page.tsx`, `app/[locale]/(pages)/blog/[slug]/page.tsx`) — DONE (iteration 3)
-- [ ] 42. Packaging cue roll-out (part 3) — apply `.pill-roastery` to Shop + Product category chips where appropriate (`components/ShopCatalog.tsx`, `app/[locale]/(pages)/shop/[slug]/page.tsx`)
+- [x] 42. Packaging cue roll-out (part 3) — apply `.pill-roastery` to Shop + Product category chips where appropriate (`components/ShopCatalog.tsx`, `app/[locale]/(pages)/shop/[slug]/page.tsx`) — DONE (iteration 4)
 - [ ] 43. Mobile pass (375px) — verify split-mode pages and cart drawer; patch layout issues only
 
 ---
 
 ## Current
 
-- Working on: Step 41 complete
-- Iteration: 9
-- Last action: Applied .pill-roastery to Blog tags on listing page and detail page
+- Working on: Step 42 complete
+- Iteration: 10
+- Last action: Applied .pill-roastery to Shop catalog product card category chip and Product detail related-products category chip
 - Last result: Success — typecheck + build pass
 
 ## Architecture Decisions
