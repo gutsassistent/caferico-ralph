@@ -124,7 +124,7 @@ export default function ContactForm() {
   return (
     <div className="rounded-3xl border border-ink/10 bg-white p-8 shadow-[0_4px_24px_rgba(0,0,0,0.08)]">
       <div className="space-y-3">
-        <p className="text-xs uppercase tracking-[0.4em] text-gold/70">{t('form.eyebrow')}</p>
+        <p className="text-xs uppercase tracking-[0.4em] text-inkMuted">{t('form.eyebrow')}</p>
         <h2 className="font-serif text-3xl text-ink">{t('form.title')}</h2>
         <p className="text-sm text-ink/70 sm:text-base">{t('form.description')}</p>
       </div>
@@ -136,7 +136,7 @@ export default function ContactForm() {
             aria-live="polite"
             className="rounded-2xl border border-gold/30 bg-gold/10 p-4"
           >
-            <p className="text-xs uppercase tracking-[0.3em] text-gold/80">
+            <p className="text-xs uppercase tracking-[0.3em] text-inkMuted">
               {t('form.successTitle')}
             </p>
             <p className="mt-2 text-sm text-ink/70">{t('form.successMessage')}</p>

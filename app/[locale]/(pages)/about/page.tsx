@@ -154,7 +154,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
         <section className="section-light py-16 sm:py-24">
           <Container className="grid items-center gap-10 lg:grid-cols-2">
             <div className="space-y-5">
-              <p className="text-xs uppercase tracking-[0.4em] text-gold-dark/70">
+              <p className="text-xs uppercase tracking-[0.4em] text-inkMuted">
                 {t('intro.eyebrow')}
               </p>
               <h2 className="font-serif text-3xl text-ink sm:text-4xl">{t('intro.title')}</h2>

@@ -168,7 +168,7 @@ export default function LocationsGrid() {
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gold/10 text-gold">
                     {getIcon(type)}
                   </div>
-                  <span className="text-xs font-medium uppercase tracking-wider text-gold/70">
+                  <span className="text-xs font-medium uppercase tracking-wider text-inkMuted">
                     {type}
                   </span>
                 </div>

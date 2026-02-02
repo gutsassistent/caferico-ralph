@@ -241,7 +241,7 @@ export default function CartDrawer() {
                 </p>
               )}
               {shipping === 0 && (
-                <p className="text-xs text-gold-dark/70">
+                <p className="text-xs text-inkMuted">
                   {t('freeShippingFrom', { amount: priceFormatter.format(FREE_SHIPPING_THRESHOLD) })}
                 </p>
               )}

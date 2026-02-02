@@ -185,7 +185,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <Reveal delay={120}>
             <div className="space-y-6">
               <div className="space-y-3">
-                <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
+                <p className="text-xs uppercase tracking-[0.4em] text-inkMuted">
                   {product.categories[0]?.name ?? product.collection}
                 </p>
                 <h1 className="font-serif text-4xl leading-tight sm:text-5xl">{product.name}</h1>
@@ -242,7 +242,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <Container className="space-y-10">
               <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
                 <div className="max-w-2xl space-y-3">
-                  <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
+                  <p className="text-xs uppercase tracking-[0.4em] text-inkMuted">
                     {t('related.eyebrow')}
                   </p>
                   <h2 className="font-serif text-3xl sm:text-4xl">

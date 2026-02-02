@@ -220,7 +220,7 @@ export default function CheckoutForm() {
       {/* Form */}
       <div className="rounded-3xl border border-ink/10 bg-white/50 p-8 shadow-[0_8px_30px_rgba(44,24,16,0.08)]">
         <div className="space-y-3">
-          <p className="text-xs uppercase tracking-[0.4em] text-gold-dark/70">
+          <p className="text-xs uppercase tracking-[0.4em] text-inkMuted">
             {t('form.eyebrow')}
           </p>
           <h2 className="font-serif text-3xl text-ink">{t('form.title')}</h2>
@@ -514,7 +514,7 @@ export default function CheckoutForm() {
       {/* Cart Summary */}
       <div className="lg:sticky lg:top-28">
         <div className="rounded-3xl border border-ink/10 bg-white/50 p-8 shadow-[0_8px_30px_rgba(44,24,16,0.08)]">
-          <p className="text-xs uppercase tracking-[0.4em] text-gold-dark/70">
+          <p className="text-xs uppercase tracking-[0.4em] text-inkMuted">
             {t('summary.eyebrow')}
           </p>
           <h2 className="mt-3 font-serif text-2xl text-ink">{t('summary.title')}</h2>

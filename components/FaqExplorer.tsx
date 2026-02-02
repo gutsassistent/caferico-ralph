@@ -160,7 +160,7 @@ export default function FaqExplorer() {
       <div className="space-y-6">
         <Reveal>
           <div className="rounded-3xl border border-ink/10 bg-white/60 p-6 shadow-[0_30px_70px_rgba(0,0,0,0.06)]">
-            <p className="text-xs uppercase tracking-[0.3em] text-gold-dark/70">{t('search.label')}</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-inkMuted">{t('search.label')}</p>
             <label htmlFor="faq-search" className="sr-only">
               {t('search.label')}
             </label>
@@ -180,7 +180,7 @@ export default function FaqExplorer() {
 
         <Reveal delay={120}>
           <div className="rounded-3xl border border-ink/10 bg-white/60 p-6">
-            <p className="text-xs uppercase tracking-[0.3em] text-gold-dark/70">
+            <p className="text-xs uppercase tracking-[0.3em] text-inkMuted">
               {t('categories.label')}
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
@@ -209,7 +209,7 @@ export default function FaqExplorer() {
 
         <Reveal delay={240}>
           <div className="rounded-3xl border border-ink/10 bg-white/60 p-6">
-            <p className="text-xs uppercase tracking-[0.3em] text-gold-dark/70">
+            <p className="text-xs uppercase tracking-[0.3em] text-inkMuted">
               {t('support.eyebrow')}
             </p>
             <h3 className="mt-3 font-serif text-2xl text-ink">{t('support.title')}</h3>
@@ -252,7 +252,7 @@ export default function FaqExplorer() {
 
         {filteredItems.length === 0 ? (
           <div className="rounded-3xl border border-ink/10 bg-white/60 p-10 text-center">
-            <p className="text-xs uppercase tracking-[0.3em] text-gold-dark/70">{t('empty.title')}</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-inkMuted">{t('empty.title')}</p>
             <p className="mt-3 text-sm text-ink/70">{t('empty.description')}</p>
             <button
               type="button"

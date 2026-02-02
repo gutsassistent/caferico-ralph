@@ -27,8 +27,17 @@ export default async function HomePage({ params }: HomePageProps) {
   const t = await getTranslations('Home');
 
   // Single API call — fetch first 4 products (avoids double call when none are featured)
-  const wcProducts = await getProducts({ per_page: '4' });
-  const featuredProducts = wcProducts.map(mapWooProduct);
+  let featuredProducts: ReturnType<typeof mapWooProduct>[] = [];
+  try {
+    const wcProducts = await getProducts({ per_page: '4' });
+    featuredProducts = wcProducts.map(mapWooProduct);
+  } catch {
+    // API unavailable — fall through to mock data
+  }
+  if (featuredProducts.length === 0) {
+    const mockProductData = (await import('@/data/mock-products.json')).default;
+    featuredProducts = (mockProductData as any[]).slice(0, 4) as ReturnType<typeof mapWooProduct>[];
+  }
 
   const priceFormatter = new Intl.NumberFormat(locale || 'nl', {
     style: 'currency',
@@ -90,7 +99,7 @@ export default async function HomePage({ params }: HomePageProps) {
           <Container className="space-y-10">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-xl space-y-3">
-                <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
+                <p className="text-xs uppercase tracking-[0.4em] text-inkMuted">
                   {t('featured.eyebrow')}
                 </p>
                 <h2 className="font-serif text-3xl sm:text-4xl">{t('featured.title')}</h2>
@@ -224,7 +233,7 @@ export default async function HomePage({ params }: HomePageProps) {
           <Container>
             <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
               <div className="order-2 lg:order-1 space-y-6">
-                <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
+                <p className="text-xs uppercase tracking-[0.4em] text-inkMuted">
                   {t('ourStory.eyebrow')}
                 </p>
                 <h2 className="font-serif text-3xl leading-tight sm:text-4xl md:text-5xl">
@@ -310,7 +319,7 @@ export default async function HomePage({ params }: HomePageProps) {
         <section className="section-light py-16 sm:py-24">
           <Container className="space-y-10">
             <div className="max-w-2xl space-y-3">
-              <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
+              <p className="text-xs uppercase tracking-[0.4em] text-inkMuted">
                 {t('values.eyebrow')}
               </p>
               <h2 className="font-serif text-3xl sm:text-4xl">{t('values.title')}</h2>
