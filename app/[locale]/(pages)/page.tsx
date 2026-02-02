@@ -36,6 +36,7 @@ export default async function HomePage({ params }: HomePageProps) {
   }
   if (featuredProducts.length === 0) {
     const mockProductData = (await import('@/data/mock-products.json')).default;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     featuredProducts = (mockProductData as any[]).slice(0, 4) as ReturnType<typeof mapWooProduct>[];
   }
 

@@ -57,7 +57,7 @@ Dependencies: none.
 
 Dependencies: All split-mode conversion steps.
 
-- [ ] 39. Contrast audit — ensure ink text on parchment meets >= 4.5:1; fix lingering `text-cream/*` in light sections
+- [x] 39. Contrast audit — ensure ink text on parchment meets >= 4.5:1; fix lingering `text-cream/*` in light sections — DONE (iteration 7)
 - [ ] 40. Packaging cue roll-out (part 1) — apply `.pill-roastery` to Home trust badges + featured category pills (`app/[locale]/(pages)/page.tsx`)
 - [ ] 41. Packaging cue roll-out (part 2) — apply `.pill-roastery` to Blog tags (`app/[locale]/(pages)/blog/page.tsx`, `app/[locale]/(pages)/blog/[slug]/page.tsx`)
 - [ ] 42. Packaging cue roll-out (part 3) — apply `.pill-roastery` to Shop + Product category chips where appropriate (`components/ShopCatalog.tsx`, `app/[locale]/(pages)/shop/[slug]/page.tsx`)
@@ -67,9 +67,9 @@ Dependencies: All split-mode conversion steps.
 
 ## Current
 
-- Working on: Steps 37-38 complete
-- Iteration: 6
-- Last action: Switched Privacy + Terms pages to section-light layout with ink text colors
+- Working on: Step 39 complete
+- Iteration: 7
+- Last action: Contrast audit — replaced text-gold/70 and text-gold-dark/70 with text-inkMuted in all light sections (20 instances across 11 files)
 - Last result: Success — typecheck + build pass
 
 ## Architecture Decisions

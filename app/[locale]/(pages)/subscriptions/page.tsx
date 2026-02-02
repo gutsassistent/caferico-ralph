@@ -150,7 +150,7 @@ export default async function SubscriptionsPage({ params }: SubscriptionsPagePro
         <section id="tiers" className="section-light py-16 sm:py-24">
           <Container className="space-y-16">
             <div className="max-w-2xl space-y-3">
-              <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
+              <p className="text-xs uppercase tracking-[0.4em] text-inkMuted">
                 {t('tiers.eyebrow')}
               </p>
               <h2 className="font-serif text-3xl sm:text-4xl">{t('tiers.title')}</h2>
@@ -161,7 +161,7 @@ export default async function SubscriptionsPage({ params }: SubscriptionsPagePro
               <div key={group.id} className="space-y-8">
                 <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
                   <div className="max-w-2xl space-y-3">
-                    <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
+                    <p className="text-xs uppercase tracking-[0.4em] text-inkMuted">
                       {t(`tiers.${group.id}.eyebrow`)}
                     </p>
                     <h3 className="font-serif text-2xl sm:text-3xl">

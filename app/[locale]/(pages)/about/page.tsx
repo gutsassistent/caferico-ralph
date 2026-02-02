@@ -182,7 +182,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
           <div className="pointer-events-none absolute inset-0 bg-coffee-grain opacity-20" />
           <Container className="relative space-y-10">
             <div className="max-w-2xl space-y-3">
-              <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
+              <p className="text-xs uppercase tracking-[0.4em] text-inkMuted">
                 {t('pillars.eyebrow')}
               </p>
               <h2 className="font-serif text-3xl sm:text-4xl">{t('pillars.title')}</h2>
