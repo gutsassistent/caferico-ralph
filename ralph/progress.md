@@ -18,7 +18,7 @@
 ### Forms split-mode (parallel agents)
 
 - [ ] 22. Contact: convert form section to light and update form inputs for ink text (`app/[locale]/(pages)/contact/page.tsx`, `components/ContactForm.tsx`)
-- [ ] 23. FAQ: convert explorer section to light and update component styling (`app/[locale]/(pages)/faq/page.tsx`, `components/FaqExplorer.tsx`)
+- [x] 23. FAQ: convert explorer section to light and update component styling (`app/[locale]/(pages)/faq/page.tsx`, `components/FaqExplorer.tsx`) — DONE (iteration 1)
 - [ ] 24. Login: convert page + LoginForm to light styling (inputs currently assume dark) (`app/[locale]/(pages)/login/page.tsx`, `components/LoginForm.tsx`)
 - [ ] 25. Checkout: convert page + CheckoutForm to light styling (inputs currently assume dark) (`app/[locale]/(pages)/checkout/page.tsx`, `components/CheckoutForm.tsx`)
 - [ ] 26. Checkout return: convert return content section to light (`app/[locale]/(pages)/checkout/return/page.tsx`)
@@ -35,8 +35,10 @@
 
 ## Current
 
-- Working on: Phase D starting
-- Last result: Phase C complete
+- Working on: Step 23 (DONE)
+- Iteration: 1
+- Last action: Converted FAQ explorer section to light mode — added section-light to wrapper, updated FaqExplorer colors from dark (cream/surface-darker) to light (ink/parchment/white)
+- Last result: typecheck + build pass
 
 ## Architecture Decisions
 

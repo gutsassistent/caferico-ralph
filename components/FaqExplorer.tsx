@@ -63,24 +63,24 @@ function AccordionItem({ item, categoryLabel, isOpen, onToggle, index }: Accordi
 
   return (
     <Reveal delay={index * 80}>
-      <div className="rounded-2xl border border-cream/10 bg-surface-darker shadow-[0_18px_50px_rgba(0,0,0,0.35)]">
+      <div className="rounded-2xl border border-ink/10 bg-white/60 shadow-[0_18px_50px_rgba(0,0,0,0.06)]">
         <button
           type="button"
-          className="flex w-full items-start justify-between gap-6 px-6 py-5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-darker"
+          className="flex w-full items-start justify-between gap-6 px-6 py-5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-parchment"
           aria-expanded={isOpen}
           aria-controls={contentId}
           id={labelId}
           onClick={onToggle}
         >
           <div className="space-y-2">
-            <span className="text-xs uppercase tracking-[0.3em] text-cream/60">
+            <span className="text-xs uppercase tracking-[0.3em] text-inkMuted">
               {categoryLabel}
             </span>
-            <h3 className="font-serif text-lg text-cream">{item.question}</h3>
+            <h3 className="font-serif text-lg text-ink">{item.question}</h3>
           </div>
           <span
-            className={`mt-2 flex h-8 w-8 items-center justify-center rounded-full border border-cream/20 text-xs uppercase tracking-[0.2em] text-cream/70 transition ${
-              isOpen ? 'rotate-45 border-gold/60 text-gold' : ''
+            className={`mt-2 flex h-8 w-8 items-center justify-center rounded-full border border-ink/15 text-xs uppercase tracking-[0.2em] text-ink/70 transition ${
+              isOpen ? 'rotate-45 border-gold/60 text-gold-dark' : ''
             }`}
             aria-hidden="true"
           >
@@ -96,7 +96,7 @@ function AccordionItem({ item, categoryLabel, isOpen, onToggle, index }: Accordi
             id={contentId}
             role="region"
             aria-labelledby={labelId}
-            className={`px-6 pb-6 text-sm text-cream/70 transition-opacity duration-300 ${
+            className={`px-6 pb-6 text-sm text-ink/70 transition-opacity duration-300 ${
               isOpen ? 'opacity-100' : 'opacity-0'
             }`}
           >
@@ -159,8 +159,8 @@ export default function FaqExplorer() {
     <div className="grid gap-10 lg:grid-cols-[0.35fr_0.65fr]">
       <div className="space-y-6">
         <Reveal>
-          <div className="rounded-3xl border border-cream/10 bg-noir/80 p-6 shadow-[0_30px_70px_rgba(0,0,0,0.4)]">
-            <p className="text-xs uppercase tracking-[0.3em] text-gold/70">{t('search.label')}</p>
+          <div className="rounded-3xl border border-ink/10 bg-white/60 p-6 shadow-[0_30px_70px_rgba(0,0,0,0.06)]">
+            <p className="text-xs uppercase tracking-[0.3em] text-gold-dark/70">{t('search.label')}</p>
             <label htmlFor="faq-search" className="sr-only">
               {t('search.label')}
             </label>
@@ -171,16 +171,16 @@ export default function FaqExplorer() {
                 value={search}
                 onChange={(event) => setSearch(event.target.value)}
                 placeholder={t('search.placeholder')}
-                className="w-full rounded-full border border-cream/20 bg-transparent px-4 py-3 text-sm text-cream placeholder:text-cream/50 focus:border-gold/70 focus:outline-none"
+                className="w-full rounded-full border border-ink/15 bg-transparent px-4 py-3 text-sm text-ink placeholder:text-ink/40 focus:border-gold/70 focus:outline-none"
               />
             </div>
-            <p className="mt-3 text-xs text-cream/60">{t('search.hint')}</p>
+            <p className="mt-3 text-xs text-inkMuted">{t('search.hint')}</p>
           </div>
         </Reveal>
 
         <Reveal delay={120}>
-          <div className="rounded-3xl border border-cream/10 bg-surface-darker p-6">
-            <p className="text-xs uppercase tracking-[0.3em] text-gold/70">
+          <div className="rounded-3xl border border-ink/10 bg-white/60 p-6">
+            <p className="text-xs uppercase tracking-[0.3em] text-gold-dark/70">
               {t('categories.label')}
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
@@ -195,8 +195,8 @@ export default function FaqExplorer() {
                     onClick={() => setActiveCategory(key)}
                     className={`rounded-full border px-4 py-2 text-xs uppercase tracking-[0.3em] transition ${
                       isActive
-                        ? 'border-gold/60 bg-gold/10 text-gold'
-                        : 'border-cream/20 text-cream/70 hover:border-gold/50 hover:text-gold'
+                        ? 'border-gold/60 bg-gold/10 text-gold-dark'
+                        : 'border-ink/15 text-ink/70 hover:border-gold/50 hover:text-gold-dark'
                     }`}
                   >
                     {t(`categories.${key}`)}
@@ -208,20 +208,20 @@ export default function FaqExplorer() {
         </Reveal>
 
         <Reveal delay={240}>
-          <div className="rounded-3xl border border-cream/10 bg-noir/80 p-6">
-            <p className="text-xs uppercase tracking-[0.3em] text-gold/70">
+          <div className="rounded-3xl border border-ink/10 bg-white/60 p-6">
+            <p className="text-xs uppercase tracking-[0.3em] text-gold-dark/70">
               {t('support.eyebrow')}
             </p>
-            <h3 className="mt-3 font-serif text-2xl">{t('support.title')}</h3>
-            <p className="mt-2 text-sm text-cream/70">{t('support.description')}</p>
+            <h3 className="mt-3 font-serif text-2xl text-ink">{t('support.title')}</h3>
+            <p className="mt-2 text-sm text-ink/70">{t('support.description')}</p>
             <div className="mt-5 flex flex-wrap items-center gap-4">
               <Link
                 href="/contact"
-                className="rounded-full border border-gold/60 px-5 py-2 text-xs uppercase tracking-[0.3em] text-gold transition hover:bg-gold hover:text-noir"
+                className="rounded-full border border-gold/60 px-5 py-2 text-xs uppercase tracking-[0.3em] text-gold-dark transition hover:bg-gold hover:text-parchment"
               >
                 {t('support.cta')}
               </Link>
-              <span className="text-xs uppercase tracking-[0.3em] text-cream/50">
+              <span className="text-xs uppercase tracking-[0.3em] text-ink/50">
                 {t('support.note')}
               </span>
             </div>
@@ -232,7 +232,7 @@ export default function FaqExplorer() {
       <div className="space-y-6">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-cream/50">
+            <p className="text-xs uppercase tracking-[0.3em] text-ink/50">
               {t('results.subtitle')}
             </p>
             <p className="font-serif text-2xl">
@@ -243,7 +243,7 @@ export default function FaqExplorer() {
             <button
               type="button"
               onClick={handleReset}
-              className="rounded-full border border-cream/20 px-4 py-2 text-xs uppercase tracking-[0.3em] text-cream/70 transition hover:border-gold/60 hover:text-gold"
+              className="rounded-full border border-ink/15 px-4 py-2 text-xs uppercase tracking-[0.3em] text-ink/70 transition hover:border-gold/60 hover:text-gold-dark"
             >
               {t('empty.cta')}
             </button>
@@ -251,13 +251,13 @@ export default function FaqExplorer() {
         </div>
 
         {filteredItems.length === 0 ? (
-          <div className="rounded-3xl border border-cream/10 bg-surface-darker p-10 text-center">
-            <p className="text-xs uppercase tracking-[0.3em] text-gold/70">{t('empty.title')}</p>
-            <p className="mt-3 text-sm text-cream/70">{t('empty.description')}</p>
+          <div className="rounded-3xl border border-ink/10 bg-white/60 p-10 text-center">
+            <p className="text-xs uppercase tracking-[0.3em] text-gold-dark/70">{t('empty.title')}</p>
+            <p className="mt-3 text-sm text-ink/70">{t('empty.description')}</p>
             <button
               type="button"
               onClick={handleReset}
-              className="mt-6 rounded-full border border-gold/60 px-5 py-2 text-xs uppercase tracking-[0.3em] text-gold transition hover:bg-gold hover:text-noir"
+              className="mt-6 rounded-full border border-gold/60 px-5 py-2 text-xs uppercase tracking-[0.3em] text-gold-dark transition hover:bg-gold hover:text-parchment"
             >
               {t('empty.cta')}
             </button>
