@@ -80,7 +80,7 @@ export default function LocationsGrid() {
           className={`rounded-full px-5 py-2 text-sm font-medium transition-colors ${
             activeRegion === 'all'
               ? 'bg-gold text-noir'
-              : 'border border-cream/20 text-cream/70 hover:border-gold/40 hover:text-cream'
+              : 'border border-ink/20 text-inkMuted hover:border-gold/40 hover:text-ink'
           }`}
         >
           {t('filter.all')}
@@ -92,7 +92,7 @@ export default function LocationsGrid() {
             className={`rounded-full px-5 py-2 text-sm font-medium transition-colors ${
               activeRegion === r
                 ? 'bg-gold text-noir'
-                : 'border border-cream/20 text-cream/70 hover:border-gold/40 hover:text-cream'
+                : 'border border-ink/20 text-inkMuted hover:border-gold/40 hover:text-ink'
             }`}
           >
             {t(`filter.${r}`)}
@@ -110,7 +110,7 @@ export default function LocationsGrid() {
 
           return (
             <Reveal key={key} delay={index * 80}>
-              <article className="group flex h-full flex-col rounded-2xl border border-cream/10 bg-cream/[0.03] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-gold/30 hover:shadow-lg hover:shadow-gold/5">
+              <article className="group flex h-full flex-col rounded-2xl border border-ink/10 bg-white/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-gold/30 hover:shadow-lg hover:shadow-ink/5">
                 {/* Icon + type */}
                 <div className="mb-4 flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gold/10 text-gold">
@@ -122,10 +122,10 @@ export default function LocationsGrid() {
                 </div>
 
                 {/* Name */}
-                <h3 className="mb-1 font-serif text-xl text-cream">{name}</h3>
+                <h3 className="mb-1 font-serif text-xl text-ink">{name}</h3>
 
                 {/* Address */}
-                <p className="mb-3 flex items-center gap-1.5 text-sm text-cream/50">
+                <p className="mb-3 flex items-center gap-1.5 text-sm text-inkMuted">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-4 w-4 shrink-0">
                     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Z" />
                     <circle cx="12" cy="9" r="2.5" />
@@ -134,7 +134,7 @@ export default function LocationsGrid() {
                 </p>
 
                 {/* Description */}
-                <p className="mt-auto text-sm leading-relaxed text-cream/60">
+                <p className="mt-auto text-sm leading-relaxed text-inkMuted">
                   {description}
                 </p>
               </article>
@@ -145,11 +145,11 @@ export default function LocationsGrid() {
 
       {/* CTA */}
       <Reveal>
-        <div className="mt-20 rounded-2xl border border-gold/20 bg-gold/5 p-8 text-center sm:p-12">
-          <h2 className="mb-3 font-serif text-2xl text-cream sm:text-3xl">
+        <div className="mt-20 rounded-2xl border border-ink/10 bg-white/60 p-8 text-center sm:p-12">
+          <h2 className="mb-3 font-serif text-2xl text-ink sm:text-3xl">
             {t('cta.title')}
           </h2>
-          <p className="mx-auto mb-6 max-w-lg text-cream/60">
+          <p className="mx-auto mb-6 max-w-lg text-inkMuted">
             {t('cta.description')}
           </p>
           <Link
