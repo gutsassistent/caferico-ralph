@@ -86,7 +86,7 @@ export default async function HomePage({ params }: HomePageProps) {
       </HeroParallax>
 
       <Reveal>
-        <section className="py-16 sm:py-24">
+        <section className="section-light py-16 sm:py-24">
           <Container className="space-y-10">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-xl space-y-3">
@@ -94,11 +94,11 @@ export default async function HomePage({ params }: HomePageProps) {
                   {t('featured.eyebrow')}
                 </p>
                 <h2 className="font-serif text-3xl sm:text-4xl">{t('featured.title')}</h2>
-                <p className="text-sm text-cream/70 sm:text-base">{t('featured.description')}</p>
+                <p className="text-sm text-ink/70 sm:text-base">{t('featured.description')}</p>
               </div>
               <Link
                 href="/shop"
-                className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-gold transition hover:text-cream"
+                className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-gold transition hover:text-ink"
               >
                 {t('featured.cta')}
                 <span aria-hidden="true">&rarr;</span>
@@ -110,7 +110,7 @@ export default async function HomePage({ params }: HomePageProps) {
                 <Reveal key={product.id} delay={index * 120} className="h-full">
                   <Link
                     href={`/shop/${product.slug}`}
-                    className="group flex h-full flex-col rounded-2xl border border-cream/10 bg-surface-darker p-4 transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_30px_60px_rgba(0,0,0,0.4)]"
+                    className="group flex h-full flex-col rounded-2xl border border-ink/10 bg-white/60 p-4 transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_30px_60px_rgba(0,0,0,0.1)]"
                   >
                     <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-gradient-to-br from-espresso via-surface-mid to-noir">
                       {product.images?.[0]?.src ? (
@@ -137,13 +137,13 @@ export default async function HomePage({ params }: HomePageProps) {
                       </div>
                     </div>
                     <div className="mt-4 flex-1">
-                      <h3 className="font-serif text-lg text-cream">{product.name}</h3>
-                      <p className="mt-2 text-sm text-cream/60">
+                      <h3 className="font-serif text-lg text-ink">{product.name}</h3>
+                      <p className="mt-2 text-sm text-ink/60">
                         {product.notes || t('featured.detail')}
                       </p>
                     </div>
                     <div className="mt-4 flex items-center justify-between text-sm">
-                      <span className="text-cream/60">{t('featured.priceLabel')}</span>
+                      <span className="text-ink/60">{t('featured.priceLabel')}</span>
                       <span className="text-gold">{priceFormatter.format(product.price)}</span>
                     </div>
                   </Link>
@@ -220,7 +220,7 @@ export default async function HomePage({ params }: HomePageProps) {
       </Reveal>
 
       <Reveal>
-        <section className="py-16 sm:py-24">
+        <section className="section-light py-16 sm:py-24">
           <Container>
             <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
               <div className="order-2 lg:order-1 space-y-6">
@@ -230,12 +230,12 @@ export default async function HomePage({ params }: HomePageProps) {
                 <h2 className="font-serif text-3xl leading-tight sm:text-4xl md:text-5xl">
                   {t('ourStory.title')}
                 </h2>
-                <p className="text-sm leading-relaxed text-cream/70 sm:text-base">
+                <p className="text-sm leading-relaxed text-ink/70 sm:text-base">
                   {t('ourStory.description')}
                 </p>
                 <Link
                   href="/about"
-                  className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-gold transition hover:text-cream"
+                  className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-gold transition hover:text-ink"
                 >
                   {t('ourStory.cta')}
                   <span aria-hidden="true">&rarr;</span>
@@ -307,26 +307,26 @@ export default async function HomePage({ params }: HomePageProps) {
       </Reveal>
 
       <Reveal>
-        <section className="py-16 sm:py-24">
+        <section className="section-light py-16 sm:py-24">
           <Container className="space-y-10">
             <div className="max-w-2xl space-y-3">
               <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
                 {t('values.eyebrow')}
               </p>
               <h2 className="font-serif text-3xl sm:text-4xl">{t('values.title')}</h2>
-              <p className="text-sm text-cream/70 sm:text-base">{t('values.description')}</p>
+              <p className="text-sm text-ink/70 sm:text-base">{t('values.description')}</p>
             </div>
             <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 lg:gap-8">
               {['fresh', 'fair', 'belgian', 'craft'].map((key, index) => (
                 <Reveal key={key} delay={index * 100} className="h-full">
-                  <div className="flex h-full flex-col rounded-2xl border border-cream/10 bg-surface-darker p-6">
+                  <div className="flex h-full flex-col rounded-2xl border border-ink/10 bg-white/60 p-6">
                     <div className="flex h-12 w-12 items-center justify-center rounded-full border border-gold/40 text-xs uppercase tracking-[0.3em] text-gold">
                       {index + 1}
                     </div>
-                    <h3 className="mt-4 font-serif text-lg text-cream">
+                    <h3 className="mt-4 font-serif text-lg text-ink">
                       {t(`values.items.${key}.title`)}
                     </h3>
-                    <p className="mt-2 text-sm text-cream/70">
+                    <p className="mt-2 text-sm text-ink/70">
                       {t(`values.items.${key}.description`)}
                     </p>
                   </div>
