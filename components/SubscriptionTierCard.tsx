@@ -35,14 +35,14 @@ export default function SubscriptionTierCard({
 
   const cardClassName = `group relative flex h-full flex-col overflow-hidden rounded-3xl border transition duration-300 ${
     tier.featured
-      ? 'border-gold/60 bg-gradient-to-br from-espresso/95 to-noir/[0.92] shadow-[0_35px_70px_rgba(0,0,0,0.5)]'
-      : 'border-cream/10 bg-surface-darker hover:-translate-y-1 hover:border-gold/40 hover:shadow-[0_25px_60px_rgba(0,0,0,0.35)]'
+      ? 'border-gold/60 bg-gradient-to-br from-espresso/95 to-noir/[0.92] text-cream shadow-[0_35px_70px_rgba(0,0,0,0.5)]'
+      : 'border-ink/10 bg-white hover:-translate-y-1 hover:border-gold/40 hover:shadow-[0_25px_60px_rgba(0,0,0,0.1)]'
   }`;
 
   return (
     <Reveal delay={index * 120} className="h-full">
       <div className={cardClassName}>
-        <div className="pointer-events-none absolute inset-0 bg-coffee-grain opacity-30" />
+        {tier.featured && <div className="pointer-events-none absolute inset-0 bg-coffee-grain opacity-30" />}
         {tier.featured ? (
           <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-gold/20 blur-2xl" />
         ) : null}
@@ -53,29 +53,29 @@ export default function SubscriptionTierCard({
             </span>
           ) : null}
           <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-cream/60">
+            <p className={`text-xs uppercase tracking-[0.3em] ${tier.featured ? 'text-cream/60' : 'text-ink/50'}`}>
               {t(`tiers.${groupId}.${tier.key}.size`)}
             </p>
-            <h4 className="mt-3 font-serif text-2xl text-cream">
+            <h4 className={`mt-3 font-serif text-2xl ${tier.featured ? 'text-cream' : 'text-ink'}`}>
               {t(`tiers.${groupId}.${tier.key}.title`)}
             </h4>
-            <p className="mt-2 text-sm text-cream/70">
+            <p className={`mt-2 text-sm ${tier.featured ? 'text-cream/70' : 'text-ink/70'}`}>
               {t(`tiers.${groupId}.${tier.key}.description`)}
             </p>
           </div>
           <div className="mt-auto space-y-4">
             <div>
-              <p className="font-serif text-3xl text-cream">
+              <p className={`font-serif text-3xl ${tier.featured ? 'text-cream' : 'text-ink'}`}>
                 {t('tiers.priceLabel', { price: priceFormatted })}
               </p>
-              <p className="mt-1 flex items-center gap-2 text-xs text-cream/50">
+              <p className={`mt-1 flex items-center gap-2 text-xs ${tier.featured ? 'text-cream/50' : 'text-ink/40'}`}>
                 <span className="line-through">€{tier.originalPrice.toFixed(2)}</span>
                 <span className="rounded-full bg-gold/20 px-2 py-0.5 text-xs font-semibold uppercase tracking-wider text-gold">
                   -{tier.discount}%
                 </span>
               </p>
             </div>
-            <ul className="space-y-2 text-sm text-cream/70">
+            <ul className={`space-y-2 text-sm ${tier.featured ? 'text-cream/70' : 'text-ink/70'}`}>
               {benefitKeys.map((benefitKey) => (
                 <li key={benefitKey} className="flex items-start gap-3">
                   <span className="mt-2 h-1.5 w-1.5 rounded-full bg-gold/70" aria-hidden="true" />
@@ -89,7 +89,7 @@ export default function SubscriptionTierCard({
               className={`w-full rounded-full border px-5 py-3 text-xs uppercase tracking-[0.3em] transition ${
                 tier.featured
                   ? 'border-gold/60 bg-gold/20 text-gold hover:bg-gold hover:text-noir'
-                  : 'border-cream/20 text-cream/80 hover:border-gold/60 hover:text-gold'
+                  : 'border-ink/20 text-ink/80 hover:border-gold/60 hover:text-gold'
               }`}
             >
               {t('tiers.cta')}

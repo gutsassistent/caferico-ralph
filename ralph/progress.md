@@ -25,7 +25,7 @@ Goal: hero/nav can stay dark, but content bodies should default to light where a
 - [ ] 17. Blog detail: convert article body + related posts to light — adjust tag pills and borders (`app/[locale]/(pages)/blog/[slug]/page.tsx`)
 - [ ] 18. About: start split-mode conversion (part 1) — convert Intro section to light (`app/[locale]/(pages)/about/page.tsx`)
 - [ ] 19. About: continue split-mode conversion (part 2) — convert map/images section to light (`app/[locale]/(pages)/about/page.tsx`)
-- [ ] 20. Subscriptions: convert tiers + FAQ sections to light; keep hero dark (`app/[locale]/(pages)/subscriptions/page.tsx`)
+- [x] 20. Subscriptions: convert tiers + FAQ sections to light; keep hero dark (`app/[locale]/(pages)/subscriptions/page.tsx`) — DONE (iteration 1)
 - [ ] 21. Locations: convert locations grid section to light; update card styling for ink text (`app/[locale]/(pages)/verkooppunten/page.tsx`, `components/LocationsGrid.tsx`)
 
 
