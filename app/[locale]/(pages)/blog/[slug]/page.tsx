@@ -114,7 +114,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
                 {post.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full border border-ink/15 bg-ink/5 px-3 py-1 text-xs uppercase tracking-[0.3em] text-gold/70"
+                    className="pill-roastery uppercase tracking-[0.3em]"
                   >
                     {tag}
                   </span>

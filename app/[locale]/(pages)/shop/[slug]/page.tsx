@@ -283,7 +283,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,165,116,0.25),_transparent_60%)]" />
                           </>
                         )}
-                        <div className="absolute bottom-4 left-4 rounded-full border border-cream/20 bg-noir/70 px-3 py-1 text-xs uppercase tracking-[0.3em] text-cream/70">
+                        <div className="pill-roastery absolute bottom-4 left-4 uppercase tracking-[0.3em]">
                           {item.categories[0]?.name ?? item.collection}
                         </div>
                       </div>

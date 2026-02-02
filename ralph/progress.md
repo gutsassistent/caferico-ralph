@@ -57,19 +57,19 @@ Dependencies: none.
 
 Dependencies: All split-mode conversion steps.
 
-- [ ] 39. Contrast audit — ensure ink text on parchment meets >= 4.5:1; fix lingering `text-cream/*` in light sections
-- [ ] 40. Packaging cue roll-out (part 1) — apply `.pill-roastery` to Home trust badges + featured category pills (`app/[locale]/(pages)/page.tsx`)
-- [ ] 41. Packaging cue roll-out (part 2) — apply `.pill-roastery` to Blog tags (`app/[locale]/(pages)/blog/page.tsx`, `app/[locale]/(pages)/blog/[slug]/page.tsx`)
-- [ ] 42. Packaging cue roll-out (part 3) — apply `.pill-roastery` to Shop + Product category chips where appropriate (`components/ShopCatalog.tsx`, `app/[locale]/(pages)/shop/[slug]/page.tsx`)
-- [ ] 43. Mobile pass (375px) — verify split-mode pages and cart drawer; patch layout issues only
+- [x] 39. Contrast audit — ensure ink text on parchment meets >= 4.5:1; fix lingering `text-cream/*` in light sections — DONE (iteration 7)
+- [x] 40. Packaging cue roll-out (part 1) — apply `.pill-roastery` to Home trust badges + featured category pills (`app/[locale]/(pages)/page.tsx`) — DONE (iteration 2)
+- [x] 41. Packaging cue roll-out (part 2) — apply `.pill-roastery` to Blog tags (`app/[locale]/(pages)/blog/page.tsx`, `app/[locale]/(pages)/blog/[slug]/page.tsx`) — DONE (iteration 3)
+- [x] 42. Packaging cue roll-out (part 3) — apply `.pill-roastery` to Shop + Product category chips where appropriate (`components/ShopCatalog.tsx`, `app/[locale]/(pages)/shop/[slug]/page.tsx`) — DONE (iteration 4)
+- [x] 43. Mobile pass (375px) — verify split-mode pages and cart drawer; patch layout issues only — DONE (iteration 5)
 
 ---
 
 ## Current
 
-- Working on: Steps 37-38 complete
-- Iteration: 6
-- Last action: Switched Privacy + Terms pages to section-light layout with ink text colors
+- Working on: Step 43 complete
+- Iteration: 11
+- Last action: Mobile pass (375px) — tightened CartDrawer padding (px-6 → px-4 sm:px-6), about page card padding (p-8 → p-5 sm:p-8), contact detail card padding, locations card padding for better 375px layout
 - Last result: Success — typecheck + build pass
 
 ## Architecture Decisions

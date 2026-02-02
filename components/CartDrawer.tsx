@@ -66,7 +66,7 @@ export default function CartDrawer() {
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <div className="flex items-start justify-between border-b border-ink/10 px-6 py-5">
+        <div className="flex items-start justify-between border-b border-ink/10 px-4 py-5 sm:px-6">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-gold-dark">{t('eyebrow')}</p>
             <h2 className="mt-2 font-serif text-2xl text-ink">{t('title')}</h2>
@@ -92,7 +92,7 @@ export default function CartDrawer() {
           </button>
         </div>
 
-        <div className="flex-1 space-y-6 overflow-y-auto px-6 py-6">
+        <div className="flex-1 space-y-6 overflow-y-auto px-4 py-6 sm:px-6">
           {!hasItems ? (
             <div className="rounded-3xl border border-ink/10 bg-white/60 p-6 text-center shadow-sm">
               <div className="mx-auto mb-5 h-16 w-16 rounded-full border border-gold/40 bg-gold/10 text-gold-dark" />
@@ -218,7 +218,7 @@ export default function CartDrawer() {
           )}
         </div>
 
-        <div className="border-t border-ink/10 px-6 py-5">
+        <div className="border-t border-ink/10 px-4 py-5 sm:px-6">
           {hasItems ? (
             <div className="space-y-4">
               <div className="flex items-center justify-between text-sm text-inkMuted">

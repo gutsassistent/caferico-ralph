@@ -182,7 +182,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
           <div className="pointer-events-none absolute inset-0 bg-coffee-grain opacity-20" />
           <Container className="relative space-y-10">
             <div className="max-w-2xl space-y-3">
-              <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
+              <p className="text-xs uppercase tracking-[0.4em] text-inkMuted">
                 {t('pillars.eyebrow')}
               </p>
               <h2 className="font-serif text-3xl sm:text-4xl">{t('pillars.title')}</h2>
@@ -190,7 +190,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
             <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:gap-8">
               {pillarKeys.map((key, index) => (
                 <Reveal key={key} delay={index * 120}>
-                  <div className="flex h-full flex-col rounded-2xl border border-cream/10 bg-noir/80 p-8">
+                  <div className="flex h-full flex-col rounded-2xl border border-cream/10 bg-noir/80 p-5 sm:p-8">
                     <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gold/10 text-gold">
                       {pillarIcons[key]}
                     </div>
@@ -221,7 +221,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
             <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:gap-8">
               {farmerKeys.map((key, index) => (
                 <Reveal key={key} delay={index * 150}>
-                  <div className="flex h-full flex-col rounded-2xl border border-cream/10 bg-surface-darker p-8">
+                  <div className="flex h-full flex-col rounded-2xl border border-cream/10 bg-surface-darker p-5 sm:p-8">
                     {/* Avatar */}
                     <div className="flex items-center gap-4">
                       {key === 'tom' ? (
@@ -351,7 +351,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
             <div className="grid gap-4 sm:grid-cols-3 sm:gap-6 lg:gap-8">
               {certKeys.map((key, index) => (
                 <Reveal key={key} delay={index * 120}>
-                  <div className="flex h-full flex-col items-center rounded-2xl border border-cream/10 bg-surface-darker p-8 text-center">
+                  <div className="flex h-full flex-col items-center rounded-2xl border border-cream/10 bg-surface-darker p-5 text-center sm:p-8">
                     <div className="flex h-14 w-14 items-center justify-center rounded-full bg-green-900/30 text-green-400">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-7 w-7">
                         <path d="M9 12l2 2 4-4" />
@@ -388,7 +388,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
               ))}
               {impactKeys.map((key, index) => (
                 <Reveal key={key} delay={(index + 2) * 100}>
-                  <div className="flex h-full flex-col items-center rounded-2xl border border-cream/10 bg-surface-darker p-8 text-center">
+                  <div className="flex h-full flex-col items-center rounded-2xl border border-cream/10 bg-surface-darker p-5 text-center sm:p-8">
                     <span className="font-serif text-5xl text-gold">
                       {t(`certifications.impact.${key}.value`)}
                     </span>

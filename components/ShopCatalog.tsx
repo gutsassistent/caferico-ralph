@@ -460,7 +460,7 @@ export default function ShopCatalog({ products, categories }: ShopCatalogProps) 
                         {t('card.saleBadge')}
                       </div>
                     )}
-                    <div className="absolute bottom-3 left-3 rounded-full border border-ink/10 bg-white/80 px-3 py-1 text-xs uppercase tracking-[0.3em] text-inkMuted">
+                    <div className="pill-roastery absolute bottom-3 left-3 uppercase tracking-[0.3em]">
                       {product.categories[0]?.name ?? product.collection}
                     </div>
                   </div>

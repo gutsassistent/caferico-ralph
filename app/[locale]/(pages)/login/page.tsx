@@ -37,7 +37,7 @@ export default async function LoginPage({ params }: { params: Promise<{ locale: 
         <Container className="flex items-center justify-center">
           <div className="w-full max-w-md">
             <div className="mb-8 text-center">
-              <p className="text-xs uppercase tracking-[0.4em] text-gold/70">
+              <p className="text-xs uppercase tracking-[0.4em] text-inkMuted">
                 {t('eyebrow')}
               </p>
               <h1 className="mt-3 text-4xl font-serif leading-tight text-ink sm:text-5xl">
