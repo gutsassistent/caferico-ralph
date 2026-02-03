@@ -28,3 +28,6 @@ yarn-error.log*
 
 # Git worktrees created by scripts/parallel-ralph.sh
 .worktrees/
+
+# Local-only Ralph notes (avoid merge conflicts in progress.md)
+ralph/run.local.md

@@ -1,5 +1,12 @@
 # Progress
 
+<!--
+Merge-safety:
+- When completing a step, ONLY change that step's checkbox line.
+- Do not reformat, renumber, or reorder steps in the same commit as code changes.
+- If the plan needs changes, do that in a dedicated commit/PR to keep merges conflict-free.
+-->
+
 ## Completed Phases (reference only, not part of current plan)
 
 ✅ Redesign (42/42 stories)
@@ -65,12 +72,9 @@ Dependencies: All split-mode conversion steps.
 
 ---
 
-## Current
+## Run Notes (Local)
 
-- Working on: Step 43 complete
-- Iteration: 11
-- Last action: Mobile pass (375px) — tightened CartDrawer padding (px-6 → px-4 sm:px-6), about page card padding (p-8 → p-5 sm:p-8), contact detail card padding, locations card padding for better 375px layout
-- Last result: Success — typecheck + build pass
+Ephemeral run notes live in `ralph/run.local.md` (gitignored) to avoid merge conflicts.
 
 ## Architecture Decisions
 

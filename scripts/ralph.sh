@@ -161,7 +161,7 @@ PROMPT
 3. Read `ralph/progress.md` — find the first NOT STARTED or IN PROGRESS step (within scope if provided)
 4. Execute ONLY that one step
 5. Verify: run the project's test/build commands
-6. Update `ralph/progress.md` with the result
+6. Update `ralph/progress.md` with the result (ONLY the checkbox line for your step; do not edit other sections to avoid merge conflicts)
 7. If you failed: append to `ralph/failures.log` (format: `iteration:N|action:description|error:message|hash:short`) and add a lesson to `ralph/lessons.md`
 8. If you succeeded: mark the step as DONE in `ralph/progress.md`
 9. `git add -A && git commit -m "ralph: step N - [description]"`
