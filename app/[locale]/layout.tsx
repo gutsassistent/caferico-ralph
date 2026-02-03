@@ -53,7 +53,6 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
       <head>
         <link rel="dns-prefetch" href="https://www.caferico.be" />
         <link rel="preconnect" href="https://www.caferico.be" crossOrigin="anonymous" />
-        <link rel="icon" href="/icon.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: jsonLd(organizationSchema()) }}

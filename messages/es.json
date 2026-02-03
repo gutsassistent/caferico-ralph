@@ -897,56 +897,56 @@
       "ohneGent": {
         "name": "OHNE Gante",
         "type": "Tienda ecológica",
-        "address": "Koningin Elisabethlaan 22, 9000 Gent",
+        "address": "Gante",
         "region": "oostVlaanderen",
         "description": "Tienda sin embalaje con toda nuestra gama."
       },
       "ohneZwalm": {
         "name": "OHNE Zwalm",
         "type": "Tienda ecológica",
-        "address": "Hundelgemsebaan 117, 9630 Zwalm",
+        "address": "Zwalm",
         "region": "oostVlaanderen",
         "description": "Tienda sin embalaje con café ecológico."
       },
       "ohneNevele": {
         "name": "OHNE Nevele",
         "type": "Tienda ecológica",
-        "address": "Steenputstraat 1, 9850 Nevele",
+        "address": "Nevele",
         "region": "oostVlaanderen",
         "description": "Tienda sin embalaje con productos sostenibles."
       },
       "ohneTernat": {
         "name": "OHNE Ternat",
         "type": "Tienda ecológica",
-        "address": "Kerkstraat 16, 1742 Sint-Katherina-Lombeek",
+        "address": "Ternat",
         "region": "vlaamsBrabant",
         "description": "Tienda sin embalaje con nuestra gama de café."
       },
       "ohneMerelbeke": {
         "name": "OHNE Merelbeke",
         "type": "Tienda ecológica",
-        "address": "Hundelgemsesteenweg 33 C, 9820 Merelbeke",
+        "address": "Merelbeke",
         "region": "oostVlaanderen",
         "description": "Tienda sin embalaje con café ecológico."
       },
       "bakkerijFrancois": {
         "name": "Bakkerij François",
         "type": "Panadería",
-        "address": "Nijverheidsstraat 4, 9420 Erpe-Mere",
+        "address": "Erpe-Mere",
         "region": "oostVlaanderen",
         "description": "Panadería artesanal que ofrece nuestro café."
       },
       "boerBas": {
         "name": "Boer Bas",
         "type": "Tienda de granja",
-        "address": "Sint-Pietersnoordstraat 3, 8000 Brugge",
+        "address": "Brujas",
         "region": "westVlaanderen",
         "description": "Tienda de granja con productos locales y ecológicos."
       },
       "akkerEnAmbacht": {
         "name": "Akker en Ambacht",
         "type": "Tienda ecológica",
-        "address": "Meibloemstraat 86, 9000 Gent",
+        "address": "Gante",
         "region": "oostVlaanderen",
         "description": "Tienda ecológica enfocada en origen y artesanía."
       }
