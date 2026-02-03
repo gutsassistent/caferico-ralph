@@ -897,56 +897,56 @@
       "ohneGent": {
         "name": "OHNE Gent",
         "type": "Biowinkel",
-        "address": "Gent",
+        "address": "Koningin Elisabethlaan 22, 9000 Gent",
         "region": "oostVlaanderen",
         "description": "Verpakkingsvrije winkel met ons volledige assortiment."
       },
       "ohneZwalm": {
         "name": "OHNE Zwalm",
         "type": "Biowinkel",
-        "address": "Zwalm",
+        "address": "Hundelgemsebaan 117, 9630 Zwalm",
         "region": "oostVlaanderen",
         "description": "Verpakkingsvrije winkel met biologische koffie."
       },
       "ohneNevele": {
         "name": "OHNE Nevele",
         "type": "Biowinkel",
-        "address": "Nevele",
+        "address": "Steenputstraat 1, 9850 Nevele",
         "region": "oostVlaanderen",
         "description": "Verpakkingsvrije winkel met duurzame producten."
       },
       "ohneTernat": {
         "name": "OHNE Ternat",
         "type": "Biowinkel",
-        "address": "Ternat",
+        "address": "Kerkstraat 16, 1742 Sint-Katherina-Lombeek",
         "region": "vlaamsBrabant",
         "description": "Verpakkingsvrije winkel met ons koffie-assortiment."
       },
       "ohneMerelbeke": {
         "name": "OHNE Merelbeke",
         "type": "Biowinkel",
-        "address": "Merelbeke",
+        "address": "Hundelgemsesteenweg 33 C, 9820 Merelbeke",
         "region": "oostVlaanderen",
         "description": "Verpakkingsvrije winkel met biologische koffie."
       },
       "bakkerijFrancois": {
         "name": "Bakkerij François",
         "type": "Bakkerij",
-        "address": "Erpe-Mere",
+        "address": "Nijverheidsstraat 4, 9420 Erpe-Mere",
         "region": "oostVlaanderen",
         "description": "Ambachtelijke bakkerij met onze koffie in het assortiment."
       },
       "boerBas": {
         "name": "Boer Bas",
         "type": "Hoevewinkel",
-        "address": "Brugge",
+        "address": "Sint-Pietersnoordstraat 3, 8000 Brugge",
         "region": "westVlaanderen",
         "description": "Hoevewinkel met lokale en biologische producten."
       },
       "akkerEnAmbacht": {
         "name": "Akker en Ambacht",
         "type": "Biowinkel",
-        "address": "Gent",
+        "address": "Meibloemstraat 86, 9000 Gent",
         "region": "oostVlaanderen",
         "description": "Biologische winkel met aandacht voor herkomst en ambacht."
       }

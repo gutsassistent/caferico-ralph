@@ -897,56 +897,56 @@
       "ohneGent": {
         "name": "OHNE Gand",
         "type": "Magasin bio",
-        "address": "Gand",
+        "address": "Koningin Elisabethlaan 22, 9000 Gent",
         "region": "oostVlaanderen",
         "description": "Magasin zéro déchet avec notre gamme complète."
       },
       "ohneZwalm": {
         "name": "OHNE Zwalm",
         "type": "Magasin bio",
-        "address": "Zwalm",
+        "address": "Hundelgemsebaan 117, 9630 Zwalm",
         "region": "oostVlaanderen",
         "description": "Magasin zéro déchet avec du café biologique."
       },
       "ohneNevele": {
         "name": "OHNE Nevele",
         "type": "Magasin bio",
-        "address": "Nevele",
+        "address": "Steenputstraat 1, 9850 Nevele",
         "region": "oostVlaanderen",
         "description": "Magasin zéro déchet avec des produits durables."
       },
       "ohneTernat": {
         "name": "OHNE Ternat",
         "type": "Magasin bio",
-        "address": "Ternat",
+        "address": "Kerkstraat 16, 1742 Sint-Katherina-Lombeek",
         "region": "vlaamsBrabant",
         "description": "Magasin zéro déchet avec notre gamme de café."
       },
       "ohneMerelbeke": {
         "name": "OHNE Merelbeke",
         "type": "Magasin bio",
-        "address": "Merelbeke",
+        "address": "Hundelgemsesteenweg 33 C, 9820 Merelbeke",
         "region": "oostVlaanderen",
         "description": "Magasin zéro déchet avec du café biologique."
       },
       "bakkerijFrancois": {
         "name": "Bakkerij François",
         "type": "Boulangerie",
-        "address": "Erpe-Mere",
+        "address": "Nijverheidsstraat 4, 9420 Erpe-Mere",
         "region": "oostVlaanderen",
         "description": "Boulangerie artisanale proposant notre café."
       },
       "boerBas": {
         "name": "Boer Bas",
         "type": "Ferme",
-        "address": "Bruges",
+        "address": "Sint-Pietersnoordstraat 3, 8000 Brugge",
         "region": "westVlaanderen",
         "description": "Magasin de ferme avec des produits locaux et biologiques."
       },
       "akkerEnAmbacht": {
         "name": "Akker en Ambacht",
         "type": "Magasin bio",
-        "address": "Gand",
+        "address": "Meibloemstraat 86, 9000 Gent",
         "region": "oostVlaanderen",
         "description": "Magasin biologique axé sur la provenance et l'artisanat."
       }

@@ -897,56 +897,56 @@
       "ohneGent": {
         "name": "OHNE Ghent",
         "type": "Organic shop",
-        "address": "Ghent",
+        "address": "Koningin Elisabethlaan 22, 9000 Gent",
         "region": "oostVlaanderen",
         "description": "Package-free shop with our full range."
       },
       "ohneZwalm": {
         "name": "OHNE Zwalm",
         "type": "Organic shop",
-        "address": "Zwalm",
+        "address": "Hundelgemsebaan 117, 9630 Zwalm",
         "region": "oostVlaanderen",
         "description": "Package-free shop with organic coffee."
       },
       "ohneNevele": {
         "name": "OHNE Nevele",
         "type": "Organic shop",
-        "address": "Nevele",
+        "address": "Steenputstraat 1, 9850 Nevele",
         "region": "oostVlaanderen",
         "description": "Package-free shop with sustainable products."
       },
       "ohneTernat": {
         "name": "OHNE Ternat",
         "type": "Organic shop",
-        "address": "Ternat",
+        "address": "Kerkstraat 16, 1742 Sint-Katherina-Lombeek",
         "region": "vlaamsBrabant",
         "description": "Package-free shop with our coffee range."
       },
       "ohneMerelbeke": {
         "name": "OHNE Merelbeke",
         "type": "Organic shop",
-        "address": "Merelbeke",
+        "address": "Hundelgemsesteenweg 33 C, 9820 Merelbeke",
         "region": "oostVlaanderen",
         "description": "Package-free shop with organic coffee."
       },
       "bakkerijFrancois": {
         "name": "Bakkerij François",
         "type": "Bakery",
-        "address": "Erpe-Mere",
+        "address": "Nijverheidsstraat 4, 9420 Erpe-Mere",
         "region": "oostVlaanderen",
         "description": "Artisan bakery stocking our coffee."
       },
       "boerBas": {
         "name": "Boer Bas",
         "type": "Farm shop",
-        "address": "Bruges",
+        "address": "Sint-Pietersnoordstraat 3, 8000 Brugge",
         "region": "westVlaanderen",
         "description": "Farm shop with local and organic products."
       },
       "akkerEnAmbacht": {
         "name": "Akker en Ambacht",
         "type": "Organic shop",
-        "address": "Ghent",
+        "address": "Meibloemstraat 86, 9000 Gent",
         "region": "oostVlaanderen",
         "description": "Organic shop focusing on provenance and craft."
       }
